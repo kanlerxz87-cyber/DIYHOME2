@@ -69,4 +69,7 @@ See the site's **Verification** page (`docs/verification.html`) and `data/source
 - `git pull --rebase` required before every push; small commits pushed as they land.
 
 ## Merge / deploy record
-T-014 in progress: PR to main to be opened next; merge + Pages verification to follow. See PR link in the next update.
+T-014 in progress (PR opened 2026-11-20):
+- PR: https://github.com/kanlerxz87-cyber/DIYHOME2/pull/14 (arena/7ebfbe32-diyhome2 → main)
+- Merge: pending at time of writing; will record merge commit + Pages build status in the next update.
+- Note: Pages is legacy source `main` `/`; token cannot change Pages settings (403 on PUT /pages). Site therefore lives at repo root + `.nojekyll`. Actions workflow = verify only; Pages republishes automatically on merge to main.
