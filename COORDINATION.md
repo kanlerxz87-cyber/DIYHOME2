@@ -56,4 +56,4 @@ Reverified the integrated output rather than relying only on prior logs:
 
 Issue #1 handoff: added a direct `Campaign desk` link to the publication's shared site-records navigation/footer (generated from `scripts/build.py`) so `/measurement/index.html` is reachable alongside the simpler `measurement.html` reporting page.
 
-The remaining work on this branch is the merge commit, PR creation/merge, and checking the Pages result after merge. Conflicts were resolved in favor of the already completed shared publication, without losing any session's upstream changes.
+Merge commit `db1bfaa` preserves the completed upstream integration. Remaining: PR creation/merge and checking the GitHub Pages result after merge. Conflicts were resolved in favor of the already completed shared publication, without losing any session's upstream changes.
