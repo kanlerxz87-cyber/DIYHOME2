@@ -82,6 +82,8 @@ PR #8 handoff receipt: [PR #8](https://github.com/kanlerxz87-cyber/DIYHOME2/pull
 
 2026-11-20 (`arena/669fab92-diyhome2`): This branch initially built a parallel Node publication implementation before `main` advanced with the deployed Python-builder site from parallel sessions. To avoid duplicating the live publication, the merge keeps `main`'s deployed site, builder, register, ledger, measurement desk, and checks. The parallel Node implementation is not carried into the integrated site. No product facts, tracking, Search Console data, clicks, orders, or revenue were verified by this session; the live Flagged for Review page remains the source for unresolved items.
 
+Release receipt, 2026-11-20: [PR #12](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/12) merged into main at 06:13:02 UTC (merge commit 92f5b61). The PR check [44686182627](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686182627) succeeded; post-merge [Publication checks](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686234991) and [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686234026) succeeded, and the Pages API reported status `built`. Live homepage and Flagged for Review pages were fetched after deployment; the disclosure remains above the fold and the register still preserves the duplicate with intended fields blank.
+
 | Task | Status | Owner | Scope |
 |---|---|---|---|
 | Deep spec, internal discrepancy & 2026 policy audit addendum | done | arena/b92d7dd8-diyhome2 | `audit/`, `scripts/build.py` (navigation & sitemap link only), regenerated root pages, `COORDINATION.md` |
