@@ -43,3 +43,13 @@ Merge log: PR #3 added evidence records in parallel. Retained both board entries
 2026-11-20, c1033a7f: Re-fetched all three distinct submitted links, confirming the three observed Amazon targets recorded above; submission 03 repeats 02. No intended ASIN, account enrollment, Special Link tracking, sales, profitability or conversion confirmed. Checked [Amazon §§1,5](https://affiliate-program.amazon.com/help/operating/agreement), [GitHub static hosting](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) and [hosting limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits). Report flags account and hosting limits. Built publication, checked internal paths/disclosures/sponsored references/XML, tested all five counter events on isolated temporary storage, origin rejection, GPC suppression, source validation and empty ledger. Production data untouched. See issue #1 for shared-navigation handoff.
 
 PR #5 board reconciliation: retained both worksheet and measurement histories, no application conflict.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Product-first card artwork and titles | done | 8a9218ed | assets/, scripts/build.py, generated guide index and front page |
+
+- [PR #4](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/4): Main advanced during this parallel session. Resolved overlapping files in favor of the deployed publication and integrated only the complementary category illustrations and product-first headline cards. Confirmed Amazon destinations independently; tracking and product intent remain unverified. Illustrations are decorative, not listing photos. GitHub tracks the merge result on the linked PR.
+
+- Incorporated the independently merged measurement desk without changing its files.
+
+- Retained the concurrently merged worksheet and its feed/sitemap entries.
