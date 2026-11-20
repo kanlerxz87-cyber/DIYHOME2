@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "storage": "UTC daily aggregate counts; no per-visitor identifiers",
+  "events": [
+    {
+      "name": "page_view",
+      "source": "browser",
+      "purpose": "Count page loads by route without creating a visitor or session identifier."
+    },
+    {
+      "name": "guide_view",
+      "source": "browser",
+      "purpose": "Count question-guide page loads by route."
+    },
+    {
+      "name": "outbound_click",
+      "source": "browser",
+      "purpose": "Count clicks to non-product external references; store a short allowlisted key, not the destination URL."
+    },
+    {
+      "name": "product_link_click",
+      "source": "browser",
+      "purpose": "Count clicks on explicitly marked, validated product links; no such links are active until the verification gate passes."
+    },
+    {
+      "name": "reported_order",
+      "source": "authorized-first-party-report-only",
+      "purpose": "Record aggregate order counts imported from an authorized Associates report; browsers cannot submit this event."
+    }
+  ],
+  "persistedFields": ["utcDate", "eventName", "pagePath", "linkKey", "count"],
+  "notPersistedByApplication": [
+    "IP address",
+    "user agent",
+    "referrer",
+    "query string",
+    "cookies",
+    "account identifier",
+    "raw event body"
+  ],
+  "note": "The hosting provider or network may independently process request metadata. Aggregate files require an operator-defined retention and backup policy."
+}
