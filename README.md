@@ -1,44 +1,19 @@
-# DIY HOME
+# DIY Home Upgrades
 
-A publication-led DIY home and kitchen site with a shop shortlist, question-shaped buying guides, a seasonal file, and source-linked operations pages.
+[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
 
-## What is in this repository
+Build and validate from the repo root with `python3 scripts/build.py && python3 scripts/check.py`. GitHub Pages serves the generated root files from main. The builder is the source of truth for pages, sitemap and feed.
 
-- Static publication site generated from `src/content.mjs` into `dist/` by `scripts/build-site.mjs`.
-- 15 pages: front page, executive summary, shop shortlist, guide index, four kitchen guides, winter 2026/27 seasonal file, research desk, requirements register, measurement, campaign ledger, method & sources, and flagged-for-review.
-- Generated `sitemap.xml`, `feed.xml`, `robots.txt`, and `404.html`.
-- Product-intent register in `data/product-intent.json` with four submitted link records. The repeated URL is preserved as two records. Intended ASIN, official listing URL, confirmation date, source, and observed redirect target remain blank until verified.
-- Campaign ledger schema in `data/campaign-ledger.csv`; it contains headers only because no authorized first-party report has been imported.
-- Self-hosted aggregate analytics endpoint in `server.mjs` for the five events: `page_view`, `guide_view`, `outbound_click`, `product_link_click`, and `reported_order`. It stores daily aggregates only and does not persist IP address, user agent, referrer, query string, cookies, or account identifiers.
+## Measurement
 
-## Verification status
+GitHub Pages does not collect events. To run the optional self-hosted collector on another host, run `METRICS_ORIGIN=https://your-public-origin METRICS_DB=/path/to/persistent.sqlite3 python3 scripts/serve.py` behind a same-origin HTTPS reverse proxy with request limits and access logs disabled. The database is not served publicly. Without the origin setting the endpoint stays disabled. Counts are grouped by UTC date, page and event; there are no visitor IDs, cookies, IPs or referrers in the application database. Counts are directional and not bot-filtered sessions.
 
-No product links are active. The supplied `link.amazon` URLs have not been followed or tested in this session; their exact compliance status is unresolved and they are not described as invalid. The owner-supplied tracking ID `shopnow047c-20`, Associates enrollment, product identities, prices, reviews, commissions, search demand, clicks, orders, and revenue are not verified here.
+The five instrumentation events (no external event dictionary was supplied) are `page_view`, `guide_view`, `listing_reference_click`, `affiliate_click` (reserved for approved paid links) and `feed_click`. Purchases must come from authorized Associates reports, not client events. Keep the campaign ledger empty until provenance is available.
 
-GitHub Pages serves the static site only; it does not run the Node analytics endpoint. Search Console ownership and query data are not connected. The seasonal file includes a Search Console setup surface for when the property is verified.
+## Launch limits
 
-## Commands
+No Associates account, reports, authorized API integration, or Search Console ownership were available. No affiliate URLs or prices are published. The AI-assisted guides are not product tests. No autonomous research, ranking, revenue optimization, or email collection is running. RSS offers a no-data subscription path.
 
-```bash
-npm test
-npm run build
-npm start
-```
+## Machine-readable launch records
 
-`npm test` builds the site, runs the static verifier, and runs the analytics/server tests. `npm start` builds and serves the site plus the same-origin aggregate endpoint on port 4173 by default.
-
-## Deployment
-
-`.github/workflows/pages.yml` runs `npm test`, uploads `dist/` as the Pages artifact, and deploys it with the GitHub Pages actions. The repository’s Pages source must be set to GitHub Actions for the deploy job to publish the artifact.
-
-## Official references
-
-- Amazon Associates Operating Agreement: https://affiliate-program.amazon.com/help/operating/agreement
-- Amazon Associates Program Policies: https://affiliate-program.amazon.com/help/operating/policies
-- Amazon ASIN overview: https://sell.amazon.com/blog/how-to-create-a-new-asin-amazon
-- FTC Disclosures 101: https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers
-- Google Search Console: https://search.google.com/search-console/about
-- Google sitemap guidance: https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap
-- Google outbound-link guidance: https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links
-- GitHub Pages custom workflows: https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
-- RSS 2.0 specification: https://www.rssboard.org/rss-specification
+[`product-register.json`](product-register.json) preserves all four submissions, including the duplicate. Observed Amazon destinations are separate from intended ASINs, listing URLs and confirmation evidence. Null values are unverified. [`campaign-ledger.csv`](campaign-ledger.csv) has headers only; do not treat the absence of authorized reports as zero orders.

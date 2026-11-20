@@ -1,7 +1,3 @@
-node_modules/
-dist/
-.analytics-data/
-.env
-.env.*
-!.env.example
-*.log
+
+__pycache__/
+*.sqlite3
