@@ -121,3 +121,35 @@ inside the surviving `check.yml`.
 Verified after the merge: `python3 scripts/build.py`, `python3 scripts/check.py`,
 `node scripts/verify.mjs` all pass; `git status --porcelain` empty, so output is reproducible.
 
+
+### Release receipt — PR #15 (2026-11-20)
+
+[PR #15](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/15) merged into `main` at
+**06:17:09 UTC**, merge commit `981449a449bdafb41c90ae3bd1918d347c023bd0`.
+
+| Check | Result |
+|---|---|
+| Publication checks on `main` | [44686721341](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686721341) — success |
+| Pages build and deployment | [44686720577](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686720577) — success |
+
+Independently fetched the live pages after deployment:
+
+- [sources.html](https://kanlerxz87-cyber.github.io/DIYHOME2/sources.html) — all 12 documents
+  render with publisher, date-on-page and access state; the 6 constraints render with working
+  in-page basis links; S07–S12 print their Amazon and redirector URLs as plain text, and no
+  untagged Amazon product link is emitted.
+- [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — 13 items, covering every
+  page in the sitemap, including `/audit/` and `/field-notes/counter-fit/`.
+- Amazon listing and redirector URLs verified absent from the feed and the sitemap.
+
+**Still unverified, and unchanged by this PR:** intended product identity, Special Link
+compliance for the submitted `link.amazon` URLs (not claimed invalid), `shopnow047c-20`
+tracking attribution, Search Console ownership, and a deployed analytics endpoint. The campaign
+ledger remains empty. No clicks, orders, revenue, conversion rate or forecast is asserted
+anywhere on the site.
+
+**Board note for future sessions:** `COORDINATION.md` and `scripts/build.py` are the two files
+every session touches, so both conflict on nearly every merge. For the board, resolve by keeping
+*both* sides and appending (verified twice this session). For `build.py`, the conflict is usually
+the shared `ops` nav list — keep every session's entry rather than replacing one with another.
+Generated HTML should be regenerated from the merged builder, never hand-merged.
