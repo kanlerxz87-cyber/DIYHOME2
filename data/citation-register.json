@@ -1,0 +1,187 @@
+{
+  "meta": {
+    "title": "Citation register",
+    "checked": "2026-11-20",
+    "published_by": "arena/ecb1bfed-diyhome2",
+    "method": "Each document below was fetched and read during this session. Quotes are short extracts used to substantiate a specific claim. Documents marked restricted could not be read; they establish nothing and are listed so the gap stays visible.",
+    "honesty_note": "Where a claim could not be tied to a document, it is not made. Two claims that other sessions had not recorded are captured here: the star-rating prohibition and the price-display condition, both of which change what a compliant affiliate page may show."
+  },
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Associates Program Operating Agreement",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "section": "§5 Identifying Yourself as an Associate",
+      "dated_on_page": "Updated October 15, 2025",
+      "access": "public",
+      "claim": "The required disclosure statement, and that it must be stated clearly and prominently on the site.",
+      "quote": "You must clearly and prominently state the following … on your Site …: “As an Amazon Associate I earn from qualifying purchases.”"
+    },
+    {
+      "id": "S02",
+      "title": "Associates Program Policies",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §2(b), §2(t), §2(w), §2(y); Commission Income Statement §2(e)",
+      "dated_on_page": "Updated April 14, 2026",
+      "access": "public",
+      "claim": "Four rules that constrain this site: prices may only be shown when Amazon serves the link or the data comes via the Product Advertising API; star ratings may not be shown without API access; link shorteners must not obscure that a link goes to Amazon; price tracking and alerting are prohibited; and a purchase made through an intermediate site without an affirmative action there is disqualified.",
+      "quote": "You will not display or otherwise use any of our customer reviews or star ratings, in part or in whole, on your Site unless you have obtained a link to that customer review or star rating through Creators API or PA API (§2(t))."
+    },
+    {
+      "id": "S03",
+      "title": "Standard Commission Income rate card",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "section": "Appendix — Standard Commission Income",
+      "dated_on_page": "not visible (sign-in wall)",
+      "access": "restricted",
+      "claim": "Nothing. This URL redirects to an Associates sign-in page, so no commission rate, earnings estimate or revenue forecast is published anywhere on this site.",
+      "quote": ""
+    },
+    {
+      "id": "S04",
+      "title": "FTC's Endorsement Guides: What People Are Asking",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "section": "Where in my blog should I disclose that my review is sponsored by a marketer?",
+      "dated_on_page": "not displayed",
+      "access": "public",
+      "claim": "Disclosure placement: a disclosure must be where it easily catches attention and is hard to miss, and a disclosure at the bottom of a page may be missed. This is why the notice sits above the content and is repeated in the footer.",
+      "quote": "A disclosure should be placed where it easily catches consumers’ attention and is difficult to miss. … Consumers may miss a disclosure at the bottom of a blog or page."
+    },
+    {
+      "id": "S05",
+      "title": "16 CFR Part 255 — Guides Concerning Use of Endorsements and Testimonials in Advertising",
+      "publisher": "U.S. Federal Trade Commission, via eCFR",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "section": "§255.5 Disclosure of material connections",
+      "dated_on_page": "eCFR current as of 2026-11-18; source 88 FR 48102",
+      "access": "public",
+      "claim": "The operative rule requiring disclosure of a material connection between an endorser and a seller, of which an affiliate commission is the textbook case.",
+      "quote": ""
+    },
+    {
+      "id": "S06",
+      "title": "Understanding ASINs: Your guide to Amazon's product identification system",
+      "publisher": "Amazon (Sell on Amazon)",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "section": "What does “ASIN” mean? / How to find and use ASIN numbers",
+      "dated_on_page": "June 4, 2025",
+      "access": "public",
+      "claim": "ASIN is a 10-character alphanumeric code and appears in a product URL after /dp/. Used to establish that the submitted 9-character short codes cannot themselves be ASINs.",
+      "quote": "“ASIN” stands for “Amazon Standard Identification Number.” It’s a unique 10-character alphanumeric code assigned to every product listed in the Amazon store."
+    },
+    {
+      "id": "S07",
+      "title": "Amazon listing — Art3d Smoothing Tool Kit (B08FKW9JRM)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "section": "Title, byline, breadcrumb, About this item",
+      "dated_on_page": "live page",
+      "access": "public",
+      "claim": "Observed product identity only: brand Art3d, sold by Art3d, wallpaper tools category, kit contents. Establishes what the observed destination is — not what the submitted link was intended to be.",
+      "quote": ""
+    },
+    {
+      "id": "S08",
+      "title": "Amazon listing — Under-cabinet paper towel holder (B0BSKQW2T2)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "section": "Title, byline, product details, About this item",
+      "dated_on_page": "live page",
+      "access": "public",
+      "claim": "Observed product identity: brand niffgaff, aluminium, matte black, 12.2 in rail, 2.56 × 12.2 in, 5 oz, sold by YH Urban.",
+      "quote": ""
+    },
+    {
+      "id": "S09",
+      "title": "Amazon listing — ORDORA 8-tier pots and pans organizer (B08DY9HRWD)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "section": "Title, byline, variation lists",
+      "dated_on_page": "live page",
+      "access": "public",
+      "claim": "Observed product identity: brand ORDORA, 8 tiers, four colours, eight heights from 13.78 to 23.62 in, sold by ORDORA Official.",
+      "quote": ""
+    },
+    {
+      "id": "S10",
+      "title": "Submitted short link 1 — link.amazon/B0hmGG4m2",
+      "publisher": "Amazon.com, Inc. (redirector)",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "section": "Resolution observation",
+      "dated_on_page": "live redirect",
+      "access": "public",
+      "claim": "Resolves to https://www.amazon.com/dp/B08FKW9JRM. The code is 9 characters.",
+      "quote": ""
+    },
+    {
+      "id": "S11",
+      "title": "Submitted short link 2 — link.amazon/B03QDuGdo",
+      "publisher": "Amazon.com, Inc. (redirector)",
+      "url": "https://link.amazon/B03QDuGdo",
+      "section": "Resolution observation",
+      "dated_on_page": "live redirect",
+      "access": "public",
+      "claim": "Resolves to https://www.amazon.com/dp/B0BSKQW2T2. The code is 9 characters. This URL was submitted twice.",
+      "quote": ""
+    },
+    {
+      "id": "S12",
+      "title": "Submitted short link 3 — link.amazon/B0hpD2JGQ",
+      "publisher": "Amazon.com, Inc. (redirector)",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "section": "Resolution observation",
+      "dated_on_page": "live redirect",
+      "access": "public",
+      "claim": "Resolves to https://www.amazon.com/dp/B08DY9HRWD. The code is 9 characters and shares its B0 prefix with the ASIN it resolves to, which is a coincidence that makes copying the code into an ASIN field especially likely.",
+      "quote": ""
+    }
+  ],
+  "constraints": [
+    {
+      "id": "C1",
+      "constraint": "No prices may be displayed without API access or an Amazon-served link.",
+      "basis": "S02",
+      "effect_on_site": "No price appears anywhere. Price comparison cannot be offered.",
+      "new_this_session": true
+    },
+    {
+      "id": "C2",
+      "constraint": "No star ratings, review counts or review text may be displayed without API access.",
+      "basis": "S02",
+      "effect_on_site": "No rating appears anywhere. A rating column would be a policy breach, not a design choice.",
+      "new_this_session": true
+    },
+    {
+      "id": "C3",
+      "constraint": "No price tracking or price alerting.",
+      "basis": "S02",
+      "effect_on_site": "A price-history or deal-alert feature was excluded deliberately, not overlooked.",
+      "new_this_session": true
+    },
+    {
+      "id": "C4",
+      "constraint": "Filtering or styling a link so it is unclear it goes to Amazon is prohibited.",
+      "basis": "S02",
+      "effect_on_site": "Links are plain, unabbreviated Amazon URLs. No cloaking, no intermediary.",
+      "new_this_session": true
+    },
+    {
+      "id": "C5",
+      "constraint": "A purchase arriving through an intermediate site without an affirmative action there is disqualified.",
+      "basis": "S02",
+      "effect_on_site": "Click tracking may not route the visitor through this domain. A beacon is the compliant pattern.",
+      "new_this_session": true
+    },
+    {
+      "id": "C6",
+      "constraint": "A short code is not an ASIN and must not be recorded as one.",
+      "basis": "S06, S10, S11, S12",
+      "effect_on_site": "Intended and observed fields stay separate; the intended fields remain blank.",
+      "new_this_session": true
+    }
+  ]
+}

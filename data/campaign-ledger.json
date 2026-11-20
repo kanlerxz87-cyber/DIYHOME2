@@ -1,0 +1,24 @@
+{
+  "record_type": "campaign_ledger",
+  "state": "empty_by_design",
+  "purpose": "A well-defined but empty campaign ledger. Rows are added only when a figure arrives from an authorised first-party report supplied by the account holder.",
+  "why_empty": "No authorised first-party report has been provided to this build. Amazon click and order data lives behind Associates Central sign-in. Nothing is estimated, modelled or inferred, so the ledger starts at zero rows and says so.",
+  "columns": [
+    { "key": "row_id", "label": "Row ID", "type": "string", "required": true },
+    { "key": "timestamp_utc", "label": "Timestamp (UTC)", "type": "ISO-8601 datetime", "required": true, "note": "Moment the report row was exported, not the moment of the click." },
+    { "key": "source", "label": "Source", "type": "enum", "required": true, "allowed": ["associates-central-clicks-report", "associates-central-earnings-report", "first-party-analytics", "manual-entry-with-receipt"], "note": "Every allowed value names a first-party report." },
+    { "key": "channel", "label": "Channel", "type": "string", "required": true, "note": "Free text describing the traffic channel, e.g. organic-search, rss, direct." },
+    { "key": "eligible_sessions", "label": "Eligible sessions", "type": "integer", "required": false, "note": "Leave null when the report does not supply it." },
+    { "key": "clicks", "label": "Clicks", "type": "integer", "required": false, "note": "Reported clicks only. Our own outbound_click counter is not a substitute and is never summed into this column." },
+    { "key": "reported_orders", "label": "Reported orders", "type": "integer", "required": false, "note": "Orders as reported by Amazon. Never derived from clicks." },
+    { "key": "provenance_note", "label": "Provenance note", "type": "string", "required": true, "note": "Who exported the report, from which console, and where the original file is stored." }
+  ],
+  "prohibitions": [
+    "No conversion score is calculated or displayed from this ledger.",
+    "No revenue forecast is derived from this ledger.",
+    "No row may be back-filled from memory, from a search engine result, or from a third-party estimator.",
+    "Rows are never deleted. Corrections are appended as new rows referencing the row they correct.",
+    "Our own outbound_click counts and Amazon's reported clicks are different measurements and are never added together."
+  ],
+  "rows": []
+}

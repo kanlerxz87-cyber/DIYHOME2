@@ -1,0 +1,150 @@
+{
+  "checked_at": "2026-11-20",
+  "note": "Every source listed here was fetched and read during this session. Quotations are short extracts used for verification and legal citation. Sources with access=restricted could NOT be read and therefore establish nothing; they are recorded so the gap is visible.",
+  "sources": [
+    {
+      "id": "S01",
+      "title": "Associates Program Operating Agreement",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "section": "\u00a75 Identifying Yourself as an Associate",
+      "updated_on_page": "October 15, 2025",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "The required affiliate disclosure statement, and the requirement that it appear clearly and prominently on the Site.",
+      "quote": "You must clearly and prominently state the following, or any substantially similar statement previously allowed under this Agreement, on your Site or any other location where Amazon may authorize your display or other use of Program Content: \u201cAs an Amazon Associate I earn from qualifying purchases.\u201d"
+    },
+    {
+      "id": "S02",
+      "title": "Associates Program Policies (Commission Income Statement, Participation Requirements, Products Statement, Mobile Application Policy, Trademark Guidelines, IP License)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements \u00a72(a), \u00a72(b), \u00a72(t), \u00a72(w), \u00a72(y); \u00a73(e); Commission Income Statement \u00a72(e)",
+      "updated_on_page": "April 14, 2026",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "Link formatting (tag parameter), direct-access rule, price-display conditions, star-rating prohibition, link-shortener clarity rule, price-tracking prohibition, cookie disclosure duty, and the Redirecting Link disqualification.",
+      "quote": "You must not encourage customers to bookmark your Special Links. All Special Links must be accessed directly from your Site."
+    },
+    {
+      "id": "S03",
+      "title": "Standard Commission Income rate card",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "section": "Appendix \u2014 Standard Commission Income",
+      "updated_on_page": "not visible (sign-in wall)",
+      "retrieved": "2026-11-20",
+      "access": "restricted",
+      "establishes": "NOTHING. This URL redirects to an Associates sign-in page. Commission rates are therefore unverified and no rate, earnings estimate or revenue forecast may be published.",
+      "quote": ""
+    },
+    {
+      "id": "S04",
+      "title": "FTC's Endorsement Guides: What People Are Asking",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "section": "\u201cWhere in my blog should I disclose that my review is sponsored by a marketer?\u201d",
+      "updated_on_page": "not shown on page",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "Placement standard for affiliate disclosures, and that the FTC does not mandate specific disclosure wording.",
+      "quote": "A disclosure should be placed where it easily catches consumers\u2019 attention and is difficult to miss. \u2026 Consumers may miss a disclosure at the bottom of a blog or page. \u2026 A disclosure is more likely to be seen if it\u2019s very close to, or \u2013 even better \u2013 part of, the endorsement to which it relates."
+    },
+    {
+      "id": "S05",
+      "title": "16 CFR Part 255 \u2014 Guides Concerning Use of Endorsements and Testimonials in Advertising",
+      "publisher": "U.S. Federal Trade Commission (via eCFR, National Archives)",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "section": "\u00a7255.5 Disclosure of material connections",
+      "updated_on_page": "eCFR up to date as of 11/18/2026; source 88 FR 48102 (Jul 26, 2023)",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "The operative rule text requiring disclosure of material connections, of which \u00a7255.5 is the section on point for affiliate relationships.",
+      "quote": ""
+    },
+    {
+      "id": "S06",
+      "title": "Understanding ASINs: Your guide to Amazon's product identification system",
+      "publisher": "Amazon (Sell on Amazon, official seller blog)",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "section": "What does \u201cASIN\u201d mean? / How to find and use ASIN numbers",
+      "updated_on_page": "June 4, 2025",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "Official definition of ASIN and its 10-character length, and that the ASIN appears in a product URL after \"/dp/\".",
+      "quote": "\u201cASIN\u201d stands for \u201cAmazon Standard Identification Number.\u201d It\u2019s a unique 10-character alphanumeric code assigned to every product listed in the Amazon store."
+    },
+    {
+      "id": "S07",
+      "title": "Amazon product detail page \u2014 Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "section": "Product title, byline, breadcrumb, About this item",
+      "updated_on_page": "live page",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "ASIN, brand, category browse node, seller and item contents for this listing.",
+      "quote": ""
+    },
+    {
+      "id": "S08",
+      "title": "Amazon product detail page \u2014 Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "section": "Product title, byline, breadcrumb, product details table, About this item",
+      "updated_on_page": "live page",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "ASIN, brand, material, colour, dimensions, weight, mounting type, seller and category browse node.",
+      "quote": ""
+    },
+    {
+      "id": "S09",
+      "title": "Amazon product detail page \u2014 ORDORA Pots and Pans Organizer Under Cabinet, 8-Tier Adjustable Rack",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "section": "Product title, byline, breadcrumb, variation lists",
+      "updated_on_page": "live page",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "ASIN, brand, available colours and heights, seller and category browse node.",
+      "quote": ""
+    },
+    {
+      "id": "S10",
+      "title": "Submitted short link 1 \u2014 https://link.amazon/B0hmGG4m2",
+      "publisher": "Amazon.com, Inc. (link.amazon redirector)",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "section": "Resolution observation",
+      "updated_on_page": "live redirect",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "That the short code resolves to https://www.amazon.com/dp/B08FKW9JRM. The code itself is 9 characters and therefore is not an ASIN.",
+      "quote": ""
+    },
+    {
+      "id": "S11",
+      "title": "Submitted short link 2 \u2014 https://link.amazon/B03QDuGdo",
+      "publisher": "Amazon.com, Inc. (link.amazon redirector)",
+      "url": "https://link.amazon/B03QDuGdo",
+      "section": "Resolution observation",
+      "updated_on_page": "live redirect",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "That the short code resolves to https://www.amazon.com/dp/B0BSKQW2T2. The code itself is 9 characters and therefore is not an ASIN.",
+      "quote": ""
+    },
+    {
+      "id": "S12",
+      "title": "Submitted short link 3 \u2014 https://link.amazon/B0hpD2JGQ",
+      "publisher": "Amazon.com, Inc. (link.amazon redirector)",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "section": "Resolution observation",
+      "updated_on_page": "live redirect",
+      "retrieved": "2026-11-20",
+      "access": "public",
+      "establishes": "That the short code resolves to https://www.amazon.com/dp/B08DY9HRWD. The code itself is 9 characters and therefore is not an ASIN.",
+      "quote": ""
+    }
+  ]
+}

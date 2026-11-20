@@ -82,6 +82,8 @@ PR #8 handoff receipt: [PR #8](https://github.com/kanlerxz87-cyber/DIYHOME2/pull
 
 2026-11-20 (`arena/669fab92-diyhome2`): This branch initially built a parallel Node publication implementation before `main` advanced with the deployed Python-builder site from parallel sessions. To avoid duplicating the live publication, the merge keeps `main`'s deployed site, builder, register, ledger, measurement desk, and checks. The parallel Node implementation is not carried into the integrated site. No product facts, tracking, Search Console data, clicks, orders, or revenue were verified by this session; the live Flagged for Review page remains the source for unresolved items.
 
+Release receipt, 2026-11-20: [PR #12](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/12) merged into main at 06:13:02 UTC (merge commit 92f5b61). The PR check [44686182627](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686182627) succeeded; post-merge [Publication checks](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686234991) and [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686234026) succeeded, and the Pages API reported status `built`. Live homepage and Flagged for Review pages were fetched after deployment; the disclosure remains above the fold and the register still preserves the duplicate with intended fields blank.
+
 | Task | Status | Owner | Scope |
 |---|---|---|---|
 | Deep spec, internal discrepancy & 2026 policy audit addendum | done | arena/b92d7dd8-diyhome2 | `audit/`, `scripts/build.py` (navigation & sitemap link only), regenerated root pages, `COORDINATION.md` |
@@ -93,13 +95,41 @@ Complementary verified findings added in `audit/` (all independently verified 20
 - **2026 official regulatory & platform register (`S01`–`S12`):** Amazon PA-API 5.0 deprecation & Creators API migration ([deprecation notice](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation)), April 14, 2026 Operating Agreement & Program Policies updates ([compare](https://affiliate-program.amazon.com/help/operating/compare)), Standard Commission Income Table 1 ([rates](https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ): Tools/Home Improvement 3.00%, Kitchen 4.50% vs Home 3.00% SKU attribution unverified), Application Review thresholds ([review](https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM)), FTC 16 C.F.R. Part 255, and Google Search Central `rel="sponsored"` & thin-affiliation policies.
 - **Unverified / non-blocking review posture preserved:** Intended ASINs, official listing confirmations, Special Link compliance status for the submitted `link.amazon` URLs (not claimed invalid), and `shopnow047c-20` tracking remain unverified and separate from observed redirects; campaign ledger remains empty with zero fabricated metrics.
 
+Release receipt, 2026-11-20 (`arena/b92d7dd8-diyhome2`): [PR #13](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/13) merged into `main` at `06:14:11 UTC` (merge commit `b6b6af3ad4d612aba7cbf14dd435b6afc2443787`). Post-merge [Publication checks](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686373921) and [GitHub Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686372647) both succeeded, and the Pages API reported status `built`. Independently fetched live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/), [Spec & policy audit](https://kanlerxz87-cyber.github.io/DIYHOME2/audit/), [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml), and [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — confirmed `/audit/` renders all 3 sourced tables and above-the-fold/footer disclosures, `/sitemap.xml` lists `/audit/` and `/field-notes/counter-fit/`, and `/feed.xml` syndicates all 5 guides including `/field-notes/counter-fit/`.
+
+### PR #13 reconciliation and RSS coverage completion — `arena/ecb1bfed-diyhome2`
+
+Merging main after PR #13 required resolving one code conflict and twelve generated files.
+Nothing was lost:
+
+| File | Resolution |
+|---|---|
+| `scripts/build.py` | One conflict, on the shared `ops` nav list. **Both** entries kept: `Citation register` and PR #13's `Spec & policy audit`. |
+| 10 HTML pages + `sitemap.xml` | Took main's version, then regenerated from the merged builder. Hand-merging generated output would have produced pages that disagree with their source. |
+| `COORDINATION.md` | Took main's version, then appended this entry. |
+
+**RSS coverage completed.** Adding the audit page to the sitemap without adding it to the feed
+re-opened exactly the gap this session set out to close. The new `feed:coverage-gap` check
+caught it before merge, which is the check working as intended. The audit page is now in the
+feed, and sitemap and feed agree at **13 URLs / 13 items**.
+
+**Removed:** `.github/workflows/build-and-audit.yml`, a stale workflow from this session's
+abandoned standalone build. It referenced `scripts/build.mjs` and `scripts/audit.mjs`, both of
+which were retired, so it could only ever fail. Superseded by `scripts/verify.mjs` running
+inside the surviving `check.yml`.
+
+Verified after the merge: `python3 scripts/build.py`, `python3 scripts/check.py`,
+`node scripts/verify.mjs` all pass; `git status --porcelain` empty, so output is reproducible.
+
 2026-11-20 (`arena/7ebfbe32-diyhome2`): session branch was cut from the stale baseline `b8df795` and its snapshot contained only README.md — the board on `main` had advanced through PRs #2–#13. Without first fetching `main`, this session built a full parallel publication (front page, four guides, builder, five-event tracker, campaign ledger, flagged-for-review page, executive summary) and opened PR #14.
 
-Findings on reconciliation:
-- The Amazon hosts (`amazon.com`, `link.amazon`, `affiliate-program.amazon.com`) were **not reachable** from this session's build window (TLS `SSL_ERROR_SYSCALL`/`000`), unlike the sibling sessions recorded above, which report fetching the three live listings and recorded observed targets in `product-register.json` (`B08FKW9JRM`, `B0BSKQW2T2` ×2, `B08DY9HRWD`). This session's "unverified" posture was therefore weaker, not stronger, evidence and its parallel data, guides, analytics vocabulary (`affiliate_outbound_click`, `guide_read`, …) and tooling **were discarded in full**. No value from that build is carried into the site.
-- Merge conflicts (README.md, COORDINATION.md, index.html, feed.xml, sitemap.xml, standards.html, .gitignore) were resolved **in favor of the integrated live publication**; redundant files were removed (`tools/`, `data/`, my generated root HTML, `guides/`, `assets/css|js|img`, `EXECUTIVE_SUMMARY.md`, duplicate workflow). Tree is identical to `origin/main` (`b6b6af3`) except this coordination entry.
-- Main's `scripts/check.py` passes on the reconciled tree. Pages deployment for the merge pending at time of writing; live status recorded in the PR.
-- PR #14 was repurposed: after reconciliation it carries only this coordination entry. It does **not** re-land parallel work.
-- Lesson recorded for future sessions: `git fetch origin` + re-read `COORDINATION.md` immediately before claiming; an Arena session branch can be cut from an old commit while `main` races ahead.
+Findings on reconciliation (updated after `main` raced ahead again to `981449a` via PRs #15–#17):
+- The Amazon hosts (`amazon.com`, `link.amazon`, `affiliate-program.amazon.com`) were **not reachable** from this session's build window (TLS `SSL_ERROR_SYSCALL`/`000`), unlike the sibling sessions recorded above, which report fetching the three live listings and recorded observed targets in `product-register.json` (`B08FKW9JRM`, `B0BSKQW2T2` ×2, `B08DY9HRWD`). This session's parallel data, guides, analytics vocabulary (`affiliate_outbound_click`, `guide_read`, …) and tooling **were discarded in full**. No value from that build is carried into the site.
+- All conflicts across both merges were resolved **in favor of the integrated live publication**; redundant files were removed (`tools/`, `data/`, my generated root HTML, `guides/`, `assets/css|js|img|downloads`, `EXECUTIVE_SUMMARY.md`, duplicate workflow). After the second merge the tree differs from `origin/main` only by this coordination entry.
+- Operational error recorded honestly: after the first merge, this session ran `git pull --rebase` on the open PR branch. Rebase linearized the merge and replayed `main`'s commits, stopping on a `COORDINATION.md` conflict; the rebase was aborted immediately (`git rebase --abort`), restoring the branch tip `7568bc9` intact. No force-push was needed; the remote branch ref matched the restored commit. **Never rebase an open-PR branch after merging `main` into it — merge and push directly.**
+- `main` moved again mid-session (`b6b6af3` → `981449a`, PRs #15/#16/#17: citation register, publish gate, RSS fix). This session merged `origin/main` a second time; the only conflict was `COORDINATION.md`, resolved by keeping both histories and appending this updated entry.
+- Main's own gates pass on the reconciled tree: `python3 scripts/check.py` → passed; `scripts/verify.mjs` present (run noted in PR checks). Pages status verified post-merge; see PR #14 for the receipt and live-URL confirmation.
+- PR #14 was repurposed: it carries only coordination documentation and does **not** re-land parallel work. Any unique value from this session (weaker, network-blocked verification) is intentionally not shipped.
+- Lesson for future sessions: `git fetch origin` + re-read `COORDINATION.md` immediately before claiming any task; an Arena session branch can be cut from an old commit while `main` races ahead.
 
-Verification performed on the reconciled tree: `python3 scripts/check.py` → passed. Site files untouched relative to the deployed `main`.
+Verification performed on the reconciled tree: `python3 scripts/check.py` → passed. Site files untouched relative to the integrated `main`.
