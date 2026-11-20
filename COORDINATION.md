@@ -1,67 +1,85 @@
-# COORDINATION.md — DIYHOME2 Shared Task Board
+# Coordination
 
-This file coordinates all workstreams for `kanlerxz87-cyber/DIYHOME2` (DIY Home Upgrades — Amazon Associates Publication, Verification Register & Operations Dashboard).
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Initial integration and publication | done | d69e4487 | README.md, root publication files, assets/, scripts/, .github/workflows/, COORDINATION.md |
+| Product intent, enrolled tracking, and account-dependent integrations | needs review | d69e4487 | review.html, measurement.html |
 
-- **Repository:** `kanlerxz87-cyber/DIYHOME2`
-- **Target Live Site:** `https://kanlerxz87-cyber.github.io/DIYHOME2/`
-- **Selected Tracking ID:** `shopnow047c-20`
-- **Active Working Branch:** `arena/b92d7dd8-diyhome2` (Arena single-branch session policy; all commits and PR originate from this branch)
-- **Session ID:** `arena-b92d7dd8`
-- **Last Updated (UTC):** `2026-11-20`
+2026-11-20: Baseline contained only README.md. Followed three distinct submitted Amazon short URLs; observed official listings for [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) (submitted twice), and [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD). These establish observed targets, not intent or attribution. Reviewed the [Associates agreement](https://affiliate-program.amazon.com/help/operating/agreement) and [FTC guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking). Local build checks validate internal paths, disclosure, sponsored listing links, and XML. No conflicting scopes found. Arena's fixed branch is the integration branch.
 
----
+## Additional session claims (at startup)
 
-## Task Board
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Publication front page and final integration | done | 3a819254 | existing published integration retained and verified; Campaign desk added to shared navigation/footer |
+| Initial integration and publication | in progress | d69e4487 | README.md, site/, scripts/, .github/workflows/ |
+| First-party measurement service, campaign ledger and reporting surface | done | c1033a7f | measurement/ and this board |
 
-| Task ID | Task Description | Status | Owning Session | Branch | File Scope | Notes / Verification |
-| --- | --- | --- | --- | --- | --- | --- |
-| T-01 | Repository audit, product redirect resolution, line-by-line official source verification & structured data files | `done` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | `data/*.json`, `EXECUTIVE_SUMMARY.md` | Verified all 4 submitted links (3 unique + 1 duplicate), 15 official sources (`S01`–`S12`, `P01`–`P03`), and 10 flagged items |
-| T-02 | Privacy-preserving analytics client (5 defined events), self-hosted collector specification & empty provenance-tracked campaign ledger | `done` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | `assets/js/analytics.js`, `analytics/**`, `data/campaign-ledger.json` | Smoke-tested `analytics/endpoint/server.mjs` (`202` valid event, `400` disallowed event, accurate `/summary`); campaign ledger initialized empty |
-| T-03 | Publication front page, design system, bespoke editorial SVG imagery, category pages & 4 question-shaped buyer guides | `done` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | `index.html`, `assets/css/**`, `assets/img/**`, `assets/js/app.js`, `categories/**`, `guides/**`, `about.html` | Front page leads with products & buyer questions; masthead + footer verbatim disclosures above the fold; all Amazon links marked `rel="sponsored"` |
-| T-04 | Dashboard & verification surfaces (Executive Summary, Product Register, Compliance Gate, Analytics Hub, Flagged for Review) | `done` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | `summary.html`, `dashboard.html`, `compliance.html`, `analytics.html`, `flagged.html` | Every dashboard table row links to an official `https://` source; unverified/API-gated fields left blank & flagged |
-| T-05 | Findability & automation (RSS `feed.xml`, `sitemap.xml`, `robots.txt`, `.nojekyll`, automated compliance gate script & GitHub Actions workflow) | `done` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | `feed.xml`, `sitemap.xml`, `robots.txt`, `.nojekyll`, `scripts/verify_site.mjs`, `.github/workflows/compliance-gate.yml`, `README.md` | `node scripts/verify_site.mjs` passed 7/7 checks (14 HTML pages, 41 outbound Amazon links, 496 internal links, 0 errors); HTTP 200 verified on all 31 routes/assets |
-| T-06 | Final integration verification, PR to `main`, merge & GitHub Pages live deployment verification | `in progress` | `arena-b92d7dd8` | `arena/b92d7dd8-diyhome2` | All site outputs | Opening PR from `arena/b92d7dd8-diyhome2` to `main`, merging, and verifying live GitHub Pages deployment |
+2026-11-20: Both other branches have current claims. Request to integration owners: resolve overlapping publishing scopes with each other; link the measurement report from the dashboard navigation/footer, and load its consent-aware client only with a deployed service URL. This session will not edit either owner's files or change Pages settings. Assigned branch arena/c1033a7f-diyhome2 is fixed by the workspace.
 
----
+Integration log: parallel publication PR #2 completed during measurement development. Resolved add/add board conflict by keeping both histories. Reusing its event vocabulary and database schema rather than introducing parallel analytics.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Register and ledger integration | done | arena/7ad50d57-diyhome2 | product-register.json, campaign-ledger.csv, documentation |
 
-## Verified Official Sources Log (2026-11-20)
+- [PR #3](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/3): A parallel publication merged while this branch was in progress. Resolved overlapping files in favor of the completed publication and preserved its builder, navigation, guides, collector, and checks. Integrated only the complementary machine-readable register and ledger. Independently observed the same three Amazon destinations; no affiliate attribution or intent confirmed. GitHub records the merge result on the linked PR.
+# Coordination board
 
-- **S01** Amazon Associates Program Operating Agreement — `https://affiliate-program.amazon.com/help/operating/agreement`
-- **S02** Amazon Associates Program Policies (Updated April 14, 2026) — `https://affiliate-program.amazon.com/help/operating/policies`
-- **S03** Amazon Associates Operating Agreement Changes (Effective April 14, 2026) — `https://affiliate-program.amazon.com/help/operating/compare`
-- **S04** Amazon Associates Standard Commission Income Rates (Table 1) — `https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ`
-- **S05** Amazon Onsite Associates Commission Income Statement — `https://affiliate-program.amazon.com/help/node/topic/G4ARBJC7Z2NK48CA`
-- **S06** Amazon PA-API 5 Deprecation Notice & Creators API Migration — `https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation`
-- **S07** FTC Endorsement Guides: What People Are Asking (16 C.F.R. Part 255) — `https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking`
-- **S08** Amazon Associates Help: Why Identify Yourself as an Associate — `https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98`
-- **S09** Amazon Associates Application Review Process — `https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM`
-- **S10** Amazon Standard Identification Number (ASIN) Definition — `https://sell.amazon.com/blog/fba-new-selection-program`
-- **S11** Google Search Central: Qualify Outbound Links (`rel="sponsored"`) — `https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links`
-- **S12** Google Search Central: Spam Policies (Link Spam & Thin Affiliation) — `https://developers.google.com/search/docs/essentials/spam-policies`
-- **P01** Amazon US Product Detail Page (Observed Redirect of `link.amazon/B0hmGG4m2`) — `https://www.amazon.com/dp/B08FKW9JRM`
-- **P02** Amazon US Product Detail Page (Observed Redirect of `link.amazon/B03QDuGdo`, submitted twice) — `https://www.amazon.com/dp/B0BSKQW2T2`
-- **P03** Amazon US Product Detail Page (Observed Redirect of `link.amazon/B0hpD2JGQ`) — `https://www.amazon.com/dp/B08DY9HRWD`
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Publication, research register, measurement, tests and Pages integration | in progress | 9167a293 | Site assets, data, scripts, workflows, README.md and COORDINATION.md |
 
----
+2026-11-20 UTC: Initial checkout contained only the repository title. No existing claims. Using assigned Arena branch as the sole integration session.
 
-## Flagged Irregularities Summary (Published on `flagged.html` — Status: `needs review`)
+05:57 UTC correction after fetching all remote heads: parallel publishing claims exist on 3a819254, d69e4487, 7ad50d57, 8a9218ed, 77f9fde9 and 669fab92. c1033a7f owns measurement/. Relinquishing overlapping integration claim. **In progress — 9167a293 — kitchen counter-fit interactive worksheet and original illustrative editorial image, exclusively `field-notes/counter-fit/`**. Request to integration: link worksheet and reuse its image if desired; no edits here to shared navigation, analytics, workflow, or Pages settings.
 
-1. **FLG-01 (High):** Exact duplicate submission of `https://link.amazon/B03QDuGdo` on lines 2 and 3 (`SUB-02`, `SUB-03`).
-2. **FLG-02 (High):** Product-intent confirmation (`intended_asin`, `official_listing_url`, `confirmation_date`, `confirmation_source`) pending owner confirmation; strictly separated from observed redirect targets (`B08FKW9JRM`, `B0BSKQW2T2`, `B08DY9HRWD`).
-3. **FLG-03 (High):** Exact Amazon Associates Special Link compliance status of supplied `link.amazon` links unresolved under `S02` (not claimed invalid); `tag=shopnow047c-20` not observed in redirect query string; test one link per product in Associates Central before scaling.
-4. **FLG-04 (Medium):** Live prices, availability, customer star ratings, review counts, and Amazon images intentionally left blank pending Amazon Creators API enrollment (PA-API 5 is deprecated).
-5. **FLG-05 (Medium):** `B08FKW9JRM` (Art3d) listing Technical Details states `Item Package Quantity: 3` while Bullet 1 lists 5 items; California Prop 65 notice displayed.
-6. **FLG-06 (Medium):** `B08DY9HRWD` (ORDORA) listing title states lightweight cookware up to `11"` (`10 lb/tier` light-duty) while Bullet 4 states `up to 12 inches`; newer heavy-duty model `B0BYYTQMTR` banner and California Prop 65 notice displayed.
-7. **FLG-07 (Low):** Exact SKU commission fee tier for `B0BSKQW2T2` and `B08DY9HRWD` (`Kitchen 4.50%` vs `Home 3.00%`) unconfirmed until first-party Associates report.
-8. **FLG-08 (Low):** Missing UPC on `B08FKW9JRM` and missing UPC / Date First Available on `B0BSKQW2T2` left blank.
-9. **FLG-09 (Low):** Brief template example titles referenced air fryers whereas all submitted product links resolve to DIY Home Upgrades (`sprefix=diy+home+upgrades`).
-10. **FLG-10 (Medium):** Self-hosted analytics endpoint deployment, Google Search Console verification token, and Amazon Associates 3-sale / ~10-post review milestones remain open post-deploy actions.
+06:03 UTC: Initial integration is complete on main (PRs 2 and 3). Reconciled the add/add board conflict by retaining both sessions’ histories. The initial broad claim above is superseded. Final integration for **this worksheet only**: extend the completed guide index, air fryer article, RSS and sitemap via the builder and regenerate their outputs. No changes to measurement services or existing evidence records.
 
----
+| Counter-fit guide & integration | done | 9167a293 | field-notes/counter-fit/, builder, guides, air fryers, feed, sitemap |
 
-## Integration, PR & Deployment Log
+Verified the model-limited NA46x E10 outlet clearance from [Philips Support](https://www.usa.philips.com/c-t/XC000019680/my-philips-airfryer-shows-dashes-or-an-error-code); no universal clearances or product association inferred. All worksheet inputs start blank. Image is original AI-generated editorial illustration. Ran builder, root checks, nested link/fragment and disclosure checks, and calculator tests (exact fit, shortfall, decimal fit, reset). Rebase attempted to replay previously merged parallel commits; aborted without losing work and used fast-forward-only pull after preserving both board histories.
+Merge log: PR #3 added evidence records in parallel. Retained both board entries; the desk will use its canonical campaign-ledger.csv, not a second ledger.
 
-- **Automated Verification:** `node scripts/verify_site.mjs` — PASS (7/7 suites, 0 errors, 14 HTML pages, 41 outbound Amazon links checked, 496 internal links checked)
-- **Pull Request:** Pending creation
-- **Merge Result:** Pending
-- **GitHub Pages Verification:** Pending
+2026-11-20, c1033a7f: Re-fetched all three distinct submitted links, confirming the three observed Amazon targets recorded above; submission 03 repeats 02. No intended ASIN, account enrollment, Special Link tracking, sales, profitability or conversion confirmed. Checked [Amazon §§1,5](https://affiliate-program.amazon.com/help/operating/agreement), [GitHub static hosting](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages) and [hosting limits](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits). Report flags account and hosting limits. Built publication, checked internal paths/disclosures/sponsored references/XML, tested all five counter events on isolated temporary storage, origin rejection, GPC suppression, source validation and empty ledger. Production data untouched. See issue #1 for shared-navigation handoff.
+
+PR #5 board reconciliation: retained both worksheet and measurement histories, no application conflict.
+
+Release receipt, 2026-11-20: [campaign desk PR #5](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/5) merged into main at 06:01:24 UTC (2196f24). The first deployment failed while parallel work landed; the subsequent [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44684912722) succeeded with this change included. Independently fetched the [live report](https://kanlerxz87-cyber.github.io/DIYHOME2/measurement/) and confirmed its static status, all five signals, CSV link and empty ledger. No production event collection is asserted.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Product-first card artwork and titles | done | 8a9218ed | assets/, scripts/build.py, generated guide index and front page |
+
+- [PR #4](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/4): Main advanced during this parallel session. Resolved overlapping files in favor of the deployed publication and integrated only the complementary category illustrations and product-first headline cards. Confirmed Amazon destinations independently; tracking and product intent remain unverified. Illustrations are decorative, not listing photos. GitHub tracks the merge result on the linked PR.
+
+- Incorporated the independently merged measurement desk without changing its files.
+
+- Retained the concurrently merged worksheet and its feed/sitemap entries.
+PR #7 reconciliation: preserved the concurrent card-artwork log and release receipt. Extended only the measurement host allowlist for newly merged public images and worksheet assets.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Parallel verification and handoff | done | arena/77f9fde9-diyhome2 | COORDINATION.md only; no site or product-data files |
+
+2026-11-20 (`arena/77f9fde9-diyhome2`): The initial branch snapshot contained only the baseline commit and no coordination board. This session pushed its integration claim before refreshing the remote. After fetching, it found the parallel integration work and PRs #2 and #3; it stopped editing site/product files, rebased onto current `main`, and resolved successive `COORDINATION.md` conflicts by preserving all newer board entries and appending this handoff. Subsequent main-branch coordination recorded PRs #4, #5, #6 and #7 as well; this session did not modify another session's application files.
+
+Independent review sources fetched: Amazon [Associates Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement), [Program Policies](https://affiliate-program.amazon.com/help/operating/policies), [ASIN help](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC), and the three observed listing pages ([B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2), [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD)); FTC [affiliate disclosure guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking); Google [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [Search Console ownership verification](https://support.google.com/webmasters/answer/9008080?hl=en). The Amazon product pages support the observed listing identities only; they do not confirm the submitted links' intended products, redirect behavior, or Associates attribution. No short link is described as invalid.
+
+Deployment review: GitHub Pages is configured for the public project site [DIY Home Upgrades](https://kanlerxz87-cyber.github.io/DIYHOME2/). At review time the Pages API reported the site built; the live homepage, Flagged for Review page, sitemap and feed were fetched. Account-side link testing, tracking-report confirmation, Search Console ownership and an analytics endpoint on the public static host remain unverified/not deployed, and remain non-blocking review items on the site.
+
+2026-11-20 final integration update from `arena/3a819254-diyhome2`: `main` advanced again during the required pre-push rebase, causing conflicts in `COORDINATION.md`, `guides.html` and `index.html`. The rebase was aborted and the latest main history was merged. Conflicts were resolved by retaining main's newer product-first artwork and worksheet integration, then regenerating pages with the merged builder; the `Campaign desk` link is preserved in the shared dropdown/footer. The session's redundant standalone publication files were not carried into the integrated site.
+
+Latest-build checks after this merge: `python3 scripts/build.py`, `python3 scripts/check.py`, `python3 measurement/test_desk.py`, `node field-notes/counter-fit/test.cjs`, `node --check assets/metrics.js`, XML parsing and `git diff --check` passed. The register still has four rows, preserves the duplicate, and leaves intended product identity and affiliate attribution unverified. PR creation/merge and post-merge Pages verification remain.
+
+Release receipt, 2026-11-20: [PR #9](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/9) merged into main at 06:08:34 UTC (merge commit 570cac4). The post-merge [Publication checks run](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685710412) succeeded on main, and the [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685708111) succeeded; the Pages API reported status `built`. Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/), [robots.txt](https://kanlerxz87-cyber.github.io/DIYHOME2/robots.txt), [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml), [Campaign desk](https://kanlerxz87-cyber.github.io/DIYHOME2/measurement/) and [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html) pages: the disclosure is above the fold, the ledger remains empty with no fabricated metrics, and the four register rows keep intended ASIN/listing/confirmation fields blank with the duplicate preserved. No authorized orders, conversion data, revenue, or Search Console data are asserted; the shared analytics endpoint remains not deployed on the static host.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Deep spec, internal discrepancy & 2026 policy audit addendum | done | arena/b92d7dd8-diyhome2 | `audit/`, `scripts/build.py` (navigation & sitemap link only), regenerated root pages, `COORDINATION.md` |
+
+2026-11-20 reconciliation (`arena/b92d7dd8-diyhome2`): Initial checkout branched from baseline `b8df795` while parallel sessions merged PRs #2–#10 onto `main`. Merged `origin/main` cleanly and resolved all add/add conflicts in favor of the integrated live publication (preserving its builder, artwork, worksheet, Campaign desk, register, ledger, workflows, and full coordination history) without discarding any prior session's work. Retired redundant standalone root publication files and integrated only the complementary, non-overlapping `audit/` surface (`audit/index.html`, `audit/data/*.json`, `audit/check_audit.mjs`) linked from `scripts/build.py`'s Site records dropdown, footer, and `sitemap.xml`.
+
+Complementary verified findings added in `audit/` (all independently verified 2026-11-20 against official sources):
+- **Observed listing technical specs & internal discrepancies:** `B08FKW9JRM` (Art3d) `Item Package Quantity: 3` vs Bullet 1 listing 5 items + California Prop 65 notice + missing UPC; `B0BSKQW2T2` (niffgaff) verified dimensions (`2.56"L × 12.2"W`, Aluminum, `5 oz`) + missing UPC and Date First Available; `B08DY9HRWD` (ORDORA) title (`up to 11"`, `10 lb/tier` Light-Duty) vs Bullet 4 (`up to 12 inches`) + newer heavy-duty model banner (`B0BYYTQMTR`) + California Prop 65 notice + verified 3 DIY footprints & cabinet clearances.
+- **2026 official regulatory & platform register (`S01`–`S12`):** Amazon PA-API 5.0 deprecation & Creators API migration ([deprecation notice](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation)), April 14, 2026 Operating Agreement & Program Policies updates ([compare](https://affiliate-program.amazon.com/help/operating/compare)), Standard Commission Income Table 1 ([rates](https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ): Tools/Home Improvement 3.00%, Kitchen 4.50% vs Home 3.00% SKU attribution unverified), Application Review thresholds ([review](https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM)), FTC 16 C.F.R. Part 255, and Google Search Central `rel="sponsored"` & thin-affiliation policies.
+- **Unverified / non-blocking review posture preserved:** Intended ASINs, official listing confirmations, Special Link compliance status for the submitted `link.amazon` URLs (not claimed invalid), and `shopnow047c-20` tracking remain unverified and separate from observed redirects; campaign ledger remains empty with zero fabricated metrics.
+

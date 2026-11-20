@@ -1,0 +1,300 @@
+{
+  "schema_version": "1.0.0",
+  "project": "DIYHOME2 — DIY Home Upgrades",
+  "selected_tracking_id": "shopnow047c-20",
+  "verified_date_utc": "2026-11-20",
+  "governance_note": "Product-intent confirmation fields (intended_asin, official_listing_url, confirmation_date, confirmation_source) are strictly separated from observed_redirect_target fields. Never merge the two until the site owner explicitly confirms product intent and tests Special Links in Amazon Associates Central.",
+  "submitted_links": [
+    {
+      "submission_id": "SUB-01",
+      "line_number": 1,
+      "submitted_url": "https://link.amazon/B0hmGG4m2",
+      "short_token": "B0hmGG4m2",
+      "short_token_length": 9,
+      "is_valid_10_char_asin": false,
+      "duplicate_of": null,
+      "mapped_product_id": "PROD-01",
+      "observed_redirect_asin": "B08FKW9JRM",
+      "observed_redirect_status": "Resolved to Amazon US product detail page on 2026-11-20",
+      "tracking_id_in_observed_redirect": false,
+      "short_link_compliance_status": "Unresolved in S02 — do not claim invalid; test destination and tracking report in Amazon Associates Central",
+      "official_source_url": "https://www.amazon.com/dp/B08FKW9JRM"
+    },
+    {
+      "submission_id": "SUB-02",
+      "line_number": 2,
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "short_token": "B03QDuGdo",
+      "short_token_length": 9,
+      "is_valid_10_char_asin": false,
+      "duplicate_of": null,
+      "mapped_product_id": "PROD-02",
+      "observed_redirect_asin": "B0BSKQW2T2",
+      "observed_redirect_status": "Resolved to Amazon US product detail page on 2026-11-20",
+      "tracking_id_in_observed_redirect": false,
+      "short_link_compliance_status": "Unresolved in S02 — do not claim invalid; test destination and tracking report in Amazon Associates Central",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
+    },
+    {
+      "submission_id": "SUB-03",
+      "line_number": 3,
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "short_token": "B03QDuGdo",
+      "short_token_length": 9,
+      "is_valid_10_char_asin": false,
+      "duplicate_of": "SUB-02",
+      "mapped_product_id": "PROD-02",
+      "observed_redirect_asin": "B0BSKQW2T2",
+      "observed_redirect_status": "Exact duplicate of SUB-02; deduplicated in catalog and flagged for review",
+      "tracking_id_in_observed_redirect": false,
+      "short_link_compliance_status": "Duplicate submission — confirm whether a fourth distinct product was intended",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
+    },
+    {
+      "submission_id": "SUB-04",
+      "line_number": 4,
+      "submitted_url": "https://link.amazon/B0hpD2JGQ",
+      "short_token": "B0hpD2JGQ",
+      "short_token_length": 9,
+      "is_valid_10_char_asin": false,
+      "duplicate_of": null,
+      "mapped_product_id": "PROD-03",
+      "observed_redirect_asin": "B08DY9HRWD",
+      "observed_redirect_status": "Resolved to Amazon US product detail page on 2026-11-20",
+      "tracking_id_in_observed_redirect": false,
+      "short_link_compliance_status": "Unresolved in S02 — do not claim invalid; test destination and tracking report in Amazon Associates Central",
+      "official_source_url": "https://www.amazon.com/dp/B08DY9HRWD"
+    }
+  ],
+  "products": [
+    {
+      "product_id": "PROD-01",
+      "slug": "art3d-peel-and-stick-smoothing-tool-kit",
+      "category_slug": "wall-backsplash-tools",
+      "category_label": "Wall & Backsplash Tools",
+      "cluster": "Renter-Friendly Peel & Stick",
+      "editorial_short_name": "Art3d Peel & Stick Wallpaper Smoothing Tool Kit",
+      "submitted_links": [
+        "https://link.amazon/B0hmGG4m2"
+      ],
+      "product_intent_confirmation": {
+        "intended_asin": "",
+        "official_listing_url": "",
+        "confirmation_date": "",
+        "confirmation_source": "",
+        "status": "Unverified — pending owner product-intent confirmation"
+      },
+      "observed_redirect_target": {
+        "observed_asin": "B08FKW9JRM",
+        "observed_canonical_url": "https://www.amazon.com/dp/B08FKW9JRM",
+        "observed_raw_redirect_url": "https://www.amazon.com/dp/B08FKW9JRM?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy+home+upgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-2&btn_ref=srctok-66dc2f239029f4f9&channelId=500&plpRedirect=mhFallback",
+        "observed_date_utc": "2026-11-20",
+        "observed_sprefix": "diy home upgrades",
+        "tracking_id_present_in_redirect": false
+      },
+      "candidate_special_link": {
+        "url": null,
+        "tracking_id_pending_validation": "shopnow047c-20",
+        "rel": "sponsored noopener",
+        "status": "pending_associates_central_generation_and_verification"
+      },
+      "verified_listing_specs": {
+        "listing_title": "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer",
+        "brand": "Art3d",
+        "manufacturer": "Art3d",
+        "seller_observed": "Art3d® (Fulfilled by Amazon)",
+        "model_number": "A17999",
+        "part_number": "A17999g",
+        "upc": "",
+        "material": "Plastic (handle material: Plastic)",
+        "color_or_style": "Practical Style A",
+        "dimensions": "7.72 x 4.33 x 0.79 inches",
+        "item_weight": "3.52 ounces",
+        "installation_method": "Peel and Stick (application tool kit)",
+        "item_package_quantity_listed": "3 (Spec discrepancy flagged: bullet list names 5 items — large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape)",
+        "usage": "Commercial/Residential",
+        "date_first_available": "August 11, 2020",
+        "department_breadcrumb": "Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools",
+        "california_prop65_warning_observed": true,
+        "newer_model_banner_observed": false,
+        "verified_highlights": [
+          "Includes large smoothing tool, blue squeegee, utility knife, replacement blades, and measuring tape per product bullets.",
+          "Designed to reduce bubbles and creases on peel-and-stick wallpaper and vinyl backsplash tile.",
+          "Compact 7.72 x 4.33 x 0.79 in profile weighing 3.52 oz for drawer or toolbox storage."
+        ],
+        "official_source_url": "https://www.amazon.com/dp/B08FKW9JRM"
+      },
+      "creators_api_gated_fields": {
+        "live_price": "",
+        "availability": "",
+        "customer_star_rating": "",
+        "review_count": "",
+        "amazon_product_image_url": "",
+        "policy_gate_note": "Intentionally blank per Amazon Associates Program Policies (S02): live price, availability, customer star ratings, and product images must be served via Amazon Creators API or official SiteStripe links.",
+        "official_policy_url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "commission_schedule_reference": {
+        "amazon_department": "Tools & Home Improvement",
+        "published_schedule_rate": "3.00% (Tools / Home Improvement — Table 1 Fixed Standard Commission Income Rates)",
+        "sku_fee_tier_confirmed": false,
+        "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+      },
+      "guide_url": "guides/peel-and-stick-smoothing-kit-guide.html",
+      "illustration_svg": "assets/img/prod-smoothing-kit.svg"
+    },
+    {
+      "product_id": "PROD-02",
+      "slug": "niffgaff-under-cabinet-paper-towel-holder",
+      "category_slug": "kitchen-organization",
+      "category_label": "Kitchen Storage & Organization",
+      "cluster": "Weekend Kitchen Refresh",
+      "editorial_short_name": "niffgaff Matte Black Aluminum Under-Cabinet Paper Towel Holder",
+      "submitted_links": [
+        "https://link.amazon/B03QDuGdo",
+        "https://link.amazon/B03QDuGdo (duplicate)"
+      ],
+      "product_intent_confirmation": {
+        "intended_asin": "",
+        "official_listing_url": "",
+        "confirmation_date": "",
+        "confirmation_source": "",
+        "status": "Unverified — pending owner product-intent confirmation (and duplicate submission check)"
+      },
+      "observed_redirect_target": {
+        "observed_asin": "B0BSKQW2T2",
+        "observed_canonical_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+        "observed_raw_redirect_url": "https://www.amazon.com/dp/B0BSKQW2T2?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-3&btn_ref=srctok-1c4034662c855768&channelId=500&plpRedirect=mhFallback&th=1",
+        "observed_date_utc": "2026-11-20",
+        "observed_sprefix": "diy home upgrades",
+        "tracking_id_present_in_redirect": false
+      },
+      "candidate_special_link": {
+        "url": null,
+        "tracking_id_pending_validation": "shopnow047c-20",
+        "rel": "sponsored noopener",
+        "status": "pending_associates_central_generation_and_verification"
+      },
+      "verified_listing_specs": {
+        "listing_title": "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel",
+        "brand": "niffgaff",
+        "manufacturer": "niffgaff",
+        "seller_observed": "YH Urban (Fulfilled by Amazon)",
+        "model_number": "TN2200-BLK-NA 01",
+        "part_number": "TN2200",
+        "upc": "",
+        "material": "Aluminum (matte black finish)",
+        "color_or_style": "Black (variants observed on listing: Black, Gold, White)",
+        "dimensions": "2.56\"L x 12.2\"W (12.2-inch rail length)",
+        "item_weight": "5 ounces",
+        "installation_method": "Under Cabinet Mount or Wall Mount — dual self-adhesive or screw-drilling options; vertical or horizontal orientation",
+        "item_package_quantity_listed": "1 Count",
+        "usage": "Kitchen, bathroom, garage, RV (paper towel, foil, towel rail)",
+        "date_first_available": "",
+        "department_breadcrumb": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Paper Towel Holders",
+        "california_prop65_warning_observed": false,
+        "newer_model_banner_observed": false,
+        "verified_highlights": [
+          "12.2-inch aluminum alloy rail with matte black coating weighing 5 oz.",
+          "Dual mounting options: self-adhesive for smooth renter-friendly surfaces or screw drilling for permanent hold.",
+          "Supports vertical or horizontal placement under cabinets or on walls to free counter space."
+        ],
+        "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2"
+      },
+      "creators_api_gated_fields": {
+        "live_price": "",
+        "availability": "",
+        "customer_star_rating": "",
+        "review_count": "",
+        "amazon_product_image_url": "",
+        "policy_gate_note": "Intentionally blank per Amazon Associates Program Policies (S02): live price, availability, customer star ratings, and product images must be served via Amazon Creators API or official SiteStripe links.",
+        "official_policy_url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "commission_schedule_reference": {
+        "amazon_department": "Home & Kitchen › Kitchen & Dining",
+        "published_schedule_rate": "4.50% (Kitchen) or 3.00% (Home) — Table 1 Fixed Standard Commission Income Rates; exact SKU fee classification unverified until first-party report",
+        "sku_fee_tier_confirmed": false,
+        "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+      },
+      "guide_url": "guides/adhesive-vs-screw-paper-towel-holder.html",
+      "illustration_svg": "assets/img/prod-towel-holder.svg"
+    },
+    {
+      "product_id": "PROD-03",
+      "slug": "ordora-8-tier-pots-and-pans-organizer",
+      "category_slug": "kitchen-organization",
+      "category_label": "Kitchen Storage & Organization",
+      "cluster": "Cabinet Space Optimization",
+      "editorial_short_name": "ORDORA 8-Tier Adjustable Pots & Pans Organizer (16.6\" Light-Duty)",
+      "submitted_links": [
+        "https://link.amazon/B0hpD2JGQ"
+      ],
+      "product_intent_confirmation": {
+        "intended_asin": "",
+        "official_listing_url": "",
+        "confirmation_date": "",
+        "confirmation_source": "",
+        "status": "Unverified — pending owner product-intent confirmation"
+      },
+      "observed_redirect_target": {
+        "observed_asin": "B08DY9HRWD",
+        "observed_canonical_url": "https://www.amazon.com/dp/B08DY9HRWD",
+        "observed_raw_redirect_url": "https://www.amazon.com/dp/B08DY9HRWD?lv=shuf&btn_type=ss&crid=2Y94AV6ZXMMJI&sprefix=diy%2Bhome%2Bupgrades%2Caps%2C196&gaOptInStatus=true&language=en_US&sr=8-13&btn_ref=srctok-46eeea56854d085e&channelId=500&plpRedirect=mhFallback&th=1",
+        "observed_date_utc": "2026-11-20",
+        "observed_sprefix": "diy home upgrades",
+        "tracking_id_present_in_redirect": false
+      },
+      "candidate_special_link": {
+        "url": null,
+        "tracking_id_pending_validation": "shopnow047c-20",
+        "rel": "sponsored noopener",
+        "status": "pending_associates_central_generation_and_verification"
+      },
+      "verified_listing_specs": {
+        "listing_title": "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops",
+        "brand": "ORDORA",
+        "manufacturer": "ORDORA Official",
+        "seller_observed": "ORDORA Official (Fulfilled by Amazon)",
+        "model_number": "ODR8Tier",
+        "part_number": "8 Tier Pot and Pan Rack Organizer",
+        "upc": "655100721821",
+        "material": "Iron (with rubber/plastic-dipped divider covers)",
+        "color_or_style": "Black — Style Name: M-16.61\"H-LightDuty",
+        "dimensions": "9.17\"D x 21.31\"W x 16.61\"H (both-sides vertical mode); also configures as 11.75\" x 9.17\" x 16.61\" (one-side vertical) or 16.61\" x 9.17\" x 11.75\" (horizontal)",
+        "item_weight": "3.3 pounds",
+        "shelf_weight_capacity": "10 pounds per tier (Light-Duty variant)",
+        "cabinet_clearance_noted_on_listing": "Width >= 24.31 inches, Height >= 18.61 inches (for full two-sided vertical layout)",
+        "installation_method": "Tool-free slot assembly; 3 DIY configurations (under cabinet, shelf, countertop)",
+        "item_package_quantity_listed": "1 Count (Main Frame Large x1, Small x1, Higher Support x1, Shorter Support x1, M-shaped Divider x6, Instructions)",
+        "usage": "Lightweight cookware, pans, pots, lids, baking dishes, cutting boards",
+        "date_first_available": "",
+        "department_breadcrumb": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Pot Racks",
+        "california_prop65_warning_observed": true,
+        "newer_model_banner_observed": true,
+        "newer_model_asin_observed": "B0BYYTQMTR",
+        "verified_highlights": [
+          "3 tool-free DIY configurations adapt to tall, narrow, or shallow base cabinets.",
+          "8 adjustable tiers rated at 10 lbs per tier (Style: M-16.61\"H-LightDuty) with anti-slip dipped dividers.",
+          "Important buyer caveat: listing states lightweight cookware up to 11\" in title vs. up to 12\" in bullets (flagged), and Amazon notes a newer heavy-duty model (B0BYYTQMTR)."
+        ],
+        "official_source_url": "https://www.amazon.com/dp/B08DY9HRWD"
+      },
+      "creators_api_gated_fields": {
+        "live_price": "",
+        "availability": "",
+        "customer_star_rating": "",
+        "review_count": "",
+        "amazon_product_image_url": "",
+        "policy_gate_note": "Intentionally blank per Amazon Associates Program Policies (S02): live price, availability, customer star ratings, and product images must be served via Amazon Creators API or official SiteStripe links.",
+        "official_policy_url": "https://affiliate-program.amazon.com/help/operating/policies"
+      },
+      "commission_schedule_reference": {
+        "amazon_department": "Home & Kitchen › Kitchen & Dining",
+        "published_schedule_rate": "4.50% (Kitchen) or 3.00% (Home) — Table 1 Fixed Standard Commission Income Rates; exact SKU fee classification unverified until first-party report",
+        "sku_fee_tier_confirmed": false,
+        "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ"
+      },
+      "guide_url": "guides/measure-cabinet-for-pot-pan-organizer.html",
+      "illustration_svg": "assets/img/prod-pan-organizer.svg"
+    }
+  ]
+}

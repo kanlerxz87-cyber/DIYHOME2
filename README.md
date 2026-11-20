@@ -1,43 +1,19 @@
-# DIYHOME2 — DIY Home Upgrades Journal & Affiliate Operations Platform
+# DIY Home Upgrades
 
-**Live GitHub Pages Site:** [https://kanlerxz87-cyber.github.io/DIYHOME2/](https://kanlerxz87-cyber.github.io/DIYHOME2/)  
-**Selected Amazon Associates Tracking ID:** `shopnow047c-20`
+[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
 
-> **Affiliate Disclosure:** As an Amazon Associate I earn from qualifying purchases. Every outbound product link on the live site is labeled `(paid link)` and marked `rel="sponsored"`.
+Build and validate from the repo root with `python3 scripts/build.py && python3 scripts/check.py`. GitHub Pages serves the generated root files from main. The builder is the source of truth for pages, sitemap and feed.
 
----
+## Measurement
 
-## Overview
+GitHub Pages does not collect events. To run the optional self-hosted collector on another host, run `METRICS_ORIGIN=https://your-public-origin METRICS_DB=/path/to/persistent.sqlite3 python3 scripts/serve.py` behind a same-origin HTTPS reverse proxy with request limits and access logs disabled. The database is not served publicly. Without the origin setting the endpoint stays disabled. Counts are grouped by UTC date, page and event; there are no visitor IDs, cookies, IPs or referrers in the application database. Counts are directional and not bot-filtered sessions.
 
-DIYHOME2 is a measurement-first DIY Home Upgrades publication and verification platform built for GitHub Pages. It pairs a reader-focused editorial front page and question-shaped buying guides with transparent verification registers, an automated compliance gate, privacy-preserving click analytics, and a Flagged for Review queue.
+The five instrumentation events (no external event dictionary was supplied) are `page_view`, `guide_view`, `listing_reference_click`, `affiliate_click` (reserved for approved paid links) and `feed_click`. Purchases must come from authorized Associates reports, not client events. Keep the campaign ledger empty until provenance is available.
 
-### Key Surfaces
-- **Publication Front Page (`index.html`)** — Leads with verified DIY home upgrades, buyer questions, project clusters, and RSS / reader question capture.
-- **Category Pages (`categories/wall-backsplash-tools.html`, `categories/kitchen-organization.html`)** — Category-specific specs, honest buyer caveats, and measurement frameworks.
-- **Buyer Guides (`guides/*.html`)** — 4 original, question-shaped guides automatically syndicated in `feed.xml` and indexed in `sitemap.xml`.
-- **Executive Summary (`summary.html` & `EXECUTIVE_SUMMARY.md`)** — Line-by-line audit of the 4 submitted links (3 unique + 1 duplicate), 2026 policy posture, and next human-gated milestones.
-- **Product Register & Verification Dashboard (`dashboard.html`)** — Strictly separates Product-Intent Confirmation fields from Observed Redirect Targets, with official source links on every row.
-- **Compliance Gate & Official Sources (`compliance.html`)** — Official trusted source register (`S01`..`S12` and `P01`..`P03`) covering Amazon Associates April 2026 policies, PA-API 5 deprecation / Creators API migration, FTC Endorsement Guides (16 C.F.R. Part 255), and Google Search Central `rel="sponsored"`.
-- **Privacy-Preserving Analytics & Campaign Ledger (`analytics.html`)** — Client-side 5-event telemetry (`assets/js/analytics.js`), deployable zero-dependency Node.js collector (`analytics/endpoint/server.mjs`), and an intentionally empty provenance-tracked campaign ledger (`data/campaign-ledger.json`).
-- **Flagged for Review (`flagged.html`)** — All 10 irregularities, duplicate submissions, unverified fields, and API gates published transparently for manual review.
+## Launch limits
 
----
+No Associates account, reports, authorized API integration, or Search Console ownership were available. No affiliate URLs or prices are published. The AI-assisted guides are not product tests. No autonomous research, ranking, revenue optimization, or email collection is running. RSS offers a no-data subscription path.
 
-## Local Build & Automated Compliance Gate
+## Machine-readable launch records
 
-```bash
-# Rebuild all static HTML pages, sitemap.xml, feed.xml, and robots.txt from data/*.json
-node scripts/build_site.mjs
-
-# Run automated compliance gate (disclosures, rel="sponsored", zero static prices/ratings,
-# zero Amazon image hotlinks, data separation, feed/sitemap, and zero broken links)
-node scripts/verify_site.mjs
-```
-
-### Optional Self-Hosted Analytics Collector
-
-```bash
-PORT=8787 ALLOWED_ORIGIN=https://kanlerxz87-cyber.github.io node analytics/endpoint/server.mjs
-```
-
-See `COORDINATION.md` for session task tracking, official sources log, and PR/deployment history.
+[`product-register.json`](product-register.json) preserves all four submissions, including the duplicate. Observed Amazon destinations are separate from intended ASINs, listing URLs and confirmation evidence. Null values are unverified. [`campaign-ledger.csv`](campaign-ledger.csv) has headers only; do not treat the absence of authorized reports as zero orders.
