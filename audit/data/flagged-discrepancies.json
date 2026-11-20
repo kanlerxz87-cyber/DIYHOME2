@@ -1,0 +1,127 @@
+{
+  "schema_version": "1.0.0",
+  "verified_date_utc": "2026-11-20",
+  "policy_note": "Flagged items and unverified fields are published transparently here for post-deploy manual review. Per project rules, unverified values are left blank rather than inferred.",
+  "flags": [
+    {
+      "flag_id": "FLG-01",
+      "severity": "High",
+      "category": "Input Quality — Duplicate Link",
+      "item_ref": "SUB-02 & SUB-03 (https://link.amazon/B03QDuGdo)",
+      "issue": "Duplicate submitted URL",
+      "observed_evidence": "Lines 2 and 3 of the submitted product list both contain https://link.amazon/B03QDuGdo, which resolved to ASIN B0BSKQW2T2 on 2026-11-20.",
+      "action_taken_on_site": "Deduplicated into a single product record (PROD-02) while preserving both submission rows (SUB-02 and SUB-03) in the audit register.",
+      "required_manual_action": "Confirm whether the duplicate entry was accidental or whether a fourth distinct DIY Home Upgrades product link should be added.",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-02",
+      "severity": "High",
+      "category": "Product-Intent Governance",
+      "item_ref": "PROD-01, PROD-02, PROD-03 (All 3 unique products)",
+      "issue": "Intended ASIN & official listing confirmation fields pending",
+      "observed_evidence": "Submitted URLs use 9-character link.amazon redirect tokens (B0hmGG4m2, B03QDuGdo, B0hpD2JGQ), not 10-character Amazon ASINs. Observed redirects landed on B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD on 2026-11-20.",
+      "action_taken_on_site": "Kept intended_asin, official_listing_url, confirmation_date, and confirmation_source BLANK in data/products.json; stored observed redirect targets in strictly separate fields.",
+      "required_manual_action": "Site owner should confirm in writing that B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD are the exact intended products before merging confirmation records.",
+      "official_source_url": "https://sell.amazon.com/blog/fba-new-selection-program",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-03",
+      "severity": "High",
+      "category": "Associates Special Link Compliance",
+      "item_ref": "All link.amazon short links & Tracking ID shopnow047c-20",
+      "issue": "Unresolved Special Link compliance status; tracking ID not observed in redirect query string",
+      "observed_evidence": "Observed redirects from https://link.amazon/B0hmGG4m2, /B03QDuGdo, and /B0hpD2JGQ did not display tag=shopnow047c-20 in the final URL parameters on 2026-11-20. We do NOT claim the supplied short links are invalid; their exact compliance status is unresolved under S02.",
+      "action_taken_on_site": "Site product buttons use transparent candidate URLs (https://www.amazon.com/dp/{OBSERVED_ASIN}?tag=shopnow047c-20) marked rel=\"sponsored\" and flagged as pending Associates Central validation.",
+      "required_manual_action": "Test one Special Link per product inside the enrolled Amazon Associates Central / SiteStripe workflow and verify clicks appear under tracking ID shopnow047c-20 in Associates reports before scaling.",
+      "official_source_url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-04",
+      "severity": "Medium",
+      "category": "API & Dynamic Data Gate",
+      "item_ref": "PROD-01, PROD-02, PROD-03 (Prices, availability, star ratings, review counts, Amazon images)",
+      "issue": "Dynamic catalog fields intentionally blank pending Creators API integration",
+      "observed_evidence": "Amazon PA-API 5.0 is deprecated and replaced by Amazon Creators API (S06). Associates Program Policies (S02) prohibit displaying static scraped prices, availability, customer star ratings, or unauthorized Amazon product images.",
+      "action_taken_on_site": "Left live_price, availability, customer_star_rating, review_count, and amazon_product_image_url blank; used original editorial SVG illustrations and 'Check current price on Amazon (paid link)' CTAs.",
+      "required_manual_action": "Enroll in Amazon Associates Creators API once account eligibility is confirmed, then connect live hourly-refreshed offers with required timestamps.",
+      "official_source_url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-05",
+      "severity": "Medium",
+      "category": "Listing Spec Discrepancy",
+      "item_ref": "PROD-01 (Observed ASIN B08FKW9JRM — Art3d Smoothing Tool Kit)",
+      "issue": "Item Package Quantity (3) conflicts with product bullet list (5 items)",
+      "observed_evidence": "Amazon Technical Details table lists 'Item Package Quantity: 3', whereas Bullet 1 lists 'large smoothing tool, blue squeegee, utility knife, replacement blades, and measuring tape'. Also carries a California Proposition 65 warning.",
+      "action_taken_on_site": "Reported both official listing values verbatim without inventing a reconciliation; noted California Prop 65 warning on product table and guide.",
+      "required_manual_action": "Verify exact box contents via brand documentation or physical inspection before publishing hands-on testing claims.",
+      "official_source_url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-06",
+      "severity": "Medium",
+      "category": "Listing Spec Discrepancy & Product Lifecycle",
+      "item_ref": "PROD-03 (Observed ASIN B08DY9HRWD — ORDORA 8-Tier Organizer)",
+      "issue": "Cookware diameter discrepancy (11\" vs 12\"), Light-Duty 10 lb/tier limit, Prop 65 warning, and newer model banner",
+      "observed_evidence": "Listing title & Item Highlight specify 'Fits Lightweight Cookware Up to 11\"' and Style 'M-16.61\"H-LightDuty' (10 lbs/tier), whereas Bullet 4 states 'up to 12 inches'. Amazon also displays 'There is a newer model of this item' pointing to ASIN B0BYYTQMTR (20.8\", 120 lbs) and a California Prop 65 warning.",
+      "action_taken_on_site": "Documented the 11\" vs 12\" mismatch, highlighted the 10 lb/tier light-duty ceiling in the buyer guide, and linked the newer model notice for manual editorial review.",
+      "required_manual_action": "Decide whether to keep promoting B08DY9HRWD (light-duty 16.6\") or evaluate adding/comparing the newer heavy-duty model B0BYYTQMTR.",
+      "official_source_url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-07",
+      "severity": "Low",
+      "category": "Commission Tier Attribution",
+      "item_ref": "PROD-02 (B0BSKQW2T2) & PROD-03 (B08DY9HRWD)",
+      "issue": "Exact SKU commission fee category (Kitchen 4.50% vs Home 3.00%) unconfirmed",
+      "observed_evidence": "Both listings sit under 'Home & Kitchen › Kitchen & Dining › Storage & Organization'. Amazon Table 1 lists Kitchen at 4.50% and Home at 3.00%.",
+      "action_taken_on_site": "Displayed both official Table 1 schedule rates without assuming which rate Amazon applies to each SKU.",
+      "required_manual_action": "Confirm actual commission tier on first qualifying order in Amazon Associates Central earnings reports.",
+      "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-08",
+      "severity": "Low",
+      "category": "Missing Listing Identifiers",
+      "item_ref": "PROD-01 (UPC) & PROD-02 (UPC, Date First Available)",
+      "issue": "Identifier fields not displayed on official Amazon product detail page",
+      "observed_evidence": "B08FKW9JRM did not display a UPC on the fetched listing; B0BSKQW2T2 did not display a UPC or Date First Available.",
+      "action_taken_on_site": "Left unconfirmed fields blank in data/products.json and dashboard tables per zero-hallucination policy.",
+      "required_manual_action": "Populate only if verified from manufacturer spec sheets or Creators API.",
+      "official_source_url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-09",
+      "severity": "Low",
+      "category": "Editorial Brief Consistency",
+      "item_ref": "Project Brief — Air Fryer Working Titles vs DIY Home Upgrades Products",
+      "issue": "Template prompt included air-fryer example working titles unrelated to the submitted DIY Home Upgrades links",
+      "observed_evidence": "Submitted links all resolve to DIY home upgrade products (sprefix=diy+home+upgrades: wallpaper smoothing kit, paper towel holder, pot/pan organizer), while the brief's example question titles mentioned air fryers.",
+      "action_taken_on_site": "Adopted the exact question-shaped, no-hype editorial methodology but authored all 4 published guides strictly for the verified DIY Home Upgrades products.",
+      "required_manual_action": "Confirm that DIY Home Upgrades (Wall/Backsplash & Kitchen Storage) is the intended niche and air-fryer titles were template examples.",
+      "official_source_url": "https://affiliate-program.amazon.com/help/operating/compare",
+      "status": "Needs Review"
+    },
+    {
+      "flag_id": "FLG-10",
+      "severity": "Medium",
+      "category": "Measurement & Enrollment Readiness",
+      "item_ref": "Analytics Endpoint, Search Console & Associates 10-Post / 3-Sale Threshold",
+      "issue": "External self-hosted analytics endpoint URL, Google Search Console verification token, and Associates 180-day review milestones pending deployment configuration",
+      "observed_evidence": "GitHub Pages hosts static files only; a self-hosted analytics collector requires deploying analytics/endpoint/server.mjs (or Cloudflare Worker) and setting its endpoint URL. Amazon Associates review (S09) requires 3 qualified sales within 180 days and ~10 original posts.",
+      "action_taken_on_site": "Shipped client-side privacy-preserving 5-event tracker with local inspection ledger, deployable Node.js collector script, Search Console slot, empty campaign ledger, and 4 initial original guides + publishing cadence to reach 10+ posts.",
+      "required_manual_action": "Deploy the self-hosted analytics endpoint, verify the site in Google Search Console, submit sitemap.xml, and continue publishing cadence to reach 10+ original guides.",
+      "official_source_url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "status": "Needs Review"
+    }
+  ]
+}
