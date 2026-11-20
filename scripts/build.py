@@ -27,7 +27,7 @@ guides = [
         ('Compare usable space, not just capacity', 'Pick a meal you cook often. Check the tray or basket dimensions and compare how much of that meal fits in a single batch. For a multi-function appliance, check which accessories are needed for the modes you expect to use.'),
         ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
 ]
-ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards')]
+ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
 worksheet = 'field-notes/counter-fit/'
 worksheet_title = 'Will an air fryer fit on your counter?'
 worksheet_desc = 'Measure your counter against the exact model and clearance requirements in a private worksheet.'
@@ -115,6 +115,7 @@ sitemap = ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9
 for slug in pages:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
 ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+worksheet
+ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+'audit/'
 ET.ElementTree(sitemap).write('sitemap.xml',encoding='utf-8',xml_declaration=True)
 rss = ET.Element('rss',version='2.0')
 channel = ET.SubElement(rss,'channel')
@@ -132,7 +133,8 @@ for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'I
                             ('sources.html','Citation register',pages['sources'][1],'Site record'),
                             ('summary.html','Executive summary',pages['summary'][1],'Site record'),
                             ('standards.html','Editorial standards',pages['standards'][1],'Site record'),
-                            ('measurement.html','Measurement',pages['measurement'][1],'Site record')]:
+                            ('measurement.html','Measurement',pages['measurement'][1],'Site record'),
+                            ('audit/','Spec & policy audit','Independently verified listing details, internal listing discrepancies and the 2026 policy register.','Site record')]:
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),
                       ('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),
