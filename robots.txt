@@ -1,0 +1,8 @@
+# DIY Home Upgrades
+# One canonical site, one sitemap. No duplicate hosts, no staging copies indexed.
+
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+Sitemap: https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml

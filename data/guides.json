@@ -1,0 +1,289 @@
+{
+  "hypotheses": [
+    {
+      "title": "Basket or oven-style air fryer: what should you compare?",
+      "status": "needs review",
+      "reason": "No air fryer appears in the supplied catalogue, so every specification in this guide would have to be invented. Recorded as a working title and not published.",
+      "note": "Suggested editorial hypothesis. Not a claim about search volume, popularity or product quality."
+    },
+    {
+      "title": "A no-hype checklist for comparing air fryer capacity",
+      "status": "needs review",
+      "reason": "Same block as above: capacity figures would have to be invented. The checklist method was reused for kitchen storage, where the site does have verified products.",
+      "note": "Working title only."
+    },
+    {
+      "title": "How to assess cleanup and counter-space trade-offs",
+      "status": "needs review",
+      "reason": "Partly published: the method forms the spine of the kitchen storage checklist guide, restricted to the three verified products.",
+      "note": "Working title only."
+    },
+    {
+      "title": "Questions to ask before buying a multi-function kitchen appliance",
+      "status": "needs review",
+      "reason": "No multi-function appliance is on the register. Published instead as questions to ask before buying a storage or organizer product, which the catalogue can support.",
+      "note": "Working title only."
+    }
+  ],
+  "guides": [
+    {
+      "slug": "do-you-need-a-wallpaper-tool-kit",
+      "title": "Do you actually need a wallpaper tool kit for peel-and-stick?",
+      "short_title": "Do you need a wallpaper tool kit?",
+      "kicker": "Wallpaper tools",
+      "category": "wallpaper-tools",
+      "featured_product": "art3d-smoothing-tool-kit",
+      "published": "2026-11-20",
+      "reading_minutes": 6,
+      "standfirst": "Most peel-and-stick jobs fail in the first ten minutes, and almost never because of the paper. They fail because of the tool — or the lack of one.",
+      "summary": "A buying guide, not a review. It explains what the tools in a starter kit do, when a kit is the wrong purchase, and the installation order that keeps bubbles out. It does not claim any product performs better than another.",
+      "sections": [
+        {
+          "id": "short-answer",
+          "heading": "The short answer",
+          "paragraphs": [
+            "If you are hanging peel-and-stick wallpaper, contact paper or a vinyl backsplash for the first time, a basic kit is usually worth more than the extra roll of paper you would otherwise waste. If you already own a plastic squeegee from a screen protector, a sharp craft knife and a tape measure, you own most of a kit already and can skip it.",
+            "What a kit buys you is not performance. It buys consistency: the right edge, the right blade, and a measuring tape that is actually in the drawer when you start instead of at the back of a car."
+          ]
+        },
+        {
+          "id": "what-is-in-a-kit",
+          "heading": "What is actually in a starter kit",
+          "paragraphs": [
+            "The three tools that matter are all unglamorous. A broad smoothing tool presses air out ahead of the adhesive without dragging the surface. A squeegee with a felt or plastic edge does the same on smaller panels. A utility knife with a fresh blade cuts a clean trim line at the ceiling and the baseboard, which is where the eye goes first.",
+            "The kit on this site's register contains a large smoothing tool, a blue squeegee, a utility knife with replacement blades, and a measuring tape. That is a complete set for a first job and an incomplete set for a large one.",
+            "What is usually missing from kits: a seam roller for joins between drops, a level long enough to draw a true vertical line, and a sponge. None of those are optional on a full wall."
+          ]
+        },
+        {
+          "id": "when-a-kit-is-wrong",
+          "heading": "When a kit is the wrong purchase",
+          "paragraphs": [
+            "Three cases. First, if the job is a single shelf or a strip behind a cooker, a card wrapped in a cloth does the same work as a smoothing tool. Second, if you already own the three tools, a kit duplicates them. Third, if you are hanging a large-format or heavy-gauge paper, the smoothing tool in a basic kit is often narrower than you want and you will spend the job chasing creases.",
+            "The honest framing: a starter kit removes the excuse not to start. It does not make a difficult paper easy."
+          ]
+        },
+        {
+          "id": "order-of-operations",
+          "heading": "The order of operations that keeps bubbles out",
+          "paragraphs": [
+            "Bubbles are mostly geometry. Air trapped behind a panel has nowhere to go, so the only reliable fix is to never trap it: peel a little, press a little, work from the centre outward, and keep the backing paper between your tool and the surface on the first pass.",
+            "This sequence is the standard one and needs no proprietary tools:"
+          ],
+          "list": [
+            "Clean and dry the surface completely. Adhesive does not stick to dust, and it does not stick to grease at all.",
+            "Measure the height of the drop twice and cut once, with a generous margin at both ends. Trimming is easy; adding is not.",
+            "Draw a true vertical line with a level and align the first drop to it, not to the corner of the room, which is rarely square.",
+            "Peel back roughly thirty centimetres of backing at a time and press from the centre outward with the smoothing tool.",
+            "Push — do not drag — the tool. Dragging stretches the paper and the stretch comes back as a wrinkle a day later.",
+            "Trim the top and bottom last, using a fresh blade against a straight edge, then roll the seams.",
+            "Re-press the seams after an hour. Adhesive creeps as it warms."
+          ]
+        },
+        {
+          "id": "what-we-did-not-verify",
+          "heading": "What this guide does not tell you",
+          "paragraphs": [
+            "It does not tell you which kit is best. This site has not handled, installed or measured any of these products, and no durability or performance claim is made anywhere in this guide.",
+            "It also says nothing about how a particular paper behaves on a particular wall. Texture, paint sheen and room temperature all change the answer, and none of them can be checked from a listing."
+          ],
+          "note": {
+            "heading": "Why there is no comparison table",
+            "body": "A comparison table needs price and rating columns to be useful, and this site cannot show either. Amazon's Participation Requirements restrict price display to links Amazon serves or data pulled through their API, and bar star ratings unless they come through that API. Rather than publish a table with three columns of nothing, this guide explains the tools instead."
+          }
+        }
+      ],
+      "sources": ["S02", "S07", "S06"]
+    },
+    {
+      "slug": "adhesive-or-screws-paper-towel-holder",
+      "title": "Adhesive or screws: how to choose an under-cabinet paper towel holder",
+      "short_title": "Adhesive or screws?",
+      "kicker": "Paper towel holders",
+      "category": "paper-towel-holders",
+      "featured_product": "under-cabinet-paper-towel-holder",
+      "published": "2026-11-20",
+      "reading_minutes": 5,
+      "standfirst": "The best paper towel holder is the one that keeps the roll off the counter. The second-best question is how you feel about four holes in a cabinet you do not own.",
+      "summary": "A decision guide for mounting method, plus the three measurements that decide whether a holder fits before you order it.",
+      "sections": [
+        {
+          "id": "short-answer",
+          "heading": "The short answer",
+          "paragraphs": [
+            "If you rent, or you might rearrange the kitchen next year, choose adhesive. If the cabinet underside is bare wood or a solid finish and you intend to stay, screws are the more permanent answer and a full roll will not test the glue.",
+            "The holder on this site's register offers both methods in one box, which is the pragmatic choice if you have not decided: install with adhesive first, and keep the screws in the bag."
+          ]
+        },
+        {
+          "id": "when-adhesive-wins",
+          "heading": "When adhesive is the right answer",
+          "paragraphs": [
+            "Adhesive mounting is reversible, fast, and leaves a surface you can clean. That is most of its value. It is not magic, and the honest version of the trade-off is that the bond is only as good as the surface underneath it.",
+            "A clean, flat, sealed surface holds well. Textured, dusty, oily or freshly painted surfaces do not — and a kitchen cabinet underside is often all three of the last ones at once. Clean it with a degreaser, let it dry fully, and press the pad for longer than feels necessary.",
+            "A useful rule: if you would not stick a hook there, do not stick a loaded paper towel rail there."
+          ]
+        },
+        {
+          "id": "when-to-drill",
+          "heading": "When to reach for the drill",
+          "paragraphs": [
+            "Drill when the roll is heavy, when the holder will be pulled at regularly, or when the surface is one adhesive will not grip. A full roll plus the downward tug of one-handed tearing is a small but repeated load, and repeated loads are what defeat adhesive pads.",
+            "Two practical notes. Check for pipes and wiring before any drill goes near the underside of a cabinet or a wall — a stud finder is cheap and a leak is not. And pilot the holes: cabinet undersides are usually thin panel, which splits readily."
+          ]
+        },
+        {
+          "id": "measure-first",
+          "heading": "Three measurements to take before you order",
+          "paragraphs": [
+            "Almost every disappointment with an under-cabinet holder is a measurement that was not taken. None of these require tools beyond a tape measure:"
+          ],
+          "list": [
+            "Clearance. The distance from the cabinet underside to the counter, and from the underside to the front edge. A twelve-inch rail plus a full roll needs room to turn, and a roll that rubs a backsplash will not spin.",
+            "Rail length versus roll width. Standard kitchen rolls vary. A 12.2-inch rail is the figure the listing gives for this product; measure the roll you actually buy.",
+            "Depth and door swing. The holder needs to sit far enough back that the cabinet door closes, and far enough forward that the roll clears the door frame.",
+            "Fixings already present. Look before you order. Many cabinets already have a child-lock, a light strip or a previous owner's screw holes exactly where you were about to put this."
+          ]
+        },
+        {
+          "id": "other-uses",
+          "heading": "A word about the “multi-use” claim",
+          "paragraphs": [
+            "Listings often describe a rail like this as also being a towel rail, a foil holder or a utensil holder. That is a reasonable description of the shape, not a tested claim, and it is worth separating the two in your head. A rail that holds a paper roll comfortably may not hold a heavy foil box at the same angle.",
+            "This site records such descriptions as what the listing says, never as what the product does."
+          ]
+        }
+      ],
+      "sources": ["S08", "S02"]
+    },
+    {
+      "slug": "how-many-tiers-pots-and-pans-organizer",
+      "title": "How many tiers do you actually need in a pots and pans organizer?",
+      "short_title": "How many tiers?",
+      "kicker": "Pot racks",
+      "category": "pot-racks",
+      "featured_product": "ordora-pots-and-pans-organizer",
+      "published": "2026-11-20",
+      "reading_minutes": 5,
+      "standfirst": "Eight tiers sounds like more storage. It is actually more height, and height is the thing your cabinet is already short of.",
+      "summary": "How to size a tiered rack from the pans you own and the cabinet you have, including the weight limit most buyers read past.",
+      "sections": [
+        {
+          "id": "short-answer",
+          "heading": "The short answer",
+          "paragraphs": [
+            "Count the pans you use weekly, not the pans you own. That number, plus one, is your tier count. Everything above that is a shelf for the pans you were keeping for a reason you cannot now remember.",
+            "Then check the height. Tiered racks multiply footprint, not floorspace. If the cabinet is 20 inches tall inside and the rack is 21 inches at its tallest option, the rack is the wrong shape no matter how many tiers it has."
+          ]
+        },
+        {
+          "id": "height-then-width",
+          "heading": "Measure height first, then width",
+          "paragraphs": [
+            "The rack on this site's register is sold in eight heights, from 13.78 to 23.62 inches, and four finishes. That range exists because cabinets do not standardise, and it is the single most useful thing to check before ordering.",
+            "Measure the inside of the cabinet at the point the rack will sit — not the doorway, and not the shelf above the one you are planning to use. Then subtract a couple of centimetres so the tallest pan clears the shelf when you lift it out."
+          ]
+        },
+        {
+          "id": "weight",
+          "heading": "The weight sentence most people skip",
+          "paragraphs": [
+            "The listing for this rack describes it as fitting lightweight cookware up to 11 inches. That is a limitation stated by the seller, and it is the most important line on the page for anyone with cast iron, a heavy stockpot or a stack of enamelled pans.",
+            "This site records that sentence exactly as written. It does not extend it, soften it or imply that a heavier pan will be fine because the rack looks sturdy. If your pans are heavy, the honest move is to look for a rack the seller rates for that weight.",
+            "Practical translation: an eight-tier rack is not a licence to load eight heavy pans. Tiers are positions, not a weight rating."
+          ]
+        },
+        {
+          "id": "mock-up",
+          "heading": "A five-minute mock-up beats a spec sheet",
+          "paragraphs": [
+            "Before ordering, build the rack out of books. Stack two or three pans on a low pile and see whether the cabinet door still closes, whether the shelf above still takes what it took before, and whether you can reach the top pan without moving the bottom one.",
+            "If the mock-up is annoying, the real thing will be too. This is the entire argument for tiers: vertical separation makes the bottom pan reachable. If the mock-up does not produce that feeling, the problem is not the tier count."
+          ]
+        },
+        {
+          "id": "variations",
+          "heading": "Why the variation list is worth reading",
+          "paragraphs": [
+            "Height and finish options on one listing mean the reviews and the photos are not necessarily of the product you are buying. A silver 21-inch rack and a black 14-inch rack can share a page, a rating and a question-and-answer section while being different products in the box.",
+            "When you read anything on a listing, confirm which variation it refers to first. That applies to this site's tables too: the specifications here are for the base listing, and a different height is a different item."
+          ]
+        }
+      ],
+      "sources": ["S09", "S06"]
+    },
+    {
+      "slug": "kitchen-storage-checklist",
+      "title": "A no-hype checklist for comparing kitchen storage: capacity, cleanup and counter space",
+      "short_title": "The kitchen storage checklist",
+      "kicker": "Method",
+      "category": "pot-racks",
+      "featured_product": "under-cabinet-paper-towel-holder",
+      "published": "2026-11-20",
+      "reading_minutes": 6,
+      "standfirst": "Six questions that separate a storage purchase that fixes a problem from one that relocates it.",
+      "summary": "A reusable question set for storage and organizer products. Written for the three products on this site, but the questions apply to any kitchen storage purchase.",
+      "sections": [
+        {
+          "id": "why",
+          "heading": "Why a checklist, not a ranking",
+          "paragraphs": [
+            "Rankings compare products on the same axis, and the axis is usually price or popularity — two things this site cannot show. A checklist does something more useful: it changes what you notice before you buy.",
+            "Every question below can be answered from the listing and a tape measure. None of them require a review."
+          ]
+        },
+        {
+          "id": "capacity",
+          "heading": "1. Capacity is a shape, not a number",
+          "paragraphs": [
+            "“Eight tiers” and “holds 11-inch pans” are not the same kind of fact. One is a count of positions; the other is a size limit. A rack can have many tiers and a small size limit, or few tiers and a generous one.",
+            "Ask instead: what is the single largest thing I need this to hold, and does the listing state that it fits? If the listing states a size limit, treat it as the ceiling. If it does not state one, that is your answer — it cannot be verified."
+          ]
+        },
+        {
+          "id": "cleanup",
+          "heading": "2. Cleanup is a design question",
+          "paragraphs": [
+            "Anything that lives in a kitchen will eventually need wiping. Two questions predict how annoying that will be: can you reach behind it without dismantling it, and does it have edges, slots or pads that trap crumbs?",
+            "A tiered rack with removable tiers is easier to clean than one welded into a single frame. An adhesive-mounted rail leaves no screw heads to wipe around. Neither is a performance claim — they are things you can see in the listing photographs.",
+            "The third cleanup question is the one buyers forget: how does it come off? Adhesive pads leave residue. Screws leave holes. Decide which of those you would rather deal with before you decide on the product."
+          ]
+        },
+        {
+          "id": "counter-space",
+          "heading": "3. Counter space is zero-sum",
+          "paragraphs": [
+            "A storage product that sits on the counter has not created space; it has moved the mess onto a stand. That can still be a good purchase — a stand that lets you see every pan is genuinely better than a leaning stack — but be honest about which problem it solves.",
+            "Under-cabinet and in-cabinet storage is the only kind that returns counter space. Ask first whether your problem is clutter on the counter or clutter inside the cabinet, because those need different products."
+          ]
+        },
+        {
+          "id": "questions",
+          "heading": "4. The six questions",
+          "paragraphs": ["Take these to any storage listing, including the ones on this site:"],
+          "list": [
+            "What is the largest single object I need this to hold, and does the listing state that it fits?",
+            "What is the inside height, width and depth of the space it will live in, measured — not estimated?",
+            "Does the listing state a weight or cookware-type limit, and does my heaviest item fall inside it?",
+            "Can I reach the item I use most without moving the items I use least?",
+            "How does it come off, and can I live with what it leaves behind?",
+            "Does it return space, or relocate clutter? Both are legitimate answers; only one is what most people wanted."
+          ]
+        },
+        {
+          "id": "limits",
+          "heading": "What the checklist cannot do",
+          "paragraphs": [
+            "It cannot tell you whether a hinge will weaken after two years, whether a coating will chip, or whether an adhesive will fail in a humid kitchen. Those need time and handling, and this site has done neither.",
+            "It also cannot compare prices for you. Prices change, and the correct number is the one on the listing when you buy — which is why the honest place to read it is Amazon, not here."
+          ],
+          "note": {
+            "heading": "On the original suggested titles",
+            "body": "Four earlier working titles concerned air fryers and multi-function appliances. None of those products is on this site's register, so publishing those guides would have meant inventing specifications. The method was kept; the subject moved to what could be verified."
+          }
+        }
+      ],
+      "sources": ["S02", "S08", "S09"]
+    }
+  ]
+}

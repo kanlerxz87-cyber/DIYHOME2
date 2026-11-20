@@ -1,0 +1,96 @@
+{
+  "recorded": "2026-11-20",
+  "note": "Each flag is an open irregularity. None blocked publication. Each names what was observed, what is missing and what would close it.",
+  "flags": [
+    {
+      "id": "F01",
+      "title": "Short codes do not match the ASINs they resolve to",
+      "area": "Product links · all three",
+      "severity": "high",
+      "detail": "Three unique short links were supplied. Each resolves to a real Amazon listing, but no short code equals the ASIN it lands on, and all three codes are 9 characters where Amazon defines an ASIN as 10. Example: link.amazon/B0hmGG4m2 resolves to /dp/B08FKW9JRM. The code is therefore a redirector identifier, not a product identifier, and copying it into an ASIN field would corrupt the record.",
+      "action": "Close by confirming the intended ASIN inside the enrolled Associates workflow for each link, then recording it in the intended_asin field. Until then the intended fields stay empty and the observed values stand alone.",
+      "sources": ["S06", "S10", "S11", "S12"]
+    },
+    {
+      "id": "F02",
+      "title": "No tracking tag observed on any resolved destination",
+      "area": "Attribution · all three",
+      "severity": "blocking",
+      "detail": "The destinations were reached with Amazon session and referrer parameters present, but no tag parameter carrying the selected tracking ID shopnow047c-20 was observed. Tracking is the mechanism that creates a commission at all: the Associates Agreement defines Special Links as links that properly use the tagged link formats, and the Participation Requirements require the Associates ID to appear in the URL of each link placed on a site.",
+      "action": "Close by generating each link inside Associates Central with the enrolled tag, confirming the tag appears in the destination URL, then confirming the click appears in the tracking report before scaling. Do not assume the supplied links are non-compliant — the point is that compliance was not observable from outside the account.",
+      "sources": ["S01", "S02", "S10", "S11", "S12"]
+    },
+    {
+      "id": "F03",
+      "title": "Commission rate card is behind a sign-in",
+      "area": "Revenue · unreadable source",
+      "severity": "blocking",
+      "detail": "The Standard Commission Income rate card at /help/operating/schedule redirects to an Associates sign-in page. The publicly readable policies page only links to it. Standard commission rates are therefore unverified, so no rate, earnings estimate, revenue forecast or conversion score is published anywhere on this site.",
+      "action": "Close by reading the rate card from inside an enrolled account and recording the effective date alongside it. Any published figure would also need to state that Amazon may change rates at any time.",
+      "sources": ["S03", "S02"]
+    },
+    {
+      "id": "F04",
+      "title": "Six of nine register fields cannot be verified from outside an account",
+      "area": "Register · price, rating, link validation",
+      "severity": "high",
+      "detail": "Price verification, rating verification and Special Link validation all require either API enrolment or an Associates account. Two of them are additionally constrained by policy: price may only be displayed when Amazon serves the link or the data comes through the Product Advertising API, and star ratings may not be displayed at all unless obtained through that API. Price tracking and alerting are prohibited outright. The register shows these columns as unverified rather than filling them.",
+      "action": "Price and rating columns close only with API enrolment. Link validation closes with account access per F02. None of the three may be filled by inference in the meantime.",
+      "sources": ["S02", "S03"]
+    },
+    {
+      "id": "F05",
+      "title": "One submitted link was duplicated",
+      "area": "Intake · link list",
+      "severity": "low",
+      "detail": "Four link lines were supplied but only three unique URLs. link.amazon/B03QDuGdo appeared twice. It is recorded once and flagged, so that the catalogue does not show a phantom fourth product.",
+      "action": "Closed as an intake observation. No further action unless a fourth distinct product was intended, in which case that link has not yet been supplied.",
+      "sources": ["S11"]
+    },
+    {
+      "id": "F06",
+      "title": "Four suggested guide titles could not be published honestly",
+      "area": "Editorial · topic selection",
+      "severity": "low",
+      "detail": "The suggested hypotheses concerned basket and oven-style air fryers, air fryer capacity, and multi-function kitchen appliances. No such product is in the supplied catalogue, so writing those guides would have required inventing specifications. They are recorded as working titles on the guides index with the reason each was set aside, and the underlying method was reused for the three product categories the site can actually support.",
+      "action": "Close by supplying verified air fryer or appliance listings, at which point the original titles become publishable with real specifications behind them.",
+      "sources": ["S06"]
+    },
+    {
+      "id": "F07",
+      "title": "Attribution makes a link hop unavoidable, and that hop is a policy edge case",
+      "area": "Architecture · outbound links",
+      "severity": "high",
+      "detail": "Amazon's Commission Income Statement disqualifies purchases where a customer reaches Amazon through a link that passes through an intermediate site without a click or affirmative action there — a Redirecting Link. That is the standard server-side click-tracker pattern. This site therefore sends the outbound click as a beacon and lets the browser go directly to Amazon, so no session is ever routed through this domain and no intermediate-site hop exists.",
+      "action": "Closed by design, but flagged because the alternative — the common redirect-through-your-own-domain pattern — would have created the risk. Worth re-reading if the analytics implementation ever changes.",
+      "sources": ["S02"]
+    },
+    {
+      "id": "F08",
+      "title": "The contract behind the affiliate relationship was accepted outside this build",
+      "area": "Compliance · account state",
+      "severity": "medium",
+      "detail": "Participation requires an accepted Operating Agreement and a site that was identified in the application. This build can neither see nor verify the account's enrolment state, the site list on the application, or whether the tracking ID shopnow047c-20 is active and attached to this domain. All three are asserted by the account holder, not verified here.",
+      "action": "Close by confirming in Associates Central that the account is active, that this site URL is listed on the application, and that the tracking ID matches. Also confirm the six-month sales requirement and the disclosure obligation are being met from the account side.",
+      "sources": ["S01", "S02"]
+    },
+    {
+      "id": "F09",
+      "title": "Publication cadence is set but the next issue is not written",
+      "area": "Editorial · cadence",
+      "severity": "low",
+      "detail": "This build establishes a monthly cadence and ships a feed, a sitemap and a publishing checklist. The second issue does not exist yet. Nothing on the site claims a publishing frequency that has been sustained.",
+      "action": "Close after two consecutive issues ship on schedule. Topic selection should be driven by measured queries once an analytics endpoint is configured, which it currently is not.",
+      "sources": ["S02"]
+    },
+    {
+      "id": "F10",
+      "title": "Measurement is shipped but not switched on",
+      "area": "Measurement · analytics",
+      "severity": "medium",
+      "detail": "The five defined events are implemented and the outbound counter is a non-blocking beacon, but the script ships with an empty endpoint. Until a collector is hosted and configured, events are logged to the browser console and discarded. The site therefore reports no measurement today and claims none.",
+      "action": "Close by hosting a collector, setting data-endpoint, and verifying each of the five events arrives. Do not enable a third-party analytics vendor without revisiting the privacy page first.",
+      "sources": ["S02"]
+    }
+  ]
+}

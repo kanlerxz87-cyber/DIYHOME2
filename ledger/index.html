@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Campaign ledger — empty by design | DIY Home Upgrades</title>
+<meta name="description" content="A defined, empty campaign ledger: timestamp, source, channel, eligible sessions, clicks and reported orders, added only from authorised first-party reports.">
+<link rel="canonical" href="https://kanlerxz87-cyber.github.io/DIYHOME2/ledger/">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DIY Home Upgrades">
+<meta property="og:title" content="Campaign ledger — empty by design | DIY Home Upgrades">
+<meta property="og:description" content="A defined, empty campaign ledger: timestamp, source, channel, eligible sessions, clicks and reported orders, added only from authorised first-party reports.">
+<meta property="og:url" content="https://kanlerxz87-cyber.github.io/DIYHOME2/ledger/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#faf8f4">
+<link rel="stylesheet" href="https://kanlerxz87-cyber.github.io/DIYHOME2/assets/site.css">
+<link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml">
+<link rel="sitemap" type="application/xml" href="https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml">
+
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="masthead">
+  <div class="wrap masthead-inner">
+    <p class="wordmark">
+      <a href="https://kanlerxz87-cyber.github.io/DIYHOME2/">DIY Home Upgrades</a>
+      <span class="tm">An independently published product journal</span>
+    </p>
+    <nav class="nav" aria-label="Primary"><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/shop/">Shop</a><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/">Guides</a><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/register/">Register</a><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/how-we-verify/">How we verify</a></nav>
+  </div>
+</header>
+<div class="disclosure-strip" role="note" aria-label="Affiliate disclosure">
+  <div class="wrap">
+    <strong>As an Amazon Associate I earn from qualifying purchases.</strong>
+    <span>Every product link is a sponsored link and opens Amazon.com. We are paid a commission, never paid for a review.</span>
+    <a href="https://kanlerxz87-cyber.github.io/DIYHOME2/disclosure/">Read the full disclosure</a>
+  </div>
+</div>
+<main id="main">
+
+<section class="hero" style="padding-bottom:30px">
+  <div class="wrap">
+    <p class="eyebrow">Campaign ledger</p>
+    <h1>An empty ledger, fully defined.</h1>
+    <p class="standfirst">Six columns, strict provenance, zero rows. No conversion score and no revenue forecast is presented anywhere on this site, because no authorised first-party report has been supplied.</p>
+    <div class="stat-row" style="margin-top:26px">
+      <div class="stat"><b>0</b><span>rows recorded</span></div>
+      <div class="stat"><b>6</b><span>defined columns</span></div>
+      <div class="stat"><b>0</b><span>conversion scores</span></div>
+      <div class="stat"><b>0</b><span>revenue forecasts</span></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    <div class="table-wrap">
+      <table>
+        <caption>Ledger schema. Timestamp, source, channel, eligible sessions, clicks and reported orders — added only from an authorised report.</caption>
+        <thead><tr><th scope="col">Key</th><th scope="col">Column</th><th scope="col">Type</th><th scope="col">Required</th><th scope="col">Note</th></tr></thead>
+        <tbody>
+      <tr>
+        <td class="num"><code>row_id</code></td>
+        <td>Row ID</td>
+        <td>string</td>
+        <td>Required</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="num"><code>timestamp_utc</code></td>
+        <td>Timestamp (UTC)</td>
+        <td>ISO-8601 datetime</td>
+        <td>Required</td>
+        <td>Moment the report row was exported, not the moment of the click.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>source</code></td>
+        <td>Source</td>
+        <td>enum</td>
+        <td>Required</td>
+        <td>Every allowed value names a first-party report.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>channel</code></td>
+        <td>Channel</td>
+        <td>string</td>
+        <td>Required</td>
+        <td>Free text describing the traffic channel, e.g. organic-search, rss, direct.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>eligible_sessions</code></td>
+        <td>Eligible sessions</td>
+        <td>integer</td>
+        <td>Optional</td>
+        <td>Leave null when the report does not supply it.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>clicks</code></td>
+        <td>Clicks</td>
+        <td>integer</td>
+        <td>Optional</td>
+        <td>Reported clicks only. Our own outbound_click counter is not a substitute and is never summed into this column.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>reported_orders</code></td>
+        <td>Reported orders</td>
+        <td>integer</td>
+        <td>Optional</td>
+        <td>Orders as reported by Amazon. Never derived from clicks.</td>
+      </tr>
+      <tr>
+        <td class="num"><code>provenance_note</code></td>
+        <td>Provenance note</td>
+        <td>string</td>
+        <td>Required</td>
+        <td>Who exported the report, from which console, and where the original file is stored.</td>
+      </tr></tbody>
+      </table>
+    </div>
+
+    <h2 style="font-family:var(--serif);font-size:24px;margin:36px 0 12px">The ledger, as it stands</h2>
+    <div class="table-wrap">
+      <table>
+        <caption>Current contents of data/campaign-ledger.json</caption>
+        <thead><th scope="col">Row ID</th><th scope="col">Timestamp (UTC)</th><th scope="col">Source</th><th scope="col">Channel</th><th scope="col">Eligible sessions</th><th scope="col">Clicks</th><th scope="col">Reported orders</th><th scope="col">Provenance note</th></thead>
+        <tbody>
+          <tr><td colspan="8" style="text-align:center;padding:32px;color:var(--ink-3);font-style:italic">No rows. No authorised first-party report has been provided.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="prose" style="margin-top:34px">
+      <h2>Provenance rules</h2>
+      <ul><li>No conversion score is calculated or displayed from this ledger.</li><li>No revenue forecast is derived from this ledger.</li><li>No row may be back-filled from memory, from a search engine result, or from a third-party estimator.</li><li>Rows are never deleted. Corrections are appended as new rows referencing the row they correct.</li><li>Our own outbound_click counts and Amazon's reported clicks are different measurements and are never added together.</li></ul>
+      <h2>Why this is the right way round</h2>
+      <p>It is easy to publish a dashboard that looks like it is working: a rising line, a conversion percentage, an earnings projection. Every one of those numbers would be invented, because the underlying reports sit behind an Associates sign-in. An empty table with a strict schema is less exciting and it is true.</p>
+      <h2>Where the numbers will come from</h2>
+      <p>Two authorised Amazon reports and the site's own counter, kept apart on purpose:</p>
+      <ul>
+        <li><strong>Associates click report</strong> — supplies <code>clicks</code>, per link and per day.</li>
+        <li><strong>Associates earnings report</strong> — supplies <code>reported_orders</code>.</li>
+        <li><strong>This site's counter</strong> — supplies outbound intent only. It is recorded in a different place and never summed with Amazon's numbers.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--ink-3)">Schema also available as <a href="https://kanlerxz87-cyber.github.io/DIYHOME2/data/campaign-ledger.json">campaign-ledger.json</a>.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="foot-disclosure">
+  <div class="wrap">
+    <strong>As an Amazon Associate I earn from qualifying purchases.</strong>
+    &nbsp;This statement appears on every page of this site, as required by §5 of the Amazon Associates Program Operating Agreement, and is repeated here in the footer.
+    <a href="https://kanlerxz87-cyber.github.io/DIYHOME2/disclosure/">Disclosure</a> ·
+    <a href="https://kanlerxz87-cyber.github.io/DIYHOME2/how-we-verify/">How we verify</a>
+  </div>
+</div>
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-main">
+      <div>
+        <p class="about"><strong>DIY Home Upgrades</strong> is an independently published product journal about small, practical home improvements. We publish fewer products than a shopping site, and we show our working.</p>
+        <p class="about" style="margin-top:12px"><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml" class="rss-link">Subscribe to the feed</a></p>
+      </div>
+      <div>
+        <h4>Shop</h4>
+        <ul><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/categories/wallpaper-tools/">Wallpaper &amp; peel-and-stick tools</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/categories/paper-towel-holders/">Paper towel holders</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/categories/pot-racks/">Pot racks &amp; cookware organizers</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/shop/">All products</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/register/">Full register</a></li></ul>
+      </div>
+      <div>
+        <h4>Editorial</h4>
+        <ul><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/do-you-need-a-wallpaper-tool-kit/">Do you need a wallpaper tool kit?</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/adhesive-or-screws-paper-towel-holder/">Adhesive or screws?</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/how-many-tiers-pots-and-pans-organizer/">How many tiers?</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/kitchen-storage-checklist/">The kitchen storage checklist</a></li><li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/guides/">All guides</a></li></ul>
+      </div>
+      <div>
+        <h4>Transparency</h4>
+        <ul>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/how-we-verify/">How we verify</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/sources/">Source library</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/flagged/">Flagged for review</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/signals/">Measurement</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/ledger/">Campaign ledger</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/media-kit/">About &amp; media kit</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/privacy/">Privacy</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/terms/">Terms</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/colophon/">Colophon</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/search/">Search</a></li>
+          <li><a href="https://kanlerxz87-cyber.github.io/DIYHOME2/index.xml">Sitemap index</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 DIY Home Upgrades. Published 20 November 2026.</span>
+      <span>Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates. This site is not endorsed by Amazon.</span>
+    </div>
+  </div>
+</footer>
+<script src="https://kanlerxz87-cyber.github.io/DIYHOME2/assets/js/analytics.js" data-endpoint="" defer></script>
+</body>
+</html>
