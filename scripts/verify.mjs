@@ -174,13 +174,27 @@ for (const u of sm) {
   if (!fs.existsSync(path.join(ROOT, rel))) fail("sitemap:dead", `${u} → ${rel} not on disk`);
 }
 const feedXml = fs.existsSync(path.join(ROOT, "feed.xml")) ? fs.readFileSync(path.join(ROOT, "feed.xml"), "utf8") : "";
-const feedLinks = [...feedXml.matchAll(/<link>([^<]+)<\/link>/g)].map((m) => m[1]).filter((u) => u.includes("/DIYHOME2/"));
+/* Item-level links only. The channel's own <link> points at the homepage and is
+   not an entry; counting it made feed lengths look correct when they were not. */
+const feedLinks = [...feedXml.matchAll(/<item>[\s\S]*?<\/item>/g)]
+  .map((m) => (m[0].match(/<link>([^<]+)<\/link>/) || [])[1])
+  .filter((u) => u && u.includes("/DIYHOME2/"));
+if (!feedLinks.length) fail("feed:empty", "feed.xml contains no item links");
 for (const u of feedLinks) {
   const rel = toPath(u);
   if (rel && !fs.existsSync(path.join(ROOT, rel))) fail("feed:dead", `${u} → ${rel} not on disk`);
   if (rel && !sm.includes(u)) fail("feed:not-in-sitemap", `${u} is in the feed but not the sitemap`);
 }
-say(`sitemap ${sm.length} URLs and feed ${feedLinks.length} links resolve and agree`);
+/* Every published reading page should be reachable from the feed. Without this,
+   a page can sit in the sitemap and be invisible to subscribers — which is the
+   coverage gap the board requested be closed. Search and 404 are excluded
+   deliberately: neither is an article. */
+const FEED_EXEMPT = ["/252/", "search", "404"];
+for (const u of sm) {
+  if (FEED_EXEMPT.some((x) => u.includes(x))) continue;
+  if (!feedLinks.includes(u)) fail("feed:coverage-gap", `${u} is published in the sitemap but missing from the feed`);
+}
+say(`sitemap ${sm.length} URLs and feed ${feedLinks.length} items resolve, agree, and the feed covers every published page`);
 
 /* 9 — intended and observed stay separated ------------------------------- */
 for (const l of links.links) {

@@ -124,4 +124,23 @@ for path,title,desc in [(worksheet,worksheet_title,worksheet_desc)]+[(s+'.html',
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]:
         ET.SubElement(item,tag).text=value
+# Site records belong in the feed too. The sitemap already lists them, and a
+# reader subscribed for the record pages had no way to see a new one. Added by
+# arena/ecb1bfed-diyhome2 in response to the RSS coverage request on the board.
+for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'Index'),
+                            ('review.html','Flagged for Review',pages['review'][1],'Site record'),
+                            ('sources.html','Citation register',pages['sources'][1],'Site record'),
+                            ('summary.html','Executive summary',pages['summary'][1],'Site record'),
+                            ('standards.html','Editorial standards',pages['standards'][1],'Site record'),
+                            ('measurement.html','Measurement',pages['measurement'][1],'Site record')]:
+    item=ET.SubElement(channel,'item')
+    for tag,value in [('title',title),('description',desc),('link',BASE+path),
+                      ('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),
+                      ('category',cat)]:
+        ET.SubElement(item,tag).text=value
+# The homepage is the channel link; give it an item too so the cover check is honest.
+_home=ET.SubElement(channel,'item')
+for tag,value in [('title','DIY Home Upgrades'),('description',pages['index'][1]),('link',BASE),
+                  ('guid',BASE),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),('category','Front page')]:
+    ET.SubElement(_home,tag).text=value
 ET.ElementTree(rss).write('feed.xml',encoding='utf-8',xml_declaration=True)
