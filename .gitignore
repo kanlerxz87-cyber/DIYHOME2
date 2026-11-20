@@ -1,5 +1,3 @@
-events.jsonl
-captures.jsonl
+
 __pycache__/
-Unselected files/
-.DS_Store
+*.sqlite3
