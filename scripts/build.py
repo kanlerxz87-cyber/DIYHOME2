@@ -28,6 +28,10 @@ guides = [
         ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
 ]
 ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('standards','Editorial standards')]
+worksheet = 'field-notes/counter-fit/'
+worksheet_title = 'Will an air fryer fit on your counter?'
+worksheet_desc = 'Measure your counter against the exact model and clearance requirements in a private worksheet.'
+worksheet_card = f'<aside class="card"><div class="eyebrow">Kitchen field notes · Interactive</div><h3><a href="{worksheet}">{worksheet_title}</a></h3><p>{worksheet_desc}</p><a href="{worksheet}">Check your counter →</a></aside>'
 pages = {}
 def link(slug, text):
     return f'<a href="{slug}.html">{e(text)}</a>'
@@ -46,9 +50,11 @@ def cards(items):
     return '<div class="grid">'+''.join(f'<article class="card"><div class="eyebrow">{e(cat)}</div><h3>{link(slug,title)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>' for slug,cat,title,desc,_ in items)+'</div>'
 
 add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3])+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section>''')
-add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides))
+add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides)+worksheet_card)
 for i,(slug,cat,title,desc,sections) in enumerate(guides):
     body = ''.join(f'<h2>{e(h)}</h2><p>{e(p)}</p>' for h,p in sections)
+    if slug == 'air-fryers':
+        body += worksheet_card
     if i < 3:
         _,asin,name,_ = rows[[0,1,3][i]]
         body += f'<aside class="card"><div class="eyebrow">Product to research</div><h3>{e(name)}</h3><p>Observed in an Amazon redirect check on {DATE}. This isn’t a confirmed recommendation or a paid link.</p>{source("https://www.amazon.com/dp/"+asin,"Amazon listing · reference only",True)}</aside>'
@@ -74,13 +80,14 @@ for slug,(title,desc,body) in pages.items():
 sitemap = ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
 for slug in pages:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
+ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+worksheet
 ET.ElementTree(sitemap).write('sitemap.xml',encoding='utf-8',xml_declaration=True)
 rss = ET.Element('rss',version='2.0')
 channel = ET.SubElement(rss,'channel')
 for tag,value in [('title','DIY Home Upgrades'),('link',BASE),('description',pages['index'][1])]:
     ET.SubElement(channel,tag).text=value
-for slug,_,title,desc,_ in guides:
+for path,title,desc in [(worksheet,worksheet_title,worksheet_desc)]+[(s+'.html',t,d) for s,_,t,d,_ in guides]:
     item=ET.SubElement(channel,'item')
-    for tag,value in [('title',title),('description',desc),('link',BASE+slug+'.html'),('guid',BASE+slug+'.html'),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]:
+    for tag,value in [('title',title),('description',desc),('link',BASE+path),('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]:
         ET.SubElement(item,tag).text=value
 ET.ElementTree(rss).write('feed.xml',encoding='utf-8',xml_declaration=True)
