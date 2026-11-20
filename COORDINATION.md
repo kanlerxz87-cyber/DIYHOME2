@@ -44,6 +44,7 @@ Merge log: PR #3 added evidence records in parallel. Retained both board entries
 
 PR #5 board reconciliation: retained both worksheet and measurement histories, no application conflict.
 
+Release receipt, 2026-11-20: [campaign desk PR #5](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/5) merged into main at 06:01:24 UTC (2196f24). The first deployment failed while parallel work landed; the subsequent [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44684912722) succeeded with this change included. Independently fetched the [live report](https://kanlerxz87-cyber.github.io/DIYHOME2/measurement/) and confirmed its static status, all five signals, CSV link and empty ledger. No production event collection is asserted.
 | Task | Status | Owner | Scope |
 |---|---|---|---|
 | Product-first card artwork and titles | done | 8a9218ed | assets/, scripts/build.py, generated guide index and front page |
@@ -53,3 +54,4 @@ PR #5 board reconciliation: retained both worksheet and measurement histories, n
 - Incorporated the independently merged measurement desk without changing its files.
 
 - Retained the concurrently merged worksheet and its feed/sitemap entries.
+PR #7 reconciliation: preserved the concurrent card-artwork log and release receipt. Extended only the measurement host allowlist for newly merged public images and worksheet assets.

@@ -19,7 +19,7 @@ class Handler(serve.Handler):
         path = urlsplit(self.path).path
         if path == '/campaign-ledger.csv':
             return self.reply(200,(ROOT.parent / 'campaign-ledger.csv').read_bytes(),'text/csv')
-        if path == '/measurement':
+        if path in ('/measurement','/measurement.html'):
             self.send_response(301)
             self.send_header('Location','/measurement/')
             self.end_headers()
@@ -39,6 +39,12 @@ class Handler(serve.Handler):
             if name == 'index.html' and serve.ENABLED:
                 body = body.replace(b'</head>',b'<meta name="aggregate-metrics" content="on"></head>')
             return self.reply(200,body,ASSETS[name])
+        # Include newly published editorial artwork and the measured-fit worksheet.
+        resources = [*serve.ROOT.glob('assets/*.jpg'), *(serve.ROOT/'field-notes').glob('*/*')]
+        for file in resources:
+            public = '/' + file.relative_to(serve.ROOT).as_posix()
+            if file.suffix in serve.TYPES and (path == public or (file.name == 'index.html' and path == public[:-10])):
+                return self.reply(200,file.read_bytes(),serve.TYPES[file.suffix])
         if path == '/assets/metrics.js':
             # This host uses the same consent preference across the desk and publication.
             script = serve.FILES[path].read_bytes()
