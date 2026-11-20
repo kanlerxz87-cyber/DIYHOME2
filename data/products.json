@@ -1,0 +1,53 @@
+{
+  "generated_note": "Display model for product surfaces. Every product attribute except the submitted URL and the ASIN embedded in it is null/unverified because Amazon was unreachable from the build environment. Do not fill these in without an official source.",
+  "products": [
+    {
+      "id": "P-001",
+      "submitted_url": "https://link.amazon/B0hmGG4m2",
+      "intended_asin": "B0hmGG4m2",
+      "title": null,
+      "category": null,
+      "price": null,
+      "currency": null,
+      "rating": null,
+      "review_count": null,
+      "prime": null,
+      "availability": null,
+      "confirmation_status": "unverified",
+      "outbound_rel": "sponsored nofollow noopener",
+      "flags": ["F-001", "F-003", "F-004"]
+    },
+    {
+      "id": "P-002",
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "intended_asin": "B03QDuGdo",
+      "title": null,
+      "category": null,
+      "price": null,
+      "currency": null,
+      "rating": null,
+      "review_count": null,
+      "prime": null,
+      "availability": null,
+      "confirmation_status": "unverified",
+      "outbound_rel": "sponsored nofollow noopener",
+      "flags": ["F-001", "F-002", "F-003", "F-004"]
+    },
+    {
+      "id": "P-003",
+      "submitted_url": "https://link.amazon/B0hpD2JGQ",
+      "intended_asin": "B0hpD2JGQ",
+      "title": null,
+      "category": null,
+      "price": null,
+      "currency": null,
+      "rating": null,
+      "review_count": null,
+      "prime": null,
+      "availability": null,
+      "confirmation_status": "unverified",
+      "outbound_rel": "sponsored nofollow noopener",
+      "flags": ["F-001", "F-003", "F-004"]
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "generated_note": "Product-intent confirmation record per submitted affiliate link. Intended ASIN comes from the submitted URL itself. Amazon was NOT reachable from the build environment, so official listing URL, confirmation date, and confirmation source are intentionally left null. observed_redirect_targets is kept as a separate field and is intentionally empty; it must never be merged with confirmation fields. Candidate listing URLs are a standard construction and are recorded only as unverified candidates.",
+  "tracking_id": "shopnow047c-20",
+  "records": [
+    {
+      "id": "P-001",
+      "submitted_url": "https://link.amazon/B0hmGG4m2",
+      "intended_asin": "B0hmGG4m2",
+      "official_listing_url": null,
+      "candidate_listing_url": "https://www.amazon.com/dp/B0hmGG4m2",
+      "candidate_listing_url_verified": false,
+      "confirmation_date": null,
+      "confirmation_source": null,
+      "observed_redirect_targets": [],
+      "special_link_enrollment_tested": false,
+      "test_order_placed_in_associates_workflow": false,
+      "tracking_report_confirmed": false,
+      "confirmation_status": "unverified",
+      "flags": ["F-001", "F-003", "F-004", "F-005"]
+    },
+    {
+      "id": "P-002",
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "intended_asin": "B03QDuGdo",
+      "official_listing_url": null,
+      "candidate_listing_url": "https://www.amazon.com/dp/B03QDuGdo",
+      "candidate_listing_url_verified": false,
+      "confirmation_date": null,
+      "confirmation_source": null,
+      "observed_redirect_targets": [],
+      "special_link_enrollment_tested": false,
+      "test_order_placed_in_associates_workflow": false,
+      "tracking_report_confirmed": false,
+      "confirmation_status": "unverified",
+      "flags": ["F-001", "F-002", "F-003", "F-004", "F-005"]
+    },
+    {
+      "id": "P-003",
+      "submitted_url": "https://link.amazon/B0hpD2JGQ",
+      "intended_asin": "B0hpD2JGQ",
+      "official_listing_url": null,
+      "candidate_listing_url": "https://www.amazon.com/dp/B0hpD2JGQ",
+      "candidate_listing_url_verified": false,
+      "confirmation_date": null,
+      "confirmation_source": null,
+      "observed_redirect_targets": [],
+      "special_link_enrollment_tested": false,
+      "test_order_placed_in_associates_workflow": false,
+      "tracking_report_confirmed": false,
+      "confirmation_status": "unverified",
+      "flags": ["F-001", "F-003", "F-004", "F-005"]
+    }
+  ]
+}

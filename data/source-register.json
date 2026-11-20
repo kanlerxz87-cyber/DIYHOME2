@@ -1,0 +1,86 @@
+{
+  "generated_note": "Every row states what the source supports and HOW it was accessed. 'web-search excerpt' means the content was observed via a search engine result snippet, not a full page fetch; 'not reachable' means the host could not be contacted from this environment at all. Rows with 'not reachable' were never opened and support no product-level claims.",
+  "retrieved": "2026-11-20",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "source": "Amazon.com Associates Program Operating Agreement",
+      "publisher": "Amazon.com Services LLC",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "supports": "Required disclosure sentence ('As an Amazon Associate I earn from qualifying purchases.'), Special Links definition ('links must properly use the special tagged link formats'), clause 5 (Identifying Yourself as an Associate), clause 12 (monitoring/investigation)",
+      "access_method": "web-search excerpt (host not fetchable from sandbox); excerpt observed 2026-11-20",
+      "verified_for": "Disclosure wording, program-existence facts",
+      "status": "partially verified (excerpt)"
+    },
+    {
+      "id": "SRC-002",
+      "source": "Amazon Associates Program Policies",
+      "publisher": "Amazon.com Services LLC",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "supports": "Unsuitable sites definition; disclosure requirement cross-referencing US FTC Guides Concerning the Use of Endorsements and Testimonials in Advertising; prohibition on Special Links in pop-ups/layer ads; no placement on Amazon's own sites",
+      "access_method": "web-search excerpt (host not fetchable from sandbox); excerpt observed 2026-11-20",
+      "verified_for": "Policy-existence facts, disclosure cross-reference",
+      "status": "partially verified (excerpt)"
+    },
+    {
+      "id": "SRC-003",
+      "source": "Amazon Associates Program Participation Requirements",
+      "publisher": "Amazon.com Services LLC",
+      "url": "https://affiliate-program.amazon.com/help/operating/participation/",
+      "supports": "No trademark use beyond Agreement; Special Links only for Products (req. 19); no framing of Amazon Site (req. 22); no Special Links in pop-ups (req. 23) or on Amazon properties (req. 24)",
+      "access_method": "web-search excerpt (host not fetchable from sandbox); excerpt observed 2026-11-20",
+      "verified_for": "Policy-existence facts",
+      "status": "partially verified (excerpt)"
+    },
+    {
+      "id": "SRC-004",
+      "source": "FTC — Endorsements, Influencers, and Reviews (Endorsement Guides hub)",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/business-guidance/advertising-marketing/endorsements-influencers-reviews",
+      "supports": "16 CFR Part 255 Endorsement Guides; plain-language guidance 'FTC's Endorsement Guides: What People Are Asking'; material-connection disclosure standards",
+      "access_method": "web-search excerpt (host not fetchable from sandbox); excerpt observed 2026-11-20",
+      "verified_for": "Existence and scope of the Guides; link for manual review",
+      "status": "partially verified (excerpt)"
+    },
+    {
+      "id": "SRC-005",
+      "source": "FTC press release — updated Endorsement Guides (2023-06)",
+      "publisher": "U.S. Federal Trade Commission",
+      "url": "https://www.ftc.gov/news-events/news/press-releases/2023/06/federal-trade-commission-announces-updated-advertising-guides-combat-deceptive-reviews-endorsements",
+      "supports": "June 2023 revision of the Endorsement Guides; material connections must be disclosed clearly and conspicuously; liability of advertisers/endorsers/intermediaries",
+      "access_method": "web-search excerpt (host not fetchable from sandbox); excerpt observed 2026-11-20",
+      "verified_for": "Revision date and general disclosure obligation; link for manual review",
+      "status": "partially verified (excerpt)"
+    },
+    {
+      "id": "SRC-006",
+      "source": "Amazon product pages / link.amazon short links (B0hmGG4m2, B03QDuGdo, B0hpD2JGQ)",
+      "publisher": "Amazon.com Services LLC",
+      "url": "https://www.amazon.com/dp/B0hmGG4m2",
+      "supports": "Would support: product titles, prices, ratings, availability, image URLs — NONE obtained",
+      "access_method": "curl from sandbox — connection failed (SSL_ERROR_SYSCALL / 000) on 2026-11-20; link.amazon likewise unreachable",
+      "verified_for": "NOTHING. All product attributes remain unverified.",
+      "status": "not reachable / not verified"
+    },
+    {
+      "id": "SRC-007",
+      "source": "Amazon Product Advertising API / Associates Central tracking reports",
+      "publisher": "Amazon.com Services LLC",
+      "url": "https://affiliate-program.amazon.com/",
+      "supports": "Would support: sales attribution, test-order confirmation for Special Links — NONE obtained; no API credentials exist in this environment",
+      "access_method": "not accessed (no credentials; host not fetchable); no scraping performed — scraping Amazon would breach the Participation Requirements",
+      "verified_for": "NOTHING. Campaign ledger remains empty by design.",
+      "status": "not accessed / not verified"
+    },
+    {
+      "id": "SRC-008",
+      "source": "GitHub (repository, Actions, Pages)",
+      "publisher": "GitHub, Inc.",
+      "url": "https://github.com/kanlerxz87-cyber/DIYHOME2",
+      "supports": "Repository state, commit history, PR and merge record, Pages deployment status",
+      "access_method": "git + gh CLI over HTTPS from sandbox, 2026-11-20",
+      "verified_for": "Repo state, PR/merge/deploy evidence",
+      "status": "verified (first-party)"
+    }
+  ]
+}
