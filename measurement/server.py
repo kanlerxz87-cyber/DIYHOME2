@@ -1,68 +1,52 @@
-"""Same-origin, aggregate-only counter and static desk. Python 3.10+, stdlib only."""
+"""Extend the publication server with a read-only aggregate report and opt-in gate."""
 import json
 import os
 import sqlite3
-from datetime import datetime, timezone
-from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
+import sys
+from contextlib import closing
+from http.server import ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import urlsplit
 
-ROOT = Path(__file__).parent
-DB = os.getenv('COUNTER_DB', '/tmp/diyhome-counter.sqlite')
-EVENTS = ('page_view', 'guide_open', 'comparison_open', 'outbound_click', 'feed_open')
-ASSETS = {'index.html': 'text/html', 'desk.css': 'text/css', 'desk.js': 'text/javascript', 'counter.js': 'text/javascript', 'campaign.csv': 'text/csv', 'media/studio.jpg': 'image/jpeg'}
+ROOT = Path(__file__).resolve().parent
+sys.path.insert(0, str(ROOT.parent / 'scripts'))
+import serve
 
+ASSETS = {'index.html':'text/html; charset=utf-8', 'desk.css':'text/css', 'desk.js':'text/javascript', 'counter.js':'text/javascript', 'campaign.csv':'text/csv', 'media/studio.jpg':'image/jpeg'}
 
-def connect():
-    db = sqlite3.connect(DB)
-    db.execute('CREATE TABLE IF NOT EXISTS counts(day TEXT, event TEXT, n INTEGER, PRIMARY KEY(day,event))')
-    return db
-
-
-class Handler(BaseHTTPRequestHandler):
-    def log_message(self, *args):
-        pass  # Never write addresses, request paths, referrers or user agents.
-
-    def send(self, status, data=b'', mime='application/json'):
-        self.send_response(status)
-        self.send_header('Content-Type', mime)
-        self.send_header('Content-Length', str(len(data)))
-        self.send_header('Referrer-Policy', 'no-referrer')
-        self.send_header('X-Content-Type-Options', 'nosniff')
-        self.send_header('Cache-Control', 'no-store')
-        self.end_headers()
-        self.wfile.write(data)
-
+class Handler(serve.Handler):
     def do_GET(self):
-        path = self.path.removeprefix('/measurement/').lstrip('/') or 'index.html'
-        if path == 'api/summary':
-            with connect() as db:
-                counts = dict(db.execute('SELECT event,sum(n) FROM counts GROUP BY event'))
-            return self.send(200, json.dumps({'events': counts}).encode())
-        if path in ASSETS:
-            return self.send(200, (ROOT / path).read_bytes(), ASSETS[path])
-        self.send(404)
+        path = urlsplit(self.path).path
+        if path == '/measurement':
+            self.send_response(301)
+            self.send_header('Location','/measurement/')
+            self.end_headers()
+            return
+        if path == '/measurement/api/summary':
+            if not serve.ENABLED:
+                return self.reply(404)
+            with closing(sqlite3.connect(serve.DB)) as db:
+                exists = db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='counts'").fetchone()
+                counts = dict(db.execute('SELECT event,sum(n) FROM counts GROUP BY event')) if exists else {}
+            return self.reply(200,json.dumps({'events':counts}).encode(),'application/json')
+        if path.startswith('/measurement/'):
+            name = path[len('/measurement/'):] or 'index.html'
+            if name not in ASSETS:
+                return self.reply(404)
+            body = (ROOT / name).read_bytes()
+            if name == 'index.html' and serve.ENABLED:
+                body = body.replace(b'</head>',b'<meta name="aggregate-metrics" content="on"></head>')
+            return self.reply(200,body,ASSETS[name])
+        if path == '/assets/metrics.js':
+            # This host uses the same consent preference across the desk and publication.
+            script = serve.FILES[path].read_bytes()
+            return self.reply(200,b"if(localStorage.getItem('diyhome-count-consent')==='yes'){\n"+script+b'\n}', 'text/javascript')
+        super().do_GET()
 
     def do_POST(self):
-        if self.path not in ('/api/event', '/measurement/api/event'):
-            return self.send(404)
-        if urlsplit(self.headers.get('Origin', '')).netloc != self.headers.get('Host'):
-            return self.send(403)
         if self.headers.get('DNT') == '1' or self.headers.get('Sec-GPC') == '1':
-            return self.send(204)
-        try:
-            size = int(self.headers.get('Content-Length', '0'))
-            if not 0 < size <= 64 or self.headers.get_content_type() != 'application/json':
-                return self.send(400)
-            payload = json.loads(self.rfile.read(size))
-            if not isinstance(payload, dict) or set(payload) != {'event'} or payload['event'] not in EVENTS:
-                return self.send(400)
-        except (ValueError, UnicodeError):
-            return self.send(400)
-        with connect() as db:
-            db.execute('INSERT INTO counts VALUES(?,?,1) ON CONFLICT(day,event) DO UPDATE SET n=n+1', (datetime.now(timezone.utc).date().isoformat(), payload['event']))
-        self.send(204)
-
+            return self.reply(204)
+        super().do_POST()
 
 if __name__ == '__main__':
-    ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT', '8080'))), Handler).serve_forever()
+    ThreadingHTTPServer(('0.0.0.0', int(os.getenv('PORT','8080'))), Handler).serve_forever()
