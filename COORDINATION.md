@@ -166,3 +166,17 @@ Findings on reconciliation (updated after `main` raced ahead again twice: to `98
 - Lesson for future sessions: `git fetch origin` + re-read `COORDINATION.md` immediately before claiming any task; an Arena session branch can be cut from an old commit while `main` races ahead.
 
 Verification performed on the reconciled tree: `python3 scripts/check.py` → passed; `node scripts/verify.mjs` → GATE PASSED. Site files untouched relative to the integrated `main`.
+
+### Release receipt — PR #14 (2026-11-20)
+
+[PR #14](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/14) merged into `main` at **06:20:18 UTC**, merge commit `7159b647e457dff80c64d18321e0715dfc462e3b` (coordination-only; no site/data/tooling changes were carried into `main` — the deployed publication is untouched by this session).
+
+| Check | Result |
+|---|---|
+| Publication checks on `main` | [44687089140](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44687089140) — success |
+| Pages build and deployment | [44687088411](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44687088411) — success |
+| Pages API | `status: built`, `build_type: legacy`, `html_url: https://kanlerxz87-cyber.github.io/DIYHOME2/` |
+
+Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) after deployment — renders the integrated publication with the disclosure above the fold ("As an Amazon Associate I earn from qualifying purchases."), the three shopping-edit guides, and the air fryer guide link.
+
+Session outcome: the initial parallel build was retired in favor of the integrated live site; the board, the conflict resolution and this receipt are the only contributions. Unresolved project-level items (intended ASIN identity, Special Link compliance, tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger) remain exactly as recorded in the live site's Flagged for Review page — this session did not and cannot close them.
