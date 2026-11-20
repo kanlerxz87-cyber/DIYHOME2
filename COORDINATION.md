@@ -11,7 +11,7 @@
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| Publication front page and final integration | done | 3a819254 | integrated by earlier completed publication on main; verified site, sources, register, analytics, and build output |
+| Publication front page and final integration | done | 3a819254 | existing published integration retained and verified; Campaign desk added to shared navigation/footer |
 | Initial integration and publication | in progress | d69e4487 | README.md, site/, scripts/, .github/workflows/ |
 | First-party measurement service, campaign ledger and reporting surface | done | c1033a7f | measurement/ and this board |
 
@@ -44,16 +44,28 @@ Merge log: PR #3 added evidence records in parallel. Retained both board entries
 
 PR #5 board reconciliation: retained both worksheet and measurement histories, no application conflict.
 
-## Final integration session 3a819254 — 2026-11-20
+Release receipt, 2026-11-20: [campaign desk PR #5](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/5) merged into main at 06:01:24 UTC (2196f24). The first deployment failed while parallel work landed; the subsequent [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44684912722) succeeded with this change included. Independently fetched the [live report](https://kanlerxz87-cyber.github.io/DIYHOME2/measurement/) and confirmed its static status, all five signals, CSV link and empty ledger. No production event collection is asserted.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Product-first card artwork and titles | done | 8a9218ed | assets/, scripts/build.py, generated guide index and front page |
 
-The remote `main` advanced with completed publication, product-register, measurement and counter-fit work while this session was implementing a parallel static publication. Rebase reported an add/add conflict in this shared board; it was aborted without modifying either side. The subsequent merge retained the already integrated `main` site and every previous session's records, and removed this session's redundant duplicate page files rather than replacing the shared publication. The current branch remains `arena/3a819254-diyhome2`.
+- [PR #4](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/4): Main advanced during this parallel session. Resolved overlapping files in favor of the deployed publication and integrated only the complementary category illustrations and product-first headline cards. Confirmed Amazon destinations independently; tracking and product intent remain unverified. Illustrations are decorative, not listing photos. GitHub tracks the merge result on the linked PR.
 
-Reverified the integrated output rather than relying only on prior logs:
-- Fetched each official Amazon target recorded in `product-register.json` on 2026-11-20. The Amazon page title confirmed the listing identities as Art3d wallpaper smoothing kit (`B08FKW9JRM`), under-cabinet paper-towel holder (`B0BSKQW2T2`), and ORDORA pots-and-pans organizer (`B08DY9HRWD`). The duplicate submitted URL resolves to the same observed target. These are redirect observations, not confirmed intended ASINs or affiliate tracking tests. Prices shown by Amazon were not copied into the site.
-- Rechecked Amazon Associates agreement §§1 and 5, FTC endorsement FAQ, Google Search Central sitemap guidance, GitHub Pages static-hosting/data-collection documentation, and the Amazon ASIN definition. See the existing links in `review.html`, `standards.html`, and `README.md`.
-- Ran `python3 scripts/build.py`, `python3 scripts/check.py`, `python3 measurement/test_desk.py`, `node field-notes/counter-fit/test.cjs`, `node --check assets/metrics.js`, `git diff --check`, and a JSON/XML integrity check for the four product-register rows. All passed. The campaign ledger remains header-only; no attributed orders or revenue are asserted.
-- Preserved independent findings: intended ASIN/listing/date/source, tracking enrollment, and report confirmation remain blank/unverified; short-link policy status is unresolved, not declared invalid. Search Console and reader capture remain account-gated; RSS is the no-data subscription path. The optional analytics collector is not live on GitHub Pages.
+- Incorporated the independently merged measurement desk without changing its files.
 
-Issue #1 handoff: added a direct `Campaign desk` link to the publication's shared site-records navigation/footer (generated from `scripts/build.py`) so `/measurement/index.html` is reachable alongside the simpler `measurement.html` reporting page.
+- Retained the concurrently merged worksheet and its feed/sitemap entries.
+PR #7 reconciliation: preserved the concurrent card-artwork log and release receipt. Extended only the measurement host allowlist for newly merged public images and worksheet assets.
 
-Merge commit `db1bfaa` preserves the completed upstream integration. Remaining: PR creation/merge and checking the GitHub Pages result after merge. Conflicts were resolved in favor of the already completed shared publication, without losing any session's upstream changes.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Parallel verification and handoff | done | arena/77f9fde9-diyhome2 | COORDINATION.md only; no site or product-data files |
+
+2026-11-20 (`arena/77f9fde9-diyhome2`): The initial branch snapshot contained only the baseline commit and no coordination board. This session pushed its integration claim before refreshing the remote. After fetching, it found the parallel integration work and PRs #2 and #3; it stopped editing site/product files, rebased onto current `main`, and resolved successive `COORDINATION.md` conflicts by preserving all newer board entries and appending this handoff. Subsequent main-branch coordination recorded PRs #4, #5, #6 and #7 as well; this session did not modify another session's application files.
+
+Independent review sources fetched: Amazon [Associates Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement), [Program Policies](https://affiliate-program.amazon.com/help/operating/policies), [ASIN help](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC), and the three observed listing pages ([B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2), [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD)); FTC [affiliate disclosure guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking); Google [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [Search Console ownership verification](https://support.google.com/webmasters/answer/9008080?hl=en). The Amazon product pages support the observed listing identities only; they do not confirm the submitted links' intended products, redirect behavior, or Associates attribution. No short link is described as invalid.
+
+Deployment review: GitHub Pages is configured for the public project site [DIY Home Upgrades](https://kanlerxz87-cyber.github.io/DIYHOME2/). At review time the Pages API reported the site built; the live homepage, Flagged for Review page, sitemap and feed were fetched. Account-side link testing, tracking-report confirmation, Search Console ownership and an analytics endpoint on the public static host remain unverified/not deployed, and remain non-blocking review items on the site.
+
+2026-11-20 final integration update from `arena/3a819254-diyhome2`: `main` advanced again during the required pre-push rebase, causing conflicts in `COORDINATION.md`, `guides.html` and `index.html`. The rebase was aborted and the latest main history was merged. Conflicts were resolved by retaining main's newer product-first artwork and worksheet integration, then regenerating pages with the merged builder; the `Campaign desk` link is preserved in the shared dropdown/footer. The session's redundant standalone publication files were not carried into the integrated site.
+
+Latest-build checks after this merge: `python3 scripts/build.py`, `python3 scripts/check.py`, `python3 measurement/test_desk.py`, `node field-notes/counter-fit/test.cjs`, `node --check assets/metrics.js`, XML parsing and `git diff --check` passed. The register still has four rows, preserves the duplicate, and leaves intended product identity and affiliate attribution unverified. PR creation/merge and post-merge Pages verification remain.

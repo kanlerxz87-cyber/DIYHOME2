@@ -46,10 +46,19 @@ def add(slug, title, desc, content):
 def intro(label, title, desc):
     return f'<div class="intro"><div class="eyebrow">{e(label)}</div><h1>{e(title)}</h1><p class="lede">{e(desc)}</p></div>'
 
-def cards(items):
-    return '<div class="grid">'+''.join(f'<article class="card"><div class="eyebrow">{e(cat)}</div><h3>{link(slug,title)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>' for slug,cat,title,desc,_ in items)+'</div>'
+def cards(items, shopping=False):
+    art = {'wallpaper': ('walls','Wallpaper smoothing kit'),
+           'paper-towels': ('counter','Under-cabinet paper towel holder'),
+           'cookware': ('cabinet','Adjustable pan organizer')}
+    result = []
+    for slug,cat,title,desc,_ in items:
+        image, product = art.get(slug, ('', title))
+        photo = f'<img class="edit-photo" src="assets/{image}.jpg" alt="" width="600" height="380" loading="lazy">' if image else ''
+        heading = product if shopping else title
+        result.append(f'<article class="card">{photo}<div class="eyebrow">{e(cat)}</div><h3>{link(slug,heading)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>')
+    return '<div class="grid">'+''.join(result)+'</div>'
 
-add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3])+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section>''')
+add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section>''')
 add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides)+worksheet_card)
 for i,(slug,cat,title,desc,sections) in enumerate(guides):
     body = ''.join(f'<h2>{e(h)}</h2><p>{e(p)}</p>' for h,p in sections)
