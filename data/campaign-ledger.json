@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0.0",
+  "project": "DIYHOME2 — DIY Home Upgrades",
+  "tracking_id": "shopnow047c-20",
+  "created_date_utc": "2026-11-20",
+  "governance_policy": "Priority 4 — Evidence-based iteration: Start with an empty, well-defined campaign ledger. Add timestamp_utc, source, channel, eligible_sessions, outbound_clicks, and reported_orders ONLY when obtained from authorized first-party reports (self-hosted analytics + Amazon Associates Central). No conversion score or revenue forecast is fabricated or presented.",
+  "required_columns": [
+    "timestamp_utc",
+    "source",
+    "channel",
+    "eligible_sessions",
+    "outbound_clicks",
+    "reported_orders",
+    "authorized_report_ref",
+    "provenance_note"
+  ],
+  "entries": []
+}

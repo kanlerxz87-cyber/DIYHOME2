@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0.0",
+  "publication_name": "DIY Home Upgrades Journal",
+  "canonical_base_url": "https://kanlerxz87-cyber.github.io/DIYHOME2/",
+  "cadence_policy": "Publish 1 question-shaped, non-hype buyer guide every 14 days. Every new guide is added to sitemap.xml and feed.xml on publication day. After 30 days of Google Search Console + self-hosted analytics data, select the next topic from measured search queries rather than instinct.",
+  "published_guides": [
+    {
+      "guide_id": "G-01",
+      "slug": "peel-and-stick-smoothing-kit-guide",
+      "url": "guides/peel-and-stick-smoothing-kit-guide.html",
+      "title": "Peel-and-Stick Wallpaper & Backsplash Tools: What Actually Matters in a Starter Kit?",
+      "question_shaped_hypothesis": "Which hand tools genuinely prevent air bubbles, edge lift, and crooked trim cuts on peel-and-stick vinyl projects?",
+      "category": "Wall & Backsplash Tools",
+      "cluster": "Renter-Friendly Peel & Stick",
+      "related_product_ids": ["PROD-01"],
+      "published_date_utc": "2026-11-20",
+      "author": "DIYHOME2 Editorial Desk",
+      "reading_time_min": 5,
+      "excerpt": "A practical, no-hype breakdown of squeegee edges, blade sharpness, layout tape accuracy, and verified specs for the Art3d starter smoothing kit."
+    },
+    {
+      "guide_id": "G-02",
+      "slug": "adhesive-vs-screw-paper-towel-holder",
+      "url": "guides/adhesive-vs-screw-paper-towel-holder.html",
+      "title": "Adhesive vs. Screw-Mount Under-Cabinet Paper Towel Holders: How to Choose Without Damaging Cabinets",
+      "question_shaped_hypothesis": "When does peel-and-stick adhesive hold reliably under a kitchen cabinet, and when should you drill screws instead?",
+      "category": "Kitchen Storage & Organization",
+      "cluster": "Weekend Kitchen Refresh",
+      "related_product_ids": ["PROD-02"],
+      "published_date_utc": "2026-11-20",
+      "author": "DIYHOME2 Editorial Desk",
+      "reading_time_min": 6,
+      "excerpt": "Compare cabinet surface materials, roll clearance on a 12.2-inch rail, horizontal vs. vertical orientation, and aluminum vs. stainless weight."
+    },
+    {
+      "guide_id": "G-03",
+      "slug": "measure-cabinet-for-pot-pan-organizer",
+      "url": "guides/measure-cabinet-for-pot-pan-organizer.html",
+      "title": "How to Measure Your Kitchen Cabinet Before Buying an 8-Tier Pot and Pan Organizer",
+      "question_shaped_hypothesis": "Will a vertical two-sided rack actually clear your cabinet shelf height, door hinges, and cookware weight?",
+      "category": "Kitchen Storage & Organization",
+      "cluster": "Cabinet Space Optimization",
+      "related_product_ids": ["PROD-03"],
+      "published_date_utc": "2026-11-20",
+      "author": "DIYHOME2 Editorial Desk",
+      "reading_time_min": 6,
+      "excerpt": "Use verified ORDORA 8-tier dimensions across all 3 DIY layouts, check the 10-lb-per-tier light-duty ceiling, and avoid ordering the wrong rack for cast iron."
+    },
+    {
+      "guide_id": "G-04",
+      "slug": "renter-friendly-kitchen-upgrade-checklist",
+      "url": "guides/renter-friendly-kitchen-upgrade-checklist.html",
+      "title": "A No-Hype Checklist for Planning a Renter-Friendly Weekend Kitchen Upgrade",
+      "question_shaped_hypothesis": "How do you sequence backsplash prep, under-cabinet roll mounting, and lower-cabinet cookware storage without losing a security deposit?",
+      "category": "Kitchen & Wall Clusters",
+      "cluster": "Weekend Kitchen Refresh",
+      "related_product_ids": ["PROD-01", "PROD-02", "PROD-03"],
+      "published_date_utc": "2026-11-20",
+      "author": "DIYHOME2 Editorial Desk",
+      "reading_time_min": 7,
+      "excerpt": "A surface-by-surface measurement and reversibility checklist connecting all three verified DIY Home Upgrades items."
+    }
+  ],
+  "planned_cadence_backlog": [
+    {
+      "target_window": "Cycle +1 (after 14 days)",
+      "working_title": "Felt-Edge vs. Hard-Plastic Squeegees: Preventing Scratches on Matte Contact Paper",
+      "selection_gate": "Confirm or replace using Google Search Console query impressions"
+    },
+    {
+      "target_window": "Cycle +2 (after 28 days)",
+      "working_title": "Light-Duty vs. Heavy-Duty Pot Racks: Matching Tier Weight Limits to Cast Iron and Dutch Ovens",
+      "selection_gate": "Confirm or replace using Google Search Console query impressions & outbound click ratio"
+    },
+    {
+      "target_window": "Cycle +3 (after 42 days)",
+      "working_title": "Surface Prep Before Adhesive Kitchen Hardware: Degreasing, Cure Time, and Safe Removal",
+      "selection_gate": "Confirm or replace using measured reader questions & search queries"
+    }
+  ]
+}
