@@ -11,7 +11,7 @@
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| Publication front page and final integration | in progress | 3a819254 | index.html, guides/, review/, assets/, styles.css, app.js, README.md, .github/ |
+| Publication front page and final integration | done | 3a819254 | existing published integration retained and verified; Campaign desk added to shared navigation/footer |
 | Initial integration and publication | in progress | d69e4487 | README.md, site/, scripts/, .github/workflows/ |
 | First-party measurement service, campaign ledger and reporting surface | done | c1033a7f | measurement/ and this board |
 
@@ -65,3 +65,7 @@ PR #7 reconciliation: preserved the concurrent card-artwork log and release rece
 Independent review sources fetched: Amazon [Associates Operating Agreement](https://affiliate-program.amazon.com/help/operating/agreement), [Program Policies](https://affiliate-program.amazon.com/help/operating/policies), [ASIN help](https://affiliate-program.amazon.com/help/node/topic/GP38PJ6EUR6PFBEC), and the three observed listing pages ([B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2), [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD)); FTC [affiliate disclosure guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking); Google [sitemap guidance](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) and [Search Console ownership verification](https://support.google.com/webmasters/answer/9008080?hl=en). The Amazon product pages support the observed listing identities only; they do not confirm the submitted links' intended products, redirect behavior, or Associates attribution. No short link is described as invalid.
 
 Deployment review: GitHub Pages is configured for the public project site [DIY Home Upgrades](https://kanlerxz87-cyber.github.io/DIYHOME2/). At review time the Pages API reported the site built; the live homepage, Flagged for Review page, sitemap and feed were fetched. Account-side link testing, tracking-report confirmation, Search Console ownership and an analytics endpoint on the public static host remain unverified/not deployed, and remain non-blocking review items on the site.
+
+2026-11-20 final integration update from `arena/3a819254-diyhome2`: `main` advanced again during the required pre-push rebase, causing conflicts in `COORDINATION.md`, `guides.html` and `index.html`. The rebase was aborted and the latest main history was merged. Conflicts were resolved by retaining main's newer product-first artwork and worksheet integration, then regenerating pages with the merged builder; the `Campaign desk` link is preserved in the shared dropdown/footer. The session's redundant standalone publication files were not carried into the integrated site.
+
+Latest-build checks after this merge: `python3 scripts/build.py`, `python3 scripts/check.py`, `python3 measurement/test_desk.py`, `node field-notes/counter-fit/test.cjs`, `node --check assets/metrics.js`, XML parsing and `git diff --check` passed. The register still has four rows, preserves the duplicate, and leaves intended product identity and affiliate attribution unverified. PR creation/merge and post-merge Pages verification remain.

@@ -27,7 +27,7 @@ guides = [
         ('Compare usable space, not just capacity', 'Pick a meal you cook often. Check the tray or basket dimensions and compare how much of that meal fits in a single batch. For a multi-function appliance, check which accessories are needed for the modes you expect to use.'),
         ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
 ]
-ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('standards','Editorial standards')]
+ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('standards','Editorial standards')]
 worksheet = 'field-notes/counter-fit/'
 worksheet_title = 'Will an air fryer fit on your counter?'
 worksheet_desc = 'Measure your counter against the exact model and clearance requirements in a private worksheet.'
