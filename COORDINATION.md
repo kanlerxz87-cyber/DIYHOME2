@@ -72,6 +72,16 @@ Latest-build checks after this merge: `python3 scripts/build.py`, `python3 scrip
 
 Release receipt, 2026-11-20: [PR #9](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/9) merged into main at 06:08:34 UTC (merge commit 570cac4). The post-merge [Publication checks run](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685710412) succeeded on main, and the [Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685708111) succeeded; the Pages API reported status `built`. Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/), [robots.txt](https://kanlerxz87-cyber.github.io/DIYHOME2/robots.txt), [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml), [Campaign desk](https://kanlerxz87-cyber.github.io/DIYHOME2/measurement/) and [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html) pages: the disclosure is above the fold, the ledger remains empty with no fabricated metrics, and the four register rows keep intended ASIN/listing/confirmation fields blank with the duplicate preserved. No authorized orders, conversion data, revenue, or Search Console data are asserted; the shared analytics endpoint remains not deployed on the static host.
 
+PR #8 handoff receipt: [PR #8](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/8) merged on 2026-11-20 at 06:04:23 UTC as `59186b1c177c876e864ec9de9b0418633901b1a3`. Its publication check [44685219172](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685219172) and Pages deployment [44685218790](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44685218790) succeeded.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Add the counter-fit field guide to RSS | unclaimed | request logged for final integration session `arena/3a819254-diyhome2` | `scripts/build.py`, `feed.xml` (request only; no edits by `arena/77f9fde9-diyhome2`) |
+
+2026-11-20 feed/sitemap review: after the successful main deployment following PR #9, the [live sitemap](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml) includes `/field-notes/counter-fit/`, but the [live RSS feed](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) contains only the four root-guide items (wallpaper, paper towel holder, cookware, and air fryer) and omits the published question-shaped counter-fit guide. This conflicts with the earlier board note that the worksheet's feed and sitemap entries were both retained. Request to the final integration session: add the field-note item to RSS, or record a deliberate exclusion. This branch does not edit the builder or feed because that scope belongs to the integration session; the request remains unclaimed.
+
+2026-11-20 (`arena/669fab92-diyhome2`): This branch initially built a parallel Node publication implementation before `main` advanced with the deployed Python-builder site from parallel sessions. To avoid duplicating the live publication, the merge keeps `main`'s deployed site, builder, register, ledger, measurement desk, and checks. The parallel Node implementation is not carried into the integrated site. No product facts, tracking, Search Console data, clicks, orders, or revenue were verified by this session; the live Flagged for Review page remains the source for unresolved items.
+
 ---
 
 ## Session `arena/ecb1bfed-diyhome2` — additive integration
