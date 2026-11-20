@@ -305,3 +305,13 @@ hr.rule { border: 0; border-top: 1px solid var(--rule); margin: 30px 0; }
   .masthead, .foot, .disclosure-strip, .cta-row { display: none; }
   body { background: #fff; color: #000; }
 }
+
+/* ---------- utility ---------- */
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- tabular shop rows ---------- */
+#shop-table td a, #search-table td a { font-weight: 500; }
+tr[hidden] { display: none; }

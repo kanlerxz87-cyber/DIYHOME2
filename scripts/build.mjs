@@ -56,7 +56,7 @@ const url = (p) => `${SITE.base_url}/${p}`.replace(/\/+$/, "/");
  *    on a site must be a properly tagged Special Link. The full URL is still
  *    printed, so it can be copied and checked by hand.
  */
-function cite(id, label) {
+function cite(id, label, opts = {}) {
   const s = SOURCES[id];
   if (!s) throw new Error(`Unknown source id: ${id}`);
   const text = label || id;
@@ -64,7 +64,14 @@ function cite(id, label) {
   const isProductUrl = /^https:\/\/(www\.)?amazon\.com\/dp\/|^https:\/\/link\.amazon\//.test(s.url);
 
   if (isProductUrl) {
-    return `<span class="src"><span title="${attr(title)}">${esc(text)}</span> <code style="font-size:10.5px;word-break:break-all">${esc(s.url)}</code></span>`;
+    // Print the URL in full where there is room (table captions, provenance
+    // blocks) so it can be copied for manual review. In dense table cells use a
+    // compact label whose tooltip carries the full URL, to avoid repeating the
+    // same long string on every row.
+    if (opts.full) {
+      return `<span class="src"><code style="font-size:11px;word-break:break-all">${esc(s.url)}</code></span>`;
+    }
+    return `<span class="src" title="${attr(`${title} — ${s.url}`)}">${esc(text)}</span>`;
   }
   return `<span class="src"><a href="${attr(s.url)}" title="${attr(title)}" rel="noopener">${esc(text)}</a></span>`;
 }
@@ -322,8 +329,8 @@ function homePage() {
     <div class="hero-meta">
       <div><b>${verified}</b><span>products, each with a source</span></div>
       <div><b>${sourcesData.sources.filter((s) => s.access === "public").length}</b><span>official sources read</span></div>
-      <div><b>0</b><span>prices shown &mdash; see why</span></div>
-      <div><b>1</b><span>required disclosure, on every page</span></div>
+      <div><b>0</b><span>prices shown, on purpose</span></div>
+      <div><b>${flagsData.flags.length}</b><span>items flagged for review</span></div>
     </div>
   </div>
 </section>
@@ -370,10 +377,10 @@ function homePage() {
       </div>
       <div>
         <div class="stat-row">
-          <div class="stat"><b>3</b><span>unique products</span></div>
-          <div class="stat"><b>4</b><span>links submitted</span></div>
-          <div class="stat"><b>0</b><span>verified ASIN intentions</span></div>
-          <div class="stat"><b>3</b><span>items flagged for review</span></div>
+          <div class="stat"><b>${PRODUCTS.length}</b><span>unique products</span></div>
+          <div class="stat"><b>${linksData.links.length + linksData.duplicate_submissions.reduce((n, d) => n + d.occurrences - 1, 0)}</b><span>links submitted</span></div>
+          <div class="stat"><b>${linksData.links.filter((l) => l.intended_asin).length}</b><span>verified ASIN intentions</span></div>
+          <div class="stat"><b>${flagsData.flags.length}</b><span>items flagged for review</span></div>
         </div>
         <div class="note note-warn" style="margin-top:20px">
           <h4>Open item</h4>
@@ -557,7 +564,7 @@ function productPage(prod) {
       <p>These values are transcribed from the Amazon product detail page, not paraphrased. Where the listing does not state something, the row says so rather than guessing.</p>
       <div class="table-wrap">
         <table>
-          <caption>Specifications for ASIN ${esc(prod.asin)} — source: the Amazon detail page itself ${cite(prod.listing_source)}</caption>
+          <caption>Specifications for ASIN ${esc(prod.asin)}. Every row comes from the same page: the official Amazon detail page at ${cite(prod.listing_source, "", { full: true })}</caption>
           <thead><tr><th scope="col">Field</th><th scope="col">Value</th><th scope="col">Source</th></tr></thead>
           <tbody>
             ${prod.specs
@@ -565,7 +572,7 @@ function productPage(prod) {
                 (s) => `<tr><th scope="row" style="font-weight:500;color:var(--ink-3)">${esc(s.label)}</th>${valueCell(
                   s.value,
                   { source: prod.listing_source, mono: s.label === "ASIN" }
-                )}<td>${cite(prod.listing_source, "Amazon listing")}</td></tr>`
+                )}<td>${cite(prod.listing_source, `Source ${prod.listing_source}`)}</td></tr>`
               )
               .join("")}
           </tbody>
@@ -883,7 +890,7 @@ function registerPage() {
   <div class="wrap">
     <div class="table-wrap">
       <table>
-        <caption>Product register — 20 November 2026. Source column links to the official page each ASIN was read from.</caption>
+        <caption>Product register — 20 November 2026. The Source column names the official Amazon page each ASIN was read from; the full URL is printed on each product page.</caption>
         <thead>
           <tr>
             <th scope="col">Product</th>
@@ -931,7 +938,11 @@ function sourcesPage() {
         <td>${doc}</td>
         <td>${esc(s.publisher)}</td>
         <td>${esc(s.updated_on_page)}</td>
-        <td>${statusPill(s.access === "public" ? "verified" : "blocked")}</td>
+        <td>${
+          s.access === "public"
+            ? '<span class="pill pill-ok">read in full</span>'
+            : '<span class="pill pill-gap">sign-in required</span>'
+        }</td>
         <td>${s.establishes.startsWith("NOTHING") ? '<span class="empty-value">establishes nothing</span>' : esc(s.establishes)}</td>
       </tr>`;
     })
@@ -950,7 +961,7 @@ function sourcesPage() {
   <div class="wrap">
     <div class="table-wrap">
       <table>
-        <caption>Official sources read for this build. Links open the publisher's own page.</caption>
+        <caption>Official sources read for this build. Policy and guidance titles are direct links to the publisher's own page; Amazon product pages are printed in full as plain text.</caption>
         <thead><tr><th scope="col">ID</th><th scope="col">Document</th><th scope="col">Publisher</th><th scope="col">Dated on page</th><th scope="col">Access</th><th scope="col">What it establishes</th></tr></thead>
         <tbody>${rows}</tbody>
       </table>
