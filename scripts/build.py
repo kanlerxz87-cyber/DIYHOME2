@@ -27,7 +27,7 @@ guides = [
         ('Compare usable space, not just capacity', 'Pick a meal you cook often. Check the tray or basket dimensions and compare how much of that meal fits in a single batch. For a multi-function appliance, check which accessories are needed for the modes you expect to use.'),
         ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
 ]
-ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
+ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
 worksheet = 'field-notes/counter-fit/'
 worksheet_title = 'Will an air fryer fit on your counter?'
 worksheet_desc = 'Measure your counter against the exact model and clearance requirements in a private worksheet.'
@@ -72,13 +72,38 @@ for i,(slug,cat,title,desc,sections) in enumerate(guides):
 def table(headers, data):
     return '<div class="scroll"><table><thead><tr>'+''.join(f'<th scope="col">{e(h)}</th>' for h in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{v}</td>' for v in row)+'</tr>' for row in data)+'</tbody></table></div>'
 
+_cite_link = link('sources','citation register')
 register = []
 for n,(short,asin,name,note) in enumerate(rows,1):
     register.append((f'{n:02}',f'<code>https://link.amazon/{short}</code>', e(name),source('https://www.amazon.com/dp/'+asin,asin,True),DATE,'','','','',note+'Unverified intent and tracking.'))
-add('review','Flagged for Review','Product intent and observed redirect evidence.',intro('Site records','Flagged for Review','Blank fields have not been verified. A redirect observation is not product intent or a tracking test.')+table(['Entry','Submitted URL','Observed listing title (shortened)','Observed target · Amazon source','Observed date','Intended ASIN','Intended official listing','Confirmation date','Confirmation source','Status'],register)+f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links’ compliance is unresolved; they are not declared invalid. See {source(AMAZON,"Amazon’s Special Link requirements")}.</p>')
+add('review','Flagged for Review','Product intent and observed redirect evidence.',intro('Site records','Flagged for Review','Blank fields have not been verified. A redirect observation is not product intent or a tracking test.')+table(['Entry','Submitted URL','Observed listing title (shortened)','Observed target · Amazon source','Observed date','Intended ASIN','Intended official listing','Confirmation date','Confirmation source','Status'],register)+f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links’ compliance is unresolved; they are not declared invalid. See {source(AMAZON,"Amazon’s Special Link requirements")} and the {_cite_link} for the ASIN definition these codes were measured against.</p>')
 add('summary','Executive summary','Launch scope, findings, and next decisions.',intro('Site records','Executive summary','A buyer-first publication with a separate evidence register.')+f'''<div class="prose"><h2>What the evidence supports</h2><p>Four submissions represent three distinct short URLs. The observed destinations were a wallpaper smoothing kit, a paper towel holder and a cookware organizer, not air fryers. The air fryer guide is a separate editorial topic, not a claim about the submitted items.</p><h2>What remains unknown</h2><p>The intended products, tracking ownership, live commission eligibility and report attribution remain unverified. No conversion score, revenue forecast, price or review figure is published.</p><h2>Next decision</h2><p>Verify one Special Link per product in the enrolled workflow before scaling. Once authorized reporting is available, use measured queries and buyer engagement to choose the next guide. See {link('review','the evidence register')} and {link('measurement','measurement status')}.</p></div>''')
-add('standards','Editorial standards','How guides are written, checked and published.',intro('Site records','Editorial standards','By the DIY Home Upgrades editorial desk. Buying checklists, not hands-on reviews.')+f'''<div class="prose"><h2>Publication gate</h2><p>Confirm product intent against an official listing and save the date and source separately from the redirect. Generate a Special Link through enrolled Associates tools, then verify the destination and authorized tracking report before publishing it. Keep a paid-link notice next to each approved link and the Associates notice on every page.</p><p>Review {source(AMAZON,'the Operating Agreement')}, {source('https://affiliate-program.amazon.com/help/operating/policies','Amazon’s Program Policies')} and {source(FTC,'FTC endorsement guidance')} before publishing. Do not scrape Amazon or use product images, ratings, prices or API content without confirming rights, sourcing and freshness requirements. The masthead photograph is AI-generated editorial imagery, not a product depiction.</p><h2>Publishing rhythm</h2><p>Proposed: one question-led guide every two weeks, with a monthly evidence and link review. Start with walls and kitchen storage; revisit seasonal topics only when they fit reader needs. Every new entry in the guide register updates the sitemap and RSS feed on build.</p></div>''')
+add('standards','Editorial standards','How guides are written, checked and published.',intro('Site records','Editorial standards','By the DIY Home Upgrades editorial desk. Buying checklists, not hands-on reviews.')+f'''<div class="prose"><h2>Publication gate</h2><p>Confirm product intent against an official listing and save the date and source separately from the redirect. Generate a Special Link through enrolled Associates tools, then verify the destination and authorized tracking report before publishing it. Keep a paid-link notice next to each approved link and the Associates notice on every page.</p><p>Review {source(AMAZON,'the Operating Agreement')}, {source('https://affiliate-program.amazon.com/help/operating/policies','Amazon’s Program Policies')} and {source(FTC,'FTC endorsement guidance')} before publishing. Every document behind every claim, with the date it states and the constraint it imposes, is kept in the {link('sources','citation register')}. Do not scrape Amazon or use product images, ratings, prices or API content without confirming rights, sourcing and freshness requirements. The masthead photograph is AI-generated editorial imagery, not a product depiction.</p><h2>Publishing rhythm</h2><p>Proposed: one question-led guide every two weeks, with a monthly evidence and link review. Start with walls and kitchen storage; revisit seasonal topics only when they fit reader needs. Every new entry in the guide register updates the sitemap and RSS feed on build.</p></div>''')
 add('measurement','Measurement','Campaign ledger and analytics status.',intro('Site records','Measurement','No campaign results have been imported.')+table(['Timestamp','Authorized source','Channel','Eligible sessions','Clicks','Reported orders'],[])+f'''<div class="prose"><p>The ledger is empty, not zero. Import only aggregate figures from authorized first-party reports and retain a dated provenance trail. Use {source('https://affiliate-program.amazon.com/','Associates Central')} for reported orders; outbound clicks are not conversions.</p><p>Production telemetry is not connected. GitHub Pages cannot execute the optional collector. Search Console ownership has not been verified; the sitemap is available for submission. Reader subscriptions use RSS without collecting email addresses.</p></div>''')
+
+# --- Citation register (added by arena/ecb1bfed-diyhome2; additive only) ---
+# Every claim on the site resolves to one of these documents. Policy and guidance
+# titles link straight to the publisher; Amazon listing and redirector URLs are
+# printed as plain text, because a citation is evidence rather than an offer and
+# an untagged Amazon product link is not a Special Link.
+_cite_doc = __import__('json').loads(Path('data/citation-register.json').read_text())
+_cite_by_id = {s['id']: s for s in _cite_doc['sources']}
+_cite_rows = []
+for _s in _cite_doc['sources']:
+    # Anything shipping a product or a shortener is printed, never linked: a
+    # citation must not become an untagged, untracked outbound Amazon click.
+    _is_product = _s['url'].startswith('https://www.amazon.com/dp/') or _s['url'].startswith('https://link.amazon/') or 'link.amazon' in _s['url']
+    _doc = f'<code>{e(_s["url"])}</code>' if _is_product else source(_s['url'], _s['title'])
+    _state = '<span class="pill ok">read in full</span>' if _s['access'] == 'public' else '<span class="pill gap">sign-in required</span>'
+    _cite_rows.append((f'<strong id="src-{e(_s["id"])}">{e(_s["id"])}</strong>', _doc + f'<br><small>{e(_s["section"])}</small>', e(_s['publisher']), e(_s['dated_on_page']), _state, e(_s['claim'])))
+_cite_cons = []
+for _c in _cite_doc['constraints']:
+    # Point each basis at its row in the table above rather than at the raw
+    # source URL. That keeps every product and shortener URL as text, and it
+    # reads better: the reader lands on the evidence, not on a bare redirect.
+    _basis = ', '.join(f'<a href="#src-{e(i)}">{e(i)}</a>' for i in _c['basis'].split(', ') if i in _cite_by_id)
+    _cite_cons.append((f'<strong>{e(_c["id"])}</strong>', e(_c['constraint']), _basis, e(_c['effect_on_site'])))
+add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer; linking an untagged Amazon product page would put a non-Special link on the site, which the Participation Requirements do not allow. Product pages the reader is invited to visit appear on the buying guides, and every one carries a sponsored marker.</small></p></div>')
 
 for slug,(title,desc,body) in pages.items():
     canonical = BASE + ('' if slug=='index' else slug+'.html')
@@ -100,4 +125,24 @@ for path,title,desc in [(worksheet,worksheet_title,worksheet_desc)]+[(s+'.html',
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]:
         ET.SubElement(item,tag).text=value
+# Site records belong in the feed too. The sitemap already lists them, and a
+# reader subscribed for the record pages had no way to see a new one. Added by
+# arena/ecb1bfed-diyhome2 in response to the RSS coverage request on the board.
+for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'Index'),
+                            ('review.html','Flagged for Review',pages['review'][1],'Site record'),
+                            ('sources.html','Citation register',pages['sources'][1],'Site record'),
+                            ('summary.html','Executive summary',pages['summary'][1],'Site record'),
+                            ('standards.html','Editorial standards',pages['standards'][1],'Site record'),
+                            ('measurement.html','Measurement',pages['measurement'][1],'Site record'),
+                            ('audit/','Spec & policy audit','Independently verified listing details, internal listing discrepancies and the 2026 policy register.','Site record')]:
+    item=ET.SubElement(channel,'item')
+    for tag,value in [('title',title),('description',desc),('link',BASE+path),
+                      ('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),
+                      ('category',cat)]:
+        ET.SubElement(item,tag).text=value
+# The homepage is the channel link; give it an item too so the cover check is honest.
+_home=ET.SubElement(channel,'item')
+for tag,value in [('title','DIY Home Upgrades'),('description',pages['index'][1]),('link',BASE),
+                  ('guid',BASE),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),('category','Front page')]:
+    ET.SubElement(_home,tag).text=value
 ET.ElementTree(rss).write('feed.xml',encoding='utf-8',xml_declaration=True)

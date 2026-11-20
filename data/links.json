@@ -1,0 +1,84 @@
+{
+  "record_type": "product_intent_confirmation_record",
+  "purpose": "One record per submitted outbound link. The intended fields and the observed fields are stored separately and are never merged, reconciled or used to fill each other in.",
+  "rule": "An 'intended' value may only be written after the destination has been confirmed inside the enrolled Associates workflow. Until that happens the field stays empty.",
+  "created": "2026-11-20",
+  "links": [
+    {
+      "id": "L01",
+      "submitted_url": "https://link.amazon/B0hmGG4m2",
+      "submitted_code": "B0hmGG4m2",
+      "submitted_code_length": 9,
+      "submitted_code_could_be_asin": false,
+
+      "intended_asin": "",
+      "intended_listing_url": "",
+      "confirmation_date": "",
+      "confirmation_source": "",
+
+      "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM",
+      "observed_asin": "B08FKW9JRM",
+      "observed_on": "2026-11-20",
+      "observed_source": "S10",
+      "observed_tag_parameter_present": false,
+      "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
+
+      "status": "needs review",
+      "flag": "F01, F02",
+      "note": "The 9-character short code differs from the 10-character ASIN it resolves to. The code must not be recorded as the ASIN."
+    },
+    {
+      "id": "L02",
+      "submitted_url": "https://link.amazon/B03QDuGdo",
+      "submitted_code": "B03QDuGdo",
+      "submitted_code_length": 9,
+      "submitted_code_could_be_asin": false,
+
+      "intended_asin": "",
+      "intended_listing_url": "",
+      "confirmation_date": "",
+      "confirmation_source": "",
+
+      "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "observed_asin": "B0BSKQW2T2",
+      "observed_on": "2026-11-20",
+      "observed_source": "S11",
+      "observed_tag_parameter_present": false,
+      "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
+
+      "status": "needs review",
+      "flag": "F01, F02",
+      "note": "Submitted twice in the same request. The duplicate is not a second product."
+    },
+    {
+      "id": "L03",
+      "submitted_url": "https://link.amazon/B0hpD2JGQ",
+      "submitted_code": "B0hpD2JGQ",
+      "submitted_code_length": 9,
+      "submitted_code_could_be_asin": false,
+
+      "intended_asin": "",
+      "intended_listing_url": "",
+      "confirmation_date": "",
+      "confirmation_source": "",
+
+      "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD",
+      "observed_asin": "B08DY9HRWD",
+      "observed_on": "2026-11-20",
+      "observed_source": "S12",
+      "observed_tag_parameter_present": false,
+      "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
+
+      "status": "needs review",
+      "flag": "F01, F02",
+      "note": "The 9-character short code starts with the same three characters as the ASIN it resolves to. This coincidence is exactly why the code must not be copied into the ASIN field."
+    }
+  ],
+  "duplicate_submissions": [
+    {
+      "url": "https://link.amazon/B03QDuGdo",
+      "occurrences": 2,
+      "finding": "The request listed four link lines but only three unique URLs. Recorded once, flagged, not counted as a fourth product."
+    }
+  ]
+}

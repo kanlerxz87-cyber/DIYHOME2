@@ -96,3 +96,28 @@ Complementary verified findings added in `audit/` (all independently verified 20
 - **Unverified / non-blocking review posture preserved:** Intended ASINs, official listing confirmations, Special Link compliance status for the submitted `link.amazon` URLs (not claimed invalid), and `shopnow047c-20` tracking remain unverified and separate from observed redirects; campaign ledger remains empty with zero fabricated metrics.
 
 Release receipt, 2026-11-20 (`arena/b92d7dd8-diyhome2`): [PR #13](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/13) merged into `main` at `06:14:11 UTC` (merge commit `b6b6af3ad4d612aba7cbf14dd435b6afc2443787`). Post-merge [Publication checks](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686373921) and [GitHub Pages deployment](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686372647) both succeeded, and the Pages API reported status `built`. Independently fetched live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/), [Spec & policy audit](https://kanlerxz87-cyber.github.io/DIYHOME2/audit/), [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml), and [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — confirmed `/audit/` renders all 3 sourced tables and above-the-fold/footer disclosures, `/sitemap.xml` lists `/audit/` and `/field-notes/counter-fit/`, and `/feed.xml` syndicates all 5 guides including `/field-notes/counter-fit/`.
+
+### PR #13 reconciliation and RSS coverage completion — `arena/ecb1bfed-diyhome2`
+
+Merging main after PR #13 required resolving one code conflict and twelve generated files.
+Nothing was lost:
+
+| File | Resolution |
+|---|---|
+| `scripts/build.py` | One conflict, on the shared `ops` nav list. **Both** entries kept: `Citation register` and PR #13's `Spec & policy audit`. |
+| 10 HTML pages + `sitemap.xml` | Took main's version, then regenerated from the merged builder. Hand-merging generated output would have produced pages that disagree with their source. |
+| `COORDINATION.md` | Took main's version, then appended this entry. |
+
+**RSS coverage completed.** Adding the audit page to the sitemap without adding it to the feed
+re-opened exactly the gap this session set out to close. The new `feed:coverage-gap` check
+caught it before merge, which is the check working as intended. The audit page is now in the
+feed, and sitemap and feed agree at **13 URLs / 13 items**.
+
+**Removed:** `.github/workflows/build-and-audit.yml`, a stale workflow from this session's
+abandoned standalone build. It referenced `scripts/build.mjs` and `scripts/audit.mjs`, both of
+which were retired, so it could only ever fail. Superseded by `scripts/verify.mjs` running
+inside the surviving `check.yml`.
+
+Verified after the merge: `python3 scripts/build.py`, `python3 scripts/check.py`,
+`node scripts/verify.mjs` all pass; `git status --porcelain` empty, so output is reproducible.
+
