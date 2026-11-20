@@ -13,3 +13,7 @@ The five instrumentation events (no external event dictionary was supplied) are 
 ## Launch limits
 
 No Associates account, reports, authorized API integration, or Search Console ownership were available. No affiliate URLs or prices are published. The AI-assisted guides are not product tests. No autonomous research, ranking, revenue optimization, or email collection is running. RSS offers a no-data subscription path.
+
+## Machine-readable launch records
+
+[`product-register.json`](product-register.json) preserves all four submissions, including the duplicate. Observed Amazon destinations are separate from intended ASINs, listing URLs and confirmation evidence. Null values are unverified. [`campaign-ledger.csv`](campaign-ledger.csv) has headers only; do not treat the absence of authorized reports as zero orders.

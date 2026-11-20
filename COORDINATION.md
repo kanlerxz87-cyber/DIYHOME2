@@ -18,3 +18,9 @@
 2026-11-20: Both other branches have current claims. Request to integration owners: resolve overlapping publishing scopes with each other; link the measurement report from the dashboard navigation/footer, and load its consent-aware client only with a deployed service URL. This session will not edit either owner's files or change Pages settings. Assigned branch arena/c1033a7f-diyhome2 is fixed by the workspace.
 
 Integration log: parallel publication PR #2 completed during measurement development. Resolved add/add board conflict by keeping both histories. Reusing its event vocabulary and database schema rather than introducing parallel analytics.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Register and ledger integration | done | arena/7ad50d57-diyhome2 | product-register.json, campaign-ledger.csv, documentation |
+
+- [PR #3](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/3): A parallel publication merged while this branch was in progress. Resolved overlapping files in favor of the completed publication and preserved its builder, navigation, guides, collector, and checks. Integrated only the complementary machine-readable register and ledger. Independently observed the same three Amazon destinations; no affiliate attribution or intent confirmed. GitHub records the merge result on the linked PR.
+Merge log: PR #3 added evidence records in parallel. Retained both board entries; the desk will use its canonical campaign-ledger.csv, not a second ledger.
