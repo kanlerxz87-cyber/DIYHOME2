@@ -1,8 +1,10 @@
-name: Site checks
+name: Publication checks
 on: [push, pull_request]
+permissions:
+  contents: read
 jobs:
-  validate:
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 tools/build.py && python3 tools/check.py && git diff --exit-code
+      - run: python3 scripts/build.py && python3 scripts/check.py && git diff --exit-code
