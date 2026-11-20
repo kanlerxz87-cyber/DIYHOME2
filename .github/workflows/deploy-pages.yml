@@ -1,29 +1,16 @@
-name: Deploy site to GitHub Pages
+# GitHub Pages for this repo uses the legacy source (main /). This workflow does NOT deploy;
+# it verifies that the committed static output passes the link check on every PR and push to main.
+name: Verify site
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch: {}
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-concurrency:
-  group: pages
-  cancel-in-progress: true
 jobs:
-  build-deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Verify generated site is committed and links resolve
-        run: |
-          python3 tools/check_links.py
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: docs
-      - id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Internal link + XML check
+        run: python3 tools/check_links.py

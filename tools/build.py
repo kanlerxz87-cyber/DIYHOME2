@@ -9,7 +9,7 @@ import json, html, datetime, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
-OUT = ROOT / "docs"
+OUT = ROOT  # GitHub Pages legacy source is main:/ — site lives at repo root
 SITE = json.loads((DATA / "site.json").read_text())
 GUIDES = json.loads((DATA / "guides.json").read_text())["guides"]
 PRODUCTS = json.loads((DATA / "products.json").read_text())["products"]
@@ -507,13 +507,13 @@ def tpl_measurement():
     <tr><td>5</td><td><code>reader_capture_submit</code></td><td>Capture form submitted with consent</td><td>path only — the email itself is NEVER logged by the tracker</td></tr>
   </tbody>
 </table></div>
-<p class="fine-print">Implementation: <code>docs/assets/js/analytics.js</code>. Storage: <code>localStorage</code> key <code>dh_events_v1</code> (this browser only) until an endpoint is configured. No cookies. No fingerprinting. No persistent identifier. The email address typed into the capture form is handled only by the (currently unconfigured) endpoint — never by the analytics tracker.</p>
+<p class="fine-print">Implementation: <code>assets/js/analytics.js</code>. Storage: <code>localStorage</code> key <code>dh_events_v1</code> (this browser only) until an endpoint is configured. No cookies. No fingerprinting. No persistent identifier. The email address typed into the capture form is handled only by the (currently unconfigured) endpoint — never by the analytics tracker.</p>
 
 <h2>Self-hosted endpoint (optional, included)</h2>
 <p>GitHub Pages is static, so this site cannot accept POST requests by itself. The repository includes <code>tools/collector.py</code> — a stdlib-only JSONL collector you can run anywhere (a small VPS, a Raspberry Pi, a home server). To enable:</p>
 <ol class="method-list">
   <li>Run <code>python3 tools/collector.py --port 8787 --out events.jsonl --allow-origin https://kanlerxz87-cyber.github.io</code> behind HTTPS (e.g. via Caddy) so the browser can reach it.</li>
-  <li>Set <code>window.DIYHOME_ENDPOINT = "https://your-host/events"</code> in <code>docs/assets/js/analytics-config.js</code> and rebuild.</li>
+  <li>Set <code>window.DIYHOME_ENDPOINT = "https://your-host/events"</code> in <code>assets/js/analytics-config.js</code> and rebuild.</li>
   <li>Events are then POSTed with <code>navigator.sendBeacon</code>; they contain no PII and no cookies.</li>
 </ol>
 <p class="fine-print">Until then, <code>analytics-config.js</code> ships with <code>DIYHOME_ENDPOINT = null</code> and nothing leaves the browser. The <a href="dashboard.html">dashboard</a> renders this browser's local counts only.</p>
@@ -748,19 +748,18 @@ def robots_txt():
     return f"User-agent: *\nAllow: /\nSitemap: {BASE}sitemap.xml\n"
 
 def main():
-    if OUT.exists():
-        # Remove only generated files; keep docs/assets (hand-authored CSS/JS/images)
-        for pat in ("*.html",):
-            for p in OUT.glob(pat):
-                p.unlink()
-        gdir = OUT / "guides"
-        if gdir.exists():
-            for p in gdir.glob("*.html"):
-                p.unlink()
-        for name in ("sitemap.xml", "feed.xml", "robots.txt"):
-            f = OUT / name
-            if f.exists():
-                f.unlink()
+    # Remove only generated files; never touch repo files or hand-authored assets/
+    generated_root = [p.name for p in OUT.glob("*.html")]
+    for name in generated_root:
+        (OUT / name).unlink()
+    gdir = OUT / "guides"
+    if gdir.exists():
+        for p in gdir.glob("*.html"):
+            p.unlink()
+    for name in ("sitemap.xml", "feed.xml", "robots.txt"):
+        f = OUT / name
+        if f.exists():
+            f.unlink()
     written = []
     for path, title, desc, body, extra, ptype in pages():
         written.append(page(path, title, desc, body, extra))

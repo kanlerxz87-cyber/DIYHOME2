@@ -50,4 +50,4 @@ Submitted links (intended ASINs in parentheses): `https://link.amazon/B0hmGG4m2`
 - Participation Requirements: https://affiliate-program.amazon.com/help/operating/participation/
 - FTC Endorsement Guides (16 CFR Part 255) hub: https://www.ftc.gov/business-guidance/advertising-marketing/endorsements-influencers-reviews
 - FTC June 2023 update release: https://www.ftc.gov/news-events/news/press-releases/2023/06/federal-trade-commission-announces-updated-advertising-guides-combat-deceptive-reviews-endorsements
-- Full audit with access methods: site → Verification register (`verification.html`); repo → `data/source-register.json`.
+- Full audit with access methods: site home → Verification register (`verification.html`); repo → `data/source-register.json`.

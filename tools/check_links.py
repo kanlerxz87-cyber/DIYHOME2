@@ -2,7 +2,7 @@
 """Static checks for docs/: internal hrefs/srcs resolve to files; anchors exist."""
 import re, sys, pathlib, html.parser, urllib.parse
 
-OUT = pathlib.Path(__file__).resolve().parent.parent / "docs"
+OUT = pathlib.Path(__file__).resolve().parent.parent  # site at repo root
 errors, files = [], list(OUT.rglob("*.html"))
 
 class LinkParser(html.parser.HTMLParser):
