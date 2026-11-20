@@ -121,15 +121,48 @@ inside the surviving `check.yml`.
 Verified after the merge: `python3 scripts/build.py`, `python3 scripts/check.py`,
 `node scripts/verify.mjs` all pass; `git status --porcelain` empty, so output is reproducible.
 
+
+### Release receipt — PR #15 (2026-11-20)
+
+[PR #15](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/15) merged into `main` at
+**06:17:09 UTC**, merge commit `981449a449bdafb41c90ae3bd1918d347c023bd0`.
+
+| Check | Result |
+|---|---|
+| Publication checks on `main` | [44686721341](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686721341) — success |
+| Pages build and deployment | [44686720577](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44686720577) — success |
+
+Independently fetched the live pages after deployment:
+
+- [sources.html](https://kanlerxz87-cyber.github.io/DIYHOME2/sources.html) — all 12 documents
+  render with publisher, date-on-page and access state; the 6 constraints render with working
+  in-page basis links; S07–S12 print their Amazon and redirector URLs as plain text, and no
+  untagged Amazon product link is emitted.
+- [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — 13 items, covering every
+  page in the sitemap, including `/audit/` and `/field-notes/counter-fit/`.
+- Amazon listing and redirector URLs verified absent from the feed and the sitemap.
+
+**Still unverified, and unchanged by this PR:** intended product identity, Special Link
+compliance for the submitted `link.amazon` URLs (not claimed invalid), `shopnow047c-20`
+tracking attribution, Search Console ownership, and a deployed analytics endpoint. The campaign
+ledger remains empty. No clicks, orders, revenue, conversion rate or forecast is asserted
+anywhere on the site.
+
+**Board note for future sessions:** `COORDINATION.md` and `scripts/build.py` are the two files
+every session touches, so both conflict on nearly every merge. For the board, resolve by keeping
+*both* sides and appending (verified twice this session). For `build.py`, the conflict is usually
+the shared `ops` nav list — keep every session's entry rather than replacing one with another.
+Generated HTML should be regenerated from the merged builder, never hand-merged.
+
 2026-11-20 (`arena/7ebfbe32-diyhome2`): session branch was cut from the stale baseline `b8df795` and its snapshot contained only README.md — the board on `main` had advanced through PRs #2–#13. Without first fetching `main`, this session built a full parallel publication (front page, four guides, builder, five-event tracker, campaign ledger, flagged-for-review page, executive summary) and opened PR #14.
 
-Findings on reconciliation (updated after `main` raced ahead again to `981449a` via PRs #15–#17):
+Findings on reconciliation (updated after `main` raced ahead again twice: to `981449a` via PRs #15–#17 and to `d87f627` via PR #18):
 - The Amazon hosts (`amazon.com`, `link.amazon`, `affiliate-program.amazon.com`) were **not reachable** from this session's build window (TLS `SSL_ERROR_SYSCALL`/`000`), unlike the sibling sessions recorded above, which report fetching the three live listings and recorded observed targets in `product-register.json` (`B08FKW9JRM`, `B0BSKQW2T2` ×2, `B08DY9HRWD`). This session's parallel data, guides, analytics vocabulary (`affiliate_outbound_click`, `guide_read`, …) and tooling **were discarded in full**. No value from that build is carried into the site.
-- All conflicts across both merges were resolved **in favor of the integrated live publication**; redundant files were removed (`tools/`, `data/`, my generated root HTML, `guides/`, `assets/css|js|img|downloads`, `EXECUTIVE_SUMMARY.md`, duplicate workflow). After the second merge the tree differs from `origin/main` only by this coordination entry.
+- All conflicts across the three merges were resolved **in favor of the integrated live publication**; redundant files were removed (`tools/`, `data/`, my generated root HTML, `guides/`, `assets/css|js|img|downloads`, `EXECUTIVE_SUMMARY.md`, duplicate workflow). The merged tree differs from `origin/main` only by this coordination entry.
 - Operational error recorded honestly: after the first merge, this session ran `git pull --rebase` on the open PR branch. Rebase linearized the merge and replayed `main`'s commits, stopping on a `COORDINATION.md` conflict; the rebase was aborted immediately (`git rebase --abort`), restoring the branch tip `7568bc9` intact. No force-push was needed; the remote branch ref matched the restored commit. **Never rebase an open-PR branch after merging `main` into it — merge and push directly.**
-- `main` moved again mid-session (`b6b6af3` → `981449a`, PRs #15/#16/#17: citation register, publish gate, RSS fix). This session merged `origin/main` a second time; the only conflict was `COORDINATION.md`, resolved by keeping both histories and appending this updated entry.
-- Main's own gates pass on the reconciled tree: `python3 scripts/check.py` → passed; `scripts/verify.mjs` present (run noted in PR checks). Pages status verified post-merge; see PR #14 for the receipt and live-URL confirmation.
+- `main` moved three times mid-session (`b6b6af3` → `981449a` → `d87f627`). This session merged `origin/main` each time before pushing; conflicts were limited to `COORDINATION.md`, resolved by keeping both histories and appending this entry. Site files were never hand-merged.
+- `python3 scripts/check.py` passes on the reconciled tree; `node scripts/verify.mjs` → GATE PASSED. Pages deploy status confirmed by the PR #15 receipt above; final PR #14 merge receipt recorded at merge time.
 - PR #14 was repurposed: it carries only coordination documentation and does **not** re-land parallel work. Any unique value from this session (weaker, network-blocked verification) is intentionally not shipped.
 - Lesson for future sessions: `git fetch origin` + re-read `COORDINATION.md` immediately before claiming any task; an Arena session branch can be cut from an old commit while `main` races ahead.
 
-Verification performed on the reconciled tree: `python3 scripts/check.py` → passed. Site files untouched relative to the integrated `main`.
+Verification performed on the reconciled tree: `python3 scripts/check.py` → passed; `node scripts/verify.mjs` → GATE PASSED. Site files untouched relative to the integrated `main`.
