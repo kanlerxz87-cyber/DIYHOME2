@@ -27,22 +27,22 @@ Consequence: **no Amazon product attribute (title, price, rating, specs, availab
 |----|------|-------|----------------|--------|
 | T-001 | Repo review, baseline, network/source audit | arena-7ebfbe32 | README.md (read-only), COORDINATION.md | done |
 | T-002 | COORDINATION.md board creation + claims | arena-7ebfbe32 | COORDINATION.md | done |
-| T-003 | Build pipeline + design system (stdlib Python, no deps) | arena-7ebfbe32 | tools/build.py, tools/check_links.py, data/*.json, data/*.csv, docs/assets/css/site.css | in progress |
-| T-004 | Publication front page (landing rebuild) | arena-7ebfbe32 | docs/index.html (generated) | in progress |
-| T-005 | Question-shaped guides x4 (working titles only) | arena-7ebfbe32 | data/guides.json, docs/guides/*.html (generated) | in progress |
-| T-006 | Product-intent confirmation records + Special Links audit | arena-7ebfbe32 | data/product-intent-confirmation.json, data/products.json | in progress |
-| T-007 | Measurement: 5-event privacy-preserving analytics + self-hostable collector + dashboard | arena-7ebfbe32 | docs/assets/js/*.js, tools/collector.py, docs/measurement-plan.html (generated), docs/dashboard.html (generated) | in progress |
-| T-008 | Campaign ledger (empty, well-defined, provenance-tracked) | arena-7ebfbe32 | data/campaign-ledger.csv, docs/campaign-ledger.html (generated) | in progress |
-| T-009 | SEO: sitemap.xml, feed.xml (RSS), robots.txt, JSON-LD, meta/OG | arena-7ebfbe32 | docs/sitemap.xml, docs/feed.xml, docs/robots.txt (generated) | in progress |
-| T-010 | Compliance: above-the-fold disclosure strip, sponsored rel attrs, FTC/Associates review notes | arena-7ebfbe32 | docs/*.html (generated), docs/disclosure.html | in progress |
-| T-011 | Flagged for Review page + Executive Summary (MD + HTML) | arena-7ebfbe32 | docs/flagged.html, EXECUTIVE_SUMMARY.md, docs/executive-summary.html | in progress |
-| T-012 | Source register + Verification page | arena-7ebfbe32 | data/source-register.json, docs/verification.html (generated) | in progress |
-| T-013 | Build + internal link check + HTML sanity | arena-7ebfbe32 | tools/check_links.py | in progress |
+| T-003 | Build pipeline + design system (stdlib Python, no deps) | arena-7ebfbe32 | tools/build.py, tools/check_links.py, data/*.json, data/*.csv, docs/assets/css/site.css | done |
+| T-004 | Publication front page (landing rebuild) | arena-7ebfbe32 | docs/index.html (generated) | done |
+| T-005 | Question-shaped guides x4 (working titles only) | arena-7ebfbe32 | data/guides.json, docs/guides/*.html (generated) | done |
+| T-006 | Product-intent confirmation records + Special Links audit | arena-7ebfbe32 | data/product-intent-confirmation.json, data/products.json | done |
+| T-007 | Measurement: 5-event privacy-preserving analytics + self-hostable collector + dashboard | arena-7ebfbe32 | docs/assets/js/*.js, tools/collector.py, docs/measurement-plan.html (generated), docs/dashboard.html (generated) | done |
+| T-008 | Campaign ledger (empty, well-defined, provenance-tracked) | arena-7ebfbe32 | data/campaign-ledger.csv, docs/campaign-ledger.html (generated) | done |
+| T-009 | SEO: sitemap.xml, feed.xml (RSS), robots.txt, JSON-LD, meta/OG | arena-7ebfbe32 | docs/sitemap.xml, docs/feed.xml, docs/robots.txt (generated) | done |
+| T-010 | Compliance: above-the-fold disclosure strip, sponsored rel attrs, FTC/Associates review notes | arena-7ebfbe32 | docs/*.html (generated), docs/disclosure.html | done |
+| T-011 | Flagged for Review page + Executive Summary (MD + HTML) | arena-7ebfbe32 | docs/flagged.html, EXECUTIVE_SUMMARY.md, docs/executive-summary.html | done |
+| T-012 | Source register + Verification page | arena-7ebfbe32 | data/source-register.json, docs/verification.html (generated) | done |
+| T-013 | Build + internal link check + HTML sanity | arena-7ebfbe32 | tools/check_links.py | done |
 | T-014 | PR from arena/7ebfbe32-diyhome2 → main, merge, GitHub Pages deploy, record results | arena-7ebfbe32 | .github/workflows/deploy-pages.yml, COORDINATION.md | unclaimed |
-| SG-27 | Nav labels: single nav group "Explore" + footer access to all dashboard surfaces | arena-7ebfbe32 | docs (generated) | in progress |
-| SG-28 | Shipped RSS feed (auto-generated from guides.json + new guides appended on rebuild) | arena-7ebfbe32 | docs/feed.xml (generated) | in progress |
-| SG-29 | Search Console: NOT verifiable from this environment — flagged, owner action required | arena-7ebfbe32 | docs/flagged.html | in progress |
-| SG-30 | Reader capture: form built, **disabled** until an endpoint is configured (no data leaves the page otherwise) | arena-7ebfbe32 | docs/assets/js/reader-capture.js, docs (generated) | in progress |
+| SG-27 | Nav labels: single nav group "Explore" + footer access to all dashboard surfaces | arena-7ebfbe32 | docs (generated) | done |
+| SG-28 | Shipped RSS feed (auto-generated from guides.json + new guides appended on rebuild) | arena-7ebfbe32 | docs/feed.xml (generated) | done |
+| SG-29 | Search Console: NOT verifiable from this environment — flagged, owner action required | arena-7ebfbe32 | docs/flagged.html | needs review |
+| SG-30 | Reader capture: form built, **disabled** until an endpoint is configured (no data leaves the page otherwise) | arena-7ebfbe32 | docs/assets/js/reader-capture.js, docs (generated) | done |
 
 ## Sources used (linked; all marked with access method)
 See the site's **Verification** page (`docs/verification.html`) and `data/source-register.json` for the full register with retrieval dates and access methods. Headline sources:
@@ -69,4 +69,4 @@ See the site's **Verification** page (`docs/verification.html`) and `data/source
 - `git pull --rebase` required before every push; small commits pushed as they land.
 
 ## Merge / deploy record
-(to be completed at T-014 — PR link, merge commit, Pages URL, deploy run id)
+T-014 in progress: PR to main to be opened next; merge + Pages verification to follow. See PR link in the next update.
