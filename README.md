@@ -1,17 +1,19 @@
 # DIY Home Upgrades
 
-[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](summary.html) · [Product register](register.html) · [Flagged for Review](review.html)
+[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
 
-Rebuild with `python3 scripts/build.py`; verify with `python3 scripts/check.py`. Commit the generated HTML and XML alongside their inputs. GitHub Pages serves the root of `main`.
-
-## Evidence and release gates
-
-The product register is a dated observation, not proof of buying intent. Do not turn a redirect into an intended ASIN. Before enabling an affiliate CTA, record intent and its source, verify site enrollment and the tracking ID, generate one official Special Link in the enrolled workflow, confirm the listing and reporting, and review [Amazon policy](https://affiliate-program.amazon.com/help/operating/policies) and [FTC disclosure guidance](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers). Do not use live Amazon data or imagery without an authorized integration and policy review. No synthetic demand, rankings, quotes, orders, or forecasts.
+Build and validate from the repo root with `python3 scripts/build.py && python3 scripts/check.py`. GitHub Pages serves the generated root files from main. The builder is the source of truth for pages, sitemap and feed.
 
 ## Measurement
 
-`python3 scripts/serve.py --db analytics.sqlite3` serves the site and its same-origin aggregate collector. Use a persistent volume and HTTPS proxy, disable proxy access logging for the collector, and restrict access to the database. The collector accepts four browser events, stores only day/event/page/count, and honors GPC/DNT. Counts can include bots and repeat views; they are not sessions or conversions. Keep retention limited (e.g., delete daily aggregates after 90 days). Pages itself cannot host this endpoint; it does not collect events on the static deployment.
+GitHub Pages does not collect events. To run the optional self-hosted collector on another host, run `METRICS_ORIGIN=https://your-public-origin METRICS_DB=/path/to/persistent.sqlite3 python3 scripts/serve.py` behind a same-origin HTTPS reverse proxy with request limits and access logs disabled. The database is not served publicly. Without the origin setting the endpoint stays disabled. Counts are grouped by UTC date, page and event; there are no visitor IDs, cookies, IPs or referrers in the application database. Counts are directional and not bot-filtered sessions.
 
-The fifth event, reported orders, is not a browser event. Use only dated, authorized Associates reports; preserve timestamp, source, channel, eligible sessions, clicks, and reported orders in a private provenance ledger before reporting aggregates. Import a normalized private JSON row with `python3 scripts/serve.py --authorized-report PATH`; use the six ledger columns in snake_case, an ISO timestamp with timezone, and null for missing metrics. Use a unique report identifier as source and only nonoverlapping report windows. Do not upload proprietary exports to this repository.
+The five instrumentation events (no external event dictionary was supplied) are `page_view`, `guide_view`, `listing_reference_click`, `affiliate_click` (reserved for approved paid links) and `feed_click`. Purchases must come from authorized Associates reports, not client events. Keep the campaign ledger empty until provenance is available.
 
-Search Console owner verification and authorized Amazon access are not provisioned. RSS is available as the no-email reader subscription. Review reports monthly when available before choosing the next editorial topic.
+## Launch limits
+
+No Associates account, reports, authorized API integration, or Search Console ownership were available. No affiliate URLs or prices are published. The AI-assisted guides are not product tests. No autonomous research, ranking, revenue optimization, or email collection is running. RSS offers a no-data subscription path.
+
+## Machine-readable launch records
+
+[`product-register.json`](product-register.json) preserves all four submissions, including the duplicate. Observed Amazon destinations are separate from intended ASINs, listing URLs and confirmation evidence. Null values are unverified. [`campaign-ledger.csv`](campaign-ledger.csv) has headers only; do not treat the absence of authorized reports as zero orders.

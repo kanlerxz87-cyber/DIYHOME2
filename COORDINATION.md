@@ -2,11 +2,19 @@
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| Initial site and integration | done | 8a9218ed | README.md, site/, scripts/, .github/, COORDINATION.md |
+| Initial integration and publication | done | d69e4487 | README.md, root publication files, assets/, scripts/, .github/workflows/, COORDINATION.md |
+| Product intent, enrolled tracking, and account-dependent integrations | needs review | d69e4487 | review.html, measurement.html |
 
-## Integration verification
+2026-11-20: Baseline contained only README.md. Followed three distinct submitted Amazon short URLs; observed official listings for [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM), [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) (submitted twice), and [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD). These establish observed targets, not intent or attribution. Reviewed the [Associates agreement](https://affiliate-program.amazon.com/help/operating/agreement) and [FTC guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking). Local build checks validate internal paths, disclosure, sponsored listing links, and XML. No conflicting scopes found. Arena's fixed branch is the integration branch.
 
-- Baseline `b8df795` contained only a project-name README. No existing sitemap, feed, analytics configuration, or task claims.
-- 2026-11-20: checked each unique submission against Amazon's resolved listing: [row 1](https://www.amazon.com/dp/B08FKW9JRM), [rows 2–3](https://www.amazon.com/dp/B0BSKQW2T2), [row 4](https://www.amazon.com/dp/B08DY9HRWD). Duplicate and air-fryer mismatch recorded. Listing observations are not product-intent confirmations.
-- Checked [Associates agreement](https://affiliate-program.amazon.com/help/operating/agreement), [FTC disclosure guidance](https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers), and [Creators API reference](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/api-reference). No account evidence or authorized conversion data. Outstanding matters are published in `review.html`.
-- Local generation and link/disclosure/feed validation passed. Deployment verification follows PR merge.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Register and ledger integration | done | arena/7ad50d57-diyhome2 | product-register.json, campaign-ledger.csv, documentation |
+
+- [PR #3](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/3): A parallel publication merged while this branch was in progress. Resolved overlapping files in favor of the completed publication and preserved its builder, navigation, guides, collector, and checks. Integrated only the complementary machine-readable register and ledger. Independently observed the same three Amazon destinations; no affiliate attribution or intent confirmed. GitHub records the merge result on the linked PR.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Product-first card artwork and titles | done | 8a9218ed | assets/, scripts/build.py, generated guide index and front page |
+
+- [PR #4](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/4): Main advanced during this parallel session. Resolved overlapping files in favor of the deployed publication and integrated only the complementary category illustrations and product-first headline cards. Confirmed Amazon destinations independently; tracking and product intent remain unverified. Illustrations are decorative, not listing photos. GitHub tracks the merge result on the linked PR.

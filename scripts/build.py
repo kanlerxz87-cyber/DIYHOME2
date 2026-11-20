@@ -2,63 +2,94 @@ from pathlib import Path
 from html import escape as e
 from xml.etree import ElementTree as ET
 
-ROOT = 'https://kanlerxz87-cyber.github.io/DIYHOME2/'
-AMZ = 'https://affiliate-program.amazon.com/help/operating/agreement'
-POL = 'https://affiliate-program.amazon.com/help/operating/policies'
-FTC = 'https://www.ftc.gov/business-guidance/resources/disclosures-101-social-media-influencers'
-REPORT = 'https://affiliate-program.amazon.com/home/reports'
+BASE = 'https://kanlerxz87-cyber.github.io/DIYHOME2/'
 DATE = '2026-11-20'
-DISC = 'As an Amazon Associate I earn from qualifying purchases.'
-items = [
- ('walls','01','WALLS & FINISHES','Wallpaper smoothing kit','B08FKW9JRM','B0hmGG4m2','A small toolkit to consider before tackling a peel-and-stick wall.','How do you smooth peel-and-stick wallpaper?','Before you commit to a whole wall, use an offcut to check how the paper handles. Compare the edge of the smoothing tool with the finish of your wallpaper. Check the wallpaper maker’s instructions for which tools and surfaces are compatible.'),
- ('counter','02','COUNTER SPACE','Under-cabinet paper towel holder','B0BSKQW2T2','B03QDuGdo','Move the paper towel roll off the worktop and keep it within reach.','Will an under-cabinet towel holder fit?','Measure a full roll, not just the cardboard core. Mock up the holder with tape and check whether the roll can slide on without hitting a wall. Compare adhesive and screw mounting against the cabinet maker’s instructions; check cabinet thickness before drilling.'),
- ('cabinet','03','KITCHEN STORAGE','Adjustable pan organizer','B08DY9HRWD','B0hpD2JGQ','Give frequently used pans a spot you can reach without unstacking them.','How do you choose a pan organizer?','Measure the widest pan including handles, the shelf depth, and the opening between the hinges. Check the listing’s configuration and load limits against your heaviest pan. Leave enough room to lift cookware out without moving the rack.')]
-
-def link(url, text, product=False):
-    return f'<a href="{e(url, quote=True)}"'+ (' rel="sponsored noopener"' if product else '') + f'>{e(text)}</a>'
-
-def listing(asin):
-    return f'https://www.amazon.com/dp/{asin}'
-
+NOTICE = 'As an Amazon Associate I earn from qualifying purchases.'
+AMAZON = 'https://affiliate-program.amazon.com/help/operating/agreement'
+FTC = 'https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking'
+rows = [
+    ('B0hmGG4m2', 'B08FKW9JRM', 'Art3d wallpaper smoothing kit', ''),
+    ('B03QDuGdo', 'B0BSKQW2T2', 'Under-cabinet paper towel holder', ''),
+    ('B03QDuGdo', 'B0BSKQW2T2', 'Under-cabinet paper towel holder', 'Duplicate of submission 02. '),
+    ('B0hpD2JGQ', 'B08DY9HRWD', 'ORDORA pots and pans organizer', ''),
+]
+guides = [
+    ('wallpaper', 'Walls', 'What tools do you need for peel-and-stick wallpaper?', 'Start with the wall, not the tool kit.', [
+        ('Check the surface first', 'Read the wallpaper maker’s instructions for surface prep and paint cure time. Try a sample in an inconspicuous area before committing to a whole wall.'),
+        ('Plan the tricky cuts', 'Sketch where seams, corners and trim land. Before buying a bundle, check whether you already own a straightedge, a suitable cutting tool and something the wallpaper maker recommends for smoothing.')]),
+    ('paper-towels', 'Kitchen', 'Where should an under-cabinet paper towel holder go?', 'Find a spot that works with a full roll.', [
+        ('Try the reach', 'Hold a full roll where you’d mount the holder. Check whether you can reach it with one hand without bumping cabinet doors or blocking the counter.'),
+        ('Compare mounting options', 'Check the maker’s surface requirements before choosing adhesive. If you’re considering screws, confirm cabinet thickness and whether you have permission to drill.')]),
+    ('cookware', 'Storage', 'Will a pan organizer fit your cabinet?', 'Measure with the pans and lids you already use.', [
+        ('Measure the opening', 'Record the usable height, width and depth, including any hinges or face frame that narrow the entry. Measure your widest pan with its handle and tallest lid.'),
+        ('Check the everyday fit', 'Compare the maker’s shelf spacing and weight limits with the pieces you actually use. Sketch where handles will sit and make sure you can remove one pan without unloading the cabinet.')]),
+    ('air-fryers', 'Kitchen', 'Basket or oven-style air fryer: what should you compare?', 'Compare the space, cleanup and batch size before choosing a format.', [
+        ('Compare usable space, not just capacity', 'Pick a meal you cook often. Check the tray or basket dimensions and compare how much of that meal fits in a single batch. For a multi-function appliance, check which accessories are needed for the modes you expect to use.'),
+        ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
+]
+ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('standards','Editorial standards')]
 pages = {}
-def page(path,title,desc,body):
-    pages[path] = (title,desc,body)
+def link(slug, text):
+    return f'<a href="{slug}.html">{e(text)}</a>'
 
-cards = ''.join(f'''<article class="card"><a href="{slug}.html"><img src="site/{slug}.jpg" alt="Illustration of {e(name.lower())}" width="600" height="400"></a><div class="cardbody"><div class="eyebrow"><span>{num} /</span> {cat}</div><h3>{name}</h3><p>{desc}</p><a class="textlink" href="{slug}.html">Explore upgrade <span>↗</span></a></div></article>''' for slug,num,cat,name,asin,short,desc,q,advice in items)
-page('index.html','Small upgrades. Better everyday.','Practical upgrades and buying guides for your walls, counters, and cabinets.',f'''
-<section class="hero"><img src="site/hero.jpg" alt="Illustrative olive-green kitchen with warm oak counters" fetchpriority="high"><div class="herocopy"><div class="eyebrow">THE PRACTICAL HOME JOURNAL <span>—</span> VOL. 01</div><h1>Small upgrades.<br><em>Better everyday.</em></h1><p>Thoughtful finds for the places you use most.<br>Start with the walls, counters, and cabinets.</p><a class="button" href="#edits">Explore the edit <span>↘</span></a></div></section>
-<section class="section" id="edits"><div class="sectionhead"><div><div class="eyebrow green">01 / THE HOME EDIT</div><h2>Three places to start.</h2></div><a class="textlink" href="guides.html">Browse all guides ↗</a></div><div class="grid">{cards}</div></section>
-<section class="note"><div class="eyebrow">02 / THE WEEKEND PROJECT</div><h2>Make room for what you use.</h2><p>Before buying another organizer, take out the pans you reach for every week. Fit the cabinet around those first.</p><a class="textlink" href="cabinet.html">Read the cabinet guide ↗</a></section>''')
-for slug,num,cat,name,asin,short,desc,q,advice in items:
-    page(f'{slug}.html',q,desc,f'''<article class="reading"><div class="eyebrow green">{cat} / BUYING GUIDE</div><h1>{q}</h1><p class="byline">DIY Home Upgrades editorial desk · November 20, 2026</p><img class="feature" src="site/{slug}.jpg" alt="Category illustration, not a photograph of the listing"><p>{advice}</p><h2>A listing to compare</h2><p>{name}. The submitted link resolved to this listing in our check. It has not been confirmed as the intended product or validated for Associates tracking. This is not a hands-on review.</p><p>{link(listing(asin),'View Amazon listing ↗ (not an affiliate link)',True)}</p><p><small>Images are generated category illustrations. Check current specifications and price on the listing.</small></p><a class="textlink" href="guides.html">All buying guides ↗</a></article>''')
-page('guides.html','Buying guides','Question-led guides for practical home upgrades.',f'<section class="section"><div class="eyebrow green">THE READING ROOM</div><h1>Buying guides</h1><div class="grid">{cards}</div></section>')
+def source(url, text, product=False):
+    rel = ' rel="sponsored noopener"' if product else ''
+    return f'<a href="{e(url, quote=True)}"{rel}>{e(text)}</a>'
 
-def table(headers, rows):
-    return '<div class="tablewrap"><table><thead><tr>'+''.join(f'<th scope="col">{x}</th>' for x in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{x}</td>' for x in r)+'</tr>' for r in rows)+'</tbody></table></div>'
+def add(slug, title, desc, content):
+    pages[slug] = (title, desc, content)
 
-rows=[]
-for i,item in enumerate([items[0],items[1],items[1],items[2]],1):
-    slug,num,cat,name,asin,short,*_ = item
-    rows.append((str(i),link('https://link.amazon/'+short,short,True),link(listing(asin),asin+' · '+name,True),DATE,'','','','','Unverified'+ (' · duplicate of row 2' if i==3 else '')))
-page('register.html','Product register','Submitted links and independently observed Amazon listing destinations.', '<section class="section"><h1>Product register</h1><p>Blank confirmation fields mean no evidence was available. Observations link to the Amazon listing without incidental redirect parameters.</p>'+table(['Row','Submitted source','Observed destination · Amazon','Observation date','Intended ASIN','Official intended listing','Confirmation date','Confirmation source','Intent status'],rows)+'</section>')
-flags=[('Duplicate input','Rows 2 and 3 are identical; retained in the register, not duplicated in the shop.',listing(items[1][4])),('Product intent','Three listing destinations observed; intended ASINs unverified.',AMZ),('Special Links','Requested ID shopnow047c-20 is unverified. No link validity judgment or report test was possible.',AMZ),('Air fryer mismatch','None of the observed listings is an air fryer; topic ideas are not evidence of submitted product intent.',listing(items[2][4])),('Product data and AI','No authorized catalog integration, price or review feed, commission validation, or automated profitability ranking.',POL),('Conversions','No authorized report has been imported. Unknown does not mean zero.',REPORT),('Search Console','Ownership and query reporting not confirmed.', 'https://search.google.com/search-console/about'),('Analytics hosting','The companion collector requires a persistent runtime; GitHub Pages serves static files.', 'https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages')]
-page('review.html','Flagged for Review','Unverified evidence and operational dependencies.', '<section class="section"><h1>Flagged for Review</h1>'+table(['Item','Finding','Official review source'],[(a,b,link(c,'Open source ↗','amazon.com/dp/' in c)) for a,b,c in flags])+'</section>')
-page('summary.html','Executive summary','What was checked, what shipped, and what is still unverified.',f'''<article class="reading"><div class="eyebrow green">PUBLICATION NOTES</div><h1>Executive summary</h1><p>Four inputs yielded three distinct Amazon listing observations: a wallpaper smoothing kit, an under-cabinet towel holder, and an adjustable pan organizer. See the <a href="register.html">product register</a> for the dated observations and blank intent fields.</p><h2>Launch without guessing</h2><p>Publish category advice and clearly labeled source links. Keep affiliate buying links off until intent, enrollment, destination, tracking report, disclosures, and applicable API terms are confirmed. See the {link(AMZ,'Associates Operating Agreement')}, {link(POL,'Program Policies')}, and {link(FTC,'FTC disclosure guidance')}.</p><h2>Editorial cadence</h2><p>Review query and outbound data monthly when available. Aim for one sourced guide per month; first prioritize questions about wall preparation and kitchen storage. Air-fryer topics are hypotheses, not demand findings. Add approved guides to the build manifest so both the sitemap and RSS update together.</p><h2>Measure before scaling</h2><p>Use aggregate reader events and authorized Associates reports separately. No conversion score or revenue forecast is published. <a href="measurement.html">Open the campaign ledger</a> or <a href="review.html">review outstanding evidence</a>.</p></article>''')
-page('measurement.html','Campaign ledger','Measurement status and a blank first-party reporting ledger.', '<section class="section"><h1>Campaign ledger</h1><p>No authorized report rows are available. Browser counts are not attributed Amazon orders.</p>'+table(['Timestamp','Source','Channel','Eligible sessions','Clicks','Reported orders'],[])+f'<p>{link(REPORT,"Authorized report source: Associates Central ↗")}</p><h2>Measurement</h2><p>The companion collector supports page views, guide views, product views, outbound clicks, and authorized reported orders. The public Pages site does not send events unless deployed behind the collector. It uses no analytics cookies or browser identifiers.</p><p>Follow the <a href="feed.xml">RSS feed</a> without sharing an email address.</p></section>')
+def intro(label, title, desc):
+    return f'<div class="intro"><div class="eyebrow">{e(label)}</div><h1>{e(title)}</h1><p class="lede">{e(desc)}</p></div>'
 
-ops = [('summary.html','Executive summary'),('register.html','Product register'),('measurement.html','Campaign ledger'),('review.html','Flagged for Review')]
-opslinks = ''.join(link(p,t) for p,t in ops)
-for path,(title,desc,body) in pages.items():
-    url = ROOT if path == 'index.html' else ROOT+path
-    Path(path).write_text(f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>{e(title)} | DIY Home Upgrades</title><meta name="description" content="{e(desc)}"><link rel="canonical" href="{url}"><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="feed.xml"><link rel="stylesheet" href="site/style.css"><script src="site/events.js" defer></script></head><body data-page="{path[:-5]}"><a class="skip" href="#main">Skip to content</a><header><div class="mast"><a class="brand" href="index.html"><span class="mark" aria-hidden="true">⌂</span><span>DIY Home <em>Upgrades</em><small>THE PRACTICAL HOME JOURNAL</small></span></a><nav aria-label="Main navigation"><a href="index.html#edits">The Edit</a><a href="guides.html">Buying Guides</a><details><summary>Behind the site</summary><div>{opslinks}</div></details></nav></div></header><aside class="disclosure" aria-label="Affiliate disclosure"><strong>AFFILIATE DISCLOSURE</strong> <span>{DISC}</span></aside><main id="main">{body}</main><footer><div><strong>DIY Home Upgrades</strong><p>{DISC}</p></div><nav aria-label="Site records">{opslinks}<a href="feed.xml">RSS</a></nav></footer></body></html>''',encoding='utf-8')
-ns='http://www.sitemaps.org/schemas/sitemap/0.9'
-sitemap=ET.Element('urlset',xmlns=ns)
-for path in pages:
-    ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text=ROOT+('' if path=='index.html' else path)
+def cards(items, shopping=False):
+    art = {'wallpaper': ('walls','Wallpaper smoothing kit'),
+           'paper-towels': ('counter','Under-cabinet paper towel holder'),
+           'cookware': ('cabinet','Adjustable pan organizer')}
+    result = []
+    for slug,cat,title,desc,_ in items:
+        image, product = art.get(slug, ('', title))
+        photo = f'<img class="edit-photo" src="assets/{image}.jpg" alt="" width="600" height="380" loading="lazy">' if image else ''
+        heading = product if shopping else title
+        result.append(f'<article class="card">{photo}<div class="eyebrow">{e(cat)}</div><h3>{link(slug,heading)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>')
+    return '<div class="grid">'+''.join(result)+'</div>'
+
+add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section>''')
+add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides))
+for i,(slug,cat,title,desc,sections) in enumerate(guides):
+    body = ''.join(f'<h2>{e(h)}</h2><p>{e(p)}</p>' for h,p in sections)
+    if i < 3:
+        _,asin,name,_ = rows[[0,1,3][i]]
+        body += f'<aside class="card"><div class="eyebrow">Product to research</div><h3>{e(name)}</h3><p>Observed in an Amazon redirect check on {DATE}. This isn’t a confirmed recommendation or a paid link.</p>{source("https://www.amazon.com/dp/"+asin,"Amazon listing · reference only",True)}</aside>'
+    add(slug,title,desc,intro(cat,title,desc)+f'<article class="prose"><p class="eyebrow">DIY Home Upgrades editorial desk · {DATE}</p>{body}<p>{link("guides","Back to all guides →")}</p></article>')
+
+def table(headers, data):
+    return '<div class="scroll"><table><thead><tr>'+''.join(f'<th scope="col">{e(h)}</th>' for h in headers)+'</tr></thead><tbody>'+''.join('<tr>'+''.join(f'<td>{v}</td>' for v in row)+'</tr>' for row in data)+'</tbody></table></div>'
+
+register = []
+for n,(short,asin,name,note) in enumerate(rows,1):
+    register.append((f'{n:02}',f'<code>https://link.amazon/{short}</code>', e(name),source('https://www.amazon.com/dp/'+asin,asin,True),DATE,'','','','',note+'Unverified intent and tracking.'))
+add('review','Flagged for Review','Product intent and observed redirect evidence.',intro('Site records','Flagged for Review','Blank fields have not been verified. A redirect observation is not product intent or a tracking test.')+table(['Entry','Submitted URL','Observed listing title (shortened)','Observed target · Amazon source','Observed date','Intended ASIN','Intended official listing','Confirmation date','Confirmation source','Status'],register)+f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links’ compliance is unresolved; they are not declared invalid. See {source(AMAZON,"Amazon’s Special Link requirements")}.</p>')
+add('summary','Executive summary','Launch scope, findings, and next decisions.',intro('Site records','Executive summary','A buyer-first publication with a separate evidence register.')+f'''<div class="prose"><h2>What the evidence supports</h2><p>Four submissions represent three distinct short URLs. The observed destinations were a wallpaper smoothing kit, a paper towel holder and a cookware organizer, not air fryers. The air fryer guide is a separate editorial topic, not a claim about the submitted items.</p><h2>What remains unknown</h2><p>The intended products, tracking ownership, live commission eligibility and report attribution remain unverified. No conversion score, revenue forecast, price or review figure is published.</p><h2>Next decision</h2><p>Verify one Special Link per product in the enrolled workflow before scaling. Once authorized reporting is available, use measured queries and buyer engagement to choose the next guide. See {link('review','the evidence register')} and {link('measurement','measurement status')}.</p></div>''')
+add('standards','Editorial standards','How guides are written, checked and published.',intro('Site records','Editorial standards','By the DIY Home Upgrades editorial desk. Buying checklists, not hands-on reviews.')+f'''<div class="prose"><h2>Publication gate</h2><p>Confirm product intent against an official listing and save the date and source separately from the redirect. Generate a Special Link through enrolled Associates tools, then verify the destination and authorized tracking report before publishing it. Keep a paid-link notice next to each approved link and the Associates notice on every page.</p><p>Review {source(AMAZON,'the Operating Agreement')}, {source('https://affiliate-program.amazon.com/help/operating/policies','Amazon’s Program Policies')} and {source(FTC,'FTC endorsement guidance')} before publishing. Do not scrape Amazon or use product images, ratings, prices or API content without confirming rights, sourcing and freshness requirements. The masthead photograph is AI-generated editorial imagery, not a product depiction.</p><h2>Publishing rhythm</h2><p>Proposed: one question-led guide every two weeks, with a monthly evidence and link review. Start with walls and kitchen storage; revisit seasonal topics only when they fit reader needs. Every new entry in the guide register updates the sitemap and RSS feed on build.</p></div>''')
+add('measurement','Measurement','Campaign ledger and analytics status.',intro('Site records','Measurement','No campaign results have been imported.')+table(['Timestamp','Authorized source','Channel','Eligible sessions','Clicks','Reported orders'],[])+f'''<div class="prose"><p>The ledger is empty, not zero. Import only aggregate figures from authorized first-party reports and retain a dated provenance trail. Use {source('https://affiliate-program.amazon.com/','Associates Central')} for reported orders; outbound clicks are not conversions.</p><p>Production telemetry is not connected. GitHub Pages cannot execute the optional collector. Search Console ownership has not been verified; the sitemap is available for submission. Reader subscriptions use RSS without collecting email addresses.</p></div>''')
+
+for slug,(title,desc,body) in pages.items():
+    canonical = BASE + ('' if slug=='index' else slug+'.html')
+    dashboard = ' '.join(link(s,t) for s,t in ops)
+    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}{' | DIY Home Upgrades' if slug!='index' else ''}</title><meta name="description" content="{e(desc,quote=True)}"><link rel="canonical" href="{canonical}"><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="feed.xml"><link rel="stylesheet" href="assets/style.css"><script src="assets/metrics.js" defer></script></head><body><header><div class="wrap mast"><a class="brand" href="./">DIY Home<span> Upgrades</span></a><nav aria-label="Main navigation"><a href="guides.html">Buying guides</a><a href="feed.xml">RSS</a><details><summary>Site records</summary><div class="dropdown">{dashboard}</div></details></nav></div></header><div class="disclosure">{NOTICE}</div><main class="wrap" data-page="{slug}">{body}</main><footer><div class="wrap"><strong>DIY Home Upgrades</strong><p>{NOTICE}</p><nav aria-label="Site records and feed" style="display:block">{dashboard} <a href="feed.xml">RSS feed</a></nav></div></footer></body></html>'''
+    Path(slug+'.html').write_text(html+'\n')
+
+sitemap = ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
+for slug in pages:
+    ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
 ET.ElementTree(sitemap).write('sitemap.xml',encoding='utf-8',xml_declaration=True)
-rss=ET.Element('rss',version='2.0'); channel=ET.SubElement(rss,'channel')
-for key,value in [('title','DIY Home Upgrades'),('link',ROOT),('description','Question-led guides for practical home upgrades.')]: ET.SubElement(channel,key).text=value
-for slug,*_ in items:
-    item=ET.SubElement(channel,'item'); title,desc,_=pages[slug+'.html']
-    for key,value in [('title',title),('link',ROOT+slug+'.html'),('guid',ROOT+slug+'.html'),('description',DISC+' '+desc),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]: ET.SubElement(item,key).text=value
+rss = ET.Element('rss',version='2.0')
+channel = ET.SubElement(rss,'channel')
+for tag,value in [('title','DIY Home Upgrades'),('link',BASE),('description',pages['index'][1])]:
+    ET.SubElement(channel,tag).text=value
+for slug,_,title,desc,_ in guides:
+    item=ET.SubElement(channel,'item')
+    for tag,value in [('title',title),('description',desc),('link',BASE+slug+'.html'),('guid',BASE+slug+'.html'),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT')]:
+        ET.SubElement(item,tag).text=value
 ET.ElementTree(rss).write('feed.xml',encoding='utf-8',xml_declaration=True)
