@@ -1,0 +1,54 @@
+[
+  {
+    "entry": 1,
+    "submitted": "https://link.amazon/B0hmGG4m2",
+    "intended_asin": null,
+    "official_listing_url": null,
+    "confirmed_at": null,
+    "confirmation_source": null,
+    "observed_target": "https://www.amazon.com/dp/B08FKW9JRM",
+    "observed_at": "2026-11-20",
+    "special_link": null,
+    "tracking_report_confirmed_at": null,
+    "policy_review_source": null
+  },
+  {
+    "entry": 2,
+    "submitted": "https://link.amazon/B03QDuGdo",
+    "intended_asin": null,
+    "official_listing_url": null,
+    "confirmed_at": null,
+    "confirmation_source": null,
+    "observed_target": "https://www.amazon.com/dp/B0BSKQW2T2",
+    "observed_at": "2026-11-20",
+    "special_link": null,
+    "tracking_report_confirmed_at": null,
+    "policy_review_source": null
+  },
+  {
+    "entry": 3,
+    "submitted": "https://link.amazon/B03QDuGdo",
+    "intended_asin": null,
+    "official_listing_url": null,
+    "confirmed_at": null,
+    "confirmation_source": null,
+    "observed_target": "https://www.amazon.com/dp/B0BSKQW2T2",
+    "observed_at": "2026-11-20",
+    "special_link": null,
+    "tracking_report_confirmed_at": null,
+    "policy_review_source": null
+  },
+  {
+    "entry": 4,
+    "submitted": "https://link.amazon/B0hpD2JGQ",
+    "intended_asin": null,
+    "official_listing_url": null,
+    "confirmed_at": null,
+    "confirmation_source": null,
+    "observed_target": "https://www.amazon.com/dp/B08DY9HRWD",
+    "observed_at": "2026-11-20",
+    "special_link": null,
+    "tracking_report_confirmed_at": null,
+    "policy_review_source": null
+  }
+]
