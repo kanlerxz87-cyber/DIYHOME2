@@ -12,11 +12,13 @@ ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT.parent / 'scripts'))
 import serve
 
-ASSETS = {'index.html':'text/html; charset=utf-8', 'desk.css':'text/css', 'desk.js':'text/javascript', 'counter.js':'text/javascript', 'campaign.csv':'text/csv', 'media/studio.jpg':'image/jpeg'}
+ASSETS = {'index.html':'text/html; charset=utf-8', 'desk.css':'text/css', 'desk.js':'text/javascript', 'counter.js':'text/javascript', 'media/studio.jpg':'image/jpeg'}
 
 class Handler(serve.Handler):
     def do_GET(self):
         path = urlsplit(self.path).path
+        if path == '/campaign-ledger.csv':
+            return self.reply(200,(ROOT.parent / 'campaign-ledger.csv').read_bytes(),'text/csv')
         if path == '/measurement':
             self.send_response(301)
             self.send_header('Location','/measurement/')
