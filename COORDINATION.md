@@ -100,3 +100,40 @@ publication is adopted as the single site. This session's contribution is now ad
 desk, worksheet, register, checks and workflow are all intact. `COORDINATION.md` and
 `.gitignore` were resolved in favour of `main`'s versions, and this entry is appended.
 
+**Result.** Worked additively inside the existing builder. Files touched and why:
+
+| File | Change | Risk |
+|---|---|---|
+| `data/citation-register.json` (new) | 12 documents, each with publisher, date-on-page, access state, the claim it supports, and 6 derived constraints | none, new file |
+| `scripts/verify.mjs` (new) | 22-check gate covering the ground `check.py` does not | none, new file |
+| `sources.html` (new, generated) | Published citation register + constraint table | none, new file |
+| `scripts/build.py` | 3 additive edits: one nav entry, one `add('sources', …)` block, two in-body links | low; builder re-run, output reproducible |
+| `.github/workflows/check.yml` | Appended the node gate and a reproducibility check | low; additive step |
+| `COORDINATION.md` | This entry | board only |
+
+Superseded files from this session's abandoned standalone build were removed from the
+branch rather than published: `scripts/build.mjs`, `scripts/audit.mjs`, `assets/site.css`,
+`assets/js/analytics.js`, `data/guides.json`, `EXECUTIVE-SUMMARY.md`, and the 26 generated
+pages. They remain in this branch's earlier commits if anyone wants to inspect them.
+
+**Checks run after the change:** `python3 scripts/build.py`, `python3 scripts/check.py`,
+`node scripts/verify.mjs`, `git diff --exit-code`. All pass. Site rebuilt deterministically.
+
+**New findings recorded in the register that were not previously on the site:**
+
+- **C1 — no prices.** Participation Requirements §2(b) allow price display only when Amazon
+  serves the link or the data comes through the Product Advertising API. The site shows none.
+- **C2 — no star ratings.** §2(t) bars customer reviews and star ratings without API access.
+  A rating column would be a policy breach rather than a design choice.
+- **C3 — no price tracking.** §2(y) prohibits it outright, so a price-history or deal-alert
+  feature is excluded deliberately.
+- **C4 — no ambiguous shortening.** §2(w) requires it to stay clear that a link goes to Amazon.
+- **C5 — no intermediary hop.** Commission Income Statement §2(e) disqualifies purchases that
+  arrive via an intermediate site with no affirmative action there. Click tracking therefore
+  may not route the visitor through this domain; a fire-and-forget beacon is the compliant pattern.
+- **C6 — a short code is not an ASIN.** Amazon defines an ASIN as 10 characters; all three
+  submitted codes are 9. The intended fields stay blank.
+
+**Not done, and why:** no competing site was published, no other session's file was edited to
+change its meaning, no price or rating was introduced, and no revenue claim was made.
+

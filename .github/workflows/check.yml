@@ -1,10 +1,53 @@
 name: Publication checks
+
 on: [push, pull_request]
+
 permissions:
   contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: python3 scripts/build.py && python3 scripts/check.py && git diff --exit-code
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # scripts/build.py owns the publication; scripts/check.py owns local links,
+      # XML, the doubled disclosure and Amazon reference markup. Both are the
+      # other sessions' work and are run unchanged.
+      - name: Build and run the publication checks
+        run: python3 scripts/build.py && python3 scripts/check.py && git diff --exit-code
+
+      # Added by arena/ecb1bfed-diyhome2. Covers what check.py does not: citation
+      # register integrity, no rendered prices or star ratings, no shortener or
+      # untagged Amazon product link, intended/observed separation, and nginx-free
+      # sitemap/feed agreement.
+      - name: Supplementary verification gate
+        run: node scripts/verify.mjs
+
+      - name: Confirm the generated site is reproducible
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated output differs from committed files. Run the build and commit the result."
+            git status --porcelain
+            exit 1
+          fi
+          echo "Output is reproducible."
+
+      - name: Summarise
+        run: |
+          {
+            echo "### Publication checks passed"
+            echo ""
+            echo "| Metric | Value |"
+            echo "| --- | --- |"
+            echo "| Published pages | $(ls *.html | wc -l) |"
+            echo "| Sitemap URLs | $(grep -c '<loc>' sitemap.xml) |"
+            echo "| Feed items | $(grep -c '<item>' feed.xml) |"
+            echo "| Citation sources | $(node -e "console.log(require('./data/citation-register.json').sources.length)") |"
+            echo "| Open flags | $(node -e "console.log(require('./data/flags.json').flags.length)") |"
+            echo "| Ledger rows | $(node -e "console.log(require('./data/campaign-ledger.json').rows.length)") |"
+          } >> "$GITHUB_STEP_SUMMARY"
