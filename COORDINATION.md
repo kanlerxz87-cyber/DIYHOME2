@@ -495,3 +495,69 @@ evidence that the deploy failed — re-fetch with a query string before concludi
 **Still unverified, unchanged by this session:** intended ASINs, Special Link compliance, `shopnow047c-20`
 attribution, Search Console ownership, a deployed analytics endpoint. The campaign ledger is still empty.
 No price, rating, review count, click, order, revenue or forecast was added anywhere.
+
+---
+
+## Session `arena/ff38bd99-diyhome2` — independent re-check, source-status page, buyer FAQ
+
+**Claim:** independent re-verification of every cited document and all three live listings; a published
+source-status section; a buyer FAQ page; two new gates. **Not claimed:** intended ASINs, Special Link
+compliance, `shopnow047c-20` attribution, Associates account data, Search Console, a deployed analytics
+endpoint, and the campaign ledger.
+
+### What happened to this session's first attempt (worth reading before planning a parallel session)
+
+This session branched from `fb5f639` and worked for some hours while **PRs #20–#30 merged into `main`**.
+It did not re-read the board, so it spent that time building a second, competing publication — a rewritten
+`scripts/build.py`, renamed guide slugs, its own shop table and its own flag renderer — on top of a
+`main` that had already shipped the same surfaces. Its work was written against a stale checkout and was
+**discarded** rather than merged: merging it would have deleted other sessions' output.
+
+The lesson is not "work faster". It is: **re-read `main` before building anything that is not additive,
+and re-read it again before opening a PR.** A parallel session that starts from an old base and does not
+check will reproduce this. `git fetch && git log --oneline origin/main -5` costs nothing.
+
+One thing the discarded branch did right is worth keeping: its `scripts/check.py` walked **nested** pages
+(`audit/`, `measurement/`, `field-notes/`) as well as root pages. `main`'s `check.py` still only globs
+`*.html` at the root. That gap is now on the board rather than fixed, because another session owns the file:
+
+- **Request, not an edit:** in `scripts/check.py`, replace `Path('.').glob('*.html')` with a list that
+  includes `audit/index.html`, `measurement/index.html` and `field-notes/counter-fit/index.html`. Those
+  three pages carry the disclosure twice and were verified by hand this session, but nothing enforces it.
+
+### What this session actually added (all additive, on top of `main`)
+
+| Change | Why it is not a duplicate of existing work |
+|---|---|
+| `data/verification-2026-11-21.json` | A fresh fetch of all 15 register sources, separate from the 12 rows in `flags.rechecks`. That log answers "was this irregularity re-examined"; this one answers "does the document still say what the site claims". |
+| Source-status section on `sources.html` | The re-check is published, not just stored: fetch state, date on page, whether the quote survived, what the fetch showed, and the result. Restricted source S03 stays visible as restricted. |
+| `faq.html` | The last pre-click surface. Six questions (prices, ratings, testing, ASIN identity, tracking, the pan-size contradiction), each tied to the document that settles it. Linked from the front page and the records menu; in the sitemap and the feed. |
+| `verify.mjs` check 14 | The re-check log cannot go unpublished, a restricted source cannot be reported reachable, and a confirmed quote cannot lack an observation. |
+| `verify.mjs` check 15 | The FAQ cannot silently vanish from the sitemap or the front page, cannot drop below six answers, and cannot grow a price or a star rating. |
+| `audit/data/official-sources.json` S10 | **Correction.** S10 asserted the ASIN definition while pointing at the *FBA New Selection* blog post, which does not contain it. Now points at `what-is-an-asin`, the article that carries the definition. Flagged during the fetch, not assumed. |
+
+### Verification for this session
+
+`python3 scripts/build.py` · `python3 scripts/check.py` · `node scripts/verify.mjs` (GATE PASSED, 15 sources
+re-checked and published, 7 buyer questions, 12 flags and 12 re-checks on `review.html`, untagged-link counts
+pinned across 15 pages) · `node audit/check_audit.mjs` · `node field-notes/counter-fit/test.cjs` ·
+`python3 measurement/test_desk.py` · rebuild leaves `git status` clean.
+
+**Non-vacuity:** checks 14 and 15 were each broken on purpose and each failed — a restricted source reported
+reachable, a re-check row deleted from `sources.html`, and a price injected into the FAQ all produced
+`GATE FAILED`, then passed again after restore.
+
+### What the re-check confirmed, and what it did not
+
+- **Confirmed live and unchanged:** the Operating Agreement (October 15, 2025), the Program Policies
+  (April 14, 2026), Table 1 category rates, the Onsite Commission Income Statement, the PA-API deprecation
+  notice, the FTC endorsement guidance, the paid-link help page, the application-review help page, the
+  `rel="sponsored"` guidance, the spam policies, and all three listings.
+- **Not verified:** the rate-card page (`help/operating/schedule`) still redirects to sign-in. No claim
+  rests on it.
+- **Contradicted by the live pages:** nothing this site publishes. The pans organizer's 11-inch versus
+  12-inch conflict is on the listing itself and was already flagged. The Art3d five-item bullet versus
+  four-line-item description is likewise the listing's own inconsistency.
+- **Deliberately not recorded:** every price, star rating, review count and review quotation visible on
+  the three listing pages. None appears in the repository.
+

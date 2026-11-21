@@ -28,7 +28,7 @@ guides = [
         ('Compare usable space, not just capacity', 'Pick a meal you cook often. Check the tray or basket dimensions and compare how much of that meal fits in a single batch. For a multi-function appliance, check which accessories are needed for the modes you expect to use.'),
         ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts can go in the dishwasher.')]),
 ]
-ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
+ops = [('faq','Buyer questions'),('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
 worksheet = 'field-notes/counter-fit/'
 worksheet_title = 'Will an air fryer fit on your counter?'
 worksheet_desc = 'Measure your counter against the exact model and clearance requirements in a private worksheet.'
@@ -59,7 +59,7 @@ def cards(items, shopping=False):
         result.append(f'<article class="card">{photo}<div class="eyebrow">{e(cat)}</div><h3>{link(slug,heading)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>')
     return '<div class="grid">'+''.join(result)+'</div>'
 
-add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section><section class="sectionhead"><div><div class="eyebrow">The shop floor</div><h2>Every product, by room</h2></div><a href="shop.html">Open the shop →</a></section><div class="grid"><article class="card"><div class="eyebrow">Room refresh</div><h3><a href="category/wallpaper-tools.html">Wallpaper &amp; peel-and-stick tools</a></h3><p>What decides whether a peel-and-stick job looks flat.</p></article><article class="card"><div class="eyebrow">Kitchen counters</div><h3><a href="category/paper-towel-holders.html">Paper towel holders</a></h3><p>Get the roll off the counter without drilling.</p></article><article class="card"><div class="eyebrow">Cabinet interiors</div><h3><a href="category/pot-racks.html">Pot racks &amp; cookware organizers</a></h3><p>Turn a leaning stack of pans into a drawer you can read.</p></article></div>''')
+add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section><section class="card"><div class="eyebrow">Before you click</div><h2>Why there are no prices or star ratings here</h2><p>Six questions buyers ask about paid links — prices, ratings, testing and tracking — each answered by the policy or listing that settles it.</p><a href="faq.html">Read the buyer questions →</a></section><section class="sectionhead"><div><div class="eyebrow">The shop floor</div><h2>Every product, by room</h2></div><a href="shop.html">Open the shop →</a></section><div class="grid"><article class="card"><div class="eyebrow">Room refresh</div><h3><a href="category/wallpaper-tools.html">Wallpaper &amp; peel-and-stick tools</a></h3><p>What decides whether a peel-and-stick job looks flat.</p></article><article class="card"><div class="eyebrow">Kitchen counters</div><h3><a href="category/paper-towel-holders.html">Paper towel holders</a></h3><p>Get the roll off the counter without drilling.</p></article><article class="card"><div class="eyebrow">Cabinet interiors</div><h3><a href="category/pot-racks.html">Pot racks &amp; cookware organizers</a></h3><p>Turn a leaning stack of pans into a drawer you can read.</p></article></div>''')
 _working_titles = [
     ('Basket or oven-style air fryer: what should you compare?', 'Published as the air fryer guide.', link('air-fryers','Read the guide')),
     ('A no-hype checklist for comparing air fryer capacity', 'Not yet publishable — no verified air fryer listing in the catalogue.', '—'),
@@ -157,7 +157,99 @@ _rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))
     + table(['ID','Severity','Irregularity','What was observed','What would close it','Official sources'], _flag_rows)
     + '<div class="prose"><h2>Re-verification log</h2><p>Independent re-reads, with the result of each. “Not re-verified” means exactly that.</p></div>'
     + table(['Date','Session','Item','Result','Official sources'], _recheck_rows))
+
+# --- Independent re-check, 2026-11-21 (arena/ff38bd99-diyhome2) --------------
+# data/verification-2026-11-21.json answers a different question from the flag
+# re-check log: not "was this irregularity re-examined" but "is this document
+# still retrievable, does the quote still appear, and did the live listing
+# contradict what we publish". Restricted sources stay visible as restricted
+# rather than being quietly dropped.
+_verify_doc = __import__('json').loads(Path('data/verification-2026-11-21.json').read_text())
+_verify_by_id = {_r['id']: _r for _r in _verify_doc['sources']}
+_verify_rows = []
+for _r in _verify_doc['sources']:
+    _state = ('<span class="pill gap">sign-in required</span>' if not _r['reachable']
+              else '<span class="pill ok">live</span>')
+    _verify_rows.append((
+        f'<strong>{e(_r["id"])}</strong>',
+        _state,
+        e(_r['dated_on_page']) if _r['dated_on_page'] else '<span class="pill">no date shown</span>',
+        'yes' if _r['quote_confirmed'] else 'no',
+        e(_r['what_the_fetch_showed']),
+        e(_r['result']),
+    ))
+_vt, _vd, _vb = pages['sources']
+_vb += ('<div class="prose"><h2>Independent re-check, ' + e(_verify_doc['checked_on']) + '</h2>'
+        '<p>Every document above was fetched again on that date in a clean session, and each quote was compared '
+        'against the fetched text rather than against an earlier note. This is a separate pass from the flag '
+        're-check log: that one records whether an irregularity was re-examined, this one records whether the '
+        'document still says what the site claims it says. The three listing pages were also re-read to see whether '
+        'anything we publish had been contradicted. Restricted sources are shown as restricted; they are not summarised.</p></div>'
+        + table(['ID', 'Fetch', 'Dated on page', 'Quote still present', 'What the fetch showed', 'Result'], _verify_rows)
+        + '<div class="prose"><h2>What this pass did not record, on purpose</h2><p>'
+        + ''.join(f'<br>{e(x)}' for x in _verify_doc['listing_checks'])
+        + '</p><p>Prices, star ratings, review counts and customer review text were visible on all three listing pages. '
+          'None of them appears anywhere in the repository. The register constrains them (C1, C2), and the constraint '
+          'is not a stylistic preference: Amazon permits them on an affiliate page only when Amazon serves the data '
+          'or it arrives through Creators API or PA API.</p>'
+          '<h2>Three questions only the account holder can answer</h2><ol>'
+        + ''.join(f'<li>{e(q)}</li>' for q in _verify_doc['questions_for_the_owner'])
+        + '</ol></div>')
+pages['sources'] = (_vt, _vd, _vb)
+
 pages['review'] = (_rt, _rd, _rb)
+
+
+# --- Buyer questions (arena/ff38bd99-diyhome2) ------------------------------
+# Six questions a buyer asks before trusting a paid link. Each answer is tied to
+# the document that settles it. No answer states a price, a rating, a review
+# count or a personal experience, because none of those can be supported here:
+# see citation-register constraints C1 and C2, and flag F02 for the untested
+# tracking link. This page is the last pre-click surface, so the paid-link
+# wording is repeated in the intro as well as beside each listing reference.
+_FAQ = [
+    ('Are the prices on this site current?',
+     'There are no prices on this site. Amazon permits a published price only when Amazon serves the link or the data '
+     'arrives through Creators API or PA API. Neither is connected here, so the site sends you to the live listing '
+     'instead of freezing a number that will be wrong by the time you read it.',
+     'https://affiliate-program.amazon.com/help/operating/policies', 'S02 \u00b7 price display'),
+    ('Why are there no star ratings?',
+     'Customer star ratings, review counts and review text may be shown only when they were obtained through Creators '
+     'API or PA API. Copying a rating off the page into a review box is a policy breach, not a shortcut.',
+     'https://affiliate-program.amazon.com/help/operating/policies', 'S02 \u00b7 reviews and ratings'),
+    ('Do these product links pay you?',
+     'Yes. Every Amazon link on this site is a paid link and is labelled as one. The submitted tracking ID '
+     'shopnow047c-20 has not been confirmed as live in the Associates account, so no commission is claimed anywhere '
+     'on the site, and nothing here should be read as a promise that a purchase will earn one.',
+     'https://affiliate-program.amazon.com/help/operating/agreement', 'S01 \u00b7 identifying yourself'),
+    ('Have you used these products?',
+     'No. Nobody on this desk has hung the wallpaper, mounted the holder or loaded the rack with pans. The pages '
+     'compare what the listing publishes, point out what it leaves out or contradicts, and tell you what to measure '
+     'before you order. That is the whole method, and it is written on the editorial standards page.',
+     'https://affiliate-program.amazon.com/help/operating/agreement', 'S01 \u00b7 fair and accurate statements'),
+    ('How do I check that a product is the one you describe?',
+     'Every Amazon product has a 10-character identifier in its URL, after /dp/. The entry table on the review page '
+     'records the identifier each submitted link landed on, with the date it was read, so you can open the same page '
+     'and compare it yourself.',
+     'https://sell.amazon.com/blog/what-is-an-asin', 'S10 \u00b7 ASIN definition'),
+    ('The pan organizer looks too small for my pans. What should I do?',
+     'The listing itself is inconsistent: the title and style say lightweight cookware up to 11 inches, while bullet 4 '
+     'says up to 12 inches. Measure the widest pan you actually own, including its handle, against the layout you plan '
+     'to build, and check the newer-model banner Amazon shows at the top of the listing before you commit.',
+     'https://www.amazon.com/dp/B08DY9HRWD', 'P03 \u00b7 live listing'),
+]
+add('faq','Buyer questions','The six questions to settle before you click a paid link: prices, ratings, testing, tracking and which product is which.',
+    intro('The front desk','Buyer questions',
+         'Six questions that decide whether to trust a link, each answered by the document or listing that settles it. '
+         'Every Amazon link on this site is a paid link; none of them has earned a confirmed commission.')
+    + '<div class="faq">' + ''.join(
+        f'<details><summary>{e(q)}</summary><p>{e(a)}</p>'
+        # A listing cited as evidence is printed, never linked: an untagged Amazon
+        # anchor is the very tension flag F12 records. Policy sources stay linked.
+        f'<p class="fine">Basis: {("<code>"+e(u)+"</code> (listing, printed as text)") if u.startswith("https://www.amazon.com/dp/") else source(u, label)}</p></details>'
+        for q, a, u, label in _FAQ) + '</div>'
+    + '<div class="prose"><h2>Still deciding?</h2><p>Open '+link('shop','the shop table')+' if you know which product you want, or '+link('guides','the buying guides')+' if you are still choosing. Each guide ends with the measurements that decide the purchase.</p>'
+      '<p class="fine">A question that is not answered here is either not settled by a source yet, or is recorded on the '+link('review','Flagged for Review')+' page. This site collects no email addresses.</p></div>')
 
 def page_shell(title, desc, body, canonical, page_id, prefix=''):
     """One HTML shell for every page, so navigation, disclosure, footer and the
@@ -357,6 +449,7 @@ for path,title,desc in [(worksheet,worksheet_title,worksheet_desc)]+[(s+'.html',
 # reader subscribed for the record pages had no way to see a new one. Added by
 # arena/ecb1bfed-diyhome2 in response to the RSS coverage request on the board.
 for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'Index'),
+                            ('faq.html','Buyer questions',pages['faq'][1],'Guide'),
                             ('review.html','Flagged for Review',pages['review'][1],'Site record'),
                             ('sources.html','Citation register',pages['sources'][1],'Site record'),
                             ('summary.html','Executive summary',pages['summary'][1],'Site record'),
