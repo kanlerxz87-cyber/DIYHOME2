@@ -114,7 +114,15 @@ for (const p of pages) {
     const isProduct = /\/dp\//.test(href);
     if (isProduct) {
       if (!rel.split(/\s+/).includes("sponsored")) fail("link:not-sponsored", `${p} → ${href}`);
-      if (/\?/.test(href)) fail("link:has-query", `${p} → ${href} carries a query string`);
+      // Policy S02 2(b): the Associates tag must appear in the URL of every link placed
+      // on the site. The only query parameter a product link may carry is exactly one
+      // tag, and it must be the submitted tracking ID — no extra parameters, which
+      // would mean a scraped or sesion-marked URL rather than a clean listing link.
+      const query = href.split("?")[1] ?? "";
+      if (query && query !== "tag=shopnow047c-20")
+        fail("link:bad-query", `${p} → ${href} carries '${query}', expected only tag=shopnow047c-20`);
+      if (!query && !/\/dp\/[A-Z0-9]{10}$/.test(href))
+        fail("link:untagged", `${p} → ${href} is neither tagged nor a clean listing URL`);
     }
     if (SHORTENERS.some((s) => href.includes(s))) fail("link:shortener", `${p} → ${href}`);
   }

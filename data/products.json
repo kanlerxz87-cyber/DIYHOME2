@@ -8,17 +8,18 @@
     "marketplace": "amazon.com (United States)",
     "published": "2026-11-20",
     "disclosure": "As an Amazon Associate I earn from qualifying purchases.",
-    "disclosure_note": "Required wording, quoted verbatim from Associates Program Operating Agreement \u00a75.",
-    "disclosure_source": "S01"
+    "disclosure_note": "Required wording, quoted verbatim from Associates Program Operating Agreement §5.",
+    "disclosure_source": "S01",
+    "reverified": "2026-11-21",
+    "tracking_id_status": "submitted by the site owner; enrolment in the US Associates programme not confirmed from outside the account"
   },
-
   "categories": [
     {
       "slug": "wallpaper-tools",
       "name": "Wallpaper & peel-and-stick tools",
       "kicker": "Room refresh",
       "browse_node": "164701011",
-      "browse_path": "Tools & Home Improvement \u203a Paint, Wall Treatments & Supplies \u203a Wallpaper & Wallpapering Supplies \u203a Wallpaper Tools",
+      "browse_path": "Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools",
       "source": "S07",
       "blurb": "The squeegees, knives and smoothers that decide whether a peel-and-stick job looks flat or looks bubbled. One item in this category is covered so far."
     },
@@ -27,7 +28,7 @@
       "name": "Paper towel holders",
       "kicker": "Kitchen counters",
       "browse_node": "3744201",
-      "browse_path": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Paper Towel Holders",
+      "browse_path": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Paper Towel Holders",
       "source": "S08",
       "blurb": "Under-cabinet, wall-mounted and freestanding options, and the trade-offs between them. One item in this category is covered so far."
     },
@@ -36,12 +37,11 @@
       "name": "Pot racks & cookware organizers",
       "kicker": "Cabinet interiors",
       "browse_node": "289824",
-      "browse_path": "Home & Kitchen \u203a Kitchen & Dining \u203a Storage & Organization \u203a Racks & Holders \u203a Pot Racks",
+      "browse_path": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Pot Racks",
       "source": "S09",
       "blurb": "Tiered racks that turn a stack of pans into a drawer you can read at a glance. One item in this category is covered so far."
     }
   ],
-
   "products": [
     {
       "slug": "art3d-smoothing-tool-kit",
@@ -54,18 +54,39 @@
       "listing_url": "https://www.amazon.com/dp/B08FKW9JRM",
       "listing_source": "S07",
       "listing_title": "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer",
-      "lead": "A five-piece starter kit for flat, bubble-free peel-and-stick work \u2014 the kind of purchase that costs less than a wasted roll of paper.",
+      "lead": "A five-piece starter kit for flat, bubble-free peel-and-stick work — the kind of purchase that costs less than a wasted roll of paper.",
       "dek": "If you have ever hung contact paper with a credit card, you already know why this exists.",
-      "seller": "Art3d\u00ae",
+      "seller": "Art3d®",
       "fulfilment": "Ships from Amazon",
       "specs": [
-        { "label": "Brand", "value": "Art3d" },
-        { "label": "ASIN", "value": "B08FKW9JRM" },
-        { "label": "Category", "value": "Wallpaper Tools (browse node 164701011)" },
-        { "label": "Sold by", "value": "Art3d\u00ae" },
-        { "label": "Ships from", "value": "Amazon" },
-        { "label": "Kit contents", "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape" },
-        { "label": "Amazon badge shown", "value": "Amazon\u2019s Choice" }
+        {
+          "label": "Brand",
+          "value": "Art3d"
+        },
+        {
+          "label": "ASIN",
+          "value": "B08FKW9JRM"
+        },
+        {
+          "label": "Category",
+          "value": "Wallpaper Tools (browse node 164701011)"
+        },
+        {
+          "label": "Sold by",
+          "value": "Art3d®"
+        },
+        {
+          "label": "Ships from",
+          "value": "Amazon"
+        },
+        {
+          "label": "Kit contents",
+          "value": "Large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape"
+        },
+        {
+          "label": "Amazon badge shown",
+          "value": "Amazon’s Choice"
+        }
       ],
       "kit_contents": [
         "Large smoothing tool",
@@ -80,11 +101,34 @@
         "Small jobs where buying a contractor-grade kit makes no sense"
       ],
       "think_about": [
-        "A knife and loose blades are in the box \u2014 storage matters if there are children in the house.",
+        "A knife and loose blades are in the box — storage matters if there are children in the house.",
         "Five pieces is a starter set. Large-format wallpaper may want a wider smoother than the one included.",
         "Verify the kit contents on the listing before you buy; manufacturers change bundles without notice."
       ],
-      "cant_tell": "We have not handled this kit. We cannot tell you how the squeegee edge holds up after twenty installs, or whether the blades fit a knife you already own."
+      "cant_tell": "We have not handled this kit. We cannot tell you how the squeegee edge holds up after twenty installs, or whether the blades fit a knife you already own.",
+      "listing_states": [
+        "Bullet 1 lists a large smoothing tool, a blue squeegee, a utility knife, replacement blades and a measuring tape.",
+        "Sold by Art3d® and ships from Amazon.",
+        "Carries an \"Amazon’s Choice\" badge.",
+        "Filed under Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools."
+      ],
+      "limits": [
+        "The product description lists four line items (red smoother, blue felt smoother, tape measure, craft knife with five blades), which does not line up one-for-one with the five-item bullet list. Count the pieces you actually need.",
+        "Nothing on the listing states a blade size or whether the blades fit a knife you already own."
+      ],
+      "analysis": "The cheapest useful purchase in this catalogue, and the one that decides whether a peel-and-stick job reads as flat or bubbled. Buy it for the smoother and the knife; ignore the piece count.",
+      "verified_on": "2026-11-21",
+      "unverified_fields": [
+        "price",
+        "star rating",
+        "review count",
+        "UPC",
+        "date first available",
+        "model number",
+        "package quantity",
+        "adhesive load rating"
+      ],
+      "listing_url_tagged": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20"
     },
     {
       "slug": "under-cabinet-paper-towel-holder",
@@ -97,22 +141,55 @@
       "listing_url": "https://www.amazon.com/dp/B0BSKQW2T2",
       "listing_source": "S08",
       "listing_title": "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel",
-      "lead": "A 12.2-inch aluminium rail that mounts under a cabinet either with adhesive or with screws \u2014 you choose on installation day, not at checkout.",
+      "lead": "A 12.2-inch aluminium rail that mounts under a cabinet either with adhesive or with screws — you choose on installation day, not at checkout.",
       "dek": "The whole point is to get the roll off the counter. The second point is not to drill if you do not have to.",
       "seller": "YH Urban",
       "fulfilment": "Ships from Amazon",
       "specs": [
-        { "label": "Brand", "value": "niffgaff" },
-        { "label": "ASIN", "value": "B0BSKQW2T2" },
-        { "label": "Category", "value": "Paper Towel Holders (browse node 3744201)" },
-        { "label": "Material", "value": "Aluminium" },
-        { "label": "Colour", "value": "Black (matte)" },
-        { "label": "Mounting type", "value": "Under-cabinet mount" },
-        { "label": "Product dimensions", "value": "2.56\u2033 L \u00d7 12.2\u2033 W" },
-        { "label": "Rail length", "value": "12.2 inches" },
-        { "label": "Item weight", "value": "5 ounces" },
-        { "label": "Sold by", "value": "YH Urban" },
-        { "label": "Ships from", "value": "Amazon" }
+        {
+          "label": "Brand",
+          "value": "niffgaff"
+        },
+        {
+          "label": "ASIN",
+          "value": "B0BSKQW2T2"
+        },
+        {
+          "label": "Category",
+          "value": "Paper Towel Holders (browse node 3744201)"
+        },
+        {
+          "label": "Material",
+          "value": "Aluminium"
+        },
+        {
+          "label": "Colour",
+          "value": "Black (matte)"
+        },
+        {
+          "label": "Mounting type",
+          "value": "Under-cabinet mount"
+        },
+        {
+          "label": "Product dimensions",
+          "value": "2.56″ L × 12.2″ W"
+        },
+        {
+          "label": "Rail length",
+          "value": "12.2 inches"
+        },
+        {
+          "label": "Item weight",
+          "value": "5 ounces"
+        },
+        {
+          "label": "Sold by",
+          "value": "YH Urban"
+        },
+        {
+          "label": "Ships from",
+          "value": "Amazon"
+        }
       ],
       "good_for": [
         "Rentals, where an adhesive mount is easier to reverse than four screw holes",
@@ -121,10 +198,34 @@
       ],
       "think_about": [
         "Adhesive holds differently on painted MDF, laminate and bare wood. Test on a hidden patch first.",
-        "Check the clearance under the cabinet before ordering \u2014 a full roll needs room to turn.",
-        "The listing also describes towel-rail, foil-holder and utensil-holder uses. Treat those as the seller\u2019s suggestion, not a tested claim."
+        "Check the clearance under the cabinet before ordering — a full roll needs room to turn.",
+        "The listing also describes towel-rail, foil-holder and utensil-holder uses. Treat those as the seller’s suggestion, not a tested claim."
       ],
-      "cant_tell": "We have not measured how this adhesive behaves on your cabinet finish, or how much a full roll sags a 12.2-inch rail over time."
+      "cant_tell": "We have not measured how this adhesive behaves on your cabinet finish, or how much a full roll sags a 12.2-inch rail over time.",
+      "listing_states": [
+        "Attribute table: aluminium, black, 2.56″L × 12.2″W, 5 ounces, under-cabinet mount, 1 count.",
+        "Rail length is 12.2 inches; the maker says it fits most roll sizes.",
+        "Two mounting routes, self-adhesive or drilled, in a vertical or horizontal orientation.",
+        "Three colour variants appear on the page: Black, Gold and White.",
+        "Sold by YH Urban and ships from Amazon."
+      ],
+      "limits": [
+        "The listing does not publish a load rating for the adhesive mount. Weight is the thing adhesive fails on first.",
+        "No UPC and no \"date first available\" appear on the page, so the listing age cannot be checked here."
+      ],
+      "analysis": "A 12-inch rail that removes the roll from the counter without a drill. The adhesive route is the reason to buy it; read the surface prep before you trust it with a full roll.",
+      "verified_on": "2026-11-21",
+      "unverified_fields": [
+        "price",
+        "star rating",
+        "review count",
+        "UPC",
+        "date first available",
+        "model number",
+        "package quantity",
+        "adhesive load rating"
+      ],
+      "listing_url_tagged": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20"
     },
     {
       "slug": "ordora-pots-and-pans-organizer",
@@ -137,19 +238,43 @@
       "listing_url": "https://www.amazon.com/dp/B08DY9HRWD",
       "listing_source": "S09",
       "listing_title": "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops",
-      "lead": "Eight adjustable tiers that turn a leaning stack of pans into something you can actually see \u2014 sold in eight heights and four finishes.",
+      "lead": "Eight adjustable tiers that turn a leaning stack of pans into something you can actually see — sold in eight heights and four finishes.",
       "dek": "The listing says lightweight cookware up to 11 inches. Read that line twice before you put cast iron on it.",
       "seller": "ORDORA Official",
       "fulfilment": "Ships from Amazon",
       "specs": [
-        { "label": "Brand", "value": "ORDORA" },
-        { "label": "ASIN", "value": "B08DY9HRWD" },
-        { "label": "Category", "value": "Pot Racks (browse node 289824)" },
-        { "label": "Tiers", "value": "8" },
-        { "label": "Colours offered", "value": "Black, Bronze, Silver, White" },
-        { "label": "Heights offered", "value": "13.78\u2033, 14.55\u2033, 15.83\u2033, 16.59\u2033, 16.61\u2033, 19.02\u2033, 21\u2033, 23.62\u2033" },
-        { "label": "Sold by", "value": "ORDORA Official" },
-        { "label": "Ships from", "value": "Amazon" }
+        {
+          "label": "Brand",
+          "value": "ORDORA"
+        },
+        {
+          "label": "ASIN",
+          "value": "B08DY9HRWD"
+        },
+        {
+          "label": "Category",
+          "value": "Pot Racks (browse node 289824)"
+        },
+        {
+          "label": "Tiers",
+          "value": "8"
+        },
+        {
+          "label": "Colours offered",
+          "value": "Black, Bronze, Silver, White"
+        },
+        {
+          "label": "Heights offered",
+          "value": "13.78″, 14.55″, 15.83″, 16.59″, 16.61″, 19.02″, 21″, 23.62″"
+        },
+        {
+          "label": "Sold by",
+          "value": "ORDORA Official"
+        },
+        {
+          "label": "Ships from",
+          "value": "Amazon"
+        }
       ],
       "good_for": [
         "Cabinets where pans are stacked and the bottom one is always the wrong one",
@@ -161,40 +286,75 @@
         "Measure the internal height of the cabinet, then pick from the eight listed heights. The tallest option is not automatically the right one.",
         "Eight tiers need width as well as height. Mock it up with books before ordering."
       ],
-      "cant_tell": "We have not loaded this rack with pans. We cannot tell you where it flexes, or how the non-slip feet behave on a wire shelf."
+      "cant_tell": "We have not loaded this rack with pans. We cannot tell you where it flexes, or how the non-slip feet behave on a wire shelf.",
+      "listing_states": [
+        "Attribute table: iron, black, 9.17″D × 21.31″W × 16.61″H.",
+        "Eight tiers, assembled without tools.",
+        "Three layouts are published: vertical both sides 21.31 × 9.17 × 16.61 in, vertical one side 11.75 × 9.17 × 16.61 in, horizontal one side 16.61 × 9.17 × 11.75 in.",
+        "Four colour variants: Black, Bronze, Silver and White. Eight height options are listed.",
+        "Sold by ORDORA Official and ships from Amazon.",
+        "Amazon shows a \"newer model of this item\" banner pointing at ASIN B0BYYTQMTR (20.8 in, 8-tier, stated maximum 120 lb)."
+      ],
+      "limits": [
+        "The title and item highlight say cookware \"up to 11 inches\"; bullet 4 on the same page says \"up to 12 inches\". Neither is corrected here — measure your widest pan against the layout you plan to build.",
+        "A newer, heavier-rated model exists on the same listing family. Check that banner before ordering."
+      ],
+      "analysis": "The cabinet-interior fix for anyone who owns eight pans and can only reach two. Its value depends entirely on the layout you choose, so measure the opening before you pick a height.",
+      "verified_on": "2026-11-21",
+      "unverified_fields": [
+        "price",
+        "star rating",
+        "review count",
+        "UPC",
+        "date first available",
+        "model number",
+        "package quantity",
+        "adhesive load rating"
+      ],
+      "listing_url_tagged": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20"
     }
   ],
-
   "analytics_events": [
     {
       "name": "page_view",
       "fires": "Once per page load, after the disclosure strip has rendered.",
-      "fields": ["page_path", "page_type", "referrer_host"],
-      "why": "Baseline reach. No user identifier is created."
+      "fields": [
+        "page"
+      ],
+      "why": "Baseline reach. No identifier is created."
     },
     {
-      "name": "product_view",
-      "fires": "When a product page reaches the specification table.",
-      "fields": ["page_path", "asin", "category"],
-      "why": "Distinguishes catalogue interest from general reading."
+      "name": "guide_view",
+      "fires": "On any page that contains an article body.",
+      "fields": [
+        "page"
+      ],
+      "why": "Separates guides read from catalogue pages viewed."
     },
     {
-      "name": "outbound_click",
-      "fires": "On activation of any link carrying rel=\"sponsored\".",
-      "fields": ["page_path", "asin", "destination_host", "link_position"],
-      "why": "The only event that maps to commission intent. Sent as a one-way beacon; the browser navigates straight to Amazon and never through our domain."
+      "name": "listing_reference_click",
+      "fires": "On activation of an untagged Amazon listing reference.",
+      "fields": [
+        "page"
+      ],
+      "why": "Counts product interest without claiming attribution."
     },
     {
-      "name": "guide_complete",
-      "fires": "When a guide page is scrolled to 90% and has been open for 20 seconds or more.",
-      "fields": ["page_path", "guide_slug", "seconds_bucket"],
-      "why": "Tells us which question was actually answered, not just opened."
+      "name": "affiliate_click",
+      "fires": "On activation of a link marked data-paid=\"true\".",
+      "fields": [
+        "page"
+      ],
+      "why": "The event that maps to commission intent. Sent as a one-way beacon; the browser goes straight to Amazon."
     },
     {
-      "name": "subscribe",
-      "fires": "On successful submission of the reader-capture form.",
-      "fields": ["page_path", "capture_status"],
-      "why": "Reader capture. Separate from the advertising funnel."
+      "name": "feed_click",
+      "fires": "On activation of the RSS link.",
+      "fields": [
+        "page"
+      ],
+      "why": "Reader capture proxy, since no email is collected."
     }
-  ]
+  ],
+  "analytics_note": "These are the five events the shipped client actually records. An earlier draft published a different five (product_view, outbound_click, guide_complete, subscribe) that was never implemented; that mismatch is flagged for review rather than silently renamed."
 }

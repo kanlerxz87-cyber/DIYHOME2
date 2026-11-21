@@ -1,0 +1,235 @@
+{
+  "record_type": "source_reverification_log",
+  "purpose": "One row per source on the citation register, plus one row per submitted link and per listing claim, re-checked by the final integration session. A row records what was actually seen on the stated date. Nothing is inferred: a field that could not be observed is marked not_observed and left out of the published tables.",
+  "methods": [
+    "Each URL was fetched in a clean session with no Associates sign-in and no cookies carried between fetches.",
+    "Quoted text is copied from the fetched page, not from memory or from an earlier session's notes.",
+    "Prices, star ratings, review counts and customer review text were visible on the Amazon pages and were deliberately NOT recorded, per citation-register constraints C1 and C2."
+  ],
+  "checked_on": "2026-11-21",
+  "checked_by": "arena/ff38bd99-diyhome2 (final integration session)",
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "October 15, 2025",
+      "outcome": "verified",
+      "evidence": "Section 1: links must properly use the special tagged link formats Amazon provides (Special Links). Section 5 requires the Associates disclosure statement, verbatim, on the Site."
+    },
+    {
+      "id": "S02",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "April 14, 2026",
+      "outcome": "verified",
+      "evidence": "Participation Requirements 2(b): 'you must include your Associates ID or “tag” ... as a parameter in the URL of each link you place on your Site to an Amazon Site'. 2(b): prices may be shown only if Amazon serves the link or the data comes via Creators API or PA API. 2(t): customer reviews and star ratings only via Creators API or PA API. 2(y): no price tracking or price alerting. 2(w): no link shortening that obscures an Amazon destination. Commission Income Statement 2(e): a purchase is disqualified where the customer reaches Amazon through an intermediate site without an affirmative action there (Redirecting Link)."
+    },
+    {
+      "id": "S03",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "reachable": true,
+      "access": "restricted",
+      "dated_on_page": "",
+      "outcome": "sign-in-required",
+      "evidence": "Redirects to amazon.com/ap/signin. No rate card content is readable without an Associates account, so no rate is taken from this URL."
+    },
+    {
+      "id": "S04",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Table 1 'Fixed Standard Commission Income Rates for Specific Product Categories': Physical Books, Kitchen, Automotive 4.50%; Toys, Furniture, Home, Home Improvement, Lawn & Garden, Pets Products ... Tools ... 3.00%; All Other Categories 4.00%. Readable without sign-in on 2026-11-21."
+    },
+    {
+      "id": "S05",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G4ARBJC7Z2NK48CA",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Onsite Associates Program Commission Income Statement defines Direct Qualifying Purchases and publishes Table A (e.g. Tools 1.75%, Kitchen 1.25%) and Table B for Creator Ads. Distinct from the off-site Standard rates in S04."
+    },
+    {
+      "id": "S06",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "June 4, 2025",
+      "outcome": "verified-after-correction",
+      "evidence": "'“ASIN” stands for “Amazon Standard Identification Number.” It’s a unique 10-character alphanumeric code assigned to every product listed in the Amazon store.' and 'The ASIN appears after \"/dp/\".' IRREGULARITY: the audit register and the citation register cited this claim with two different URLs. This is the URL that carries the claim; see the flag page."
+    },
+    {
+      "id": "S07",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Title: 'Art3d Smoothing Tool Kit for Peel and Stick Wallpaper ...'. Bullet 1 lists a large smoothing tool, blue squeegee, utility knife, replacement blades and measuring tape. Sold by Art3d®, ships from Amazon. 'Amazon's Choice' badge present. Breadcrumb: Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools."
+    },
+    {
+      "id": "S08",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Attribute table: Material Aluminum, Color Black, Brand niffgaff, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56\"L x 12.2\"W, Size 12.2 inches, Number of Items 1. Colour variants shown: Black, Gold, White. Sold by YH Urban, ships from Amazon. Bullet: 'self-adhesive or drilled'."
+    },
+    {
+      "id": "S09",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Attribute table: Material Iron, Color Black, Product Dimensions 9.17\"D x 21.31\"W x 16.61\"H. Bullet 2 gives the three tool-free layouts. Bullet 4 says 'up to 12 inches'; the title says 'Up to 11\"'. Colour variants: Black, Bronze, Silver, White. Size options list eight heights. Sold by ORDORA Official. 'There is a newer model of this item' banner pointing to B0BYYTQMTR."
+    },
+    {
+      "id": "S10",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Resolved to https://www.amazon.com/dp/B08FKW9JRM. No tag parameter for shopnow047c-20 appeared in the resolved URL."
+    },
+    {
+      "id": "S11",
+      "url": "https://link.amazon/B03QDuGdo",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Resolved to https://www.amazon.com/dp/B0BSKQW2T2. No tag parameter for shopnow047c-20 appeared in the resolved URL."
+    },
+    {
+      "id": "S12",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "reachable": true,
+      "access": "public",
+      "dated_on_page": "",
+      "outcome": "verified",
+      "evidence": "Resolved to https://www.amazon.com/dp/B08DY9HRWD. No tag parameter for shopnow047c-20 appeared in the resolved URL."
+    }
+  ],
+  "claim_checks": [
+    {
+      "claim": "The three submitted short codes are 9 characters and are not ASINs",
+      "result": "verified",
+      "basis": "S06 defines an ASIN as 10 characters; each submitted code is 9 characters and each resolves to a different 10-character ASIN.",
+      "status": "confirmed"
+    },
+    {
+      "claim": "Art3d kit contains five listed items",
+      "result": "verified",
+      "basis": "S07 bullet 1 names five items.",
+      "status": "confirmed"
+    },
+    {
+      "claim": "Art3d listing shows Item Package Quantity 3",
+      "result": "not observed in the 2026-11-21 fetch",
+      "basis": "S07",
+      "status": "unverified",
+      "note": "Recorded by an earlier session. It could not be re-observed today, so it is not published as fact."
+    },
+    {
+      "claim": "niffgaff rail length is 12.2 inches and item weight is 5 ounces",
+      "result": "verified",
+      "basis": "S08 attribute table and bullet 4.",
+      "status": "confirmed"
+    },
+    {
+      "claim": "niffgaff model number is TN2200-BLK-NA 01",
+      "result": "not observed in the 2026-11-21 fetch",
+      "basis": "S08",
+      "status": "unverified"
+    },
+    {
+      "claim": "ORDORA rack is iron, 8-tier, 21.31\"W x 9.17\"D x 16.61\"H",
+      "result": "verified",
+      "basis": "S09 attribute table and bullet 2.",
+      "status": "confirmed"
+    },
+    {
+      "claim": "ORDORA holds cookware 'up to 11 inches'",
+      "result": "conflicting on the page itself",
+      "basis": "S09 title and item highlight say 11 inches; bullet 4 says 'up to 12 inches'.",
+      "status": "flagged"
+    },
+    {
+      "claim": "ORDORA shelf capacity is 10 pounds per tier",
+      "result": "not observed in the 2026-11-21 fetch",
+      "basis": "S09",
+      "status": "unverified"
+    },
+    {
+      "claim": "A newer ORDORA model exists",
+      "result": "verified",
+      "basis": "S09 'There is a newer model of this item' banner names B0BYYTQMTR (20.8\", 8-tier, max 120 lbs).",
+      "status": "confirmed"
+    },
+    {
+      "claim": "Amazon.com standard commission rate for Kitchen is 4.50% and for Tools/Home Improvement is 3.00%",
+      "result": "verified",
+      "basis": "S04 Table 1, read without sign-in on 2026-11-21.",
+      "status": "confirmed"
+    },
+    {
+      "claim": "Which rate applies to each specific SKU",
+      "result": "not determinable from public sources",
+      "basis": "S04 publishes categories, not per-ASIN assignment.",
+      "status": "unverified"
+    }
+  ],
+  "listing_observations_not_recorded": [
+    "Every price shown on S07, S08 and S09 on 2026-11-21 (including deal and Prime-exclusive prices) was left out of this record and out of the site, because S02 2(b) allows a published price only when Amazon serves the link or the data arrives through Creators API or PA API.",
+    "Star ratings, review counts and customer review text were visible on all three pages and were left out, because S02 2(t) allows them only when obtained through Creators API or PA API.",
+    "Amazon-hosted product imagery was not copied or hotlinked."
+  ],
+  "irregularities_found_this_pass": [
+    {
+      "id": "IR-01",
+      "summary": "The audit page cited the ASIN definition to an unrelated Sell on Amazon article (the FBA New Selection post) while the citation register cited the correct ASIN guide. Both pages now point at the ASIN guide, and the flag is published.",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "id": "IR-02",
+      "summary": "The audit source register titled S04 'Standard Commission Income Rates (Table 1)' when the page is the 'Associates Program Standard Commission Income Statement'. Title corrected; the rates themselves were re-read today.",
+      "sources": [
+        "S04"
+      ]
+    },
+    {
+      "id": "IR-03",
+      "summary": "The audit page had no link back to the citation register, so the two evidence surfaces were not navigable from each other. Navigation corrected.",
+      "sources": []
+    },
+    {
+      "id": "IR-04",
+      "summary": "The published review page rendered only the four-row intake register. The ten recorded flags and the ten secondary-session flags were never published anywhere, even though the board marked them 'published on the Flagged for Review page'. They are published now.",
+      "sources": []
+    },
+    {
+      "id": "IR-05",
+      "summary": "Product links carried rel=\"sponsored\" but no Associates tag parameter, so no click could ever be attributed. S02 2(b) requires the tag in the URL of each link placed on the site. Links now carry exactly the submitted tracking ID and nothing else.",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "id": "IR-06",
+      "summary": "The guides described a 'product to research' link as 'not a paid link' while the same anchor carried rel=\"sponsored\". The wording now says what is true: the link carries the submitted tracking ID and no click has been confirmed.",
+      "sources": [
+        "S02"
+      ]
+    }
+  ]
+}
