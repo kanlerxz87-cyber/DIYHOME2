@@ -19,6 +19,10 @@
  *   9. the intended/observed separation in data/links.json has not been blurred
  *  10. every product in data/products.json has a listing URL and an ASIN that
  *      satisfies the 10-character definition
+ *  11. every open flag and re-check is published on review.html with sources
+ *  12. no page claims no commission rate is readable anywhere (S13 is public)
+ *  13. the five-event vocabulary agrees across data/products.json,
+ *      scripts/serve.py, assets/metrics.js and measurement/desk.js
  *
  * Run: node scripts/verify.mjs
  * Exits non-zero on any failure, so it can gate a merge.
@@ -245,6 +249,62 @@ for (const p of pages) {
   const h = fs.readFileSync(path.join(ROOT, p), "utf8");
   if (/rate card behind sign-in; no rate published/i.test(h)) fail("claims:rate-unreadable", `${p} says no rate can be read; Table 1 (S13) is public`);
 }
+
+/* 13 — one five-event vocabulary across data, collector, client and desk ----- */
+// Added by arena/81de0221-diyhome2. data/products.json once documented a
+// different five events (product_view, outbound_click, guide_complete,
+// subscribe) than the ones actually shipped — and "subscribe" named a
+// reader-capture form that does not exist. Drift here silently breaks the
+// collector's allow-list and the desk's display, so all four sources must agree.
+const serveSrc = fs.readFileSync(path.join(ROOT, "scripts/serve.py"), "utf8");
+const serveEvents = new Set(
+  [...(serveSrc.match(/EVENTS\s*=\s*\{([^}]*)\}/) || [, ""])[1].matchAll(/'([a-z_]+)'/g)].map((m) => m[1])
+);
+const metricsSrc = fs.readFileSync(path.join(ROOT, "assets/metrics.js"), "utf8");
+const metricsEvents = new Set(
+  [...metricsSrc.matchAll(/record\('([a-z_]+)'\)/g)].map((m) => m[1])
+);
+// metrics.js also emits affiliate_click / listing_reference_click via a ternary.
+for (const m of metricsSrc.matchAll(/'([a-z_]+)'\s*:\s*'([a-z_]+)'/g)) {
+  metricsEvents.add(m[1]);
+  metricsEvents.add(m[2]);
+}
+for (const m of metricsSrc.matchAll(/\?\s*'([a-z_]+)'\s*:\s*'([a-z_]+)'/g)) {
+  metricsEvents.add(m[1]);
+  metricsEvents.add(m[2]);
+}
+const deskSrc = fs.readFileSync(path.join(ROOT, "measurement/desk.js"), "utf8");
+const deskMatch = deskSrc.match(/const events\s*=\s*\{([^}]*)\}/);
+const deskEvents = new Set(
+  [...(deskMatch ? deskMatch[1] : "").matchAll(/([a-z_]+)\s*:/g)].map((m) => m[1])
+);
+const documented = (products.analytics_events?.events ?? []).map((e) => e.name);
+const documentedSet = new Set(documented);
+if (documented.length !== 5)
+  fail("events:count", `data/products.json documents ${documented.length} events, expected 5`);
+const sameSet = (a, b) => a.size === b.size && [...a].every((x) => b.has(x));
+if (!sameSet(documentedSet, serveEvents))
+  fail(
+    "events:data-vs-collector",
+    `data/products.json [${[...documentedSet]}] ≠ scripts/serve.py EVENTS [${[...serveEvents]}]`
+  );
+if (!sameSet(metricsEvents, serveEvents))
+  fail(
+    "events:client-vs-collector",
+    `assets/metrics.js emits [${[...metricsEvents]}] ≠ scripts/serve.py EVENTS [${[...serveEvents]}]`
+  );
+if (!sameSet(deskEvents, serveEvents))
+  fail(
+    "events:desk-vs-collector",
+    `measurement/desk.js displays [${[...deskEvents]}] ≠ scripts/serve.py EVENTS [${[...serveEvents]}]`
+  );
+for (const e of products.analytics_events?.events ?? []) {
+  if (!e.fires || !e.why || !Array.isArray(e.fields))
+    fail("events:incomplete", `${e.name} is missing fires/why/fields`);
+  if (e.fields.join(",") !== "page,event")
+    fail("events:fields", `${e.name} claims fields [${e.fields}], but the payload is exactly page,event`);
+}
+say(`one five-event vocabulary across data, collector, client and desk (${[...serveEvents].join(", ")})`);
 
 /* report ------------------------------------------------------------------ */
 const bar = "─".repeat(70);

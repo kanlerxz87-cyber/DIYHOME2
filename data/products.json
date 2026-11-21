@@ -165,36 +165,39 @@
     }
   ],
 
-  "analytics_events": [
-    {
-      "name": "page_view",
-      "fires": "Once per page load, after the disclosure strip has rendered.",
-      "fields": ["page_path", "page_type", "referrer_host"],
-      "why": "Baseline reach. No user identifier is created."
-    },
-    {
-      "name": "product_view",
-      "fires": "When a product page reaches the specification table.",
-      "fields": ["page_path", "asin", "category"],
-      "why": "Distinguishes catalogue interest from general reading."
-    },
-    {
-      "name": "outbound_click",
-      "fires": "On activation of any link carrying rel=\"sponsored\".",
-      "fields": ["page_path", "asin", "destination_host", "link_position"],
-      "why": "The only event that maps to commission intent. Sent as a one-way beacon; the browser navigates straight to Amazon and never through our domain."
-    },
-    {
-      "name": "guide_complete",
-      "fires": "When a guide page is scrolled to 90% and has been open for 20 seconds or more.",
-      "fields": ["page_path", "guide_slug", "seconds_bucket"],
-      "why": "Tells us which question was actually answered, not just opened."
-    },
-    {
-      "name": "subscribe",
-      "fires": "On successful submission of the reader-capture form.",
-      "fields": ["page_path", "capture_status"],
-      "why": "Reader capture. Separate from the advertising funnel."
-    }
-  ]
+  "analytics_events": {
+    "note": "This is the shipped five-event vocabulary. It must stay identical to the EVENTS set in scripts/serve.py, the record() calls in assets/metrics.js and the events map in measurement/desk.js; scripts/verify.mjs fails the build if the four disagree. Payload keys are exactly 'page' and 'event' — no identifier, cookie, IP, referrer or query string is stored by the collector. Collection only runs when the optional same-origin collector is enabled and the reader has not signalled Do Not Track or Global Privacy Control.",
+    "events": [
+      {
+        "name": "page_view",
+        "fires": "Once per page load, after the disclosure strip has rendered, on any page served by the enabled collector.",
+        "fields": ["page", "event"],
+        "why": "Baseline reach. The page value is the page's own data-page stem; no user identifier is created."
+      },
+      {
+        "name": "guide_view",
+        "fires": "Once per page load of any page whose main content is an article (an element matching article.prose), under the same consent conditions as page_view.",
+        "fields": ["page", "event"],
+        "why": "Separates guide reading from record-page browsing."
+      },
+      {
+        "name": "listing_reference_click",
+        "fires": "On activation of a link carrying rel=\"sponsored\" that is not marked data-paid=\"true\" — the observed-listing references on the buying guides.",
+        "fields": ["page", "event"],
+        "why": "Counts interest in an observed listing without implying an approved paid link exists. Sent as a one-way beacon; the browser navigates straight to Amazon and never through this domain."
+      },
+      {
+        "name": "affiliate_click",
+        "fires": "On activation of a link carrying rel=\"sponsored\" and data-paid=\"true\". Reserved for approved paid links; no such link is published until Special Link validation closes (flags F02 and F12).",
+        "fields": ["page", "event"],
+        "why": "The only event that maps to commission intent. Still a beacon, never a redirect hop (flag F07)."
+      },
+      {
+        "name": "feed_click",
+        "fires": "On activation of any link whose href is exactly feed.xml.",
+        "fields": ["page", "event"],
+        "why": "Measures the shipped RSS feed as the reader-capture path: subscription without collecting an email address (SG-30)."
+      }
+    ]
+  }
 }
