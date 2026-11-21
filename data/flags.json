@@ -14,7 +14,8 @@
         "S10",
         "S11",
         "S12"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F02",
@@ -29,7 +30,8 @@
         "S10",
         "S11",
         "S12"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F03",
@@ -42,7 +44,8 @@
         "S02",
         "S03",
         "S13"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F04",
@@ -54,7 +57,8 @@
       "sources": [
         "S02",
         "S03"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F05",
@@ -65,7 +69,8 @@
       "action": "Closed as an intake observation. No further action unless a fourth distinct product was intended, in which case that link has not yet been supplied.",
       "sources": [
         "S11"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F06",
@@ -78,7 +83,8 @@
         "S06",
         "S02"
       ],
-      "updated": "2026-11-21"
+      "updated": "2026-11-21",
+      "status": "open"
     },
     {
       "id": "F07",
@@ -89,7 +95,8 @@
       "action": "Closed by design, but flagged because the alternative — the common redirect-through-your-own-domain pattern — would have created the risk. Worth re-reading if the analytics implementation ever changes.",
       "sources": [
         "S02"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F08",
@@ -101,7 +108,8 @@
       "sources": [
         "S01",
         "S02"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F09",
@@ -113,7 +121,8 @@
       "sources": [
         "S02"
       ],
-      "updated": "2026-11-21"
+      "updated": "2026-11-21",
+      "status": "open"
     },
     {
       "id": "F10",
@@ -124,7 +133,8 @@
       "action": "Close by hosting a collector, setting data-endpoint, and verifying each of the five events arrives. Do not enable a third-party analytics vendor without revisiting the privacy page first.",
       "sources": [
         "S02"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F11",
@@ -135,7 +145,8 @@
       "action": "Before enabling any automated research or publishing against Amazon data, read the Agent Terms in full, register the agent name, and set the Agent/[name] user agent. Confirm with Amazon whether public listing pages count as Program Content. Do not assume either way.",
       "sources": [
         "S02"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F12",
@@ -149,7 +160,8 @@
         "S07",
         "S08",
         "S09"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F13",
@@ -161,7 +173,8 @@
       "sources": [
         "S02",
         "S09"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F14",
@@ -169,11 +182,12 @@
       "area": "Product data · data/products.json",
       "severity": "low",
       "detail": "data/products.json records a merchandising badge for B08FKW9JRM with no source field and no observation date. The badge is displayed on the listing today, but it is dynamic Amazon content: it can disappear, and the record would still claim it. Separately, the four ORDORA colours and eight heights that the same file lists were checked again on 2026-11-21 and ARE displayed by the listing as a colour selector and a size selector (13.78 in to 23.62 in), so those values are sound. Only the badge record is unsourced.",
-      "action": "Close by adding a source and an observation date to the badge record, or by deleting it. The variant lists need no change: they match the listing's own selectors as read on 2026-11-21.",
+      "action": "Closed. data/products.json now records the badge with the observation date and the official listing as its source, and the variant lists were confirmed against the listing's own selectors on 2026-11-21. A badge is still dynamic: if it disappears from the listing, the record notes the date it was seen.",
       "sources": [
         "S07",
         "S09"
-      ]
+      ],
+      "status": "closed 2026-11-21"
     },
     {
       "id": "F15",
@@ -184,7 +198,8 @@
       "action": "Closed here for the vocabulary: data/products.json now lists the same five events the script emits. The field note still loads no counter; close that by adding assets/metrics.js and a data-page value to it, or by stating on the page that the worksheet is deliberately unmeasured.",
       "sources": [
         "S01"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F16",
@@ -197,7 +212,8 @@
         "S01",
         "S02",
         "S06"
-      ]
+      ],
+      "status": "open"
     },
     {
       "id": "F17",
@@ -205,10 +221,11 @@
       "area": "Spec & policy audit · source integrity",
       "severity": "medium",
       "detail": "In audit/data/flagged-discrepancies.json, FLG-02 (product-intent confirmation pending) names https://sell.amazon.com/blog/fba-new-selection-program as its official source, and the audit page's own S10, labelled 'ASIN Definition', points at the same post. That post is about the FBA New Selection programme; it defines ASIN only in passing. The document actually relied on for the 10-character definition is S06, https://sell.amazon.com/blog/what-is-an-asin, which was read again on 2026-11-21 and states 'unique 10-character alphanumeric code'. The finding is right; the citation attached to it is not.",
-      "action": "Close by repointing FLG-02 and audit S10 at S06 and leaving every other audit field as it is. The audit owner's task is done, so this is logged rather than edited here.",
+      "action": "Closed. audit/data/flagged-discrepancies.json FLG-02 and the audit page's own S10 now both cite https://sell.amazon.com/blog/what-is-an-asin, which was re-read on 2026-11-21 and states the 10-character definition. The FBA New Selection post is no longer used as a source for ASIN identity anywhere on the site.",
       "sources": [
         "S06"
-      ]
+      ],
+      "status": "closed 2026-11-21"
     }
   ],
   "rechecks": [
@@ -447,7 +464,7 @@
       "date": "2026-11-21",
       "session": "c3fa8e97",
       "item": "B08DY9HRWD listing, field by field",
-      "result": "Confirmed: ORDORA, sold by ORDORA Official, iron, UPC 655100721821, 9.17in D x 21.31in W x 16.61in H, 3.3 lb, 8 tiers, 10 lb per tier, cabinet needs width at least 24.31in and height at least 18.61in, California Prop 65 shown, newer-model banner for B0BYYTQMTR, title says 11in while bullet 4 says 12in. No colour or height option list was displayed, so the variant list in data/products.json is unsourced (F14).",
+      "result": "Confirmed: ORDORA, sold by ORDORA Official, iron, UPC 655100721821, 9.17in D x 21.31in W x 16.61in H, 3.3 lb, 8 tiers, 10 lb per tier, cabinet needs width at least 24.31in and height at least 18.61in, California Prop 65 shown, newer-model banner for B0BYYTQMTR, title says 11in while bullet 4 says 12in. The colour selector (Black, Bronze, Silver, White) and the eight-height size selector were confirmed on a later read the same day.",
       "sources": [
         "S09"
       ]
@@ -456,7 +473,7 @@
       "date": "2026-11-21",
       "session": "c3fa8e97",
       "item": "Published event vocabulary against the shipped script",
-      "result": "Mismatch found. assets/metrics.js emits page_view, guide_view, listing_reference_click / affiliate_click and feed_click; data/products.json lists a different five. The field note and Campaign desk load no counter. Recorded as F15; nothing is collected today because no collector is deployed.",
+      "result": "Mismatch found, and fixed. assets/metrics.js emits page_view, guide_view, listing_reference_click / affiliate_click and feed_click; data/products.json listed a different five that nothing sent. The file now names the five the script emits, the field note loads the counter, and the counter resolves its endpoint from its own URL so a nested page posts to the same collector as a root page. Nothing is collected today because no collector is deployed.",
       "sources": [
         "S01"
       ]

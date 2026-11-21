@@ -240,13 +240,17 @@ def _src_links(ids):
 _sev = {'blocking':'gap','high':'gap','medium':'warn','low':'ok'}
 _flag_rows = []
 for _f in _flag_doc['flags']:
+    # A closed flag keeps its row and its history: it is not deleted, and it is
+    # not counted as an open irregularity in the sentence above the table.
+    _state = _f.get('status', 'open')
+    _badge = f'<span class="pill ok">{e(_state)}</span>' if _state != 'open' else f'<span class="pill {_sev.get(_f["severity"],"warn")}">{e(_f["severity"])}</span>'
     _flag_rows.append((f'<strong id="flag-{e(_f["id"])}">{e(_f["id"])}</strong>',
-        f'<span class="pill {_sev.get(_f["severity"],"warn")}">{e(_f["severity"])}</span>',
+        _badge,
         f'<strong>{e(_f["title"])}</strong><br><small>{e(_f["area"])}</small>',
         e(_f['detail']), e(_f['action']), _src_links(_f['sources'])))
 _recheck_rows = [(e(_r['date']), e(_r['session']), e(_r['item']), e(_r['result']), _src_links(_r['sources'])) for _r in _flag_doc.get('rechecks', [])]
 _rt, _rd, _rb = pages['review']
-_rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))+' irregularities, each with what was observed, what would close it and the official source. None blocks publication. A value that could not be confirmed is left blank and is not inferred. Spec-level listing findings (FLG-04 to FLG-08) are on the '+link('audit/index','Spec & policy audit')+'.</p></div>'
+_rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len([_f for _f in _flag_doc['flags'] if _f.get('status','open')=='open']))+' open irregularities, each with what was observed, what would close it and the official source. None blocks publication. A value that could not be confirmed is left blank and is not inferred. Spec-level listing findings (FLG-04 to FLG-08) are on the '+link('audit/index','Spec & policy audit')+'.</p></div>'
     + table(['ID','Severity','Irregularity','What was observed','What would close it','Official sources'], _flag_rows)
     + '<div class="prose"><h2>Re-verification log</h2><p>Independent re-reads, with the result of each. “Not re-verified” means exactly that.</p></div>'
     + table(['Date','Session','Item','Result','Official sources'], _recheck_rows))

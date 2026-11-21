@@ -24,7 +24,7 @@
       "observed_evidence": "Submitted URLs use 9-character link.amazon redirect tokens (B0hmGG4m2, B03QDuGdo, B0hpD2JGQ), not 10-character Amazon ASINs. Observed redirects landed on B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD on 2026-11-20.",
       "action_taken_on_site": "Kept intended_asin, official_listing_url, confirmation_date, and confirmation_source BLANK in data/products.json; stored observed redirect targets in strictly separate fields.",
       "required_manual_action": "Site owner should confirm in writing that B08FKW9JRM, B0BSKQW2T2, and B08DY9HRWD are the exact intended products before merging confirmation records.",
-      "official_source_url": "https://sell.amazon.com/blog/fba-new-selection-program",
+      "official_source_url": "https://sell.amazon.com/blog/what-is-an-asin",
       "status": "Needs Review"
     },
     {
