@@ -336,7 +336,7 @@ end up disagreeing with their source.
 | `shop.html`, `category/*.html` | Regenerated from the merged builder; they inherit main's meta and the re-verification wording. |
 | 11 generated root pages | main's committed versions taken from `origin/main`, then regenerated from the merged builder. Verified afterwards that every one carries `og:title`, `application/ld+json` and a working `shop.html` nav link. |
 | `COORDINATION.md` | Both histories kept: main's entries first, then this session's claim, delivery log and this reconciliation note. |
-| `summary.html` | This session's `scripts/summary.py` version retained (it supersedes the earlier inline summary) **and** main's product and verification tables kept in the same page — see the row check below. |
+| `summary.html` | This session's `scripts/summary.py` page replaces the earlier inline summary (one page, not two). Main's sourced verification rows were **carried across** into it rather than dropped, so the disclosure-wording (S01), ASIN-definition (S06) and commission-rate (S03) checks still render. Its product table is superseded by the wider findings table in the same module. |
 
 **Merged-tree verification.** `python3 scripts/build.py`, `python3 scripts/check.py` and
 `node scripts/verify.mjs` all pass on the merged tree; sitemap and feed agree at 17 URLs / 17 items;

@@ -55,6 +55,27 @@ def register_summary(add, table, link, source, intro, date, observed):
          'It must be confirmed inside the enrolled Associates workflow, not inferred from a redirect target.'),
     ])
 
+    verified = table(['Check', 'Result against an official source', 'Source'], [
+        ('Affiliate disclosure wording',
+         'Verified. The required statement is used verbatim, above the fold and again in the footer on every page.',
+         'S01 \u00b7 Operating Agreement \u00a75'),
+        ('ASIN definition (10 alphanumeric characters)',
+         'Verified. The three supplied short codes are 9 characters, so none of them can itself be an ASIN.',
+         'S06 \u00b7 ASIN guide'),
+        ('Price display',
+         'Not permitted without API-served content or an Amazon-served link. No price is published.',
+         'S02 \u00b7 Program Policies'),
+        ('Star ratings and review counts',
+         'Not permitted without API-served content. No rating or review count is published.',
+         'S02 \u00b7 Program Policies'),
+        ('Commission rates',
+         'Unverified. The rate card sits behind Associates sign-in, so no rate, earning or forecast is published.',
+         'S03 \u00b7 restricted'),
+        ('Tracking attribution for <code>shopnow047c-20</code>',
+         'Unverified. No tracking parameter was observed on any resolved destination.',
+         'Flagged for Review'),
+    ])
+
     decisions = table(['Priority', 'Action', 'Who', 'Gate that holds until it is done'], [
         ('1', 'Confirm the intended ASIN for each product inside the enrolled Associates '
               'workflow and record the confirmation date and source.', 'Account holder',
@@ -86,6 +107,9 @@ def register_summary(add, table, link, source, intro, date, observed):
           'authorised reports would be an invention. What exists is the structure those systems '
           'would fill, with every empty field left visible.</p></div>'
         + limits
+        + '<div class="prose"><h2>Checked against the source, line by line</h2><p>These are the compliance'
+          ' questions a reader or a reviewer is most likely to ask, and the document each answer rests on.</p></div>'
+        + verified
         + '<div class="prose"><h2>Next decisions, in order</h2><p>These five items are what '
           'would move the site from a verified empty ledger to a measured one.</p></div>'
         + decisions
