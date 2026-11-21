@@ -49,12 +49,13 @@
     },
     {
       "id": "F06",
-      "title": "Four suggested guide titles could not be published honestly",
+      "title": "Suggested air fryer titles are published as method checklists, but no verified appliance listing exists to attach",
       "area": "Editorial · topic selection",
       "severity": "low",
-      "detail": "The suggested hypotheses concerned basket and oven-style air fryers, air fryer capacity, and multi-function kitchen appliances. No such product is in the supplied catalogue, so writing those guides would have required inventing specifications. They are recorded as working titles on the guides index with the reason each was set aside, and the underlying method was reused for the three product categories the site can actually support.",
-      "action": "Close by supplying verified air fryer or appliance listings, at which point the original titles become publishable with real specifications behind them.",
-      "sources": ["S06"]
+      "detail": "The suggested hypotheses concerned basket and oven-style air fryers, air fryer capacity, clean-up and counter-space trade-offs, and multi-function kitchen appliances. No such product is in the supplied catalogue, so writing those guides with specifications behind them would have meant inventing them. Updated 2026-11-21: the format-comparison guide was already live, and the remaining three titles are now published as specification-free method checklists (air-fryer-capacity.html, air-fryer-cleanup.html and multi-function-appliances.html). Each states on the page that it is a method and not a test, quotes no specification, price or star rating, and recommends no model.",
+      "action": "Still open in one respect: with no verified air fryer or multi-function appliance listing, none of these guides can carry a researched product card or a sponsored link. Close by supplying verified listings, at which point the checklists can be paired with real specifications.",
+      "updated": "2026-11-21",
+      "sources": ["S06", "S02"]
     },
     {
       "id": "F07",
@@ -79,8 +80,9 @@
       "title": "Publication cadence is set but the next issue is not written",
       "area": "Editorial · cadence",
       "severity": "low",
-      "detail": "This build establishes a monthly cadence and ships a feed, a sitemap and a publishing checklist. The second issue does not exist yet. Nothing on the site claims a publishing frequency that has been sustained.",
+      "detail": "This build establishes a cadence and ships a feed, a sitemap and a publishing checklist. The second issue did not exist when this flag was written. Nothing on the site claims a publishing frequency that has been sustained. Updated 2026-11-21: issue 02 has now shipped with three method checklists, and standards.html carries a publication log of what shipped and when. Two consecutive issues on schedule still have not been demonstrated, so the flag stays open.",
       "action": "Close after two consecutive issues ship on schedule. Topic selection should be driven by measured queries once an analytics endpoint is configured, which it currently is not.",
+      "updated": "2026-11-21",
       "sources": ["S02"]
     },
     {
