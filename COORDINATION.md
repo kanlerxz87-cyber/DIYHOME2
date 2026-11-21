@@ -585,4 +585,3 @@ reachable, a re-check row deleted from `sources.html`, and a price injected into
   four-line-item description is likewise the listing's own inconsistency.
 - **Deliberately not recorded:** every price, star rating, review count and review quotation visible on
   the three listing pages. None appears in the repository.
-
