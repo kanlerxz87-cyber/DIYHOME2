@@ -93,7 +93,7 @@ _summary_verify = [
     ('ASIN definition (10 characters)', 'Verified — short codes are 9 characters and cannot be ASINs', link('sources','S06 · ASIN guide')),
     ('Price display', 'Prohibited without API access — no price published', link('sources','S02 · Program Policies')),
     ('Star ratings / review counts', 'Prohibited without API access — none published', link('sources','S02 · Program Policies')),
-    ('Commission rates', 'Unverified — rate card behind sign-in; no rate published', link('sources','S03 · Rate card (restricted)')),
+    ('Commission rates', 'Category rates are public (Table 1); this account’s rate card and each item’s category are unverified — no per-product rate or earnings published', link('sources','S13 · Table 1 · S03 · rate card (restricted)')),
     ('Tracking ID shopnow047c-20', 'Unverified — no tag observed; Special Link test pending', link('review','Flagged for Review')),
     ('Campaign ledger', 'Empty by design — no authorized first-party report supplied', link('measurement','Measurement')),
 ]
@@ -123,7 +123,39 @@ for _c in _cite_doc['constraints']:
     # reads better: the reader lands on the evidence, not on a bare redirect.
     _basis = ', '.join(f'<a href="#src-{e(i)}">{e(i)}</a>' for i in _c['basis'].split(', ') if i in _cite_by_id)
     _cite_cons.append((f'<strong>{e(_c["id"])}</strong>', e(_c['constraint']), _basis, e(_c['effect_on_site'])))
-add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer; linking an untagged Amazon product page would put a non-Special link on the site, which the Participation Requirements do not allow. Product pages the reader is invited to visit appear on the buying guides, and every one carries a sponsored marker.</small></p></div>')
+add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer, so citations are never made into Amazon links. The three buying guides do carry one untagged, reference-only Amazon link each, marked sponsored; that sits in tension with the tag-in-every-link rule (C7) and is published as flag F12 rather than hidden.</small></p></div>')
+
+# --- Flagged for Review: every open flag and the re-check log (added by arena/bd0ba155-diyhome2) ---
+# data/flags.json was previously validated but never rendered, so the page named
+# "Flagged for Review" listed only the four-row intent table. Every flag is now
+# published with its official source links; product and short-link sources are
+# shown as text pointing at the citation register, never as untagged Amazon links.
+_flag_doc = __import__('json').loads(Path('data/flags.json').read_text())
+def _src_links(ids):
+    out = []
+    for i in ids:
+        s = _cite_by_id.get(i)
+        if not s:
+            continue
+        if s['url'].startswith('https://www.amazon.com/dp/') or 'link.amazon' in s['url']:
+            out.append(f'<a href="sources.html#src-{e(i)}">{e(i)}</a> <small>(listing, see register)</small>')
+        else:
+            out.append(source(s['url'], i) + f' <small><a href="sources.html#src-{e(i)}">register</a></small>')
+    return '<br>'.join(out)
+_sev = {'blocking':'gap','high':'gap','medium':'warn','low':'ok'}
+_flag_rows = []
+for _f in _flag_doc['flags']:
+    _flag_rows.append((f'<strong id="flag-{e(_f["id"])}">{e(_f["id"])}</strong>',
+        f'<span class="pill {_sev.get(_f["severity"],"warn")}">{e(_f["severity"])}</span>',
+        f'<strong>{e(_f["title"])}</strong><br><small>{e(_f["area"])}</small>',
+        e(_f['detail']), e(_f['action']), _src_links(_f['sources'])))
+_recheck_rows = [(e(_r['date']), e(_r['session']), e(_r['item']), e(_r['result']), _src_links(_r['sources'])) for _r in _flag_doc.get('rechecks', [])]
+_rt, _rd, _rb = pages['review']
+_rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))+' irregularities, each with what was observed, what would close it and the official source. None blocks publication. A value that could not be confirmed is left blank and is not inferred. Spec-level listing findings (FLG-04 to FLG-08) are on the '+link('audit/index','Spec & policy audit')+'.</p></div>'
+    + table(['ID','Severity','Irregularity','What was observed','What would close it','Official sources'], _flag_rows)
+    + '<div class="prose"><h2>Re-verification log</h2><p>Independent re-reads, with the result of each. “Not re-verified” means exactly that.</p></div>'
+    + table(['Date','Session','Item','Result','Official sources'], _recheck_rows))
+pages['review'] = (_rt, _rd, _rb)
 
 for slug,(title,desc,body) in pages.items():
     canonical = BASE + ('' if slug=='index' else slug+'.html')

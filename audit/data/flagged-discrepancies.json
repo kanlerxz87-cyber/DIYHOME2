@@ -34,7 +34,7 @@
       "item_ref": "All link.amazon short links & Tracking ID shopnow047c-20",
       "issue": "Unresolved Special Link compliance status; tracking ID not observed in redirect query string",
       "observed_evidence": "Observed redirects from https://link.amazon/B0hmGG4m2, /B03QDuGdo, and /B0hpD2JGQ did not display tag=shopnow047c-20 in the final URL parameters on 2026-11-20. We do NOT claim the supplied short links are invalid; their exact compliance status is unresolved under S02.",
-      "action_taken_on_site": "Site product buttons use transparent candidate URLs (https://www.amazon.com/dp/{OBSERVED_ASIN}?tag=shopnow047c-20) marked rel=\"sponsored\" and flagged as pending Associates Central validation.",
+      "action_taken_on_site": "Corrected 2026-11-21 (bd0ba155): the site does NOT publish tagged candidate URLs. No page carries tag=shopnow047c-20. The three guide pages carry one untagged, reference-only Amazon link each, marked rel=\"sponsored\"; see Flagged for Review F12. Tagged links are withheld until validated in Associates Central.",
       "required_manual_action": "Test one Special Link per product inside the enrolled Amazon Associates Central / SiteStripe workflow and verify clicks appear under tracking ID shopnow047c-20 in Associates reports before scaling.",
       "official_source_url": "https://affiliate-program.amazon.com/help/operating/policies",
       "status": "Needs Review"
