@@ -308,6 +308,66 @@ for (const r of flags.rechecks ?? []) {
 }
 say(`${flags.flags.length} flags and ${(flags.rechecks ?? []).length} re-checks are published on review.html with sources`);
 
+/* 13 — the review record: every row sourced, dated, and honestly blank ------- */
+// Added by arena/c3fa8e97-diyhome2. The review exists so a claim can be checked
+// against the page it came from. That only works if each row names an official
+// https source, the section read, and the date it was read; and if "withheld" or
+// "not displayed" is allowed to stay blank instead of being filled in.
+const reviews = readJson("data/reviews.json");
+const disc = readJson("data/discrepancies.json");
+const OK_STATES = new Set(["confirmed", "confirmed-inconsistent", "not displayed", "withheld"]);
+for (const s of reviews.sources) {
+  if (!/^https:\/\//.test(s.url)) fail("review:not-https", `${s.id} → ${s.url}`);
+  const host = new URL(s.url).host;
+  if (!ALLOWED_HOSTS.includes(host)) fail("review:host", `${s.id} uses a non-official host: ${host}`);
+  if (!s.section) fail("review:no-section", `${s.id} does not say which part of the document was read`);
+  if (!s.read_at) fail("review:no-date", `${s.id} has no read date`);
+  if (!s.used_for) fail("review:no-purpose", `${s.id} does not say what the reading changed on the site`);
+  // A restricted source may not carry a quote: it establishes nothing.
+  if (s.quote && /sign-in wall/i.test(s.dated_on_page)) fail("review:restricted-quotes", `${s.id} is restricted but prints a quote`);
+}
+for (const p of reviews.products) {
+  if (!/^B0[A-Z0-9]{8}$/.test(p.observed_asin)) fail("review:bad-asin", `${p.observed_asin} is not a 10-character ASIN`);
+  for (const f of p.fields) {
+    if (!OK_STATES.has(f.state)) fail("review:bad-state", `${p.observed_asin} ${f.label}: "${f.state}"`);
+    const blank = f.value === "";
+    if (!blank && f.state !== "confirmed" && f.state !== "confirmed-inconsistent")
+      fail("review:filled-but-not-confirmed", `${p.observed_asin} ${f.label} has a value but state "${f.state}"`);
+    if (f.state === "not displayed" && !blank) fail("review:inferred", `${p.observed_asin} ${f.label} claims a value the page did not show`);
+    if (!blank && !CITE[f.source]) fail("review:dangling-source", `${p.observed_asin} ${f.label} cites ${f.source}`);
+  }
+  // The one rule this site never breaks: no figure Amazon sells attention for.
+  for (const f of p.fields) {
+    if (/price|rating|review count|bought|badge/i.test(f.label) && f.value !== "")
+      fail("review:withheld-has-value", `${p.observed_asin} ${f.label} publishes a figure that must stay blank`);
+  }
+}
+for (const r of disc.rows) {
+  if (!/^https:\/\//.test(r.url)) fail("disc:not-https", `${r.id} → ${r.url}`);
+  if (!ALLOWED_HOSTS.includes(new URL(r.url).host)) fail("disc:host", `${r.id} uses a non-official host`);
+  if (!r.section || !r.read_at || !r.verdict || !r.effect) fail("disc:incomplete", `${r.id} is missing section, date, verdict or effect`);
+  if (r.source && !CITE[r.source]) fail("disc:dangling-source", `${r.id} cites ${r.source}`);
+  // "Confirmed" is only available to a source that was actually read.
+  if (/^Confirmed/.test(r.verdict) && /sign-in wall/i.test(r.dated_on_page)) fail("disc:restricted-confirmed", `${r.id} is restricted yet marked ${r.verdict}`);
+}
+const auditHtml = fs.readFileSync(path.join(ROOT, "audit", "index.html"), "utf8");
+for (const r of disc.rows) {
+  if (!auditHtml.includes(`id="rev-${r.id}"`)) fail("disc:unpublished", `${r.id} is not on the audit page`);
+  // The audit register numbers its own S01..S12 for different documents than the
+  // citation register, so a row must link to the shared register explicitly.
+  if (!auditHtml.includes(`href="../sources.html#src-${r.source}"`)) fail("disc:cross-link", `${r.id} does not link its register row to sources.html`);
+}
+say(`${reviews.sources.length} re-read documents, ${reviews.products.length} listings and ${disc.rows.length} source rows are recorded with a section, a read date and a source`);
+
+/* 14 — nothing may publish a purchase-volume or badge figure ----------------- */
+// F13: Amazon displays "20K+ bought in past month" and an Amazon's Choice badge.
+// Neither is ours to restate, and the price/rating gate never looked for them.
+for (const p of pages) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
+  if (/\b\d+(\.\d+)?K?\+?\s*bought in past month/i.test(h)) fail("claims:bought-in-past-month", `${p} publishes a purchase-volume figure`);
+  if (/Amazon(?:'|&#x27;|&#39;|\u2019|&#8217;)s Choice/i.test(h)) fail("claims:amazon-badge", `${p} publishes an Amazon badge`);
+}
+
 /* 12 — no page may claim no commission rate is readable anywhere ------------- */
 // S13 is a public category table; "no rate published" is true of per-product rates
 // only. Keep that distinction from regressing.

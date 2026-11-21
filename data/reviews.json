@@ -1,0 +1,678 @@
+{
+  "recorded": "2026-11-21",
+  "session": "c3fa8e97",
+  "note": "Read live on 2026-11-21. A blank value means the official page did not display it; nothing is inferred. Anything Amazon displays that this site has no right to republish is recorded as withheld, not as confirmed.",
+  "sources": [
+    {
+      "id": "S01",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Associates Program Operating Agreement",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "section": "§5 Identifying Yourself as an Associate",
+      "dated_on_page": "Updated October 15, 2025",
+      "read_at": "2026-11-21",
+      "quote": "You must clearly and prominently state the following ... on your Site ...: “As an Amazon Associate I earn from qualifying purchases.”",
+      "used_for": "The verbatim notice printed above the fold and in the footer of every page."
+    },
+    {
+      "id": "S02",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Associates Program Policies (Participation Requirements, Commission Income Statement, IP License incl. Agent Terms)",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "section": "Participation Requirements §§2(a), 2(b), 2(t), 2(u), 2(w), 2(y); Commission Income Statement §2(e); IP License §§1, 2(h), 2(i), 2(k), 4",
+      "dated_on_page": "Updated April 14, 2026",
+      "read_at": "2026-11-21",
+      "quote": "you must include your Associates ID or “tag” (appearing as XXXXX-##, ...) as a parameter in the URL of each link you place on your Site to an Amazon Site",
+      "used_for": "Tag rule, rating rule, shortener rule, Redirecting Link disqualification, Agent Terms, 24-hour caching and date-stamp rules for API content."
+    },
+    {
+      "id": "S03",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Standard Commission Income rate card (account)",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "section": "Appendix — Standard Commission Income",
+      "dated_on_page": "not visible (sign-in wall)",
+      "read_at": "2026-11-21",
+      "quote": "",
+      "used_for": "NOTHING. Redirects to an Amazon sign-in whose return address is the account's custom rate card. No per-account rate is published."
+    },
+    {
+      "id": "S04",
+      "publisher": "U.S. Federal Trade Commission",
+      "title": "FTC's Endorsement Guides: What People Are Asking",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "section": "How Should I Disclose That I Was Given Something for My Endorsement?",
+      "dated_on_page": "not displayed",
+      "read_at": "2026-11-21",
+      "quote": "You should disclose the affiliate relationship both in the videos and in the description near the links.",
+      "used_for": "Why the notice sits under the masthead as well as in the footer, and why each guide labels its outbound listing link."
+    },
+    {
+      "id": "S05",
+      "publisher": "U.S. Federal Trade Commission (via eCFR)",
+      "title": "16 CFR Part 255 — Guides Concerning Use of Endorsements and Testimonials in Advertising",
+      "url": "https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255",
+      "section": "§255.5 Disclosure of material connections",
+      "dated_on_page": "eCFR up to date as of 11/19/2026; source 88 FR 48102 (Jul 26, 2023)",
+      "read_at": "2026-11-21",
+      "quote": "",
+      "used_for": "The operative rule that a material connection must be disclosed; the site never presents a commission relationship as an independent recommendation."
+    },
+    {
+      "id": "S06",
+      "publisher": "Amazon (Sell on Amazon)",
+      "title": "Understanding ASINs: Your guide to Amazon's product identification system",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "section": "What does “ASIN” mean?",
+      "dated_on_page": "June 4, 2025",
+      "read_at": "2026-11-21",
+      "quote": "It’s a unique 10-character alphanumeric code assigned to every product listed in the Amazon store.",
+      "used_for": "The measurement that the three submitted short codes (9 characters) are not ASINs, so they are never copied into an ASIN field."
+    },
+    {
+      "id": "S07",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Amazon listing — Art3d Smoothing Tool Kit (B08FKW9JRM)",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "section": "Technical Details; Additional Information; About this item; sustainability and Prop 65 notices",
+      "dated_on_page": "read live 2026-11-21",
+      "read_at": "2026-11-21",
+      "quote": "Item Package Quantity 3 (Technical Details) against five items named in About this item",
+      "used_for": "Observed identity and specs for the first observed destination. Price, star rating, “bought in past month” and badge are displayed on the page and are deliberately not published."
+    },
+    {
+      "id": "S08",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Amazon listing — under-cabinet paper towel holder (B0BSKQW2T2)",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "section": "Product information; Measurements; Additional details",
+      "dated_on_page": "read live 2026-11-21",
+      "read_at": "2026-11-21",
+      "quote": "Material Type Aluminum; Color Black; Mounting Type Under Cabinet Mount; Item Dimensions L x W 2.56\"L x 12.2\"W; Item Weight 5 ounces",
+      "used_for": "Observed identity and specs for the second observed destination. No UPC and no Date First Available are displayed, so both remain blank."
+    },
+    {
+      "id": "S09",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Amazon listing — ORDORA 8-tier pots and pans organizer (B08DY9HRWD)",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "section": "Product information; About this item; Product description; newer-model banner",
+      "dated_on_page": "read live 2026-11-21",
+      "read_at": "2026-11-21",
+      "quote": "Fitted Cabinet Size Required: Width≥ 24.31 Inches, Height≥ 18.61 Inches; Shelf Weight Capacity 10 pounds",
+      "used_for": "Observed identity, dimensions, UPC, load limit and the 11in/12in title-versus-bullet discrepancy. The colour and height variant list is not displayed as an option list."
+    },
+    {
+      "id": "S10",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Submitted short link 1 — link.amazon/B0hmGG4m2",
+      "url": "https://link.amazon/B0hmGG4m2",
+      "section": "resolved destination",
+      "dated_on_page": "live redirect",
+      "read_at": "2026-11-20",
+      "quote": "",
+      "used_for": "Observed redirect only: resolves to /dp/B08FKW9JRM with Amazon session parameters and no tag parameter. Not declared invalid; compliance is unresolved (F02)."
+    },
+    {
+      "id": "S11",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Submitted short link 2 — link.amazon/B03QDuGdo",
+      "url": "https://link.amazon/B03QDuGdo",
+      "section": "resolved destination",
+      "dated_on_page": "live redirect",
+      "read_at": "2026-11-20",
+      "quote": "",
+      "used_for": "Observed redirect only: resolves to /dp/B0BSKQW2T2, submitted twice, no tag parameter. Not declared invalid."
+    },
+    {
+      "id": "S12",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Submitted short link 3 — link.amazon/B0hpD2JGQ",
+      "url": "https://link.amazon/B0hpD2JGQ",
+      "section": "resolved destination",
+      "dated_on_page": "live redirect",
+      "read_at": "2026-11-20",
+      "quote": "",
+      "used_for": "Observed redirect only: resolves to /dp/B08DY9HRWD, no tag parameter. Not declared invalid."
+    },
+    {
+      "id": "S13",
+      "publisher": "Amazon.com, Inc.",
+      "title": "Associates Program Standard Commission Income Statement (Table 1)",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "section": "Table 1 — Fixed Standard Commission Income Rates for Specific Product Categories",
+      "dated_on_page": "not displayed on page (read 2026-11-21)",
+      "read_at": "2026-11-21",
+      "quote": "Physical Books, Kitchen, Automotive | 4.50% ... Toys, Furniture, Home, Home Improvement, ... Tools ... | 3.00% ... All Other Categories | 4.00%",
+      "used_for": "Category-level rates only. The table does not attribute a rate to any specific SKU, and no per-product rate or revenue figure is published."
+    }
+  ],
+  "products": [
+    {
+      "observed_asin": "B08FKW9JRM",
+      "submitted_code": "B0hmGG4m2",
+      "observed_title": "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper",
+      "fields": [
+        {
+          "label": "Brand",
+          "value": "Art3d",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Sold by",
+          "value": "Art3d®",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Model",
+          "value": "A17999",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Manufacturer part number",
+          "value": "A17999g",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Product dimensions",
+          "value": "7.72 x 4.33 x 0.79 inches",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Item weight",
+          "value": "3.52 ounces",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Material",
+          "value": "Plastic",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Date First Available",
+          "value": "August 11, 2020",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Browse path",
+          "value": "Tools & Home Improvement › Paint, Wall Treatments & Supplies › Wallpaper & Wallpapering Supplies › Wallpaper Tools (164701011)",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "California Prop 65",
+          "value": "warning displayed",
+          "source": "S07",
+          "state": "confirmed"
+        },
+        {
+          "label": "Item Package Quantity",
+          "value": "3",
+          "source": "S07",
+          "state": "confirmed-inconsistent",
+          "note": "Five items are named in About this item; the two values are both printed and neither is preferred here."
+        },
+        {
+          "label": "UPC",
+          "value": "",
+          "source": "S07",
+          "state": "not displayed",
+          "note": "Left blank. Not inferred from a third party."
+        },
+        {
+          "label": "Price",
+          "value": "",
+          "source": "S07",
+          "state": "withheld",
+          "note": "Displayed on Amazon, not published here: policy conditions apply (S02)."
+        },
+        {
+          "label": "Star rating and review count",
+          "value": "",
+          "source": "S07",
+          "state": "withheld",
+          "note": "Displayed on Amazon, not published here: S02 §2(t)."
+        },
+        {
+          "label": "Bought in past month",
+          "value": "",
+          "source": "S07",
+          "state": "withheld",
+          "note": "'20K+' displayed on Amazon. Not published; see F13."
+        },
+        {
+          "label": "Amazon's Choice badge",
+          "value": "",
+          "source": "S07",
+          "state": "withheld",
+          "note": "Displayed on Amazon. Dynamic Amazon content; not published."
+        }
+      ]
+    },
+    {
+      "observed_asin": "B0BSKQW2T2",
+      "submitted_code": "B03QDuGdo",
+      "observed_title": "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black",
+      "fields": [
+        {
+          "label": "Brand",
+          "value": "niffgaff",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Sold by",
+          "value": "YH Urban",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Model",
+          "value": "TN2200-BLK-NA 01",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Manufacturer part number",
+          "value": "TN2200",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Dimensions",
+          "value": "2.56\"L x 12.2\"W",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Size",
+          "value": "12.2 inches",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Item weight",
+          "value": "5 ounces",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Material / colour",
+          "value": "Aluminum; Black",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Mounting type",
+          "value": "Under Cabinet Mount",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "Browse path",
+          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Paper Towel Holders (3744201)",
+          "source": "S08",
+          "state": "confirmed"
+        },
+        {
+          "label": "UPC",
+          "value": "",
+          "source": "S08",
+          "state": "not displayed",
+          "note": "Left blank."
+        },
+        {
+          "label": "Date First Available",
+          "value": "",
+          "source": "S08",
+          "state": "not displayed",
+          "note": "Left blank."
+        },
+        {
+          "label": "Price",
+          "value": "",
+          "source": "S08",
+          "state": "withheld",
+          "note": "S02 policy conditions."
+        },
+        {
+          "label": "Star rating and review count",
+          "value": "",
+          "source": "S08",
+          "state": "withheld",
+          "note": "S02 §2(t)."
+        },
+        {
+          "label": "Bought in past month",
+          "value": "",
+          "source": "S08",
+          "state": "withheld",
+          "note": "'9K+' displayed. Not published; see F13."
+        }
+      ]
+    },
+    {
+      "observed_asin": "B08DY9HRWD",
+      "submitted_code": "B0hpD2JGQ",
+      "observed_title": "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack",
+      "fields": [
+        {
+          "label": "Brand",
+          "value": "ORDORA",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Sold by",
+          "value": "ORDORA Official",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Model",
+          "value": "ODR8Tier",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "UPC",
+          "value": "655100721821",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Dimensions",
+          "value": "9.17\"D x 21.31\"W x 16.61\"H",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Item weight",
+          "value": "3.3 pounds",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Material / colour",
+          "value": "Iron; Black",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Tiers",
+          "value": "8",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Shelf weight capacity",
+          "value": "10 pounds",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Cabinet space required",
+          "value": "Width ≥ 24.31 in; Height ≥ 18.61 in",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Browse path",
+          "value": "Home & Kitchen › Kitchen & Dining › Storage & Organization › Racks & Holders › Pot Racks (289824)",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "California Prop 65",
+          "value": "warning displayed",
+          "source": "S09",
+          "state": "confirmed"
+        },
+        {
+          "label": "Newer model banner",
+          "value": "B0BYYTQMTR",
+          "source": "S09",
+          "state": "confirmed",
+          "note": "Displayed by Amazon as a newer model of this item."
+        },
+        {
+          "label": "Cookware diameter",
+          "value": "Title says up to 11 in; bullet 4 says up to 12 in",
+          "source": "S09",
+          "state": "confirmed-inconsistent",
+          "note": "Both values are printed on the listing. Neither is preferred here."
+        },
+        {
+          "label": "Colours offered",
+          "value": "Black, Bronze, Silver, White",
+          "source": "S09",
+          "state": "confirmed",
+          "note": "Displayed as a colour selector on 2026-11-21; matches data/products.json."
+        },
+        {
+          "label": "Heights offered",
+          "value": "13.78, 14.55, 15.83, 16.59, 16.61, 19.02, 21, 23.62 inches",
+          "source": "S09",
+          "state": "confirmed",
+          "note": "Displayed as a size selector on 2026-11-21; matches data/products.json."
+        },
+        {
+          "label": "Price",
+          "value": "",
+          "source": "S09",
+          "state": "withheld",
+          "note": "S02 policy conditions."
+        },
+        {
+          "label": "Star rating and review count",
+          "value": "",
+          "source": "S09",
+          "state": "withheld",
+          "note": "S02 §2(t)."
+        }
+      ]
+    }
+  ],
+  "registers": [
+    {
+      "item": "data/sources.json vs data/citation-register.json",
+      "finding": "Same 12 IDs, same 12 URLs, different field names. Only citation-register.json is read by the builder.",
+      "result": "divergence risk",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "audit/data/official-sources.json",
+      "finding": "Uses the same S01–S12 IDs for different documents than the citation register (for example S04 is Table 1 there and the FTC guide here; S10 is an ASIN post there and a short link here).",
+      "result": "prefix collision between two registers",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "item": "audit/data/flagged-discrepancies.json FLG-02 and audit S10",
+      "finding": "Both cite the FBA New Selection post as the official source for ASIN identity. That post defines ASIN only in passing; the definition relied on is S06.",
+      "result": "wrong citation",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "item": "audit/index.html commission column",
+      "finding": "Prints a rate beside each product although Table 1 is category-level and no SKU attribution is confirmed (FLG-07).",
+      "result": "reads as a per-product rate",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "item": "scripts/build.py DATE constant",
+      "finding": "Guide pages print 'Observed in an Amazon redirect check on 2026-11-20' from a constant, while the targets were re-confirmed on 2026-11-21.",
+      "result": "stale-by-design date",
+      "sources": [
+        "S07",
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "item": "standards.html and data/flags.json F09",
+      "finding": "Two different cadences were published ('every two weeks' and 'monthly'). The 23:32 UTC merge of PR #29 removed the two-week sentence.",
+      "result": "resolved by another session; recheck after any builder change",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "field-notes/counter-fit/index.html",
+      "finding": "Sets data-page but loads no counter, so it could never record a page_view.",
+      "result": "instrumentation gap",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "assets/metrics.js vs data/products.json",
+      "finding": "Different five-event vocabularies; nothing emits product_view, outbound_click, guide_complete or subscribe.",
+      "result": "mismatch",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "Measurement on the public host",
+      "finding": "GitHub Pages serves static files only, so no event is collected and no figure is claimed. The collector in scripts/serve.py stays disabled without METRICS_ORIGIN.",
+      "result": "honest zero",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "campaign-ledger.csv and data/campaign-ledger.json",
+      "finding": "Headers and schema only, zero rows, with written prohibitions on back-filling.",
+      "result": "empty by design",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "item": "Intended product identity",
+      "finding": "intended_asin, official_listing_url, confirmation_date and confirmation_source are blank for all four submissions; the duplicate submission is preserved rather than dropped.",
+      "result": "unverified, correctly blank",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "item": "Copyright and imagery",
+      "finding": "Assets are AI-generated editorial illustrations; no Amazon product photograph is stored, hotlinked or published, consistent with the image rule in the IP License.",
+      "result": "compliant",
+      "sources": [
+        "S02"
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "check": "Rebuild is reproducible",
+      "method": "python3 scripts/build.py then git status --porcelain",
+      "result": "pass"
+    },
+    {
+      "check": "Local links, disclosure count, sponsored-only Amazon product links, XML",
+      "method": "python3 scripts/check.py",
+      "result": "pass"
+    },
+    {
+      "check": "Supplementary gate",
+      "method": "node scripts/verify.mjs",
+      "result": "pass"
+    },
+    {
+      "check": "Audit surface gate",
+      "method": "node audit/check_audit.mjs",
+      "result": "pass"
+    },
+    {
+      "check": "No rendered price or star rating",
+      "method": "regex sweep over every published page",
+      "result": "pass"
+    },
+    {
+      "check": "Disclosure twice per page, above the first table",
+      "method": "offset comparison per file",
+      "result": "pass"
+    },
+    {
+      "check": "Sitemap and feed parse and agree",
+      "method": "XML parse plus set comparison",
+      "result": "pass"
+    },
+    {
+      "check": "Review record present and sourced",
+      "method": "node scripts/verify.mjs (new check)",
+      "result": "pass"
+    }
+  ],
+  "withheld_figures": [
+    {
+      "observed_asin": "B08FKW9JRM",
+      "figure_type": "purchase volume",
+      "text_on_page": "20K+ bought in past month",
+      "reason": "Amazon behaviour data. Not republished anywhere on this site (F13)."
+    },
+    {
+      "observed_asin": "B0BSKQW2T2",
+      "figure_type": "purchase volume",
+      "text_on_page": "9K+ bought in past month",
+      "reason": "Amazon behaviour data. Not republished (F13)."
+    },
+    {
+      "observed_asin": "B08DY9HRWD",
+      "figure_type": "purchase volume",
+      "text_on_page": "1K+ bought in past month",
+      "reason": "Amazon behaviour data. Not republished (F13)."
+    },
+    {
+      "observed_asin": "B08FKW9JRM",
+      "figure_type": "merchandising badge",
+      "text_on_page": "Amazon's Choice",
+      "reason": "Dynamic Amazon merchandising content, recorded here with a date instead of on a product page (F14)."
+    },
+    {
+      "observed_asin": "B0BSKQW2T2",
+      "figure_type": "merchandising badge",
+      "text_on_page": "Amazon's Choice",
+      "reason": "Dynamic Amazon merchandising content. Not published (F14)."
+    },
+    {
+      "observed_asin": "B08FKW9JRM",
+      "figure_type": "star rating",
+      "text_on_page": "4.6 out of 5 stars, 26,459 ratings",
+      "reason": "Requires Creators API or PA API to restate (S02 §2(t)). Not published."
+    },
+    {
+      "observed_asin": "B0BSKQW2T2",
+      "figure_type": "star rating",
+      "text_on_page": "4.2 out of 5 stars, 12,111 ratings",
+      "reason": "Requires Creators API or PA API (S02 §2(t)). Not published."
+    },
+    {
+      "observed_asin": "B08DY9HRWD",
+      "figure_type": "star rating",
+      "text_on_page": "4.4 out of 5 stars, 18,835 ratings",
+      "reason": "Requires Creators API or PA API (S02 §2(t)). Not published."
+    }
+  ]
+}
