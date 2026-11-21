@@ -47,19 +47,36 @@ while ((m = linkRegex.exec(html)) !== null) {
     assert(!href.includes('?'), `Amazon reference link must not include unvalidated query string: ${href}`);
   } else if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('#')) {
     internalCount += 1;
-    const target = path.resolve(__dirname, href);
+    // An in-page or cross-page fragment must be resolved against the file, not
+    // the whole href: `../sources.html#src-S01` is a file, not a filename with a
+    // hash in it. Fragment targets are checked too, so a renamed anchor fails.
+    const [filePart, frag] = href.split("#");
+    const target = path.resolve(__dirname, filePart || "index.html");
     assert(fs.existsSync(target), `Broken internal link in audit/index.html: ${href}`);
+    if (frag && fs.existsSync(target) && target.endsWith(".html")) {
+      const body = fs.readFileSync(target, "utf8");
+      assert(body.includes(`id="${frag}"`), `Missing anchor #${frag} in ${path.relative(__dirname, target)}`);
+    }
   }
 }
 
 // 4. Every tbody row includes an official https:// source URL
 const tbodies = html.match(/<tbody[^>]*>[\s\S]*?<\/tbody>/gi) || [];
-assert(tbodies.length === 3, `Expected 3 audit tables, found ${tbodies.length}`);
+assert(tbodies.length === 4, `Expected 4 audit tables, found ${tbodies.length}`);
 tbodies.forEach((tb, idx) => {
   const rows = tb.match(/<tr\b[^>]*>[\s\S]*?<\/tr>/gi) || [];
   assert(rows.length > 0, `Table #${idx + 1} has zero rows`);
   rows.forEach((r, rIdx) => {
-    assert(/href="https:\/\//i.test(r), `Table #${idx + 1} row #${rIdx + 1} missing official https:// source link`);
+    // A row must carry an official https reference. It may be a link, or a URL
+    // printed as text: an untagged Amazon listing link is never published as a
+    // link (that is what F12 records), so the review table prints it in code.
+    const refd = r.match(/(?:href="|<code>)(https:\/\/[^"<]+)/);
+    assert(refd, `Table #${idx + 1} row #${rIdx + 1} missing official https:// source`);
+    if (refd) {
+      const host = new URL(refd[1]).host;
+      assert(/^(www\.)?(amazon\.com|link\.amazon|affiliate-program\.amazon\.com|sell\.amazon\.com|ecfr\.gov|www\.ecfr\.gov|ftc\.gov|www\.ftc\.gov|developers\.google\.com)$/.test(host),
+        `Table #${idx + 1} row #${rIdx + 1} cites a non-official host: ${host}`);
+    }
   });
 });
 

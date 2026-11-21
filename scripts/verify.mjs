@@ -21,7 +21,9 @@
  *      satisfies the 10-character definition
  *  11. every open flag and re-check is published on review.html with sources
  *  12. no page claims no commission rate is readable anywhere (S13 is public)
- *  13. the five-event vocabulary agrees across data/products.json,
+ *  13-15. (parallel sessions) untagged-link disclosure, re-check log, FAQ,
+ *      review record, review-table drift, purchase-volume/badge figures
+ *  16. the five-event vocabulary agrees across data/products.json,
  *      scripts/serve.py, assets/metrics.js and measurement/desk.js
  *
  * Run: node scripts/verify.mjs
@@ -44,6 +46,8 @@ const links = readJson("data/links.json");
 const products = readJson("data/products.json");
 const ledger = readJson("data/campaign-ledger.json");
 const flags = readJson("data/flags.json");
+const _cats = readJson("data/products.json").categories.map((c) => c.slug);
+const _catSlugs = _cats.map((sl) => `category/${sl}.html`);
 
 const CITE = Object.fromEntries(register.sources.map((s) => [s.id, s]));
 const ALLOWED_HOSTS = [
@@ -228,6 +232,86 @@ for (const l of links.links) {
 }
 say(`${products.products.length} product records and ${links.links.length} observations cross-checked`);
 
+/* 13 — untagged Amazon links cannot appear without F12 disclosure, site-wide ---- */
+// Added by arena/94688dd1-diyhome2. F12 discloses that no tag can be honestly added
+// until a Special Link is validated in the enrolled account. That means every Amazon
+// product link on this site is untagged, so the count is pinned here: a new page that
+// adds one silently would widen the compliance gap the site has published without
+// saying so. This caught a real slip - the first shop build linked each category's
+// browse node, adding untagged links F12 did not describe.
+const BROWSER_PAGES = [...pages, ...NESTED.filter((n) => fs.existsSync(path.join(ROOT, n)))];
+const AMAZON_TAG = /<a\b[^>]*href="(https?:\/\/(?:www\.)?amazon\.[^"]*)"[^>]*>/gi;
+function untaggedCount(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+  let n = 0;
+  for (const m of html.matchAll(AMAZON_TAG)) {
+    if (!/\/dp\//.test(m[1])) continue;
+    const rel = (m[0].match(/rel="([^"]*)"/) || [])[1] || "";
+    if (rel.split(/\s+/).includes("sponsored") && !/[?&]tag=/.test(m[1])) n++;
+  }
+  return n;
+}
+const EXPECTED_UNTAGGED = {
+  "wallpaper.html": 1, "paper-towels.html": 1, "cookware.html": 1,
+  "review.html": 4, "shop.html": 3, "audit/index.html": 6,
+  ...Object.fromEntries(_catSlugs.map((f) => [f, 1])),
+};
+for (const p of BROWSER_PAGES) {
+  const n = untaggedCount(p);
+  const want = EXPECTED_UNTAGGED[p] ?? 0;
+  if (n !== want) fail("links:untagged-count", `${p} has ${n} untagged Amazon product link(s), expected ${want}. Update F12 before changing this.`);
+}
+say(`untagged Amazon product links pinned to the F12 disclosure across ${BROWSER_PAGES.length} pages`);
+
+/* 14 — the independent re-check log is published, and stays honest ---------- */
+// Added by arena/ff38bd99-diyhome2. data/verification-2026-11-21.json records a
+// fresh fetch of every cited document. Publishing it is the point: a log that
+// exists only in the repository is not a receivable claim to a reader. Three
+// properties are enforced, because each is a way the log could quietly lie:
+//   a) every row must be on sources.html,
+//   b) a source the register calls restricted may not be reported reachable,
+//   c) a row may not both claim a confirmed quote and record no evidence.
+const verifyDoc = readJson("data/verification-2026-11-21.json");
+const sourcesHtml = fs.readFileSync(path.join(ROOT, "sources.html"), "utf8");
+if (!verifyDoc.sources?.length) fail("recheck:empty", "the verification log has no rows");
+if (verifyDoc.join_key !== "url") fail("recheck:join", "the re-check log must join on URL, not on ID");
+// The two registers number their documents differently. Joining on ID once put the
+// FTC row's evidence under Table 1, so the join key and the coverage are enforced.
+const REG_BY_URL = Object.fromEntries(register.sources.map((s) => [s.url, s.id]));
+for (const r of verifyDoc.sources ?? []) {
+  if (!REG_BY_URL[r.url]) fail("recheck:unknown-url", `${r.id} → ${r.url} is not in the citation register`);
+  else if (REG_BY_URL[r.url] !== r.id)
+    fail("recheck:id-url-mismatch", `${r.id} carries ${r.url}, which the register numbers ${REG_BY_URL[r.url]}`);
+  if (!sourcesHtml.includes(`<strong>${r.id}</strong>`)) fail("recheck:unpublished", `${r.id} is not on sources.html`);
+  if (!r.what_the_fetch_showed) fail("recheck:no-evidence", `${r.id} records no observation`);
+  const cite = CITE[r.id];
+  if (cite && cite.access === "restricted" && r.reachable)
+    fail("recheck:restricted-marked-reachable", `${r.id} is restricted in the citation register but reported reachable`);
+  if (r.quote_confirmed && !r.what_the_fetch_showed)
+    fail("recheck:quote-without-evidence", `${r.id} claims a confirmed quote with no observation`);
+  if (r.quote_confirmed && !/^https:\/\//.test(r.url)) fail("recheck:not-https", `${r.id} → ${r.url}`);
+}
+// Every register document needs a row: a register entry with no re-check is a gap.
+const recheckedUrls = new Set((verifyDoc.sources ?? []).map((r) => r.url));
+for (const s of register.sources) {
+  if (!recheckedUrls.has(s.url)) fail("recheck:coverage-gap", `${s.id} is in the register but has no re-check row`);
+}
+say(`${(verifyDoc.sources ?? []).length} of ${register.sources.length} sources re-checked on ${verifyDoc.checked_on}, IDs matched to URLs, published on sources.html`);
+
+/* 15 — the FAQ exists, is linked, and claims nothing it cannot support ------- */
+// The FAQ is the last surface before a click, so the two easy ways for it to go
+// wrong are checked here: it silently disappears from the published set, or it
+// grows a price or rating sentence that the policy constraint forbids.
+const faqHtml = fs.readFileSync(path.join(ROOT, "faq.html"), "utf8");
+if (!sm.includes("https://kanlerxz87-cyber.github.io/DIYHOME2/faq.html")) fail("faq:not-published", "faq.html is missing from the sitemap");
+if (!fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes('href="faq.html"')) fail("faq:unlinked", "the front page does not link the FAQ");
+const faqQuestions = [...faqHtml.matchAll(/<summary>([^<]+)<\/summary>/g)].length;
+if (faqQuestions < 6) fail("faq:too-thin", `the FAQ answers ${faqQuestions} question(s)`);
+for (const bad of [/\$\d/, /\bdollars\b/i, /\d(\.\d)? out of 5\b/, /\bstar rating of\b/i]) {
+  if (bad.test(faqHtml.replace(/<code>[^<]*<\/code>/g, ""))) fail("faq:price-or-rating", `faq.html matches ${bad}`);
+}
+say(`${faqQuestions} buyer questions published, linked from the front page, and free of prices and ratings`);
+
 /* 11 — every open flag and re-check is actually published on review.html ---- */
 // Added by arena/bd0ba155-diyhome2. data/flags.json used to be validated but never
 // rendered, so "Flagged for Review" silently omitted ten flags. Never again.
@@ -242,6 +326,92 @@ for (const r of flags.rechecks ?? []) {
 }
 say(`${flags.flags.length} flags and ${(flags.rechecks ?? []).length} re-checks are published on review.html with sources`);
 
+/* 13 — the review record: every row sourced, dated, and honestly blank ------- */
+// Added by arena/c3fa8e97-diyhome2. The review exists so a claim can be checked
+// against the page it came from. That only works if each row names an official
+// https source, the section read, and the date it was read; and if "withheld" or
+// "not displayed" is allowed to stay blank instead of being filled in.
+const reviews = readJson("data/reviews.json");
+const disc = readJson("data/discrepancies.json");
+const OK_STATES = new Set(["confirmed", "confirmed-inconsistent", "not displayed", "withheld"]);
+for (const s of reviews.sources) {
+  if (!/^https:\/\//.test(s.url)) fail("review:not-https", `${s.id} → ${s.url}`);
+  const host = new URL(s.url).host;
+  if (!ALLOWED_HOSTS.includes(host)) fail("review:host", `${s.id} uses a non-official host: ${host}`);
+  if (!s.section) fail("review:no-section", `${s.id} does not say which part of the document was read`);
+  if (!s.read_at) fail("review:no-date", `${s.id} has no read date`);
+  if (!s.used_for) fail("review:no-purpose", `${s.id} does not say what the reading changed on the site`);
+  // A restricted source may not carry a quote: it establishes nothing.
+  if (s.quote && /sign-in wall/i.test(s.dated_on_page)) fail("review:restricted-quotes", `${s.id} is restricted but prints a quote`);
+}
+for (const p of reviews.products) {
+  if (!/^B0[A-Z0-9]{8}$/.test(p.observed_asin)) fail("review:bad-asin", `${p.observed_asin} is not a 10-character ASIN`);
+  for (const f of p.fields) {
+    if (!OK_STATES.has(f.state)) fail("review:bad-state", `${p.observed_asin} ${f.label}: "${f.state}"`);
+    const blank = f.value === "";
+    if (!blank && f.state !== "confirmed" && f.state !== "confirmed-inconsistent")
+      fail("review:filled-but-not-confirmed", `${p.observed_asin} ${f.label} has a value but state "${f.state}"`);
+    if (f.state === "not displayed" && !blank) fail("review:inferred", `${p.observed_asin} ${f.label} claims a value the page did not show`);
+    if (!blank && !CITE[f.source]) fail("review:dangling-source", `${p.observed_asin} ${f.label} cites ${f.source}`);
+  }
+  // The one rule this site never breaks: no figure Amazon sells attention for.
+  for (const f of p.fields) {
+    if (/price|rating|review count|bought|badge/i.test(f.label) && f.value !== "")
+      fail("review:withheld-has-value", `${p.observed_asin} ${f.label} publishes a figure that must stay blank`);
+  }
+}
+for (const r of disc.rows) {
+  if (!/^https:\/\//.test(r.url)) fail("disc:not-https", `${r.id} → ${r.url}`);
+  if (!ALLOWED_HOSTS.includes(new URL(r.url).host)) fail("disc:host", `${r.id} uses a non-official host`);
+  if (!r.section || !r.read_at || !r.verdict || !r.effect) fail("disc:incomplete", `${r.id} is missing section, date, verdict or effect`);
+  if (r.source && !CITE[r.source]) fail("disc:dangling-source", `${r.id} cites ${r.source}`);
+  // "Confirmed" is only available to a source that was actually read.
+  if (/^Confirmed/.test(r.verdict) && /sign-in wall/i.test(r.dated_on_page)) fail("disc:restricted-confirmed", `${r.id} is restricted yet marked ${r.verdict}`);
+}
+const auditHtml = fs.readFileSync(path.join(ROOT, "audit", "index.html"), "utf8");
+for (const r of disc.rows) {
+  if (!auditHtml.includes(`id="rev-${r.id}"`)) fail("disc:unpublished", `${r.id} is not on the audit page`);
+  // The audit register numbers its own S01..S12 for different documents than the
+  // citation register, so a row must link to the shared register explicitly.
+  if (!auditHtml.includes(`href="../sources.html#src-${r.source}"`)) fail("disc:cross-link", `${r.id} does not link its register row to sources.html`);
+}
+say(`${reviews.sources.length} re-read documents, ${reviews.products.length} listings and ${disc.rows.length} source rows are recorded with a section, a read date and a source`);
+
+/* 15 — the rendered review table must match the record it comes from ---------- */
+// scripts/render_review.py owns one block on the audit page. If someone edits a
+// row by hand, the page and data/discrepancies.json drift apart silently; this
+// makes that a build failure instead.
+{
+  const { execFileSync } = await import("node:child_process");
+  try {
+    execFileSync("python3", ["scripts/render_review.py", "--check"], { cwd: ROOT, stdio: "pipe" });
+    say("the audit review table matches data/discrepancies.json");
+  } catch (err) {
+    fail("review:drifted", (err.stdout || err.stderr || "").toString().trim() || "render_review.py --check failed");
+  }
+}
+
+/* 14 — nothing may publish a purchase-volume or badge figure ----------------- */
+// F13: Amazon displays "20K+ bought in past month" and an Amazon's Choice badge.
+// Neither is ours to restate, and the price/rating gate never looked for them.
+// A purchase-volume figure is banned on every page: a number is a number.
+for (const p of pages) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
+  if (/\b\d+(\.\d+)?K?\+?\s*bought in past month/i.test(h)) fail("claims:bought-in-past-month", `${p} publishes a purchase-volume figure`);
+}
+// A merchandising badge is banned only where a shopper reads it as a
+// recommendation: the shop, the category pages and the guides. The record pages
+// (review, sources, summary, standards, audit, measurement) have to be able to
+// say truthfully what a listing showed, including a badge they are not adopting.
+const SHOPPER_PAGES = pages.filter((p) =>
+  /^(index|shop|guides|faq|wallpaper|paper-towels|cookware|air-fryers|multi-function-appliances|air-fryer-capacity|air-fryer-cleanup)\.html$/.test(p) ||
+  p.startsWith("category/")
+);
+for (const p of SHOPPER_PAGES) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
+  if (/Amazon(?:'|&#x27;|&#39;|\u2019|&#8217;)s Choice/i.test(h)) fail("claims:amazon-badge", `${p} publishes an Amazon badge`);
+}
+
 /* 12 — no page may claim no commission rate is readable anywhere ------------- */
 // S13 is a public category table; "no rate published" is true of per-product rates
 // only. Keep that distinction from regressing.
@@ -250,7 +420,7 @@ for (const p of pages) {
   if (/rate card behind sign-in; no rate published/i.test(h)) fail("claims:rate-unreadable", `${p} says no rate can be read; Table 1 (S13) is public`);
 }
 
-/* 13 — one five-event vocabulary across data, collector, client and desk ----- */
+/* 16 — one five-event vocabulary across data, collector, client and desk ----- */
 // Added by arena/81de0221-diyhome2. data/products.json once documented a
 // different five events (product_view, outbound_click, guide_complete,
 // subscribe) than the ones actually shipped — and "subscribe" named a
@@ -278,7 +448,9 @@ const deskMatch = deskSrc.match(/const events\s*=\s*\{([^}]*)\}/);
 const deskEvents = new Set(
   [...(deskMatch ? deskMatch[1] : "").matchAll(/([a-z_]+)\s*:/g)].map((m) => m[1])
 );
-const documented = (products.analytics_events?.events ?? []).map((e) => e.name);
+// Accept either the shipped array shape or an object wrapping an events array.
+const aeNode = products.analytics_events;
+const documented = (Array.isArray(aeNode) ? aeNode : (aeNode?.events ?? [])).map((e) => e.name);
 const documentedSet = new Set(documented);
 if (documented.length !== 5)
   fail("events:count", `data/products.json documents ${documented.length} events, expected 5`);
@@ -298,7 +470,7 @@ if (!sameSet(deskEvents, serveEvents))
     "events:desk-vs-collector",
     `measurement/desk.js displays [${[...deskEvents]}] ≠ scripts/serve.py EVENTS [${[...serveEvents]}]`
   );
-for (const e of products.analytics_events?.events ?? []) {
+for (const e of Array.isArray(aeNode) ? aeNode : (aeNode?.events ?? [])) {
   if (!e.fires || !e.why || !Array.isArray(e.fields))
     fail("events:incomplete", `${e.name} is missing fires/why/fields`);
   if (e.fields.join(",") !== "page,event")

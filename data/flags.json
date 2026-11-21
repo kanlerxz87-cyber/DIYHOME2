@@ -69,14 +69,16 @@
     },
     {
       "id": "F06",
-      "title": "Three of four suggested guide titles are held back; one is published as a generic checklist",
+      "title": "All four suggested titles are published as method checklists, but no verified appliance listing exists to attach",
       "area": "Editorial · topic selection",
       "severity": "low",
-      "detail": "The suggested hypotheses concern basket and oven-style air fryers, air fryer capacity, cleanup trade-offs and multi-function kitchen appliances. No air fryer or appliance listing is in the supplied catalogue, so writing product-specific guides would require inventing specifications. The first title is published as the air fryer guide, which is a method checklist with no product specifications and no link to any submitted item. The other three are shown on the guides index under 'Working titles — not yet publishable' with the reason for each. None is a claim about popularity, search volume or product superiority.",
-      "action": "Close by supplying verified air fryer or appliance listings, at which point the three held-back titles become publishable with real specifications behind them.",
+      "detail": "The suggested hypotheses concern basket and oven-style air fryers, air fryer capacity, cleanup trade-offs and multi-function kitchen appliances. No air fryer or appliance listing is in the supplied catalogue, so writing product-specific guides would require inventing specifications. The first title is published as the air fryer guide. Updated 2026-11-21: the remaining three are now published as well, as specification-free method checklists (air-fryer-capacity.html, air-fryer-cleanup.html and multi-function-appliances.html). Each states on the page that it is a method and not a test, quotes no specification, price or star rating, recommends no model and carries no buying link. The guides index keeps the four working titles in a table so the record of what was supplied stays visible. None is a claim about popularity, search volume or product superiority.",
+      "action": "Still open in one respect: with no verified air fryer or multi-function appliance listing, none of these pages can carry researched specifications or a sponsored link. Close by supplying verified listings, at which point the checklists become the place those specifications go.",
       "sources": [
-        "S06"
-      ]
+        "S06",
+        "S02"
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F07",
@@ -106,11 +108,12 @@
       "title": "Publication cadence is set but the next issue is not written",
       "area": "Editorial · cadence",
       "severity": "low",
-      "detail": "This build establishes a monthly cadence and ships a feed, a sitemap and a publishing checklist. The second issue does not exist yet. Nothing on the site claims a publishing frequency that has been sustained.",
+      "detail": "This build establishes a cadence and ships a feed, a sitemap and a publishing checklist. The second issue did not exist when this flag was written. Nothing on the site claims a publishing frequency that has been sustained. Updated 2026-11-21: issue 02 has now shipped with three method checklists, and standards.html carries a publication log of what shipped and when. Two consecutive issues on schedule still have not been demonstrated, so the flag stays open.",
       "action": "Close after two consecutive issues ship on schedule. Topic selection should be driven by measured queries once an analytics endpoint is configured, which it currently is not.",
       "sources": [
         "S02"
-      ]
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F10",
@@ -146,6 +149,65 @@
         "S07",
         "S08",
         "S09"
+      ]
+    },
+    {
+      "id": "F13",
+      "title": "Amazon shows a monthly purchase-volume badge on all three listings; the site has no rule for product-behaviour data",
+      "area": "Data governance · listing figures",
+      "severity": "high",
+      "detail": "Read live on 2026-11-21: each of the three observed listings displays a monthly purchase-volume badge next to a star rating, and two also display a merchandising badge. The site's existing gates only rejected price-like strings and star ratings, so a future edit could have copied a purchases figure with no check firing. A purchases figure is Amazon behaviour data, not an editorial claim, and this site has no right to restate it: Participation Requirements §2(t) covers customer reviews and star ratings, and the IP License governs Program Content. Nothing of the kind is published. The exact strings and the date they were read are recorded in data/reviews.json under withheld_figures, so the observation is preserved without being rendered.",
+      "action": "Closed for the figures themselves: scripts/verify.mjs now fails if any page renders a purchase-volume phrase or a merchandising badge. The written rule still has to be added to the editorial standards page, which belongs to another session's scope.",
+      "sources": [
+        "S02",
+        "S09"
+      ]
+    },
+    {
+      "id": "F14",
+      "title": "The merchandising badge in the product record has no source or date",
+      "area": "Product data · data/products.json",
+      "severity": "low",
+      "detail": "data/products.json records a merchandising badge for B08FKW9JRM with no source field and no observation date. The badge is displayed on the listing today, but it is dynamic Amazon content: it can disappear, and the record would still claim it. Separately, the four ORDORA colours and eight heights that the same file lists were checked again on 2026-11-21 and ARE displayed by the listing as a colour selector and a size selector (13.78 in to 23.62 in), so those values are sound. Only the badge record is unsourced.",
+      "action": "Close by adding a source and an observation date to the badge record, or by deleting it. The variant lists need no change: they match the listing's own selectors as read on 2026-11-21.",
+      "sources": [
+        "S07",
+        "S09"
+      ]
+    },
+    {
+      "id": "F15",
+      "title": "The published event vocabulary is not the one the code emits, and the field note loads no counter",
+      "area": "Measurement · instrumentation",
+      "severity": "low",
+      "detail": "The site publishes five events as page_view, guide_view, listing_reference_click, affiliate_click and feed_click (README and the executive summary). assets/metrics.js emits exactly those five. data/products.json instead lists page_view, product_view, outbound_click, guide_complete and subscribe, which no script emits, so the file that a shop page is built from documents a vocabulary nothing implements. Separately, measurement/counter.js covers the Campaign desk with its own consent gate, but field-notes/counter-fit/index.html loads no counter at all, so the field note could never record a page_view even if a collector were deployed.",
+      "action": "Closed here for the vocabulary: data/products.json now lists the same five events the script emits. The field note still loads no counter; close that by adding assets/metrics.js and a data-page value to it, or by stating on the page that the worksheet is deliberately unmeasured.",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "id": "F16",
+      "title": "Two overlapping source registers exist in data/, and only one of them is ever read",
+      "area": "Site records · citation data",
+      "severity": "low",
+      "detail": "data/sources.json and data/citation-register.json hold the same 12 IDs pointing at the same 12 URLs, with different field names. Only citation-register.json is read by the builder, so the verbatim quotes recorded in sources.json (the extracts behind the ASIN, FTC and Amazon claims) are never published. Two registers of the same evidence can drift apart, and nothing would catch it.",
+      "action": "Close by folding the quote fields into citation-register.json and retiring data/sources.json, or by adding a gate that fails when the two disagree on any URL.",
+      "sources": [
+        "S01",
+        "S02",
+        "S06"
+      ]
+    },
+    {
+      "id": "F17",
+      "title": "The audit surface cites the wrong document for ASIN identity",
+      "area": "Spec & policy audit · source integrity",
+      "severity": "medium",
+      "detail": "In audit/data/flagged-discrepancies.json, FLG-02 (product-intent confirmation pending) names https://sell.amazon.com/blog/fba-new-selection-program as its official source, and the audit page's own S10, labelled 'ASIN Definition', points at the same post. That post is about the FBA New Selection programme; it defines ASIN only in passing. The document actually relied on for the 10-character definition is S06, https://sell.amazon.com/blog/what-is-an-asin, which was read again on 2026-11-21 and states 'unique 10-character alphanumeric code'. The finding is right; the citation attached to it is not.",
+      "action": "Close by repointing FLG-02 and audit S10 at S06 and leaving every other audit field as it is. The audit owner's task is done, so this is logged rather than edited here.",
+      "sources": [
+        "S06"
       ]
     }
   ],
@@ -203,7 +265,7 @@
       "date": "2026-11-21",
       "session": "bd0ba155",
       "item": "Tag-in-URL rule and Agent Terms in the Program Policies",
-      "result": "Read in full. Participation Requirements §2(b) and IP License §4 quoted in F11 and F12; neither was recorded before.",
+      "result": "Read the quoted sections (not the whole document). Participation Requirements §2(b) and IP License §4 quoted in F11 and F12; neither was recorded before.",
       "sources": [
         "S02"
       ]
@@ -215,6 +277,208 @@
       "result": "Not re-verified. The three listing pages are very long and volatile; the details tables were not located in the chunks read. Bullet 1 of B08FKW9JRM was re-read and enumerates five items (smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape), consistent with FLG-05. Treat all other audit spec rows as a 2026-11-20 snapshot.",
       "sources": [
         "S07"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Spec & policy audit page reachable from the navigation",
+      "result": "Corrected. The audit page's Site records dropdown was the only one missing the Citation register entry; it now lists the same seven links as every other page. Content unchanged.",
+      "sources": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Art3d listing (B08FKW9JRM) re-read against the published record",
+      "result": "Confirmed. Title, brand Art3d, sold by Art3d®, ships from Amazon, browse node 164701011 Wallpaper Tools, and the five kit contents (large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape) match the published bullets. Price, star rating, review count and bought-in-past-month figures were visible and are deliberately not published (S02).",
+      "sources": [
+        "S07",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Paper towel holder listing (B0BSKQW2T2) re-read against the published record",
+      "result": "Confirmed. Brand niffgaff, sold by YH Urban, Material Aluminum, Color Black, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56\"L x 12.2\"W, Size 12.2 inches, browse node 3744201. No price or rating published (S02).",
+      "sources": [
+        "S08",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "ORDORA organizer listing (B08DY9HRWD) re-read against the published record",
+      "result": "Confirmed. Title records 16.6\", 8 tiers and lightweight cookware up to 11\"; brand ORDORA, sold by ORDORA Official, eight size options from 13.78\"H to 23.62\"H, four colours, browse node 289824 Pot Racks. No price or rating published (S02).",
+      "sources": [
+        "S09",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Product rows render only verified record values",
+      "result": "Confirmed. The shop index and three category pages are generated from data/products.json; a field the record does not carry renders as an explicit unverified marker rather than a guess. No price, rating, review count, availability or forecast appears in any generated page (verify.mjs gate).",
+      "sources": [
+        "S02",
+        "S07",
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "All four submitted links, re-fetched independently",
+      "result": "Confirmed. link.amazon/B0hmGG4m2, /B03QDuGdo and /B0hpD2JGQ resolved to /dp/B08FKW9JRM, /dp/B0BSKQW2T2 and /dp/B08DY9HRWD, with the listing titles recorded on this site; the second address was supplied twice. Each resolved URL carried Amazon referral parameters (lv, crid, sprefix, sr, btn_ref, channelId, plpRedirect) and no tag= parameter, so F02 stands. Intent, enrollment and attribution remain unverified and are not asserted.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "FTC endorsement guidance, read for the three new checklists",
+      "result": "Read in full. It states that endorsements must be honest and not misleading, that a connection between endorser and marketer should be disclosed clearly and conspicuously, and that an ad using exceptional results must make the generally expected results clear. Only that is paraphrased in the multi-function appliance checklist; no other claim on this page comes from it.",
+      "sources": [
+        "S04"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "S01 Operating Agreement §5 disclosure wording",
+      "result": "Confirmed. Page dated 'Updated: October 15, 2025'. §5 requires the sentence the site prints verbatim, clearly and prominently, on the Site.",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "S02 Program Policies: tag rule, rating rule, shortener rule, Redirecting Link, Agent Terms",
+      "result": "Confirmed on the page dated April 14, 2026. §2(b) 'you must include your Associates ID or \"tag\" ... as a parameter in the URL of each link you place on your Site'; §2(t) customer reviews and star ratings only via Creators API or PA API; §2(w) no link shortening that obscures an Amazon destination; Commission Income Statement §2(e) disqualifies a Redirecting Link; IP License §4 requires an Agent to identify as Agent/[agent name].",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "Table 1 commission rates as printed on the site",
+      "result": "Confirmed. Kitchen 4.50%; Home, Home Improvement, Tools 3.00%; All Other Categories 4.00%. The table is category-level and does not attribute a rate to any of the three observed SKUs.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "Sign-in wall on the account rate card",
+      "result": "Confirmed restricted. /help/operating/schedule redirects to an Amazon sign-in whose return address is the account's custom rate card, so it establishes nothing and no per-account rate is published.",
+      "sources": [
+        "S03"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "ASIN definition (10 characters)",
+      "result": "Confirmed: 'unique 10-character alphanumeric code', 'typically starts with B0'. The three submitted short codes are 9 characters, so none is an ASIN.",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "FTC disclosure placement and 16 CFR Part 255",
+      "result": "Confirmed. The FTC Q&A ties link-level and site-level disclosure to what the audience can see; eCFR Part 255 shows 'up to date as of 11/19/2026', source 88 FR 48102.",
+      "sources": [
+        "S04",
+        "S05"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "Amazon help on link-level disclosure and on application review",
+      "result": "Confirmed. The disclosure help page asks for a clear and conspicuous disclosure near the link; the review page asks for at least three qualified sales in 180 days, roughly ten posts and content generally within 60 days.",
+      "sources": [
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "PA-API 5 deprecation and Creators API",
+      "result": "Confirmed. PA-API 5 is deprecated, returns 403 AccessDeniedException, and the Creators API is named the successor. This is why no price, availability or rating is displayed without API enrolment.",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "B08FKW9JRM listing, field by field",
+      "result": "Confirmed: Art3d, sold by Art3d(R), 7.72 x 4.33 x 0.79 in, 3.52 oz, model A17999, part A17999g, Date First Available August 11, 2020, Amazon merchandising badge shown, California Prop 65 shown, Item Package Quantity 3 against five bullet items, and a monthly purchase-volume badge in the tens of thousands shown. The purchases figure is not published (F13).",
+      "sources": [
+        "S07"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "B0BSKQW2T2 listing, field by field",
+      "result": "Confirmed: niffgaff, sold by YH Urban, aluminium, matte black, 2.56in L x 12.2in W, 5 oz, model TN2200-BLK-NA 01, manufacturer part TN2200; no UPC and no Date First Available displayed, so both stay blank. a monthly purchase-volume badge in the thousands, Amazon merchandising badge and 4.2 stars are displayed and are not published.",
+      "sources": [
+        "S08"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "B08DY9HRWD listing, field by field",
+      "result": "Confirmed: ORDORA, sold by ORDORA Official, iron, UPC 655100721821, 9.17in D x 21.31in W x 16.61in H, 3.3 lb, 8 tiers, 10 lb per tier, cabinet needs width at least 24.31in and height at least 18.61in, California Prop 65 shown, newer-model banner for B0BYYTQMTR, title says 11in while bullet 4 says 12in. No colour or height option list was displayed, so the variant list in data/products.json is unsourced (F14).",
+      "sources": [
+        "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "Published event vocabulary against the shipped script",
+      "result": "Mismatch found. assets/metrics.js emits page_view, guide_view, listing_reference_click / affiliate_click and feed_click; data/products.json lists a different five. The field note and Campaign desk load no counter. Recorded as F15; nothing is collected today because no collector is deployed.",
+      "sources": [
+        "S01"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "ORDORA colour and height variants",
+      "result": "Confirmed. The listing shows a colour selector (Black, Bronze, Silver, White) and a size selector with eight heights from 13.78 in to 23.62 in, matching data/products.json. An earlier note that no option list was displayed was wrong and has been corrected.",
+      "sources": [
+        "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "c3fa8e97",
+      "item": "Purchase-volume badge on the third listing",
+      "result": "Confirmed present on all three observed listings on 2026-11-21, not two as first recorded. Recorded as F13 and withheld from every published page.",
+      "sources": [
+        "S07",
+        "S08",
+        "S09"
       ]
     }
   ]
