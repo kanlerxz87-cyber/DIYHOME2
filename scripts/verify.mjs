@@ -94,18 +94,34 @@ for (const f of ["data/products.json", "data/links.json", "data/flags.json"]) {
 say("every source id referenced in data files resolves to a register entry");
 
 /* 4 — nothing priced or rated is rendered --------------------------------- */
-const pages = fs.readdirSync(ROOT).filter((f) => f.endsWith(".html"));
-const NESTED = ["field-notes/counter-fit/index.html", "measurement/index.html"];
-for (const p of [...pages, ...NESTED.filter((n) => fs.existsSync(path.join(ROOT, n)))]) {
+/* GitHub Pages serves the whole working tree, so every HTML document on disk is
+   a published page - reachable by URL whether or not it ever reached the
+   sitemap. These checks therefore enumerate the tree instead of a
+   hand-maintained list. The previous list named two nested pages and quietly
+   omitted `audit/index.html`; a fourth nested page added later would have been
+   omitted too, and nothing would have said so. */
+const IGNORE_DIRS = new Set([".git", "node_modules", ".cache", "__pycache__", ".venv"]);
+function walk(dir, out = []) {
+  for (const ent of fs.readdirSync(dir, { withFileTypes: true })) {
+    if (ent.isDirectory()) {
+      if (!IGNORE_DIRS.has(ent.name)) walk(path.join(dir, ent.name), out);
+    } else if (ent.name.endsWith(".html")) {
+      out.push(path.relative(ROOT, path.join(dir, ent.name)).split(path.sep).join("/"));
+    }
+  }
+  return out;
+}
+const PUBLISHED = walk(ROOT).sort();
+for (const p of PUBLISHED) {
   const html = fs.readFileSync(path.join(ROOT, p), "utf8");
   if (/\$\s?\d+\.\d{2}/.test(html)) fail("policy:price", `${p} renders a price-like value`);
   if (/out of 5 stars|\d\.\d\s*★/i.test(html)) fail("policy:rating", `${p} renders a star rating`);
 }
-say(`${pages.length + NESTED.filter((n) => fs.existsSync(path.join(ROOT, n))).length} pages scanned for prices and ratings`);
+say(`${PUBLISHED.length} published pages scanned for prices and ratings`);
 
 /* 5 — Amazon product links ------------------------------------------------ */
 const SHORTENERS = ["amzn.to", "bit.ly", "geni.us", "link.amazon"];
-for (const p of pages) {
+for (const p of PUBLISHED) {
   const html = fs.readFileSync(path.join(ROOT, p), "utf8");
   for (const m of html.matchAll(/<a\b[^>]*href="(https?:\/\/[^"]*amazon[^"]*)"[^>]*>/gi)) {
     const tag = m[0];
@@ -123,7 +139,7 @@ say("Amazon product links: all sponsored, no query strings, no shorteners");
 
 /* 6 — disclosure placement ------------------------------------------------ */
 const NOTICE = "As an Amazon Associate I earn from qualifying purchases.";
-for (const p of pages) {
+for (const p of PUBLISHED) {
   const html = fs.readFileSync(path.join(ROOT, p), "utf8");
   const first = html.indexOf(NOTICE);
   if (first === -1) {
@@ -158,11 +174,16 @@ function locs(file) {
   }
   return [...fs.readFileSync(p, "utf8").matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
 }
+const SITE = "https://kanlerxz87-cyber.github.io/DIYHOME2/";
 function toPath(url) {
-  const base = "https://kanlerxz87-cyber.github.io/DIYHOME2/";
-  if (!url.startsWith(base)) return null;
-  const rest = url.slice(base.length) || "index.html";
+  if (!url.startsWith(SITE)) return null;
+  const rest = url.slice(SITE.length) || "index.html";
   return rest.endsWith("/") ? rest + "index.html" : rest;
+}
+/* Inverse of toPath: the canonical public URL of a file on disk. */
+function toUrl(rel) {
+  if (rel === "index.html") return SITE;
+  return rel.endsWith("/index.html") ? SITE + rel.slice(0, -"index.html".length) : SITE + rel;
 }
 const sm = locs("sitemap.xml");
 for (const u of sm) {
@@ -194,7 +215,22 @@ for (const u of sm) {
   if (FEED_EXEMPT.some((x) => u.includes(x))) continue;
   if (!feedLinks.includes(u)) fail("feed:coverage-gap", `${u} is published in the sitemap but missing from the feed`);
 }
-say(`sitemap ${sm.length} URLs and feed ${feedLinks.length} items resolve, agree, and the feed covers every published page`);
+/* The direction the loop above structurally cannot cover. Both coverage checks
+   iterate `sm`, so a page absent from the sitemap AND the feed satisfies both
+   of them: there is nothing in `sm` to fail on. That is precisely how
+   `measurement/` - linked from the nav and footer of all eleven root pages -
+   stayed invisible to crawlers and subscribers while this gate reported full
+   coverage. Enumerate the published tree instead. If a page is ever published
+   deliberately unlisted (a 404, a private preview), exempt it here by name
+   rather than by pattern, so the exclusion is a decision on the record. */
+const SITEMAP_EXEMPT = [];
+for (const rel of PUBLISHED) {
+  if (SITEMAP_EXEMPT.includes(rel)) continue;
+  const url = toUrl(rel);
+  if (!sm.includes(url)) fail("sitemap:unlisted-page", `${rel} is published but missing from sitemap.xml`);
+  if (!feedLinks.includes(url)) fail("feed:unlisted-page", `${rel} is published but missing from feed.xml`);
+}
+say(`sitemap ${sm.length} URLs, feed ${feedLinks.length} items and ${PUBLISHED.length} published pages cross-checked in both directions`);
 
 /* 9 — intended and observed stay separated ------------------------------- */
 for (const l of links.links) {

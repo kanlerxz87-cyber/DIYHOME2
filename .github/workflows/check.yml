@@ -28,6 +28,32 @@ jobs:
       - name: Supplementary verification gate
         run: node scripts/verify.mjs
 
+      # Three nested surfaces ship their own test suites, none of which the two
+      # checks above reach: scripts/check.py globs non-recursively (root pages
+      # only) and scripts/verify.mjs inspects markup, not behaviour. Until now
+      # all three passed locally and ran nowhere in CI, so a regression on the
+      # audit page, the counter-fit worksheet or the campaign desk collector
+      # would have merged green. Added by arena/c776c14c-diyhome2.
+      - name: Run the nested test suites
+        run: |
+          set -eo pipefail
+          echo "::group::audit/check_audit.mjs"
+          node audit/check_audit.mjs
+          echo "::endgroup::"
+          echo "::group::field-notes/counter-fit/test.cjs"
+          node field-notes/counter-fit/test.cjs
+          echo "counter-fit worksheet arithmetic and reset checks passed."
+          echo "::endgroup::"
+          echo "::group::measurement/test_desk.py"
+          # `-m unittest`, not `python3 test_desk.py`: the file has no
+          # `if __name__ == "__main__"` guard, so running it as a script imports
+          # the test class and exits 0 having executed zero tests. The grep
+          # guard below turns that silent pass into a failure.
+          (cd measurement && python3 -m unittest test_desk -v) 2>&1 | tee /tmp/desk.log
+          grep -qE '^Ran [1-9][0-9]* tests' /tmp/desk.log || { echo "::error::measurement suite ran no tests"; exit 1; }
+          grep -q '^OK' /tmp/desk.log || { echo "::error::measurement suite did not report OK"; exit 1; }
+          echo "::endgroup::"
+
       - name: Confirm the generated site is reproducible
         run: |
           if [ -n "$(git status --porcelain)" ]; then
@@ -44,9 +70,13 @@ jobs:
             echo ""
             echo "| Metric | Value |"
             echo "| --- | --- |"
-            echo "| Published pages | $(ls *.html | wc -l) |"
-            echo "| Sitemap URLs | $(grep -c '<loc>' sitemap.xml) |"
-            echo "| Feed items | $(grep -c '<item>' feed.xml) |"
+            # `grep -o | wc -l`, not `grep -c`: both XML files are written by
+            # ElementTree as a single line, so `grep -c` counted one matching
+            # line and the summary reported "1" for a 14-URL sitemap on every
+            # run. Fixed by arena/c776c14c-diyhome2.
+            echo "| Published pages | $(find . -name '*.html' -not -path './.git/*' | wc -l) |"
+            echo "| Sitemap URLs | $(grep -o '<loc>' sitemap.xml | wc -l) |"
+            echo "| Feed items | $(grep -o '<item>' feed.xml | wc -l) |"
             echo "| Citation sources | $(node -e "console.log(require('./data/citation-register.json').sources.length)") |"
             echo "| Open flags | $(node -e "console.log(require('./data/flags.json').flags.length)") |"
             echo "| Ledger rows | $(node -e "console.log(require('./data/campaign-ledger.json').rows.length)") |"
