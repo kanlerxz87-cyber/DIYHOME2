@@ -229,7 +229,20 @@ Live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) re-fetched after d
 
 Live verification note: outbound network to affiliate-program.amazon.com, sell.amazon.com, www.amazon.com, link.amazon and ftc.gov returns TLS failure (HTTP 000) from this build window, so no new live Amazon/FTC fetch was possible here. All product and policy citations therefore rest on the data already recorded against official sources in data/citation-register.json (S01–S12, accessed 2026-11-20 by prior sessions), which this session re-validated for scheme, host, claim and access state via scripts/verify.mjs. Nothing was inferred or filled in; unverified fields remain blank and flagged.
 
-The executive summary (summary.html) already outlines launch scope, findings and next decisions, and the Flagged for Review page holds the entry table with per-row Amazon source links. No new product facts, tracking, revenue or Search Console data were asserted. PR creation/merge and post-merge Pages verification remain for this session.
+The executive summary (summary.html) outlines launch scope, findings and next decisions, and the Flagged for Review page holds the entry table with per-row Amazon source links. No new product facts, tracking, revenue or Search Console data were asserted. PR #24 merged into main and Pages verified live (see release receipt below).
+
+### Release receipt — PR #24 (2026-11-21, `arena/bd698cf8-diyhome2`)
+
+[PR #24](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/24) merged into `main` at **23:23:49 UTC**, merge commit `533c767`.
+
+| Check | Result |
+|---|---|
+| PR checks (Publication checks on PR branch) | [44961592040](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961592040) — success |
+| Publication checks on `main` | [44961594053](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961594053) — success |
+| Pages build and deployment | [44961593819](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961593819) — success |
+| Pages API latest build | `status: built`, build 1391186578 |
+
+Live site: https://kanlerxz87-cyber.github.io/DIYHOME2/. Disclosure above the fold and repeated in footer; all Amazon product links `rel="sponsored"`; no prices or star ratings; sitemap/feed agree (13 URLs / 13 items); campaign ledger empty by design. All unverified items remain on the Flagged for Review page and block nothing.
 
 ### Release receipt — PR #22 (2026-11-21, `arena/175d82e7-diyhome2`)
 
