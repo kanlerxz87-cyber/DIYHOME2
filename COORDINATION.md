@@ -222,3 +222,55 @@ Request logged for the record: `audit/index.html` is the only page whose nav dro
 `Citation register` (7 items on every generated page, 6 there). The fix below is one nav line
 and leaves the audit owner's content untouched; the owner's task is `done`, so no live claim is
 being edited.
+
+### Shop surface — delivered (`arena/94688dd1-diyhome2`, 2026-11-21)
+
+**What changed.** The reviewer asked for a shop, not an audit, plus an executive summary. Built from the
+existing verified records; no product fact was re-invented.
+
+| File | Change |
+|---|---|
+| `scripts/build.py` | One shared `page_shell()` for every page (nav, disclosure, footer can no longer drift); new `shop.html` and `category/*.html` generated from `data/products.json`; `Shop` added to the navigation group; breadth-first shell write so nested nav targets resolve; RSS and sitemap extended to 17 URLs / 17 items. |
+| `scripts/summary.py` | New. The executive-summary page, moved out of the builder for legibility. |
+| `EXECUTIVE_SUMMARY.md` | New. Standalone plain-language summary for manual review. |
+| `index.html` (generated) | Front page now ends with a shop block; products lead, records follow. |
+| `audit/index.html` | Nav parity: the dropdown gained the `Citation register` entry every other page has. Content untouched. |
+| `field-notes/counter-fit/`, `measurement/` | Breadcrumb added under the disclosure so the shop is reachable from nested pages. Disclosure order unchanged. |
+| `assets/style.css` | Breadcrumb and `unverified` pill styling only. |
+| `.github/workflows/check.yml` | One step-summary line for category count. No gate logic changed. |
+
+**Verification performed this pass.**
+- Fetched all three amazon.com listings directly and compared against `data/products.json`:
+  `B08FKW9JRM` — Art3d, sold by Art3d®, ships from Amazon, node 164701011, and the five kit contents
+  (large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape) match the
+  published bullet list exactly. `B0BSKQW2T2` — niffgaff, YH Urban, Aluminum, Black, Under Cabinet Mount,
+  5 ounces, 2.56"L x 12.2"W, Size 12.2 inches, node 3744201 — all match. `B08DY9HRWD` — ORDORA,
+  ORDORA Official, eight size options, four colours, node 289824 — all match.
+- Prices, star ratings, review counts and "bought in past month" figures were present on those pages and
+  are **not** published, per S02. The `verify.mjs` price/rating scan confirms none reached the HTML.
+- Local gates: `python3 scripts/build.py`, `python3 scripts/check.py`, `node scripts/verify.mjs` all pass;
+  `git status --porcelain` clean after a rebuild, so output is reproducible.
+- Independent link crawl of all 18 pages (local server, not the file system) found no dead local target
+  and no broken in-page fragment.
+- `scripts/verify.mjs` caught two real defects before commit: the new pages were initially missing from
+  the RSS feed (four `feed:coverage-gap` failures), and an early build wrote the shell before `shop.html`
+  existed. Both fixed; the gates are why.
+
+**Irregularities found and flagged (all non-blocking, all on the live Flagged for Review page).**
+1. The three supplied `link.amazon` codes are 9 characters; an ASIN is defined as 10
+   ([sell.amazon.com ASIN guide](https://sell.amazon.com/blog/what-is-an-asin)). Treated as redirector
+   identifiers, never written into an intended-ASIN field.
+2. `https://link.amazon/B03QDuGdo` was supplied twice (entries 2 and 3). The duplicate is preserved.
+3. No `tag=` parameter was observed on any resolved destination, so `shopnow047c-20` attribution is
+   unconfirmed. Not claimed either way.
+4. `link.amazon` / `amazon.com` redirector hosts are outside this environment's egress range; the short
+   links were **not** re-fetched this session. Only the listing pages were re-verified. The 2026-11-20
+   redirect observation stands as that session's record and is not reasserted as today's fact.
+5. Assumption, stated openly: the shop maps each product to the existing root guide that covers its
+   category (`wallpaper`, `paper-towels`, `cookware`). No per-product page exists, so no per-product claim
+   is made. Flagged here rather than inventing a guide link.
+
+**Not changed, deliberately.** `data/*.json`, `product-register.json`, `campaign-ledger.csv`,
+`review.html` content fields, `sources.html` tables, `standards.html`, and all measurement files keep
+their existing values and ownership. The ledger remains empty; no metric, forecast or revenue figure was
+added anywhere.
