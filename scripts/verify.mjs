@@ -260,6 +260,33 @@ for (const l of links.links) {
 }
 say(`${products.products.length} product records and ${links.links.length} observations cross-checked`);
 
+/* 11 — every open flag and re-check is actually published on review.html ---- */
+// Added by arena/bd0ba155-diyhome2. data/flags.json used to be validated but never
+// rendered, so "Flagged for Review" silently omitted ten flags. Never again.
+const reviewHtml = fs.readFileSync(path.join(ROOT, "review.html"), "utf8");
+for (const f of flags.flags) {
+  if (!reviewHtml.includes(`id="flag-${f.id}"`)) fail("flags:unpublished", `${f.id} is in data/flags.json but not on review.html`);
+  if (!f.sources?.length) fail("flags:no-source", `${f.id} has no source`);
+}
+for (const r of flags.rechecks ?? []) {
+  if (!r.sources?.length) fail("rechecks:no-source", `${r.item} has no source`);
+  if (!reviewHtml.includes(r.item.replace(/&/g, "&amp;"))) fail("rechecks:unpublished", `${r.item} is not on review.html`);
+}
+say(`${flags.flags.length} flags and ${(flags.rechecks ?? []).length} re-checks are published on review.html with sources`);
+
+/* 12 — no page may claim no commission rate is readable anywhere ------------- */
+// S13 is a public category table; "no rate published" is true of per-product rates
+// only. Keep that distinction from regressing.
+/* `PUBLISHED`, not the old root-only `pages` list: this check landed from
+   arena/bd0ba155-diyhome2 while arena/c776c14c-diyhome2 was removing that list,
+   and the two merged textually into a ReferenceError. Pointing it at the whole
+   tree is both the fix and the stricter behaviour — a nested page could make the
+   same claim. */
+for (const p of PUBLISHED) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
+  if (/rate card behind sign-in; no rate published/i.test(h)) fail("claims:rate-unreadable", `${p} says no rate can be read; Table 1 (S13) is public`);
+}
+
 /* report ------------------------------------------------------------------ */
 const bar = "─".repeat(70);
 console.log(`\n${bar}\nSupplementary verification gate\n${bar}`);
