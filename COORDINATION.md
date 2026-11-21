@@ -440,6 +440,7 @@ executive summary's "Checked against the source" table and in `EXECUTIVE_SUMMARY
 not read as if the compliance picture were closed. Severity, wording and the closing action are main's,
 unchanged.
 
+
 ### Live-page review corrections (`arena/94688dd1-diyhome2`, 2026-11-21, post-merge)
 
 Fetching the deployed pages, rather than only the local build, found four real defects. All are fixed on
@@ -468,89 +469,118 @@ Gates after the corrections: `python3 scripts/build.py`, `python3 scripts/check.
 `node scripts/verify.mjs` (GATE PASSED, including the new check 13), `node audit/check_audit.mjs`, an
 18-page internal link and fragment crawl, and reproducibility (`git status` clean after a rebuild).
 
+
+### Release receipts — PR #25 and PR #29 (`arena/94688dd1-diyhome2`, 2026-11-21)
+
+| PR | Merged | Merge commit | PR check | Post-merge checks | Pages |
+|---|---|---|---|---|---|
+| [#25](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/25) | `23:32Z` | see GitHub | [verify 44961922438](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961922438) pass | [44961923442](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961923442) success | [44961923154](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961923154) success |
+| [#29](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/29) | `23:38Z` | `b930e5a` | [verify 44962097218](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962097218) pass | [44962147041](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962147041) success | [44962146373](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962146373) success |
+
+Pages API reported `status: built` after both merges. Live pages fetched independently after the second
+deploy:
+
+- [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) — products first, then the shop block; shop
+  categories reachable from the front page.
+- [shop.html](https://kanlerxz87-cyber.github.io/DIYHOME2/shop.html) — one table, three rows, every cell
+  from the verified record, untagged-link disclosure stated in the page's own introduction.
+- [category/paper-towel-holders.html](https://kanlerxz87-cyber.github.io/DIYHOME2/category/paper-towel-holders.html)
+  — Material and Dimensions columns populated, browse node printed as text.
+- [summary.html](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) — five sourced tables.
+- [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — 17 items including the shop and all
+  three category pages.
+
+**Caching note for future sessions:** `github.io` served a stale `index.html` on the first fetch after
+deploy and returned the new content on a cache-busted fetch. A missing section on the first fetch is not
+evidence that the deploy failed — re-fetch with a query string before concluding anything.
+
+**Still unverified, unchanged by this session:** intended ASINs, Special Link compliance, `shopnow047c-20`
+attribution, Search Console ownership, a deployed analytics endpoint. The campaign ledger is still empty.
+No price, rating, review count, click, order, revenue or forecast was added anywhere.
+### Session claim — `arena/a0e07843-diyhome2` (2026-11-21)
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Question-shaped guide pass 2: publish the three remaining working titles from the brief, spec-free, through the builder | done | `arena/a0e07843-diyhome2` | `scripts/build.py`, `data/flags.json` (F06/F09 + two re-check rows), regenerated root HTML, `sitemap.xml`, `feed.xml`, `COORDINATION.md` |
+
+Claimed after reading the board on `origin/main` (`fb5f639`, PR #19). Scope was the open editorial gap the site itself recorded as **F06**: three of the four working titles supplied in the brief were unpublished.
+
+**Shipped.** Three question-shaped buyer checklists — [`air-fryer-capacity.html`](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-capacity.html), [`air-fryer-cleanup.html`](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-cleanup.html), [`multi-function-appliances.html`](https://kanlerxz87-cyber.github.io/DIYHOME2/multi-function-appliances.html) — added to the builder's guide register, so the sitemap, RSS feed, guide index, front page and open-graph typing pick them up on build. Each is a checklist of questions the reader puts to the manual, the listing or the seller. None quotes a specification, price or star rating, recommends a model, or carries a buying link, because no air fryer or appliance listing has been verified for this publication. Also added: the guide index is grouped into a product-led cluster and a buyer-checklist cluster; the four working titles from the brief are kept in a table on the guide index with their published status; `standards.html` carries a publication log (issue 01 = 2026-11-20, issue 02 = 2026-11-21) with the official sources behind each issue; feed items now carry per-issue `pubDate` values instead of one fixed date.
+
+**Independent re-verification, 2026-11-21** (each short URL fetched and the resolved page title and final URL read; recorded as two rows in the shared `rechecks` log in `data/flags.json`, which renders on the Flagged for Review page):
+- [`https://link.amazon/B0hmGG4m2`](https://link.amazon/B0hmGG4m2) → [`/dp/B08FKW9JRM`](https://www.amazon.com/dp/B08FKW9JRM), "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer"
+- [`https://link.amazon/B03QDuGdo`](https://link.amazon/B03QDuGdo) → [`/dp/B0BSKQW2T2`](https://www.amazon.com/dp/B0BSKQW2T2), "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel" (supplied twice)
+- [`https://link.amazon/B0hpD2JGQ`](https://link.amazon/B0hpD2JGQ) → [`/dp/B08DY9HRWD`](https://www.amazon.com/dp/B08DY9HRWD), "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops"
+
+Same three destinations as every prior session recorded, so no register row changed. Each resolved URL carried Amazon referral parameters (`lv`, `crid`, `sprefix`, `sr`, `btn_ref=srctok-…`, `channelId=500`, `plpRedirect=mhFallback`) and **no `tag=` parameter**, so F02 stands. [FTC endorsement guidance](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking) was read in full and is the only source paraphrased in the multi-function appliance checklist. Intent, enrollment, tracking attribution and Special Link compliance remain unverified and are asserted nowhere.
+
+**Irregularities found and how they were handled.**
+1. `data/flags.json` was validated but rendered nowhere on the published site, so the page named "Flagged for Review" carried only the four-row intent table. This session built a renderer and a build-time assertion for it, then found on merging `main` that `arena/bd0ba155-diyhome2` had independently shipped a fuller version (severity pills, the `rechecks` log, and gate 11 in `scripts/verify.mjs`). **This session's duplicate renderer was deleted rather than shipped alongside it**; only the two new `rechecks` rows and the F06/F09 amendments survive here.
+2. Cadence wording disagreed between surfaces: `standards.html` said "one question-led guide every two weeks" while F09 said "a monthly cadence". Restated as a target rhythm with the shipped-issue log as the record; F09 stays open because two consecutive on-schedule issues still have not been demonstrated.
+3. The feed used a single fixed `pubDate` for every guide, so a new issue looked identical to an old one in a reader's client. Now per-issue.
+4. Re-verification detail worth keeping: resolved short links do not land on a clean `/dp/<ASIN>` URL; they carry Amazon's own referral query string and no tracking tag (consistent with F02, not a new finding).
+
+**Verification performed on the merged tree.** `python3 scripts/build.py` then `git status --porcelain` empty for generated output (reproducible); `python3 scripts/check.py` → "Local links, disclosure, Amazon reference markup and XML checks passed."; `node scripts/verify.mjs` → GATE PASSED, 20 sitemap URLs / 20 feed items, 17 root pages scanned, 12 flags and 14 re-checks published with sources; `node audit/check_audit.mjs` → "Audit checks passed"; `node field-notes/counter-fit/test.cjs` and `python3 measurement/test_desk.py` → exit 0; every URL in the sitemap and feed fetched over a local HTTP server returned 200 with the disclosure present twice; no broken in-page anchors across all root pages.
+
+**Merge reconciliation.** `main` advanced from `fb5f639` to `05db294` (PRs #20–#27) while this branch was in progress. Merged, not rebased. Conflicts: `COORDINATION.md` (both histories kept, this entry appended), `scripts/build.py` (took `main`'s builder — shop surface, category pages, `page_shell`, summary module, flag renderer — and re-applied only this session's additive guide, cluster, log and feed changes on top), `data/flags.json` (took `main`'s 12 flags and 12 re-checks, then amended F06/F09 and appended 2 re-check rows), and seven generated files (took `main`'s, then regenerated from the merged builder; generated output is never hand-merged). Nothing from any other session was discarded.
+### Release receipt — PR #31 (2026-11-21, `arena/a0e07843-diyhome2`)
+
+[PR #31](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/31) merged into `main` at **23:34:09 UTC**, merge commit `125e7ebd66969233c27315eac6b78c8f31b90338`.
+
+| Check | Result |
+|---|---|
+| Publication checks on the PR branch | [44962395473](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962395473) — success |
+| Publication checks on `main` after the merge | [44962435758](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435758) — success |
+| Pages build and deployment | [44962435290](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435290) — success |
+
+Fetched after deployment:
+- [air-fryer-cleanup.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-cleanup.html) — renders the full checklist, the disclosure above the fold, the "what this checklist is not" note and the FTC link. Sibling guides [air-fryer-capacity.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-capacity.html) and [multi-function-appliances.html](https://kanlerxz87-cyber.github.io/DIYHOME2/multi-function-appliances.html) are in the deployed sitemap.
+- [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml) — 20 URLs, including the three new checklists.
+- [standards.html](https://kanlerxz87-cyber.github.io/DIYHOME2/standards.html) — publication log live, with issue 01 (2026-11-20) and issue 02 (2026-11-21) each pointing at its official sources.
+
+`main` moved four times during this session (`fb5f639` → `05db294` → `b930e5a` → `46f7074` → `125e7eb`). Every reconciliation was a merge, never a rebase; the only recurring conflict was `COORDINATION.md`, resolved each time by keeping both histories. Generated HTML was always regenerated from the merged builder.
+
+Note on process: this receipt lands in a follow-up PR rather than a direct push to `main`, because the Arena workspace pins this session to `arena/a0e07843-diyhome2` and does not push other branches.
+
 ---
 
-## Session c3fa8e97 (2026-11-21) — line-by-line review result
+## Session c3fa8e97 (2026-11-21) — line-by-line review, delivered
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| Review of published claims, source resolution and measurement wiring | needs review | c3fa8e97 (`arena/c3fa8e97-diyhome2`) | `COORDINATION.md`, `data/flags.json` (new entries only), `data/discrepancies.json`/`data/reviews.json` (new), `audit/index.html` (data table), `field-notes/counter-fit/index.html` (measurement line only), `scripts/verify.mjs` (new checks only), `README.md`, `scripts/check.py`; regenerated root HTML |
+| Independent review record + gates for it | delivered, PR open | c3fa8e97 (`arena/c3fa8e97-diyhome2`) | `data/reviews.json`, `data/discrepancies.json` (new), `data/flags.json` (F13–F17 + re-checks), `audit/index.html` (new section 04), `audit/check_audit.mjs` (table count + text references), `scripts/verify.mjs` (checks 13–14), `data/products.json` (event list only), `README.md`, `COORDINATION.md` |
 
-**Claim history for this session, recorded honestly.** The claim pushed at 23:25 UTC is not in this
-file any more: `arena/94688dd1-diyhome2` reached `main` first and its `COORDINATION.md` content did
-not include it. Re-appending it here, with the result, is the correction.
+Claim note: the claim pushed at 23:25 UTC was lost when `arena/94688dd1` merged a `COORDINATION.md`
+that did not contain it, and the same thing happened again at 23:36. Re-appending here, each time,
+rather than treating the file as an append-only log it clearly is not.
 
-**Why the site files were left alone.** While this review was running, `arena/94688dd1` and
-`arena/bd0ba155` were concurrently rewriting `scripts/build.py`, the generated pages, `data/flags.json`
-and `audit/index.html`, and `arena/c776c14c` has an open PR (#28) on the sitemap/feed and CI. Two of
-those claims overlapped each other. Re-editing the same files from this branch would have re-created
-the conflict churn the board keeps recording. The findings below therefore went into data files
-this session can own, plus the gate scripts, and everything else is logged for the owners.
+### What the review establishes
 
-### What was re-verified live, line by line (2026-11-21)
+Fourteen official pages were re-read on 2026-11-21 and every claim the site makes was traced to a
+section on one of them. Each row records the section, the date printed on the page, the date it was
+read and what it changed here; the table is published as section 04 of the Spec & policy audit, and
+the same data is in `data/discrepancies.json`. All eleven listing fields checked on the three
+observed ASINs still hold, including the two internal inconsistencies (Item Package Quantity 3 against
+five bullet items; 11 in in the title against 12 in in bullet 4). Neither was resolved by guessing.
 
-Every row below was read on the live page today, not carried forward from 2026-11-20.
+Figures Amazon displays but this site may not restate are recorded in `data/reviews.json` under
+`withheld_figures` with their exact string and the read date — star ratings and counts, the monthly
+purchase-volume badge on all three listings, the merchandising badges — and are rendered on no page.
+A new gate fails the build if any page prints one.
 
-| Item | Claim on the site | What the official page says today | Result |
-|---|---|---|---|
-| [S01](https://affiliate-program.amazon.com/help/operating/agreement) | Disclosure wording quoted verbatim; §5 obligation | "Updated: October 15, 2025"; §5 requires the exact sentence the site prints | Confirmed |
-| [S02](https://affiliate-program.amazon.com/help/operating/policies) | Updated April 14, 2026; tag-in-every-link, price/rating conditions, shortener rule, Redirecting Link ban, Agent Terms | Page dated April 14, 2026. §2(b) "must include your Associates ID or 'tag' … as a parameter in the URL of each link"; §2(t) ratings only via Creators API/PA API; §2(w) shorteners; Commission Income Statement §2(e) Redirecting Link; IP License §4 Agent Terms "Agent/[agent name]" | Confirmed |
-| S13 (Table 1) | Kitchen 4.50%; Home / Home Improvement / Tools 3.00%; All Other 4.00% | Table 1 matches exactly | Confirmed |
-| S03 (rate card) | Restricted — sign-in wall, establishes nothing | `/help/operating/schedule` still redirects to an Amazon sign-in whose return address is the custom rate card | Confirmed restricted |
-| [S06](https://sell.amazon.com/blog/what-is-an-asin) | ASIN = 10 characters, starts "B0" | "unique 10-character alphanumeric code"; "typically starts with 'B0'" | Confirmed |
-| [S04](https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking) / [S05](https://www.ecfr.gov/current/title-16/chapter-I/subchapter-B/part-255) | Disclosure near the endorsement; §255.5 material connection | Both read today; eCFR shows "up to date as of 11/19/2026", source 88 FR 48102 | Confirmed |
-| [S08](https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98) | Link-level disclosure "clear" and "conspicuous", placed near the link | Page states exactly that, and adds the required sentence for the Site | Confirmed |
-| [S09](https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM) | Review needs ≥3 qualified sales in 180 days, ~10 posts, content recent (generally 60 days) | All three present verbatim | Confirmed |
-| [PA-API deprecation](https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation) | PA-API 5 deprecated, returns 403 AccessDeniedException, Creators API is successor | Matches | Confirmed |
-| [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM) | Art3d, Art3d®, 7.72 × 4.33 × 0.79 in, 3.52 oz, A17999 / A17999g, Date First Available Aug 11, 2020, Amazon's Choice, Prop 65, Item Package Quantity 3 vs 5 bullets | All present. **"20K+ bought in past month" is also shown** — Amazon product behaviour data, so it stays unpublished (see F13) | Confirmed, one new datum withheld |
-| [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) | niffgaff, YH Urban, aluminium, matte black, 2.56"L × 12.2"W, 5 oz, TN2200-BLK-NA 01, UPC and Date First Available blank | All present; neither UPC nor Date First Available is displayed. **"9K+ bought in past month", Amazon's Choice, 4.2 stars / 12,111 ratings are shown** — all withheld | Confirmed |
-| [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD) | ORDORA, ORDORA Official, iron, UPC 655100721821, 9.17"D × 21.31"W × 16.61"H, 3.3 lb, 8 tiers, 10 lb/tier, cabinet W≥24.31" H≥18.61", Prop 65, newer model B0BYYTQMTR, title 11" vs bullet 12" | All present | Confirmed |
-| [Philips NA46x](https://www.usa.philips.com/c-t/XC000019680/my-philips-airfryer-shows-dashes-or-an-error-code) (field note) | "at least 15 cm around the air outlets", NA46x only | Page says "Leave at least 15 cm of space around the air outlets", scoped to NA46x | Confirmed |
-| [Compare page](https://affiliate-program.amazon.com/help/operating/compare) | 180-day shipping/payment limit; paid/boosted ads disqualified; Original Content definition | All three listed as effective April 14, 2026 | Confirmed |
+### Gaps logged for whoever owns the file now
 
-Publication-path checks run on the live tree: 18 HTML pages crawled for relative links and
-fragments (no broken target), all three JSON data sets parse, `sitemap.xml` and `feed.xml` parse and
-agree, the verbatim disclosure appears twice on every page and above the first table on every page
-that has one, and no page renders a price or a star rating.
+| Where | Gap | Suggested owner action |
+|---|---|---|
+| `field-notes/counter-fit/index.html` | loads no counter, so it can never record a page view | add `assets/metrics.js` + `data-page`, or state the worksheet is unmeasured |
+| `audit/data/flagged-discrepancies.json` FLG-02, and audit `S10` | both cite the FBA New Selection post for ASIN identity; the definition relied on is `S06` | repoint both at `https://sell.amazon.com/blog/what-is-an-asin` |
+| `audit/index.html` rate column | prints a rate beside each product although Table 1 is category-level and SKU attribution is unconfirmed (FLG-07) | mark the cell as a category rate, or blank it |
+| `data/sources.json` | a second register of the same 12 IDs, read by nothing; its verbatim quotes are unpublished | fold the quotes into `data/citation-register.json` and retire the file, or gate the two against each other |
+| `scripts/build.py` `DATE` | guide pages print the 2026-11-20 observation date from a constant | derive it, or print "observed 2026-11-20, re-checked 2026-11-21" |
 
-### Irregularities found (recorded, not silently fixed)
+### Verified before asking for a merge
 
-Published in `data/flags.json` and therefore on the Flagged for Review page, with sources:
-
-| ID | Irregularity |
-|---|---|
-| F13 | Two of the three observed listings display "20K+ / 9K+ bought in past month". It is Amazon behaviour data, not a star rating, so the existing gates do not catch it; it must not be republished without API rights. |
-| F14 | `data/products.json` records "Amazon's Choice" as a spec and four ORDORA colours with eight heights. The badge is shown on two listing pages today, but it is dynamic Amazon content and was recorded without a date or source; the ORDORA colour/height variant list is **not** displayed as an option list on the page I read — the site records eight heights and four colours that the listing does not show as selectable variants today. |
-| F15 | The measurement scripts do not implement the event vocabulary the site publishes. `assets/metrics.js` emits `page_view`, `guide_view`, `reading_reference_click`/`affiliate_click`, `feed_click`; `data/products.json` lists `product_view`, `outbound_click`, `guide_complete`, `subscribe`, which nothing emits. Both the field-note worksheet and Campaign desk load no counter at all. |
-| F16 | `data/flags.json` is validated and rendered, but `data/sources.json` is read by nothing, so its `quote` fields (verbatim extracts the Citation register does not print) are unpublished. Two registers of the same 12 sources exists in `data/`. |
-| F17 | The audit surface cites the wrong document twice: FLG-02's "Official Source" for the product-intent finding is an FBA New Selection blog post that says nothing about ASIN intent, and its own S10 (labelled "ASIN Definition") also points at that post, while the real definition is S06. |
-
-Underlying data added by this session, for whichever session owns the two pages:
-
-- `field-notes/counter-fit/index.html` is the only reader page with no counter (`data-page` is set,
-  `assets/metrics.js` is not loaded) — one `<script>` tag.
-- A guide page prints "Observed in an Amazon redirect check on 2026-11-20" while the observed targets
-  were re-confirmed on 2026-11-21; the date is a template constant.
-- `standards.html` gave two cadences ("every two weeks" on Publishing rhythm, "monthly" in F09).
-  The 23:32 merge of PR #29 removed the two-week sentence; re-check after any builder change.
-- `audit/index.html` prints a per-product commission rate per row. Table 1 is category-level and the
-  rows do not say which category Amazon attributes each SKU to (already flagged as FLG-07) — the
-  placement reads as a per-product rate.
-
-### Documents added to `data/`
-
-`data/discrepancies.json` and `data/reviews.json` record the table above in machine-readable form,
-with the exact URL, the section read, and the date read. They are additive and are validated by a
-new gate.
-
-### Gates added
-
-`scripts/verify.mjs` gained checks for these two files (shape, official https host, date present,
-no blank "confirmed" row) so a future session cannot quietly re-verify without recording it, and the
-Flagged for Review page cannot drift from the review record.
-
-### Not verified, and left blank
-
-Intended ASINs and confirmation dates, `shopnow047c-20` attribution, Special Link compliance of the
-submitted `link.amazon` URLs (not claimed invalid), Search Console ownership, a deployed analytics
-endpoint, and any click, order, revenue or conversion figure. The campaign ledger stays empty.
+`python3 scripts/build.py` is reproducible, `scripts/check.py` passes, `scripts/verify.mjs` passes
+with the two new checks, `audit/check_audit.mjs` passes with four tables, a relative-link crawl over
+every page finds no broken target, and no page renders a price, a rating, a purchase-volume phrase or
+a merchandising badge.

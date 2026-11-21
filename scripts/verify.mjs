@@ -314,7 +314,12 @@ for (const r of disc.rows) {
   if (/^Confirmed/.test(r.verdict) && /sign-in wall/i.test(r.dated_on_page)) fail("disc:restricted-confirmed", `${r.id} is restricted yet marked ${r.verdict}`);
 }
 const auditHtml = fs.readFileSync(path.join(ROOT, "audit", "index.html"), "utf8");
-for (const r of disc.rows) if (!auditHtml.includes(`id="rev-${r.id}"`)) fail("disc:unpublished", `${r.id} is not on the audit page`);
+for (const r of disc.rows) {
+  if (!auditHtml.includes(`id="rev-${r.id}"`)) fail("disc:unpublished", `${r.id} is not on the audit page`);
+  // The audit register numbers its own S01..S12 for different documents than the
+  // citation register, so a row must link to the shared register explicitly.
+  if (!auditHtml.includes(`href="../sources.html#src-${r.source}"`)) fail("disc:cross-link", `${r.id} does not link its register row to sources.html`);
+}
 say(`${reviews.sources.length} re-read documents, ${reviews.products.length} listings and ${disc.rows.length} source rows are recorded with a section, a read date and a source`);
 
 /* 14 — nothing may publish a purchase-volume or badge figure ----------------- */

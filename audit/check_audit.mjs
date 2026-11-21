@@ -47,8 +47,16 @@ while ((m = linkRegex.exec(html)) !== null) {
     assert(!href.includes('?'), `Amazon reference link must not include unvalidated query string: ${href}`);
   } else if (!href.startsWith('http://') && !href.startsWith('https://') && !href.startsWith('#')) {
     internalCount += 1;
-    const target = path.resolve(__dirname, href);
+    // An in-page or cross-page fragment must be resolved against the file, not
+    // the whole href: `../sources.html#src-S01` is a file, not a filename with a
+    // hash in it. Fragment targets are checked too, so a renamed anchor fails.
+    const [filePart, frag] = href.split("#");
+    const target = path.resolve(__dirname, filePart || "index.html");
     assert(fs.existsSync(target), `Broken internal link in audit/index.html: ${href}`);
+    if (frag && fs.existsSync(target) && target.endsWith(".html")) {
+      const body = fs.readFileSync(target, "utf8");
+      assert(body.includes(`id="${frag}"`), `Missing anchor #${frag} in ${path.relative(__dirname, target)}`);
+    }
   }
 }
 

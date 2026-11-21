@@ -69,14 +69,16 @@
     },
     {
       "id": "F06",
-      "title": "Three of four suggested guide titles are held back; one is published as a generic checklist",
+      "title": "All four suggested titles are published as method checklists, but no verified appliance listing exists to attach",
       "area": "Editorial · topic selection",
       "severity": "low",
-      "detail": "The suggested hypotheses concern basket and oven-style air fryers, air fryer capacity, cleanup trade-offs and multi-function kitchen appliances. No air fryer or appliance listing is in the supplied catalogue, so writing product-specific guides would require inventing specifications. The first title is published as the air fryer guide, which is a method checklist with no product specifications and no link to any submitted item. The other three are shown on the guides index under 'Working titles — not yet publishable' with the reason for each. None is a claim about popularity, search volume or product superiority.",
-      "action": "Close by supplying verified air fryer or appliance listings, at which point the three held-back titles become publishable with real specifications behind them.",
+      "detail": "The suggested hypotheses concern basket and oven-style air fryers, air fryer capacity, cleanup trade-offs and multi-function kitchen appliances. No air fryer or appliance listing is in the supplied catalogue, so writing product-specific guides would require inventing specifications. The first title is published as the air fryer guide. Updated 2026-11-21: the remaining three are now published as well, as specification-free method checklists (air-fryer-capacity.html, air-fryer-cleanup.html and multi-function-appliances.html). Each states on the page that it is a method and not a test, quotes no specification, price or star rating, recommends no model and carries no buying link. The guides index keeps the four working titles in a table so the record of what was supplied stays visible. None is a claim about popularity, search volume or product superiority.",
+      "action": "Still open in one respect: with no verified air fryer or multi-function appliance listing, none of these pages can carry researched specifications or a sponsored link. Close by supplying verified listings, at which point the checklists become the place those specifications go.",
       "sources": [
-        "S06"
-      ]
+        "S06",
+        "S02"
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F07",
@@ -106,11 +108,12 @@
       "title": "Publication cadence is set but the next issue is not written",
       "area": "Editorial · cadence",
       "severity": "low",
-      "detail": "This build establishes a monthly cadence and ships a feed, a sitemap and a publishing checklist. The second issue does not exist yet. Nothing on the site claims a publishing frequency that has been sustained.",
+      "detail": "This build establishes a cadence and ships a feed, a sitemap and a publishing checklist. The second issue did not exist when this flag was written. Nothing on the site claims a publishing frequency that has been sustained. Updated 2026-11-21: issue 02 has now shipped with three method checklists, and standards.html carries a publication log of what shipped and when. Two consecutive issues on schedule still have not been demonstrated, so the flag stays open.",
       "action": "Close after two consecutive issues ship on schedule. Topic selection should be driven by measured queries once an analytics endpoint is configured, which it currently is not.",
       "sources": [
         "S02"
-      ]
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F10",
@@ -326,6 +329,26 @@
         "S07",
         "S08",
         "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "All four submitted links, re-fetched independently",
+      "result": "Confirmed. link.amazon/B0hmGG4m2, /B03QDuGdo and /B0hpD2JGQ resolved to /dp/B08FKW9JRM, /dp/B0BSKQW2T2 and /dp/B08DY9HRWD, with the listing titles recorded on this site; the second address was supplied twice. Each resolved URL carried Amazon referral parameters (lv, crid, sprefix, sr, btn_ref, channelId, plpRedirect) and no tag= parameter, so F02 stands. Intent, enrollment and attribution remain unverified and are not asserted.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "FTC endorsement guidance, read for the three new checklists",
+      "result": "Read in full. It states that endorsements must be honest and not misleading, that a connection between endorser and marketer should be disclosed clearly and conspicuously, and that an ad using exceptional results must make the generally expected results clear. Only that is paraphrased in the multi-function appliance checklist; no other claim on this page comes from it.",
+      "sources": [
+        "S04"
       ]
     },
     {

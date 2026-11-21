@@ -114,7 +114,7 @@
     },
     {
       "id": "R10",
-      "source": null,
+      "source": "S02",
       "publisher": "Amazon.com, Inc.",
       "document": "Creators API: PA-API 5 deprecation notice",
       "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
@@ -162,7 +162,7 @@
     },
     {
       "id": "R14",
-      "source": null,
+      "source": "S02",
       "publisher": "Amazon.com, Inc.",
       "document": "Associates Operating Agreement — What's Changed",
       "url": "https://affiliate-program.amazon.com/help/operating/compare",
