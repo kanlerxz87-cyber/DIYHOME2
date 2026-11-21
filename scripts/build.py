@@ -126,7 +126,7 @@ def submission_rows():
             f'<code>https://link.amazon/{e(r["submitted"] .rsplit("/", 1)[-1])}</code>',
             e(prod.get('name', 'not identified')),
             f'<code>https://www.amazon.com/dp/{e(asin)}</code>',  # citation, printed as text
-            pill(r['observed_at'], 'ok'),
+            pill(r['observed_at'], 'ok') + ' ' + pill('re-checked ' + r.get('reverified_at', ''), 'ok'),
             '<span class="blank">not set</span>',
             '<span class="blank">not set</span>',
             '<span class="blank">not set</span>',
@@ -267,7 +267,7 @@ guides = [
      'Basket or oven-style air fryer: what should you compare?',
      'Compare the space, cleanup and batch size before choosing a format.',
      [('Compare usable space, not just capacity', 'Pick a meal you cook often. Check tray or basket dimensions and how much of that meal fits in one batch. Basket litres and usable area are different numbers.'),
-      ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts are dishwasher safe. The {worksheet} helps with the measuring part.')]),
+      ('Make room for use and cleanup', 'Measure the space needed to open the door or pull the basket out. Check the manual for clearance requirements and which parts are dishwasher safe. The counter-fit worksheet helps with the measuring part.')]),
 ]
 
 guide_cards = ''.join(
@@ -298,7 +298,7 @@ for slug, cat, asin, title, desc, sections in guides:
     add(slug, title, desc,
         intro(cat, title, desc)
         + f'<article class="prose"><p class="eyebrow">DIY Home Upgrades editorial desk \u00b7 {DATE}</p>{body}'
-        + f'<p>{link("guides","Back to all guides")} &nbsp;&middot;&nbsp; {link("shop","See all three products")}</p></article>')
+        + f'<p>{link("guides","Back to all guides")} <span class="sep">\u00b7</span> {link("shop","See all three products")}</p></article>')
 
 
 # --------------------------------------------------------------------------- #
@@ -365,6 +365,7 @@ media_rows = [
      src(RATES.replace('/GRXPHT8U84RAYDXZ', ''), 'S02 \u00b7 disqualifying conditions') if False else src(POLICIES, 'S02 \u00b7 Prohibited Paid Search Placement')),
 ]
 
+READER_PAGES = 4 + len(guides)  # home + shop + faq + worksheet, then the guide index and every guide
 add('summary', 'Executive summary',
     'What this build contains, what the evidence supports, what it cannot support yet, and the next three decisions. Every line sourced.',
     intro('Site records', 'Executive summary',
@@ -411,7 +412,7 @@ add('summary', 'Executive summary',
 <li><strong>Fill the ledger from a first-party report.</strong> One exported row is worth more than any forecast. Until it arrives the ledger stays empty, and no conversion rate is calculated.</li>
 </ol>
 <h2>Enrolment threshold, in plain terms</h2>
-<p>{src(ENROLMENT,'S09')} describes the application review: at least three qualified sales in the first 180 days, personal orders excluded, and robust original content \u2014 a rule of thumb of at least 10 posts. This site publishes eleven pages plus a guide, which meets the content rule of thumb; the sales qualification is not something a build can do. That is the single biggest open item, and it belongs to the account holder.</p>
+<p>{src(ENROLMENT,'S09')} describes the application review: at least three qualified sales in the first 180 days, personal orders excluded, and robust original content \u2014 a rule of thumb of at least 10 posts. This site publishes {READER_PAGES} reader-facing pages including {len(guides)} guides and an interactive worksheet, which meets the content rule of thumb; the sales qualification is not something a build can do. That is the single biggest open item, and it belongs to the account holder.</p>
 </div>'''
     + f'<p class="note">Sources for this page: {src(AMAZON,"S01")} {src(POLICIES,"S02")} {src(RATES,"S04")} {src(ASIN_DEF,"S06")} {src(FTC,"FTC guidance")} {src(ENROLMENT,"S09")} {src(SEARCH_CONSOLE,"Search Console")} See the {link("sources","full citation register")} for the other six.</p>')
 
@@ -425,7 +426,7 @@ add('review', 'Flagged for Review',
     + '<div class="prose"><h2>1. Intake register</h2><p>One row per submitted line. The intended fields are blank on purpose: a redirect is not an intention, and no one has confirmed inside the enrolled workflow which product each link was meant to point at.</p></div>'
     + table(['Entry', 'Submitted URL', 'Product the link lands on', 'Observed destination \u00b7 official', 'Observed', 'Intended ASIN', 'Intended listing', 'Confirmed'], submission_rows(), cls='dash')
     + f'<p class="note">Selected tracking ID: <code>{e(TRACKING_ID)}</code> \u2014 submitted by the owner, not validated. The short links\u2019 compliance is unresolved and they are not declared invalid. See {src(AMAZON,"S01")} and {src(ASIN_DEF,"the ASIN definition")} for the standard these rows are measured against.</p>'
-    + '<div class="prose"><h2>2. The ten recorded flags</h2><p>The first ten rows come from the site\u2019s own flag register; the second ten from the supplementary audit. Duplicate numbering between the two registers is shown rather than merged, because merging them would hide which session found what.</p></div>'
+    + f'<div class="prose"><h2>2. The flag registers</h2><p>{len(FLAGS)} rows come from the site\u2019s own flag register and {len(AUDIT_FLAGS)} from the supplementary audit. The two numbering schemes are shown as they are rather than renumbered, so a row quoted from an earlier report can still be found.</p></div>'
     + table(['ID', 'Issue', 'Area', 'Severity', 'What was observed', 'What would close it', 'Source'], flag_rows(), cls='dash')
     + '<div class="prose"><h2>3. Irregularities found and fixed in this pass</h2><p>Six things were wrong on the published site. Each is recorded here rather than quietly corrected, because a reader who checked yesterday deserves to know what changed.</p></div>'
     + table(['ID', 'What was wrong', 'State', 'Basis'], new_flag_rows())
@@ -462,7 +463,7 @@ add('standards', 'Editorial standards',
 <h2>Publishing rhythm</h2>
 <p>One question-led guide per fortnight, with a monthly evidence and link review. Topic choice should be driven by measured queries once a collector and Search Console are live; until then it is editorial judgement, labelled as such. Every new guide updates the sitemap and the RSS feed on build, and the build fails if the two disagree.</p>
 <h2>Corrections</h2>
-<p>Corrections are dated and listed on the {link('review','Flagged for Review')} page, including the six made in this pass. A corrected page keeps its original date and gains a note; it does not silently change.</p>
+<p>Corrections are dated and listed on the {link('review','Flagged for Review')} page, including the {len(REVERIFY['irregularities_found_this_pass'])} made in this pass. A corrected page keeps its original date and gains a note; it does not silently change.</p>
 </div>''')
 
 # --------------------------------------------------------------------------- #

@@ -139,6 +139,9 @@ for file in pages:
     assert desc and unescape(desc.group(1)).strip(), (str(file), 'missing meta description')
     assert canon, (str(file), 'missing canonical')
     assert text.count('<h1') == 1, (str(file), 'expected exactly one h1, found', text.count('<h1'))
+    # a template placeholder that survived rendering is a content bug, not a style choice
+    leaks = re.findall(r'\{[a-z_]+\}', text)
+    assert not leaks, (str(file), 'unrendered placeholder(s)', sorted(set(leaks))[:5])
     for href in re.findall(r'href="([a-z0-9\-]+\.html)"', text):
         assert href[:-5] in published or href[:-5] in ('index',), (str(file), href, 'links a page that is not published')
     # the shop table is the one place a reader can act on the whole catalogue

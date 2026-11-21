@@ -10,7 +10,9 @@
     "observed_at": "2026-11-20",
     "special_link": null,
     "tracking_report_confirmed_at": null,
-    "policy_review_source": null
+    "policy_review_source": null,
+    "reverified_at": "2026-11-21",
+    "reverified_result": "redirect target unchanged; no tag parameter for shopnow047c-20 observed in the resolved URL"
   },
   {
     "entry": 2,
@@ -23,7 +25,9 @@
     "observed_at": "2026-11-20",
     "special_link": null,
     "tracking_report_confirmed_at": null,
-    "policy_review_source": null
+    "policy_review_source": null,
+    "reverified_at": "2026-11-21",
+    "reverified_result": "redirect target unchanged; no tag parameter for shopnow047c-20 observed in the resolved URL"
   },
   {
     "entry": 3,
@@ -36,7 +40,9 @@
     "observed_at": "2026-11-20",
     "special_link": null,
     "tracking_report_confirmed_at": null,
-    "policy_review_source": null
+    "policy_review_source": null,
+    "reverified_at": "2026-11-21",
+    "reverified_result": "redirect target unchanged; no tag parameter for shopnow047c-20 observed in the resolved URL"
   },
   {
     "entry": 4,
@@ -49,6 +55,8 @@
     "observed_at": "2026-11-20",
     "special_link": null,
     "tracking_report_confirmed_at": null,
-    "policy_review_source": null
+    "policy_review_source": null,
+    "reverified_at": "2026-11-21",
+    "reverified_result": "redirect target unchanged; no tag parameter for shopnow047c-20 observed in the resolved URL"
   }
 ]
