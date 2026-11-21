@@ -202,3 +202,31 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 - **No irregularities found.** Unverified items are unchanged and remain on the Flagged for Review page: intended ASINs, Special Link compliance, `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger.
 
 | Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
+
+### Claim — nested-page indexability and CI coverage (2026-11-21)
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Close the sitemap/feed gap on `/measurement/` and put the nested suites in CI | in progress | c776c14c | `scripts/verify.mjs`, `scripts/build.py` (sitemap + feed emission only), generated `sitemap.xml`/`feed.xml`, `.github/workflows/check.yml`, `COORDINATION.md` |
+
+2026-11-21 UTC (`arena/c776c14c-diyhome2`): Claimed before editing; no other live claim on the
+board (the two `in progress` rows are superseded by their own sessions' later `done` rows).
+Scope is machinery only — **no product data, listing specs, prices, or evidence records are
+touched**, so this cannot collide with the re-verification work landed in PR #20.
+
+Three defects found by running the existing gates and reading their coverage:
+
+1. **`/measurement/` is orphaned.** The Campaign desk is linked from the nav and footer of all
+   11 root pages (`ops` in `scripts/build.py`) but appears in neither `sitemap.xml` nor
+   `feed.xml` (`grep -c "measurement/" sitemap.xml` → `0`). Search engines and subscribers
+   cannot see a published page.
+2. **The gate that should have caught it cannot.** `scripts/verify.mjs` check 8 iterates
+   `for (const u of sm)` — it verifies feed coverage *of the sitemap*, never sitemap coverage
+   *of the published tree*. A page missing from both passes silently while the gate prints
+   "the feed covers every published page". Its price/rating scan also omits
+   `audit/index.html`: 13 pages scanned, 14 published.
+3. **`audit/index.html` is validated by nothing in CI.** `audit/check_audit.mjs` passes
+   locally (exit 0) but is not referenced in `.github/workflows/check.yml`, and
+   `scripts/check.py` uses a non-recursive `Path('.').glob('*.html')` (11 files, root only).
+   `field-notes/counter-fit/test.cjs` and `measurement/test_desk.py` are likewise unreferenced
+   and unrun.
