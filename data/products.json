@@ -83,7 +83,10 @@
         },
         {
           "label": "Amazon badge shown",
-          "value": "Amazon’s Choice"
+          "value": "Amazon merchandising badge displayed",
+          "observed": "2026-11-21",
+          "source": "https://www.amazon.com/dp/B08FKW9JRM",
+          "note": "Dynamic Amazon content. Recorded with its observation date, never republished as a recommendation."
         }
       ],
       "kit_contents": [
