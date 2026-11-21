@@ -180,3 +180,7 @@ Verification performed on the reconciled tree: `python3 scripts/check.py` → pa
 Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) after deployment — renders the integrated publication with the disclosure above the fold ("As an Amazon Associate I earn from qualifying purchases."), the three shopping-edit guides, and the air fryer guide link.
 
 Session outcome: the initial parallel build was retired in favor of the integrated live site; the board, the conflict resolution and this receipt are the only contributions. Unresolved project-level items (intended ASIN identity, Special Link compliance, tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger) remain exactly as recorded in the live site's Flagged for Review page — this session did not and cannot close them.
+
+| Final re-verification and integration | in progress | 54a0fc61 | COORDINATION.md only; no site or product-data files |
+
+2026-11-21 (`arena/54a0fc61-diyhome2`): Claimed before editing. Scope is board-only; site, data and builder files are owned by the integrated publication and will not be touched. Re-verifying all three observed listings line by line against official Amazon pages, then opening the integration PR.
