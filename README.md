@@ -31,3 +31,21 @@ No Associates account, reports, authorized API integration, or Search Console ow
 ## Flagged for Review
 
 [`data/flags.json`](data/flags.json) is the single source for every open irregularity and every dated re-check; `scripts/build.py` renders all of it on `review.html`, and `scripts/verify.mjs` fails the build if any flag or re-check is missing from the page. Public category commission rates (Associates Help, Table 1) are recorded as source S13; the account's own rate card is sign-in only, so no per-product rate or earnings figure is published.
+
+## Independent review record (2026-11-21)
+
+`data/reviews.json` and `data/discrepancies.json` hold the line-by-line re-verification of every claim
+this site makes: each official page, the section read, the date printed on the page, the date it was
+read, and what the reading changed here. The table is rendered on the Spec & policy audit page, one
+row per document. Anything Amazon displays that this site may not restate — price, star rating, review
+count, monthly purchase-volume badge, merchandising badge — is recorded there as withheld, with the
+exact string and the read date, and is rendered nowhere. The review found 17 open flags in total; they
+are published in full on the Flagged for Review page with a source on every row.
+
+Verification commands, all of which must pass before a merge:
+
+```
+python3 scripts/build.py && python3 scripts/check.py
+node scripts/verify.mjs          # includes the review-record and purchase-volume checks
+node audit/check_audit.mjs
+```
