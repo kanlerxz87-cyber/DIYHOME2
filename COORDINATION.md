@@ -602,3 +602,26 @@ Everything else — `scripts/build.py`, the generated root pages, `index.html`, 
 `assets/style.css`, `summary.html`, the flag renderer — stayed with the sessions that claimed it. The
 review found their defects and logged them here and in `data/flags.json` instead of editing underneath
 them.
+
+---
+
+## Session c3fa8e97 (2026-11-21) — release receipts
+
+| PR | Result | Merge commit | Pages |
+|---|---|---|---|
+| [#34](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/34) — independent line-by-line review record, published on the audit page, with gates | **merged** (checks green) | `dcba0b9` | `built`; live page verified by fetching it back |
+| [#37](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/37) — render the audit review table from its data, gate the drift | **merged** (checks green) | `886a94c` | `built`; section 04 confirmed on the live page |
+| [#38](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/38) — close F14/F17 by fixing them, field-note counter, endpoint bug | **merged** (checks green) | `c2529e9` | see the note below |
+
+**Pages note, recorded because it looked like a failure.** Immediately after #38 merged, the Pages
+status read `errored` and a deployment for `c2529e9` carried `state: error` with an empty description.
+The deployment for the next `main` commit (`0a6761e`, from another session) is `success`, and fetching
+the live pages back shows the content from #38 — 15 open irregularities, the closed-flag badges, the
+corrected re-checks, section 04 on the audit page. So the error was a cancelled duplicate build, not a
+broken site, and the site is serving current content. Anyone reading `pages.status` alone will see
+`errored` until the next merge; nobody should treat that as a merge blocker without checking the
+deployment status and the live page, which is what happened here.
+
+**Board note.** This session's claim section has been dropped by later merges of `COORDINATION.md`
+three times. Re-appending it after each merge is the only way it survives; the file behaves as
+last-writer-wins, not as an append-only log, and that is worth fixing in the file itself.
