@@ -359,10 +359,12 @@ def _shop_intro_note():
             'listing on 2026-11-20 and re-checked on 2026-11-21. Prices, stock, star ratings and review counts are '
             '<strong>deliberately absent</strong>: '
             f'the Associates Program Policies ({source("https://affiliate-program.amazon.com/help/operating/policies","S02")}) '
-            'the Program Policies permit them only through Creators API or Product Advertising API content, or an Amazon-served link, '
+            'permit them only through Creators API or Product Advertising API content, or an Amazon-served link, '
             'and this site has neither. '
             f'Blank or {_UNV} cells are fields that could not be confirmed from an official source. '
-            f'See {link("review","Flagged for Review")} for the open items.</p>')
+            f'One more thing a buyer should know: every Amazon product link on this site is <strong>untagged</strong>, '
+            f'because a tag cannot be added honestly until a Special Link is validated inside the enrolled account. '
+            f'These are preview links, not paid Special Links, and F12 on {link("review","Flagged for Review")} records the conflict.</p>')
 
 def _cat_cards():
     out = []
@@ -373,7 +375,7 @@ def _cat_cards():
         item_word = 'item' if n == 1 else 'items'
         out.append(f'<article class="card">{photo}<div class="eyebrow">{e(c["kicker"])}</div>'
                    f'<h3><a href="category/{c["slug"]}.html">{e(c["name"])}</a></h3>'
-                   f'<p>{e(c["blurb"])}</p><p><small>{n} {item_word} covered · Amazon browse node {source("https://www.amazon.com/b?node="+c["browse_node"], c["browse_node"])}</small></p>'
+                   f'<p>{e(c["blurb"])}</p><p><small>{n} {item_word} covered · Amazon browse node <code>{e(c["browse_node"])}</code></small></p>'
                    f'<a href="category/{c["slug"]}.html">Shop {e(c["name"].split("&")[0].strip().lower())} →</a></article>')
     return '<div class="grid">'+''.join(out)+'</div>'
 
@@ -387,18 +389,26 @@ add('shop','Shop the edit','Every product on this site in one place, by category
 
 for _c in _cat_doc['categories']:
     _prods = [p for p in _cat_doc['products'] if p['category'] == _c['slug']]
+    _cat_cols = {
+        'wallpaper-tools':      ([('Kit contents','Kit contents')], 'Kit contents'),
+        'paper-towel-holders':  ([('Material','Material'), ('Dimensions','Product dimensions')], 'Material'),
+        'pot-racks':            ([('Heights offered','Heights offered'), ('Colours offered','Colours offered')], 'Heights offered'),
+    }
+    _extra, _lead = _cat_cols.get(_c['slug'], ([], None))
     _rows = [(
         f'<strong>{e(p["name"])}</strong><br><small>{e(p["dek"])}</small>',
         source(p['listing_url'], p['asin'], True),
-        _spec(p,'Brand'), _spec(p,'Sold by'), _key_spec(p), _spec(p,'Material'),
+        _spec(p,'Brand'), _spec(p,'Sold by'),
+    ) + tuple(_spec(p, key) for _, key in _extra) + (
         _link_state(p),
         f'<a href="../{_GUIDE_FOR.get(p["category"], "guides")}.html">Guide →</a>',
     ) for p in _prods]
+    _headers = ['Product','ASIN','Brand','Sold by'] + [label for label, _ in _extra] + ['Buying-link status','Guide']
     _body = intro(_c['kicker'], _c['name'], _c['blurb'])
     _body += (f'<p class="prose">Amazon browse path as listed: <code>{e(_c["browse_path"])}</code> '
-              f'(<a href="https://www.amazon.com/b?node={_c["browse_node"]}">node {_c["browse_node"]}</a>). '
-              f'{len(_prods)} verified {"item" if len(_prods)==1 else "items"} so far.</p>')
-    _body += table(['Product','ASIN','Brand','Sold by','Key verified spec','Material','Buying-link status','Guide'], _rows)
+              f'(browse node <code>{e(_c["browse_node"])}</code>). Every value below was read from the '
+              f'listing itself; anything the record does not carry is marked unverified rather than guessed.</p>')
+    _body += table(_headers, _rows)
     _body += f'<p><a href="../shop.html">← All categories</a> · <a href="../review.html">Flagged fields</a></p>'
     _path = Path('category/'+_c['slug']+'.html')
     _path.parent.mkdir(exist_ok=True)

@@ -68,15 +68,20 @@ def register_summary(add, table, link, source, intro, date, observed):
         ('Star ratings and review counts',
          'Not permitted without API-served content. No rating or review count is published.',
          'S02 \u00b7 Program Policies'),
-        ('Commission rates',
-         'Unverified. The rate card sits behind Associates sign-in, so no rate, earning or forecast is published.',
+        ('Account rate card',
+         'Unverified. It sits behind Associates sign-in, so no per-product rate, earning or forecast is published.',
          'S03 \u00b7 restricted'),
+        ('Public category rates',
+         'Readable (Kitchen 4.50%, Home / Tools 3.00%, All Other 4.00%), but they do not establish which '
+         'category these three ASINs are paid under, so no per-product rate is derived from them.',
+         'S13 \u00b7 rate table'),
         ('Tracking attribution for <code>shopnow047c-20</code>',
          'Unverified. No tracking parameter was observed on any resolved destination.',
          'Flagged for Review'),
-        ('Untagged reference links on the guide pages',
-         'Flagged, not hidden. The three guide reference links carry no tag, which is in tension with the '
-         'tag-in-every-link rule; they are marked sponsored and labelled reference only. See F12.',
+        ('Untagged Amazon product links (all pages)',
+         'Flagged, not hidden. No product link on this site carries a tag, because validating one requires the '
+         'enrolled account. Every one is marked sponsored with no query string; the shop says so in its own '
+         'introduction. That is in tension with the tag-in-every-link rule. See F12.',
          'S02 \u00b7 Program Policies, \u00a72(b)'),
     ])
 
@@ -99,8 +104,11 @@ def register_summary(add, table, link, source, intro, date, observed):
               'A buyer-first publication: a shop, four question-shaped guides, and the evidence '
               'register kept beside them.')
         + '<div class="prose"><h2>What this site is</h2>'
-        + f'<p>{shop_line} The four published guides answer one buyer question each, and no page '
-          'links to an untagged Amazon product page.</p>'
+        + f'<p>{shop_line} The four published guides answer one buyer question each. Every Amazon product link on '
+          'the site is untagged and marked sponsored, with no query string; browse-node identifiers are printed as '
+          'text rather than linked. A tag cannot be added honestly until a Special Link is validated inside the '
+          'enrolled account, so all of these are preview links rather than paid Special Links. That is in tension '
+          'with the tag-in-every-link rule and is published as F12 rather than hidden.</p>'
         + '<h2>Findings, line by line</h2><p>Each row below states only what an official source '
           'establishes. Listings were first checked on ' + observed + ' and re-checked on ' + date + '. Everything else is listed in the limits table and on '
         + f'{link("review", "Flagged for Review")}.</p></div>'

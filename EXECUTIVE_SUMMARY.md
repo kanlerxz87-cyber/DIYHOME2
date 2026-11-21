@@ -82,9 +82,11 @@ in [`data/flags.json`](data/flags.json). The ones a reader is most likely to car
 - No `tag=` parameter was observed on any resolved destination, so attribution is unproven — **F02, blocking**.
 - The account rate card sits behind sign-in. Public category rates are readable, but they do not say which
   category these three items are paid under, so no per-product rate is published — **F03**.
-- The three guide pages carry one untagged, reference-only Amazon link each. That is in tension with the
-  tag-in-every-link rule in Program Policies §2(b); it is marked sponsored, labelled reference only, and
-  published as **F12** rather than hidden.
+- **Every** Amazon product link on the site is untagged, including the shop rows. A tag cannot be added
+  honestly until a Special Link is validated inside the enrolled account, so these are preview links, not
+  paid Special Links. That is in tension with the tag-in-every-link rule in Program Policies §2(b); each link
+  is marked sponsored with no query string, the shop says so in its own introduction, and it is published as
+  **F12** rather than hidden.
 - The campaign ledger is empty by design — an empty ledger is not zero orders.
 
 ## 7. Recommended next actions, in order
