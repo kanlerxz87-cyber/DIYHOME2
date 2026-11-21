@@ -74,6 +74,10 @@ def register_summary(add, table, link, source, intro, date, observed):
         ('Tracking attribution for <code>shopnow047c-20</code>',
          'Unverified. No tracking parameter was observed on any resolved destination.',
          'Flagged for Review'),
+        ('Untagged reference links on the guide pages',
+         'Flagged, not hidden. The three guide reference links carry no tag, which is in tension with the '
+         'tag-in-every-link rule; they are marked sponsored and labelled reference only. See F12.',
+         'S02 \u00b7 Program Policies, \u00a72(b)'),
     ])
 
     decisions = table(['Priority', 'Action', 'Who', 'Gate that holds until it is done'], [

@@ -74,11 +74,18 @@ same URL). That duplicate is preserved rather than silently merged.
 
 ## 6. Irregularities flagged for review
 
-The full list, with sources, is on the live [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
-page and in [`data/flags.json`](data/flags.json): short codes are 9 characters while an ASIN is defined as
-10 ([Amazon ASIN guide](https://sell.amazon.com/blog/what-is-an-asin)); no tracking parameter was observed
-on any resolved destination; the commission rate card sits behind sign-in; and the campaign ledger is empty
-by design.
+Twelve open irregularities, each with what was observed, what would close it and an official source, are
+published on the live [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html) page and
+in [`data/flags.json`](data/flags.json). The ones a reader is most likely to care about:
+
+- Short codes are 9 characters while an ASIN is defined as 10 ([Amazon ASIN guide](https://sell.amazon.com/blog/what-is-an-asin)) — **F01**.
+- No `tag=` parameter was observed on any resolved destination, so attribution is unproven — **F02, blocking**.
+- The account rate card sits behind sign-in. Public category rates are readable, but they do not say which
+  category these three items are paid under, so no per-product rate is published — **F03**.
+- The three guide pages carry one untagged, reference-only Amazon link each. That is in tension with the
+  tag-in-every-link rule in Program Policies §2(b); it is marked sponsored, labelled reference only, and
+  published as **F12** rather than hidden.
+- The campaign ledger is empty by design — an empty ledger is not zero orders.
 
 ## 7. Recommended next actions, in order
 

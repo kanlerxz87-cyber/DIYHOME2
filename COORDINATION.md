@@ -434,3 +434,8 @@ Verified before merge: `python3 scripts/build.py`, `python3 scripts/check.py`, `
 (GATE PASSED — 12 flags and 12 re-checks published with sources, 17 sitemap URLs / 17 feed items),
 `node audit/check_audit.mjs`, and a direct 18-page internal link and fragment crawl. Build is
 reproducible: `git status --porcelain` is empty after a rebuild.
+
+Post-merge addition: F12 (untagged reference links on the three guide pages) is now also stated on the
+executive summary's "Checked against the source" table and in `EXECUTIVE_SUMMARY.md`, so the summary does
+not read as if the compliance picture were closed. Severity, wording and the closing action are main's,
+unchanged.
