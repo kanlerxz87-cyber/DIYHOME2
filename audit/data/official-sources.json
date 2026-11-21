@@ -1,143 +1,143 @@
 {
- "schema_version": "1.0.0",
- "verified_date_utc": "2026-11-20",
- "sources": [
-  {
-   "source_id": "S01",
-   "category": "Amazon Associates Legal",
-   "title": "Amazon Associates Program Operating Agreement",
-   "publisher": "Amazon.com Associates Central",
-   "url": "https://affiliate-program.amazon.com/help/operating/agreement",
-   "key_requirement_verified": "Section 1 defines Special Links; Section 5 mandates verbatim site disclosure: 'As an Amazon Associate I earn from qualifying purchases.'",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S02",
-   "category": "Amazon Associates Policies",
-   "title": "Amazon Associates Program Policies (Updated April 14, 2026)",
-   "publisher": "Amazon.com Associates Central",
-   "url": "https://affiliate-program.amazon.com/help/operating/policies",
-   "key_requirement_verified": "Participation Requirements & IP License: requires Associates tag parameter; prohibits static scraped prices/availability/customer star ratings without Creators API/PA-API; prohibits link cloaking or obscuring Amazon destination; prohibits scraping/data mining.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S03",
-   "category": "Amazon Associates Policy Updates",
-   "title": "Associates Operating Agreement — What's Changed (Effective April 14, 2026)",
-   "publisher": "Amazon.com Associates Central",
-   "url": "https://affiliate-program.amazon.com/help/operating/compare",
-   "key_requirement_verified": "Added Original Content definition requiring commentary, analysis, or transformation for additional value; 180-day shipping/payment window; paid/boosted ads linking to Amazon disqualified (limited exceptions).",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S04",
-   "category": "Commission Schedule",
-   "title": "Associates Program Standard Commission Income Rates (Table 1)",
-   "publisher": "Amazon.com Associates Central",
-   "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
-   "key_requirement_verified": "Official Fixed Standard Commission Income Rates: Kitchen = 4.50%; Home, Home Improvement, Tools = 3.00%; All Other Categories = 4.00%.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S05",
-   "category": "Commission Schedule",
-   "title": "Onsite Associates Program Commission Income Statement",
-   "publisher": "Amazon.com Associates Central",
-   "url": "https://affiliate-program.amazon.com/help/node/topic/G4ARBJC7Z2NK48CA",
-   "key_requirement_verified": "Distinguishes separate Onsite Commission Income (Direct Qualifying Purchases on Amazon) from off-site Standard Commission Income.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S06",
-   "category": "API & Automation Governance",
-   "title": "PA-API 5 Deprecation Notice & Amazon Creators API Migration",
-   "publisher": "Amazon.com Associates Central — Creators API Documentation",
-   "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
-   "key_requirement_verified": "PA-API 5.0 is deprecated (returns HTTP 403 AccessDeniedException); Creators API is the supported REST successor for programmatic catalog, pricing, and offers data.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S07",
-   "category": "Consumer Disclosure & Endorsements",
-   "title": "FTC's Endorsement Guides: What People Are Asking (16 C.F.R. Part 255)",
-   "publisher": "U.S. Federal Trade Commission (FTC)",
-   "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
-   "key_requirement_verified": "Material affiliate connections must be clearly and conspicuously disclosed where readers evaluate recommendations; 'paid link' adjacent to links is clear, whereas 'affiliate link' or 'buy now' alone is inadequate; do not make unsubstantiated performance claims.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S08",
-   "category": "Associates Disclosure Help",
-   "title": "Why do I have to identify myself as an Associate?",
-   "publisher": "Amazon.com Associates Central Help",
-   "url": "https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98",
-   "key_requirement_verified": "Requires both clear, conspicuous link-level disclosure (e.g., '(paid link)') and the Operating Agreement site-wide statement.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S09",
-   "category": "Associates Enrollment Review",
-   "title": "What is the Associates application review process?",
-   "publisher": "Amazon.com Associates Central Help",
-   "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
-   "key_requirement_verified": "Requires at least 3 qualified sales within 180 days (personal orders excluded) and robust original content (rule of thumb: at least 10 posts) using tagged Special Links.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S10",
-   "category": "Identifier Definition",
-   "title": "Understanding ASINs: Your guide to Amazon’s product identification system",
-   "publisher": "Sell on Amazon (sell.amazon.com)",
-   "url": "https://sell.amazon.com/blog/what-is-an-asin",
-   "key_requirement_verified": "An ASIN is a 10-character alphanumeric code assigned to every product, and it appears after /dp/ in a product URL. Re-read 2026-11-21: the previously cited FBA New Selection article does not carry the definition.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S11",
-   "category": "Search Engine Compliance",
-   "title": "Qualify Your Outbound Links to Google (rel=\"sponsored\")",
-   "publisher": "Google Search Central",
-   "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
-   "key_requirement_verified": "Mark affiliate and paid links with rel=\"sponsored\" so Google understands the commercial relationship.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "S12",
-   "category": "Search Quality & Anti-Spam",
-   "title": "Spam Policies for Google Web Search (Link Spam & Thin Affiliation)",
-   "publisher": "Google Search Central",
-   "url": "https://developers.google.com/search/docs/essentials/spam-policies",
-   "key_requirement_verified": "Defines thin affiliation as copying merchant descriptions/reviews without original value; requires editorial oversight, authorship, and properly qualified rel=\"sponsored\" affiliate links.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "P01",
-   "category": "Official Product Listing",
-   "title": "Amazon.com Product Detail Page — ASIN B08FKW9JRM (Art3d Smoothing Tool Kit)",
-   "publisher": "Amazon.com",
-   "url": "https://www.amazon.com/dp/B08FKW9JRM",
-   "key_requirement_verified": "Observed redirect target of https://link.amazon/B0hmGG4m2 on 2026-11-20. Technical specs, dimensions, weight, model A17999, and Prop 65 notice verified directly.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "P02",
-   "category": "Official Product Listing",
-   "title": "Amazon.com Product Detail Page — ASIN B0BSKQW2T2 (niffgaff Paper Towel Holder)",
-   "publisher": "Amazon.com",
-   "url": "https://www.amazon.com/dp/B0BSKQW2T2",
-   "key_requirement_verified": "Observed redirect target of https://link.amazon/B03QDuGdo (submitted twice) on 2026-11-20. Aluminum alloy, 12.2\"W x 2.56\"L, 5 oz, model TN2200-BLK-NA 01 verified directly.",
-   "verified_date_utc": "2026-11-20"
-  },
-  {
-   "source_id": "P03",
-   "category": "Official Product Listing",
-   "title": "Amazon.com Product Detail Page — ASIN B08DY9HRWD (ORDORA 8-Tier Organizer)",
-   "publisher": "Amazon.com",
-   "url": "https://www.amazon.com/dp/B08DY9HRWD",
-   "key_requirement_verified": "Observed redirect target of https://link.amazon/B0hpD2JGQ on 2026-11-20. Iron, 3 DIY modes, 10 lb/tier light-duty limit, UPC 655100721821, Prop 65 notice, and newer model B0BYYTQMTR banner verified directly.",
-   "verified_date_utc": "2026-11-20"
-  }
- ],
- "reverified_date_utc": "2026-11-21",
- "reverification_note": "Re-checked by the final integration session. S10 pointed at an unrelated Sell on Amazon article about the FBA New Selection programme while asserting the ASIN definition; the URL now points at the article that carries it. No other source URL changed. See data/reverification-2026-11-21.json for what each fetch showed."
+  "schema_version": "1.0.0",
+  "verified_date_utc": "2026-11-20",
+  "sources": [
+    {
+      "source_id": "S01",
+      "category": "Amazon Associates Legal",
+      "title": "Amazon Associates Program Operating Agreement",
+      "publisher": "Amazon.com Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "key_requirement_verified": "Section 1 defines Special Links; Section 5 mandates verbatim site disclosure: 'As an Amazon Associate I earn from qualifying purchases.'",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S02",
+      "category": "Amazon Associates Policies",
+      "title": "Amazon Associates Program Policies (Updated April 14, 2026)",
+      "publisher": "Amazon.com Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "key_requirement_verified": "Participation Requirements & IP License: requires Associates tag parameter; prohibits static scraped prices/availability/customer star ratings without Creators API/PA-API; prohibits link cloaking or obscuring Amazon destination; prohibits scraping/data mining.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S03",
+      "category": "Amazon Associates Policy Updates",
+      "title": "Associates Operating Agreement — What's Changed (Effective April 14, 2026)",
+      "publisher": "Amazon.com Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/operating/compare",
+      "key_requirement_verified": "Added Original Content definition requiring commentary, analysis, or transformation for additional value; 180-day shipping/payment window; paid/boosted ads linking to Amazon disqualified (limited exceptions).",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S04",
+      "category": "Commission Schedule",
+      "title": "Associates Program Standard Commission Income Rates (Table 1)",
+      "publisher": "Amazon.com Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "key_requirement_verified": "Official Fixed Standard Commission Income Rates: Kitchen = 4.50%; Home, Home Improvement, Tools = 3.00%; All Other Categories = 4.00%.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S05",
+      "category": "Commission Schedule",
+      "title": "Onsite Associates Program Commission Income Statement",
+      "publisher": "Amazon.com Associates Central",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G4ARBJC7Z2NK48CA",
+      "key_requirement_verified": "Distinguishes separate Onsite Commission Income (Direct Qualifying Purchases on Amazon) from off-site Standard Commission Income.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S06",
+      "category": "API & Automation Governance",
+      "title": "PA-API 5 Deprecation Notice & Amazon Creators API Migration",
+      "publisher": "Amazon.com Associates Central — Creators API Documentation",
+      "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
+      "key_requirement_verified": "PA-API 5.0 is deprecated (returns HTTP 403 AccessDeniedException); Creators API is the supported REST successor for programmatic catalog, pricing, and offers data.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S07",
+      "category": "Consumer Disclosure & Endorsements",
+      "title": "FTC's Endorsement Guides: What People Are Asking (16 C.F.R. Part 255)",
+      "publisher": "U.S. Federal Trade Commission (FTC)",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "key_requirement_verified": "Material affiliate connections must be clearly and conspicuously disclosed where readers evaluate recommendations; 'paid link' adjacent to links is clear, whereas 'affiliate link' or 'buy now' alone is inadequate; do not make unsubstantiated performance claims.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S08",
+      "category": "Associates Disclosure Help",
+      "title": "Why do I have to identify myself as an Associate?",
+      "publisher": "Amazon.com Associates Central Help",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98",
+      "key_requirement_verified": "Requires both clear, conspicuous link-level disclosure (e.g., '(paid link)') and the Operating Agreement site-wide statement.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S09",
+      "category": "Associates Enrollment Review",
+      "title": "What is the Associates application review process?",
+      "publisher": "Amazon.com Associates Central Help",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "key_requirement_verified": "Requires at least 3 qualified sales within 180 days (personal orders excluded) and robust original content (rule of thumb: at least 10 posts) using tagged Special Links.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S10",
+      "category": "Identifier Definition",
+      "title": "Amazon Standard Identification Number (ASIN) Definition",
+      "publisher": "Amazon (Sell on Amazon)",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "key_requirement_verified": "Official ASIN Definition: unique 10-character alphanumeric code' that typically starts with 'B0'.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S11",
+      "category": "Search Engine Compliance",
+      "title": "Qualify Your Outbound Links to Google (rel=\"sponsored\")",
+      "publisher": "Google Search Central",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "key_requirement_verified": "Mark affiliate and paid links with rel=\"sponsored\" so Google understands the commercial relationship.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "S12",
+      "category": "Search Quality & Anti-Spam",
+      "title": "Spam Policies for Google Web Search (Link Spam & Thin Affiliation)",
+      "publisher": "Google Search Central",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "key_requirement_verified": "Defines thin affiliation as copying merchant descriptions/reviews without original value; requires editorial oversight, authorship, and properly qualified rel=\"sponsored\" affiliate links.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "P01",
+      "category": "Official Product Listing",
+      "title": "Amazon.com Product Detail Page — ASIN B08FKW9JRM (Art3d Smoothing Tool Kit)",
+      "publisher": "Amazon.com",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "key_requirement_verified": "Observed redirect target of https://link.amazon/B0hmGG4m2 on 2026-11-20. Technical specs, dimensions, weight, model A17999, and Prop 65 notice verified directly.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "P02",
+      "category": "Official Product Listing",
+      "title": "Amazon.com Product Detail Page — ASIN B0BSKQW2T2 (niffgaff Paper Towel Holder)",
+      "publisher": "Amazon.com",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "key_requirement_verified": "Observed redirect target of https://link.amazon/B03QDuGdo (submitted twice) on 2026-11-20. Aluminum alloy, 12.2\"W x 2.56\"L, 5 oz, model TN2200-BLK-NA 01 verified directly.",
+      "verified_date_utc": "2026-11-20"
+    },
+    {
+      "source_id": "P03",
+      "category": "Official Product Listing",
+      "title": "Amazon.com Product Detail Page — ASIN B08DY9HRWD (ORDORA 8-Tier Organizer)",
+      "publisher": "Amazon.com",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "key_requirement_verified": "Observed redirect target of https://link.amazon/B0hpD2JGQ on 2026-11-20. Iron, 3 DIY modes, 10 lb/tier light-duty limit, UPC 655100721821, Prop 65 notice, and newer model B0BYYTQMTR banner verified directly.",
+      "verified_date_utc": "2026-11-20"
+    }
+  ],
+  "reverified_date_utc": "2026-11-21",
+  "reverification_note": "Re-checked by the final integration session. S10 pointed at an unrelated Sell on Amazon article about the FBA New Selection programme while asserting the ASIN definition; the URL now points at the article that carries it. No other source URL changed. See data/reverification-2026-11-21.json for what each fetch showed."
 }

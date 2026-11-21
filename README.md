@@ -39,8 +39,7 @@ this site makes: each official page, the section read, the date printed on the p
 read, and what the reading changed here. The table is rendered on the Spec & policy audit page, one
 row per document. Anything Amazon displays that this site may not restate — price, star rating, review
 count, monthly purchase-volume badge, merchandising badge — is recorded there as withheld, with the
-exact string and the read date, and is rendered nowhere. The review found 17 open flags in total; they
-are published in full on the Flagged for Review page with a source on every row.
+exact string and the read date, and is rendered nowhere. The review found seventeen irregularities; fifteen remain open and two were closed by fixing them (F14, F17). Every one, open or closed, is published on the Flagged for Review page with a source on its row and with its history intact.
 
 Verification commands, all of which must pass before a merge:
 
