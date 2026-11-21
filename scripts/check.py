@@ -125,5 +125,28 @@ for item in items:
     assert 'link.amazon' not in link_url and '/dp/' not in link_url, (link_url, 'product URL in feed')
     assert item.findtext('title'), 'feed item without a title'
 
-print(f'Local links, fragments, disclosure placement, sponsored-link markup, tracking parameter '
-      f'and XML checks passed on {len(pages)} pages ({len(items)} feed items).')
+# Head metadata and internal navigation coverage, best effort but cheap.
+from html import unescape
+import json as _json
+
+published = {f.stem for f in root.glob('*.html')}
+for file in pages:
+    text = file.read_text()
+    title = re.search(r'<title>(.*?)</title>', text, re.S)
+    desc = re.search(r'<meta name="description" content="(.*?)"', text)
+    canon = re.search(r'<link rel="canonical" href="([^"]+)"', text)
+    assert title and title.group(1).strip(), (str(file), 'missing title')
+    assert desc and unescape(desc.group(1)).strip(), (str(file), 'missing meta description')
+    assert canon, (str(file), 'missing canonical')
+    assert text.count('<h1') == 1, (str(file), 'expected exactly one h1, found', text.count('<h1'))
+    for href in re.findall(r'href="([a-z0-9\-]+\.html)"', text):
+        assert href[:-5] in published or href[:-5] in ('index',), (str(file), href, 'links a page that is not published')
+    # the shop table is the one place a reader can act on the whole catalogue
+    root_page = file.parent == root
+    if root_page and file.name == 'shop.html':
+        assert text.count('data-paid=') >= 3, 'shop table must carry every product link'
+    if root_page and file.name == 'index.html':
+        assert text.count('data-paid=') >= 3, 'front page must lead with the products'
+
+print(f'Local links, fragments, disclosure placement, sponsored-link markup, tracking parameter, '
+      f'head metadata and XML checks passed on {len(pages)} pages ({len(items)} feed items).')

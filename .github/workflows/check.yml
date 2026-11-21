@@ -28,6 +28,15 @@ jobs:
       - name: Supplementary verification gate
         run: node scripts/verify.mjs
 
+      # Added by the final integration session. These cover the surfaces the two
+      # gates above do not reach: the audit addendum's own page checks, the
+      # worksheet calculator, and the campaign desk's privacy behaviour.
+      - name: Audit, worksheet and desk tests
+        run: |
+          node audit/check_audit.mjs
+          node field-notes/counter-fit/test.cjs
+          python3 measurement/test_desk.py
+
       - name: Confirm the generated site is reproducible
         run: |
           if [ -n "$(git status --porcelain)" ]; then

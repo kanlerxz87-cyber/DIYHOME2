@@ -1,6 +1,21 @@
 # DIY Home Upgrades
 
-[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
+[Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Shop](https://kanlerxz87-cyber.github.io/DIYHOME2/shop.html) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
+
+A static publication covering three submitted Amazon products and one buyer question with no
+product behind it. Eleven reader pages, a shop table where every row carries its official
+listing link, and a separate evidence spine for the owner (citation register, audit, flag
+register, measurement desk). The builder is the source of truth: `scripts/build.py` writes every
+page, the sitemap and the feed, and `scripts/check.py` fails the build if a link, a fragment, the
+disclosure placement, the sponsored markup or the tracking parameter is wrong.
+
+## What the site deliberately does not contain
+
+No prices, no star ratings, no review counts, no revenue figures and no conversion rates. Amazon
+permits prices and ratings only when the data is served by Amazon or fetched through Creators API
+or PA API; neither is connected. Every product link carries the submitted tag
+(`shopnow047c-20`), is marked `rel="sponsored"`, and prints the words "paid link" beside it. The
+tag's enrolment status is not confirmed, so the site claims no commission anywhere.
 
 Build and validate from the repo root with `python3 scripts/build.py && python3 scripts/check.py`. GitHub Pages serves the generated root files from main. The builder is the source of truth for pages, sitemap and feed.
 
@@ -13,6 +28,14 @@ The five instrumentation events (no external event dictionary was supplied) are 
 ## Launch limits
 
 No Associates account, reports, authorized API integration, or Search Console ownership were available. No affiliate URLs or prices are published. The AI-assisted guides are not product tests. No autonomous research, ranking, revenue optimization, or email collection is running. RSS offers a no-data subscription path.
+
+## Re-verification, 2026-11-21
+
+`data/reverification-2026-11-21.json` records one row per cited source and per listing claim,
+re-read in a clean session on that date. Four listing values that could not be re-observed were
+blanked and flagged rather than repeated (F12). The audit register's ASIN citation was pointing at
+an unrelated article and now points at the guide that carries the definition (F11). Nothing was
+filled in by inference.
 
 ## Machine-readable launch records
 

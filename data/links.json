@@ -1,7 +1,7 @@
 {
   "record_type": "product_intent_confirmation_record",
   "purpose": "One record per submitted outbound link. The intended fields and the observed fields are stored separately and are never merged, reconciled or used to fill each other in.",
-  "rule": "An 'intended' value may only be written after the destination has been confirmed inside the enrolled Associates workflow. Until that happens the field stays empty.",
+  "rule": "An 'intended' value may only be written after the destination has been confirmed inside the enrolled Associates workflow. Until that happens the field stays empty. Published product links carry exactly one query parameter, tag=shopnow047c-20, on the observed listing URL; that is a submitted tracking ID, not a validated Special Link, and no click has been confirmed in a report.",
   "created": "2026-11-20",
   "links": [
     {
@@ -10,22 +10,21 @@
       "submitted_code": "B0hmGG4m2",
       "submitted_code_length": 9,
       "submitted_code_could_be_asin": false,
-
       "intended_asin": "",
       "intended_listing_url": "",
       "confirmation_date": "",
       "confirmation_source": "",
-
       "observed_redirect_target": "https://www.amazon.com/dp/B08FKW9JRM",
       "observed_asin": "B08FKW9JRM",
       "observed_on": "2026-11-20",
       "observed_source": "S10",
       "observed_tag_parameter_present": false,
       "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
-
       "status": "needs review",
       "flag": "F01, F02",
-      "note": "The 9-character short code differs from the 10-character ASIN it resolves to. The code must not be recorded as the ASIN."
+      "note": "The 9-character short code differs from the 10-character ASIN it resolves to. The code must not be recorded as the ASIN.",
+      "published_link": "https://www.amazon.com/dp/B08FKW9JRM?tag=shopnow047c-20",
+      "published_link_status": "tag submitted, not validated; destination observed, attribution unconfirmed"
     },
     {
       "id": "L02",
@@ -33,22 +32,21 @@
       "submitted_code": "B03QDuGdo",
       "submitted_code_length": 9,
       "submitted_code_could_be_asin": false,
-
       "intended_asin": "",
       "intended_listing_url": "",
       "confirmation_date": "",
       "confirmation_source": "",
-
       "observed_redirect_target": "https://www.amazon.com/dp/B0BSKQW2T2",
       "observed_asin": "B0BSKQW2T2",
       "observed_on": "2026-11-20",
       "observed_source": "S11",
       "observed_tag_parameter_present": false,
       "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
-
       "status": "needs review",
       "flag": "F01, F02",
-      "note": "Submitted twice in the same request. The duplicate is not a second product."
+      "note": "Submitted twice in the same request. The duplicate is not a second product.",
+      "published_link": "https://www.amazon.com/dp/B0BSKQW2T2?tag=shopnow047c-20",
+      "published_link_status": "tag submitted, not validated; destination observed, attribution unconfirmed"
     },
     {
       "id": "L03",
@@ -56,22 +54,21 @@
       "submitted_code": "B0hpD2JGQ",
       "submitted_code_length": 9,
       "submitted_code_could_be_asin": false,
-
       "intended_asin": "",
       "intended_listing_url": "",
       "confirmation_date": "",
       "confirmation_source": "",
-
       "observed_redirect_target": "https://www.amazon.com/dp/B08DY9HRWD",
       "observed_asin": "B08DY9HRWD",
       "observed_on": "2026-11-20",
       "observed_source": "S12",
       "observed_tag_parameter_present": false,
       "observed_method": "Fetched the short URL and read the resolved page title and canonical product URL.",
-
       "status": "needs review",
       "flag": "F01, F02",
-      "note": "The 9-character short code starts with the same three characters as the ASIN it resolves to. This coincidence is exactly why the code must not be copied into the ASIN field."
+      "note": "The 9-character short code starts with the same three characters as the ASIN it resolves to. This coincidence is exactly why the code must not be copied into the ASIN field.",
+      "published_link": "https://www.amazon.com/dp/B08DY9HRWD?tag=shopnow047c-20",
+      "published_link_status": "tag submitted, not validated; destination observed, attribution unconfirmed"
     }
   ],
   "duplicate_submissions": [
@@ -80,5 +77,7 @@
       "occurrences": 2,
       "finding": "The request listed four link lines but only three unique URLs. Recorded once, flagged, not counted as a fourth product."
     }
-  ]
+  ],
+  "published_link_pattern": "https://www.amazon.com/dp/{observed_asin}?tag=shopnow047c-20",
+  "reverified": "2026-11-21"
 }

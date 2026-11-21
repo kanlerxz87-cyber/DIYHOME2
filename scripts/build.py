@@ -41,6 +41,11 @@ AUDIT_FLAGS = json.loads(Path('audit/data/flagged-discrepancies.json').read_text
 REVERIFY = json.loads(Path('data/reverification-2026-11-21.json').read_text())
 
 BY_ASIN = {p['asin']: p for p in PRODUCTS['products']}
+SLUG = {  # product category -> the guide that covers it, and a buyer-shaped slug
+    'wallpaper-tools': ('wallpaper', 'wallpaper-tool-kit'),
+    'paper-towel-holders': ('paper-towel-holder', 'paper-towel-holder'),
+    'pot-racks': ('pans-organizer', 'pans-organizer'),
+}
 BIT = {  # one short, honest verdict per product, drawn from the listing fetch
     'B08FKW9JRM': ('Wallpaper tools', 'Buy it for the smoother and the knife.'),
     'B0BSKQW2T2': ('Kitchen counters', 'A 12-inch rail that gets the roll off the counter.'),
@@ -174,9 +179,7 @@ def front_card(asin, art, dek):
 
 
 for prod, art in zip(PRODUCTS['products'], ('walls', 'counter', 'cabinet')):
-    prod['guide_slug'] = {'wallpaper-tools': 'wallpaper',
-                          'paper-towel-holders': 'paper-towels',
-                          'pot-racks': 'cookware'}[prod['category']]
+    prod['guide_slug'] = SLUG[prod['category']][1]
 
 add('index', 'DIY Home Upgrades',
     'Three small upgrades for a kitchen that works: wallpaper tools, an under-cabinet paper towel holder and a pan organizer. What the listings say, what they leave out, and what to measure first.',
@@ -203,7 +206,7 @@ add('index', 'DIY Home Upgrades',
 <section class="card wide"><div class="eyebrow">In the kitchen</div>
   <h2>Thinking about an air fryer?</h2>
   <p>No air fryer has been submitted for this catalogue, so there is no listing to check and no product page to point at. The worksheet that ships with the site still helps: measure your counter first, against the model you are actually considering.</p>
-  <a href="air-fryers.html">Read the counter-fit guide \u2192</a> &nbsp; <a href="field-notes/counter-fit/">Open the measuring worksheet \u2192</a>
+  <a href="air-fryer-format.html">Read the air fryer format guide \u2192</a> &nbsp; <a href="field-notes/counter-fit/">Open the measuring worksheet \u2192</a>
 </section>''')
 
 # fix the link helper for guide slugs used above (products.json has no guide_slug key)
@@ -220,9 +223,10 @@ for p in PRODUCTS['products']:
         f'<strong>{e(p["name"])}</strong><br><small>{e(p["brand"])}</small>',
         e(cat),
         f'<code>{e(p["asin"])}</code><br><small><code>{e(p["listing_url"])}</code></small>',
+        buy(p['asin'], 'Open ' + p['asin']),
         ' '.join(f'<div class="fact">{e(s)}</div>' for s in p['listing_states'][:3]),
         ' '.join(f'<div class="fact">\u2013 {e(s)}</div>' for s in p['limits'][:2]),
-        buy(p['asin'], 'Amazon listing'),
+        f'<a href="{p["guide_slug"]}.html">Read the guide</a>',
     ))
 unverified_rows = []
 for p in PRODUCTS['products']:
@@ -235,7 +239,7 @@ add('shop', 'Shop the edit',
     intro('The shop', 'Shop the edit',
          'Three products, one table. Each row links to the live Amazon listing it describes, so you can check it yourself before you buy.')
     + f'''<p class="note">Every product link below is marked sponsored and carries the submitted tracking ID <code>{e(TRACKING_ID)}</code>. Whether that ID is live in the Associates account has not been confirmed, so the site records clicks but claims no commission.</p>'''
-    + table(['Product', 'Category', 'Official listing', 'What the listing states', 'What it leaves out', 'Go'], shop_rows, cls='dash')
+    + table(['Product', 'Category', 'Observed ASIN \u00b7 citation', 'Paid link', 'What the listing states', 'What it leaves out', 'Guide'], shop_rows, cls='dash')
     + '<div class="prose"><h2>What is deliberately blank</h2><p>These fields are not blanks by accident. Amazon permits them on an affiliate page only when the data is served by Amazon or fetched through Creators API or PA API, and neither is connected. They stay empty rather than guessed.</p></div>'
     + table(['Product', 'Unverified fields', 'Why the field is blank'], unverified_rows)
     + f'''<div class="prose"><h2>How to use this table</h2><p>Read the middle column first. If the thing you care about is not in it, the listing does not publish it and neither should a review. Then open the listing, check the variant you actually want \u2014 colour and height differ by option \u2014 and measure before you order. The {link('guides','buying guides')} take each product one at a time; the {link('summary','executive summary')} explains what the whole record proves and what it does not.</p></div>''')
@@ -244,22 +248,22 @@ add('shop', 'Shop the edit',
 # 3. guides
 # --------------------------------------------------------------------------- #
 guides = [
-    ('wallpaper', 'Walls', 'B08FKW9JRM',
+    ('wallpaper-tool-kit', 'Walls', 'B08FKW9JRM',
      'What tools do you need for peel-and-stick wallpaper?',
      'Start with the wall, not the tool kit.',
      [('Check the surface first', 'Read the wallpaper maker\u2019s instructions for surface prep and paint cure time. Try a sample in an inconspicuous area before committing to a whole wall.'),
       ('Plan the tricky cuts', 'Sketch where seams, corners and trim land. Before buying a bundle, check whether you own a straightedge, a suitable cutting tool and something the wallpaper maker recommends for smoothing.')]),
-    ('paper-towels', 'Kitchen', 'B0BSKQW2T2',
+    ('paper-towel-holder', 'Kitchen', 'B0BSKQW2T2',
      'Where should an under-cabinet paper towel holder go?',
      'Find a spot that works with a full roll.',
      [('Try the reach', 'Hold a full roll where you would mount the holder. Check that you can reach it one-handed without bumping cabinet doors or blocking the counter.'),
       ('Compare mounting options', 'The listing offers adhesive or screws. Adhesive removes cleanly but the listing publishes no load rating, so check the surface and the weight you plan to hang before you trust it.')]),
-    ('cookware', 'Storage', 'B08DY9HRWD',
+    ('pans-organizer', 'Storage', 'B08DY9HRWD',
      'Will a pan organizer fit your cabinet?',
      'Measure with the pans you already use.',
      [('Measure the opening', 'Record usable height, width and depth, including hinges or a face frame that narrows the entry. Measure your widest pan with its handle and your tallest lid.'),
       ('Pick the layout before the height', 'The listing publishes three tool-free layouts with different footprints, from 21.31 inches wide to 11.75 inches wide. Choose the layout your cabinet allows, then buy the height that fits above it.')]),
-    ('air-fryers', 'Kitchen', None,
+    ('air-fryer-format', 'Kitchen', None,
      'Basket or oven-style air fryer: what should you compare?',
      'Compare the space, cleanup and batch size before choosing a format.',
      [('Compare usable space, not just capacity', 'Pick a meal you cook often. Check tray or basket dimensions and how much of that meal fits in one batch. Basket litres and usable area are different numbers.'),
@@ -295,6 +299,40 @@ for slug, cat, asin, title, desc, sections in guides:
         intro(cat, title, desc)
         + f'<article class="prose"><p class="eyebrow">DIY Home Upgrades editorial desk \u00b7 {DATE}</p>{body}'
         + f'<p>{link("guides","Back to all guides")} &nbsp;&middot;&nbsp; {link("shop","See all three products")}</p></article>')
+
+
+# --------------------------------------------------------------------------- #
+# FAQ: the buyer questions, answered only where a source exists
+# --------------------------------------------------------------------------- #
+FAQS = [
+    ('Are the prices on this site current?',
+     'There are no prices on this site. Amazon permits a published price only when Amazon serves the link or the data arrives through Creators API or PA API; this site does neither, so it sends you to the live listing instead.',
+     POLICIES, 'S02 \u00b7 price display'),
+    ('Why are there no star ratings?',
+     'Customer star ratings and review text may be displayed only when they were obtained through Creators API or PA API. Repeating a rating read off the page is a policy breach, not a shortcut.',
+     POLICIES, 'S02 2(t)'),
+    ('Do these links pay you?',
+     'Yes. Every product link carries the submitted Associates tracking ID and is marked as a paid link. Whether that ID is active in the Associates account has not been confirmed, so no commission is claimed anywhere on the site.',
+     AMAZON, 'S01 \u00b7 identifying yourself'),
+    ('Have you tested these products?',
+     'No. Nobody on this desk has hung the wallpaper or loaded the rack with pans. The pages compare what the listing publishes, note what it leaves out, and tell you what to measure before ordering.',
+     AMAZON, 'S01 \u00b7 honest endorsement'),
+    ('How do I know the products are the right ones?',
+     'You can check each one yourself. A listing shows its 10-character identifier after /dp/ in the URL, and every observed destination on this site is recorded with that identifier and the date it was read.',
+     ASIN_DEF, 'S06 \u00b7 ASIN definition'),
+    ('Why does the site show a product the listing says is light-duty?',
+     'Because that is what the listing says. The pans organizer states a fit for lightweight cookware and Amazon shows a newer, heavier-rated model of the same item; both facts are on the guide page so the choice stays yours.',
+     'https://www.amazon.com/dp/B08DY9HRWD', 'S09 \u00b7 listing'),
+]
+
+add('faq', 'Buyer questions',
+    'Straight answers to the six questions buyers ask before clicking a paid link: prices, ratings, testing, tracking and which product is which.',
+    intro('The front desk', 'Buyer questions',
+         'Six questions that decide whether you trust a link, answered with the policy or listing that settles each one.')
+    + '<div class="faq">' + ''.join(
+        f'<details><summary>{e(q)}</summary><p>{e(a)}</p><p class="fine">Basis: {src(u, label)}</p></details>'
+        for q, a, u, label in FAQS) + '</div>'
+    + f'<div class="prose"><h2>Still deciding?</h2><p>Each guide ends with the measurements that decide the purchase. Start with {link("shop","the shop table")} if you already know which product you want, or the {link("guides","buying guides")} if you are still choosing.</p><p class="note">A question that is not here is either not answered by a source yet, or belongs on the {link("review","Flagged for Review")} page. Send nothing personal: this site collects no email addresses.</p></div>')
 
 # --------------------------------------------------------------------------- #
 # 4. executive summary — the deliverable the brief asks for
@@ -340,6 +378,7 @@ add('summary', 'Executive summary',
         (link('index', 'Front page'), 'Three product cards, each linking to its guide and its listing.', 'Buyer'),
         (link('shop', 'Shop the edit'), 'One table: listing facts, what is missing, the official link per row.', 'Buyer'),
         (link('guides', 'Buying guides'), 'Four question-shaped guides, three of them backed by a real listing.', 'Buyer'),
+        (link('faq', 'Buyer questions'), 'Six questions about prices, ratings, testing and tracking, each answered from a source.', 'Buyer'),
         (link('summary', 'Executive summary'), 'This page.', 'Owner'),
         (link('review', 'Flagged for Review'), 'Every open irregularity, both flag registers, each with a source.', 'Owner'),
         (link('sources', 'Citation register'), 'Twelve documents behind every claim, and the constraints they impose.', 'Owner'),
@@ -492,6 +531,7 @@ add('sources', 'Citation register',
 ops = [
     ('shop', 'Shop'),
     ('guides', 'Buying guides'),
+    ('faq', 'Buyer questions'),
     ('summary', 'Executive summary'),
     ('review', 'Flagged for Review'),
     ('sources', 'Citation register'),
@@ -522,6 +562,7 @@ feed_items = [
     ('', 'DIY Home Upgrades', pages['index']['desc'], 'Front page'),
     ('shop.html', 'Shop the edit', pages['shop']['desc'], 'Shop'),
     ('guides.html', 'Buying guides', pages['guides']['desc'], 'Index'),
+    ('faq.html', 'Buyer questions', pages['faq']['desc'], 'Guide'),
 ]
 feed_items += [(f'{s}.html', t, d, c) for s, c, a, t, d, _ in guides]
 feed_items += [
