@@ -3,7 +3,8 @@ from html import escape as e
 from xml.etree import ElementTree as ET
 
 BASE = 'https://kanlerxz87-cyber.github.io/DIYHOME2/'
-DATE = '2026-11-20'
+DATE = '2026-11-20'      # date the listings were first observed and the redirects read
+RECHECK = '2026-11-21'   # date of the independent re-verification pass
 NOTICE = 'As an Amazon Associate I earn from qualifying purchases.'
 AMAZON = 'https://affiliate-program.amazon.com/help/operating/agreement'
 FTC = 'https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking'
@@ -58,7 +59,7 @@ def cards(items, shopping=False):
         result.append(f'<article class="card">{photo}<div class="eyebrow">{e(cat)}</div><h3>{link(slug,heading)}</h3><p>{e(desc)}</p>{link(slug,"Read the guide →")}</article>')
     return '<div class="grid">'+''.join(result)+'</div>'
 
-add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section>''')
+add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section><section class="sectionhead"><div><div class="eyebrow">The shop floor</div><h2>Every product, by room</h2></div><a href="shop.html">Open the shop →</a></section><div class="grid"><article class="card"><div class="eyebrow">Room refresh</div><h3><a href="category/wallpaper-tools.html">Wallpaper &amp; peel-and-stick tools</a></h3><p>What decides whether a peel-and-stick job looks flat.</p></article><article class="card"><div class="eyebrow">Kitchen counters</div><h3><a href="category/paper-towel-holders.html">Paper towel holders</a></h3><p>Get the roll off the counter without drilling.</p></article><article class="card"><div class="eyebrow">Cabinet interiors</div><h3><a href="category/pot-racks.html">Pot racks &amp; cookware organizers</a></h3><p>Turn a leaning stack of pans into a drawer you can read.</p></article></div>''')
 _working_titles = [
     ('Basket or oven-style air fryer: what should you compare?', 'Published as the air fryer guide.', link('air-fryers','Read the guide')),
     ('A no-hype checklist for comparing air fryer capacity', 'Not yet publishable — no verified air fryer listing in the catalogue.', '—'),
@@ -97,7 +98,8 @@ _summary_verify = [
     ('Tracking ID shopnow047c-20', 'Unverified — no tag observed; Special Link test pending', link('review','Flagged for Review')),
     ('Campaign ledger', 'Empty by design — no authorized first-party report supplied', link('measurement','Measurement')),
 ]
-add('summary','Executive summary','Launch scope, findings, and next decisions.',intro('Site records','Executive summary','A buyer-first publication with a separate evidence register. All figures are reported or blank; nothing is estimated.')+f'''<div class="prose"><h2>What was submitted</h2><p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). Four link lines were submitted: <code>https://link.amazon/B0hmGG4m2</code>, <code>https://link.amazon/B03QDuGdo</code> (submitted twice) and <code>https://link.amazon/B0hpD2JGQ</code>. That is three unique short URLs, not four products; the duplicate is recorded and flagged on the evidence register.</p><h2>What the evidence supports</h2><p>Each short link was followed and resolved to a live Amazon listing: B08FKW9JRM (wallpaper smoothing kit), B0BSKQW2T2 (under-cabinet paper towel holder) and B08DY9HRWD (ORDORA pots and pans organizer). A redirect observation establishes what a link lands on — it does not confirm product intent, a tracking tag, or commission eligibility. No submitted item was an air fryer; the air fryer guide is a separate editorial topic.</p><h2>What remains unknown</h2><p>The intended ASIN, intended official listing URL, confirmation date and confirmation source are blank for every entry and will stay blank until confirmed inside the enrolled Associates workflow. No short link's Special Link compliance is observable from outside the account, and none is declared invalid. No conversion score, revenue forecast, price or review figure is published anywhere on the site.</p><h2>Compliance posture</h2><p>The Amazon Associate disclosure appears above the fold and again in the footer on every page. Every outbound Amazon product link carries <code>rel="sponsored"</code>, has no query string, and is never a shortener. Those three reference links are untagged, which is in tension with the tag-in-every-link rule; see flag F12 on the evidence register. No prices or star ratings are rendered. The campaign ledger is empty by design, with headers only, pending an authorized first-party report.</p><h2>Measurement status</h2><p>Five events are defined (<code>page_view</code>, <code>guide_view</code>, <code>listing_reference_click</code>, <code>affiliate_click</code>, <code>feed_click</code>) and the outbound counter is a privacy-preserving beacon that never routes through this domain. The collector endpoint is not deployed on GitHub Pages, so no events are collected today and none are claimed.</p><h2>Next decision</h2><p>Verify one Special Link per product in the enrolled workflow and confirm destination and tracking report before scaling. Once authorized reporting is available, use measured queries and buyer engagement to choose the next guide. See {link('review','the evidence register')} and {link('measurement','measurement status')}.</p></div>'''+table(['Entry','Observed listing','Observed ASIN · Amazon source','Observed date','Intended ASIN','Status'],_summary_products)+table(['Area','Status','Source'],_summary_verify))
+from summary import register_summary
+register_summary(add, table, link, source, intro, RECHECK, DATE)
 add('standards','Editorial standards','How guides are written, checked and published.',intro('Site records','Editorial standards','By the DIY Home Upgrades editorial desk. Buying checklists, not hands-on reviews.')+f'''<div class="prose"><h2>Publication gate</h2><p>Confirm product intent against an official listing and save the date and source separately from the redirect. Generate a Special Link through enrolled Associates tools, then verify the destination and authorized tracking report before publishing it. Keep a paid-link notice next to each approved link and the Associates notice on every page.</p><p>Review {source(AMAZON,'the Operating Agreement')}, {source('https://affiliate-program.amazon.com/help/operating/policies','Amazon’s Program Policies')} and {source(FTC,'FTC endorsement guidance')} before publishing. Every document behind every claim, with the date it states and the constraint it imposes, is kept in the {link('sources','citation register')}. Do not scrape Amazon or use product images, ratings, prices or API content without confirming rights, sourcing and freshness requirements. The masthead photograph is AI-generated editorial imagery, not a product depiction.</p><h2>Publishing rhythm</h2><p>Proposed: one question-led guide every two weeks, with a monthly evidence and link review. Start with walls and kitchen storage; revisit seasonal topics only when they fit reader needs. Every new entry in the guide register updates the sitemap and RSS feed on build.</p></div>''')
 add('measurement','Measurement','Campaign ledger and analytics status.',intro('Site records','Measurement','No campaign results have been imported.')+table(['Timestamp','Authorized source','Channel','Eligible sessions','Clicks','Reported orders'],[])+f'''<div class="prose"><p>The ledger is empty, not zero. Import only aggregate figures from authorized first-party reports and retain a dated provenance trail. Use {source('https://affiliate-program.amazon.com/','Associates Central')} for reported orders; outbound clicks are not conversions.</p><p>Production telemetry is not connected. GitHub Pages cannot execute the optional collector. Search Console ownership has not been verified; the sitemap is available for submission. Reader subscriptions use RSS without collecting email addresses.</p></div>''')
 
@@ -157,22 +159,179 @@ _rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))
     + table(['Date','Session','Item','Result','Official sources'], _recheck_rows))
 pages['review'] = (_rt, _rd, _rb)
 
+def page_shell(title, desc, body, canonical, page_id, prefix=''):
+    """One HTML shell for every page, so navigation, disclosure, footer and the
+    findability meta cannot drift between pages.
+
+    `prefix` is '' for root pages and '../' for pages one directory deep. The open
+    graph and JSON-LD tags come from the findability pass (arena/175d82e7); they
+    use only verified facts - site name, canonical URL, page description and the
+    on-disk hero image. No rating, price, popularity or revenue claim is emitted.
+    """
+    dashboard = ' '.join(f'<a href="{prefix}{s}.html">{e(t)}</a>' for s,t in ops)
+    head_title = f'{e(title)}{" | DIY Home Upgrades" if page_id != "index" else ""}'
+    og_title = title if page_id == 'index' else f'{title} | DIY Home Upgrades'
+    og_type = 'article' if page_id in ('wallpaper','paper-towels','cookware','air-fryers','guides') else 'website'
+    og_image = BASE + 'assets/hero.jpg'
+    jsonld = __import__('json').dumps({'@context':'https://schema.org','@type':'WebSite','name':'DIY Home Upgrades','url':BASE,'description':pages['index'][1],'inLanguage':'en','publisher':{'@type':'Organization','name':'DIY Home Upgrades','url':BASE}}, separators=(',',':'))
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{head_title}</title><meta name="description" content="{e(desc,quote=True)}"><meta name="author" content="DIY Home Upgrades editorial desk"><link rel="canonical" href="{canonical}"><meta property="og:site_name" content="DIY Home Upgrades"><meta property="og:title" content="{e(og_title,quote=True)}"><meta property="og:description" content="{e(desc,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="{og_type}"><meta property="og:image" content="{og_image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(og_title,quote=True)}"><meta name="twitter:description" content="{e(desc,quote=True)}"><meta name="twitter:image" content="{og_image}"><script type="application/ld+json">{jsonld}</script><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="{prefix}feed.xml"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/metrics.js" defer></script></head><body><header><div class="wrap mast"><a class="brand" href="{prefix}./">DIY Home<span> Upgrades</span></a><nav aria-label="Main navigation"><a href="{prefix}shop.html">Shop</a><a href="{prefix}guides.html">Buying guides</a><a href="{prefix}feed.xml">RSS</a><details><summary>Site records</summary><div class="dropdown">{dashboard}</div></details></nav></div></header><div class="disclosure">{NOTICE}</div><main class="wrap" data-page="{page_id}">{body}</main><footer><div class="wrap"><strong>DIY Home Upgrades</strong><p>{NOTICE}</p><nav aria-label="Site records and feed" style="display:block">{dashboard} <a href="{prefix}feed.xml">RSS feed</a></nav></div></footer></body></html>'''
+
+# --- Shop surface (added by arena/94688dd1-diyhome2; renders data/products.json) ---
+# The reviewer asked for a shop, not an audit: a category index, a front-of-shop
+# table a buyer can scan, and one page per category. Every cell comes from the
+# already-verified records in data/products.json. Nothing here adds a price,
+# rating, review count, availability claim or tracking assertion, and no field is
+# inferred: where a record has no verified value the cell says so and links to the
+# Flagged for Review page instead of guessing.
+import json as _json
+
+_cat_doc = _json.loads(Path('data/products.json').read_text())
+_links_doc = _json.loads(Path('data/links.json').read_text())
+_flags_doc = _json.loads(Path('data/flags.json').read_text())
+_links_by_id = {l['id']: l for l in _links_doc['links']}
+
+_SPEC_LABELS = [
+    ('Brand', 'Brand'),
+    ('Category', 'Amazon category'),
+    ('Sold by', 'Sold by'),
+    ('Material', 'Material'),
+    ('Colour', 'Colour'),
+    ('Product dimensions', 'Product dimensions'),
+    ('Rail length', 'Rail length'),
+    ('Item weight', 'Item weight'),
+    ('Tiers', 'Tiers'),
+    ('Colours offered', 'Colours offered'),
+    ('Heights offered', 'Heights offered'),
+    ('Kit contents', 'Kit contents'),
+]
+_UNV = '<span class="unv">unverified</span>'
+
+def _spec(product, label):
+    for s in product.get('specs', []):
+        if s['label'] == label:
+            return e(s['value'])
+    return _UNV
+
+_KEY_SPEC_ORDER = ['Product dimensions','Kit contents','Heights offered','Tiers','Rail length','Material']
+
+def _key_spec(product):
+    for label in _KEY_SPEC_ORDER:
+        for sp in product.get('specs', []):
+            if sp['label'] == label:
+                return e(sp['value'])
+    return _UNV
+
+def _asin_cell(product):
+    # The listing the reader is invited to visit carries a sponsored marker; the
+    # buyer-intent confirmation record for the submitted short link is separate and
+    # stays unpublished until it is confirmed.
+    return f'{source(product["listing_url"], product["asin"], True)}<br><small><a href="category/{product["category"]}.html">{e(_cat_name(product["category"]))}</a></small>'
+
+def _cat_name(slug):
+    for c in _cat_doc['categories']:
+        if c['slug'] == slug:
+            return c['name']
+    return slug
+
+def _link_state(product):
+    """Publish only what the intent record actually says, never a merged guess."""
+    rec = _links_by_id.get(product['submitted_link_id'])
+    if not rec:
+        return _UNV + '<br><small>no intent record</small>'
+    if rec.get('intended_asin'):
+        return 'confirmed'
+    target = e(rec.get('observed_redirect_target', ''))
+    return f'Intended product {_UNV}<br><small>observed redirect<br><code>{target}</code></small>'
+
+# The four published guides are the only honest reading targets; there is no
+# per-product page yet, so map each product to the guide that actually covers it.
+_GUIDE_FOR = {'wallpaper-tools':'wallpaper','paper-towel-holders':'paper-towels','pot-racks':'cookware'}
+
+SHOP_ROWS = []
+for _p in _cat_doc['products']:
+    SHOP_ROWS.append((
+        f'<strong>{e(_p["name"])}</strong><br><small>{e(_p["kicker"])}</small>',
+        _asin_cell(_p),
+        _spec(_p,'Brand'),
+        _spec(_p,'Category'),
+        _spec(_p,'Sold by'),
+        _key_spec(_p),
+        e(_p['dek']),
+        _link_state(_p),
+        f'<a href="{_GUIDE_FOR.get(_p["category"], "guides")}.html">Read the guide →</a>',
+    ))
+SHOP_HEADERS = ['Product','ASIN · category','Brand','Amazon category','Sold by','Key verified spec','What it is for','Buying-link status','Guide']
+
+def _shop_intro_note():
+    return ('<p class="prose">Every row below is rendered from a record first checked against the live Amazon '
+            'listing on 2026-11-20 and re-checked on 2026-11-21. Prices, stock, star ratings and review counts are '
+            '<strong>deliberately absent</strong>: '
+            f'the Associates Program Policies ({source("https://affiliate-program.amazon.com/help/operating/policies","S02")}) '
+            'the Program Policies permit them only through Creators API or Product Advertising API content, or an Amazon-served link, '
+            'and this site has neither. '
+            f'Blank or {_UNV} cells are fields that could not be confirmed from an official source. '
+            f'See {link("review","Flagged for Review")} for the open items.</p>')
+
+def _cat_cards():
+    out = []
+    for c in _cat_doc['categories']:
+        n = sum(1 for p in _cat_doc['products'] if p['category'] == c['slug'])
+        art = {'wallpaper-tools':'walls','paper-towel-holders':'counter','pot-racks':'cabinet'}.get(c['slug'])
+        photo = f'<img class="edit-photo" src="assets/{art}.jpg" alt="" width="600" height="380" loading="lazy">' if art else ''
+        item_word = 'item' if n == 1 else 'items'
+        out.append(f'<article class="card">{photo}<div class="eyebrow">{e(c["kicker"])}</div>'
+                   f'<h3><a href="category/{c["slug"]}.html">{e(c["name"])}</a></h3>'
+                   f'<p>{e(c["blurb"])}</p><p><small>{n} {item_word} covered · Amazon browse node {source("https://www.amazon.com/b?node="+c["browse_node"], c["browse_node"])}</small></p>'
+                   f'<a href="category/{c["slug"]}.html">Shop {e(c["name"].split("&")[0].strip().lower())} →</a></article>')
+    return '<div class="grid">'+''.join(out)+'</div>'
+
+add('shop','Shop the edit','Every product on this site in one place, by category.',intro('The shop floor','Shop the edit','Three verified products, organised by the room they fix. No prices, no star ratings, no stock claims — open a row to see what the listing actually says.')
+    +_shop_intro_note()
+    +'<div class="sectionhead"><div><div class="eyebrow">Browse by category</div><h2>Where the problem is</h2></div><a href="guides.html">Or read a buying guide →</a></div>'
+    +_cat_cards()
+    +'<div class="sectionhead"><div><div class="eyebrow">The whole shelf</div><h2>Every product, in one table</h2></div><a href="review.html">Unconfirmed fields →</a></div>'
+    +table(SHOP_HEADERS, SHOP_ROWS)
+    +f'<div class="prose"><h2>How to read the buying-link status column</h2><p>Each product arrived as a supplied <code>link.amazon</code> short address. That short address was observed to resolve to the listing shown on 2026-11-20, but the <em>intended</em> product and the paid Special Link are separate, unconfirmed facts, so the two are never merged into one field. A row reads “Intended product unverified” until the intended ASIN is confirmed inside the enrolled Associates workflow. That is a records gap, not a claim that any link is invalid.</p></div>')
+
+for _c in _cat_doc['categories']:
+    _prods = [p for p in _cat_doc['products'] if p['category'] == _c['slug']]
+    _rows = [(
+        f'<strong>{e(p["name"])}</strong><br><small>{e(p["dek"])}</small>',
+        source(p['listing_url'], p['asin'], True),
+        _spec(p,'Brand'), _spec(p,'Sold by'), _key_spec(p), _spec(p,'Material'),
+        _link_state(p),
+        f'<a href="../{_GUIDE_FOR.get(p["category"], "guides")}.html">Guide →</a>',
+    ) for p in _prods]
+    _body = intro(_c['kicker'], _c['name'], _c['blurb'])
+    _body += (f'<p class="prose">Amazon browse path as listed: <code>{e(_c["browse_path"])}</code> '
+              f'(<a href="https://www.amazon.com/b?node={_c["browse_node"]}">node {_c["browse_node"]}</a>). '
+              f'{len(_prods)} verified {"item" if len(_prods)==1 else "items"} so far.</p>')
+    _body += table(['Product','ASIN','Brand','Sold by','Key verified spec','Material','Buying-link status','Guide'], _rows)
+    _body += f'<p><a href="../shop.html">← All categories</a> · <a href="../review.html">Flagged fields</a></p>'
+    _path = Path('category/'+_c['slug']+'.html')
+    _path.parent.mkdir(exist_ok=True)
+    _path.write_text(page_shell(_c['name']+' — shop', _c['blurb'], _body,
+                                f'{BASE}category/{_c["slug"]}.html', 'category/'+_c['slug'], prefix='../')+'\n')
+
+# All pages are registered by this point (including the shop surface below), so the
+# shell is written last. Writing earlier left the nav pointing at a shop.html that
+# did not exist yet — scripts/check.py caught it.
 for slug,(title,desc,body) in pages.items():
     canonical = BASE + ('' if slug=='index' else slug+'.html')
-    dashboard = ' '.join(link(s,t) for s,t in ops)
-    # Findability meta (added by arena/175d82e7-diyhome2). Uses only verified
-    # facts: site name, canonical URL, page description and the on-disk hero
-    # image. No ratings, prices, popularity or revenue claims are emitted.
-    _og_type = 'article' if slug in ('wallpaper','paper-towels','cookware','air-fryers','guides') else 'website'
-    _og_title = title if slug=='index' else f'{title} | DIY Home Upgrades'
-    _og_image = BASE + 'assets/hero.jpg'
-    _jsonld = __import__('json').dumps({'@context':'https://schema.org','@type':'WebSite','name':'DIY Home Upgrades','url':BASE,'description':pages['index'][1],'inLanguage':'en','publisher':{'@type':'Organization','name':'DIY Home Upgrades','url':BASE}}, separators=(',',':'))
-    html = f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{e(title)}{' | DIY Home Upgrades' if slug!='index' else ''}</title><meta name="description" content="{e(desc,quote=True)}"><meta name="author" content="DIY Home Upgrades editorial desk"><link rel="canonical" href="{canonical}"><meta property="og:site_name" content="DIY Home Upgrades"><meta property="og:title" content="{e(_og_title,quote=True)}"><meta property="og:description" content="{e(desc,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="{_og_type}"><meta property="og:image" content="{_og_image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(_og_title,quote=True)}"><meta name="twitter:description" content="{e(desc,quote=True)}"><meta name="twitter:image" content="{_og_image}"><script type="application/ld+json">{_jsonld}</script><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="feed.xml"><link rel="stylesheet" href="assets/style.css"><script src="assets/metrics.js" defer></script></head><body><header><div class="wrap mast"><a class="brand" href="./">DIY Home<span> Upgrades</span></a><nav aria-label="Main navigation"><a href="guides.html">Buying guides</a><a href="feed.xml">RSS</a><details><summary>Site records</summary><div class="dropdown">{dashboard}</div></details></nav></div></header><div class="disclosure">{NOTICE}</div><main class="wrap" data-page="{slug}">{body}</main><footer><div class="wrap"><strong>DIY Home Upgrades</strong><p>{NOTICE}</p><nav aria-label="Site records and feed" style="display:block">{dashboard} <a href="feed.xml">RSS feed</a></nav></div></footer></body></html>'''
-    Path(slug+'.html').write_text(html+'\n')
+    Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
+
+# All pages are registered by this point (including the shop surface), so the
+# shell is written last, breadth-first. Writing it earlier left the nav pointing
+# at a shop.html that did not exist yet - scripts/check.py caught it.
+for slug,(title,desc,body) in pages.items():
+    canonical = BASE + ('' if slug=='index' else slug+'.html')
+    Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
 
 sitemap = ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
 for slug in pages:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
+for _c in _cat_doc['categories']:
+    ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+'category/'+_c['slug']+'.html'
 ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+worksheet
 ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+'audit/'
 ET.ElementTree(sitemap).write('sitemap.xml',encoding='utf-8',xml_declaration=True)
@@ -196,7 +355,16 @@ for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'I
                             ('audit/','Spec & policy audit','Independently verified listing details, internal listing discrepancies and the 2026 policy register.','Site record')]:
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),
-                      ('guid',BASE+path),('pubDate','Fri, 20 Nov 2026 00:00:00 GMT'),
+                      ('guid',BASE+path),('pubDate','Sat, 21 Nov 2026 00:00:00 GMT'),
+                      ('category',cat)]:
+        ET.SubElement(item,tag).text=value
+# The shop surface is part of the reading experience, so a subscriber sees new
+# categories and rows without reloading the site. arena/94688dd1-diyhome2.
+for path,title,desc,cat in [('shop.html','Shop the edit',pages['shop'][1],'Shop')] + [
+        (f'category/{c["slug"]}.html', c['name']+' \u2014 shop', c['blurb'], 'Shop') for c in _cat_doc['categories']]:
+    item=ET.SubElement(channel,'item')
+    for tag,value in [('title',title),('description',desc),('link',BASE+path),
+                      ('guid',BASE+path),('pubDate','Sat, 21 Nov 2026 00:00:00 GMT'),
                       ('category',cat)]:
         ET.SubElement(item,tag).text=value
 # The homepage is the channel link; give it an item too so the cover check is honest.

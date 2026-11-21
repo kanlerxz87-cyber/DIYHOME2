@@ -48,6 +48,7 @@ jobs:
             echo "| Sitemap URLs | $(grep -c '<loc>' sitemap.xml) |"
             echo "| Feed items | $(grep -c '<item>' feed.xml) |"
             echo "| Citation sources | $(node -e "console.log(require('./data/citation-register.json').sources.length)") |"
+            echo "| Shop categories | $(ls category/*.html | wc -l) |"
             echo "| Open flags | $(node -e "console.log(require('./data/flags.json').flags.length)") |"
             echo "| Ledger rows | $(node -e "console.log(require('./data/campaign-ledger.json').rows.length)") |"
           } >> "$GITHUB_STEP_SUMMARY"

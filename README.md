@@ -2,6 +2,16 @@
 
 [Publication](https://kanlerxz87-cyber.github.io/DIYHOME2/) · [Executive summary](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) · [Flagged for Review](https://kanlerxz87-cyber.github.io/DIYHOME2/review.html)
 
+## Where to start
+
+- **[The shop](https://kanlerxz87-cyber.github.io/DIYHOME2/shop.html)** — every product in one table, by category.
+- **[Buying guides](https://kanlerxz87-cyber.github.io/DIYHOME2/guides.html)** — one buyer question per guide.
+- **[Executive summary](EXECUTIVE_SUMMARY.md)** — what was verified, what was not, and why.
+
+Shop pages and category pages are generated from `data/products.json`; the narrative pages are generated
+from `scripts/build.py`. `scripts/summary.py` holds the executive-summary page. Do not hand-edit generated
+HTML — change the data or the builder and re-run it.
+
 Build and validate from the repo root with `python3 scripts/build.py && python3 scripts/check.py`. GitHub Pages serves the generated root files from main. The builder is the source of truth for pages, sitemap and feed.
 
 ## Measurement

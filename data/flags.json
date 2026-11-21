@@ -216,6 +216,58 @@
       "sources": [
         "S07"
       ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Spec & policy audit page reachable from the navigation",
+      "result": "Corrected. The audit page's Site records dropdown was the only one missing the Citation register entry; it now lists the same seven links as every other page. Content unchanged.",
+      "sources": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Art3d listing (B08FKW9JRM) re-read against the published record",
+      "result": "Confirmed. Title, brand Art3d, sold by Art3d®, ships from Amazon, browse node 164701011 Wallpaper Tools, and the five kit contents (large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape) match the published bullets. Price, star rating, review count and bought-in-past-month figures were visible and are deliberately not published (S02).",
+      "sources": [
+        "S07",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Paper towel holder listing (B0BSKQW2T2) re-read against the published record",
+      "result": "Confirmed. Brand niffgaff, sold by YH Urban, Material Aluminum, Color Black, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56\"L x 12.2\"W, Size 12.2 inches, browse node 3744201. No price or rating published (S02).",
+      "sources": [
+        "S08",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "ORDORA organizer listing (B08DY9HRWD) re-read against the published record",
+      "result": "Confirmed. Title records 16.6\", 8 tiers and lightweight cookware up to 11\"; brand ORDORA, sold by ORDORA Official, eight size options from 13.78\"H to 23.62\"H, four colours, browse node 289824 Pot Racks. No price or rating published (S02).",
+      "sources": [
+        "S09",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Product rows render only verified record values",
+      "result": "Confirmed. The shop index and three category pages are generated from data/products.json; a field the record does not carry renders as an explicit unverified marker rather than a guess. No price, rating, review count, availability or forecast appears in any generated page (verify.mjs gate).",
+      "sources": [
+        "S02",
+        "S07",
+        "S08",
+        "S09"
+      ]
     }
   ]
 }
