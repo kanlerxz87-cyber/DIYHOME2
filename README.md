@@ -17,3 +17,7 @@ No Associates account, reports, authorized API integration, or Search Console ow
 ## Machine-readable launch records
 
 [`product-register.json`](product-register.json) preserves all four submissions, including the duplicate. Observed Amazon destinations are separate from intended ASINs, listing URLs and confirmation evidence. Null values are unverified. [`campaign-ledger.csv`](campaign-ledger.csv) has headers only; do not treat the absence of authorized reports as zero orders.
+
+## Flagged for Review
+
+[`data/flags.json`](data/flags.json) is the single source for every open irregularity and every dated re-check; `scripts/build.py` renders all of it on `review.html`, and `scripts/verify.mjs` fails the build if any flag or re-check is missing from the page. Public category commission rates (Associates Help, Table 1) are recorded as source S13; the account's own rate card is sign-in only, so no per-product rate or earnings figure is published.
