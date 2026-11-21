@@ -40,6 +40,8 @@ const links = readJson("data/links.json");
 const products = readJson("data/products.json");
 const ledger = readJson("data/campaign-ledger.json");
 const flags = readJson("data/flags.json");
+const _cats = readJson("data/products.json").categories.map((c) => c.slug);
+const _catSlugs = _cats.map((sl) => `category/${sl}.html`);
 
 const CITE = Object.fromEntries(register.sources.map((s) => [s.id, s]));
 const ALLOWED_HOSTS = [
@@ -223,6 +225,37 @@ for (const l of links.links) {
     fail("links:observation-changed", `${l.id} recorded ${l.observed_asin}, expected ${expected}`);
 }
 say(`${products.products.length} product records and ${links.links.length} observations cross-checked`);
+
+/* 13 — untagged Amazon links cannot appear without F12 disclosure, site-wide ---- */
+// Added by arena/94688dd1-diyhome2. F12 discloses that no tag can be honestly added
+// until a Special Link is validated in the enrolled account. That means every Amazon
+// product link on this site is untagged, so the count is pinned here: a new page that
+// adds one silently would widen the compliance gap the site has published without
+// saying so. This caught a real slip - the first shop build linked each category's
+// browse node, adding untagged links F12 did not describe.
+const BROWSER_PAGES = [...pages, ...NESTED.filter((n) => fs.existsSync(path.join(ROOT, n)))];
+const AMAZON_TAG = /<a\b[^>]*href="(https?:\/\/(?:www\.)?amazon\.[^"]*)"[^>]*>/gi;
+function untaggedCount(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+  let n = 0;
+  for (const m of html.matchAll(AMAZON_TAG)) {
+    if (!/\/dp\//.test(m[1])) continue;
+    const rel = (m[0].match(/rel="([^"]*)"/) || [])[1] || "";
+    if (rel.split(/\s+/).includes("sponsored") && !/[?&]tag=/.test(m[1])) n++;
+  }
+  return n;
+}
+const EXPECTED_UNTAGGED = {
+  "wallpaper.html": 1, "paper-towels.html": 1, "cookware.html": 1,
+  "review.html": 4, "shop.html": 3, "audit/index.html": 6,
+  ...Object.fromEntries(_catSlugs.map((f) => [f, 1])),
+};
+for (const p of BROWSER_PAGES) {
+  const n = untaggedCount(p);
+  const want = EXPECTED_UNTAGGED[p] ?? 0;
+  if (n !== want) fail("links:untagged-count", `${p} has ${n} untagged Amazon product link(s), expected ${want}. Update F12 before changing this.`);
+}
+say(`untagged Amazon product links pinned to the F12 disclosure across ${BROWSER_PAGES.length} pages`);
 
 /* 11 — every open flag and re-check is actually published on review.html ---- */
 // Added by arena/bd0ba155-diyhome2. data/flags.json used to be validated but never

@@ -439,3 +439,31 @@ Post-merge addition: F12 (untagged reference links on the three guide pages) is 
 executive summary's "Checked against the source" table and in `EXECUTIVE_SUMMARY.md`, so the summary does
 not read as if the compliance picture were closed. Severity, wording and the closing action are main's,
 unchanged.
+
+### Live-page review corrections (`arena/94688dd1-diyhome2`, 2026-11-21, post-merge)
+
+Fetching the deployed pages, rather than only the local build, found four real defects. All are fixed on
+this branch and gated so they cannot come back:
+
+1. **The shop-linked Amazon browse nodes.** The category cards and each category header linked
+   `amazon.com/b?node=…` with no tag. That is an untagged Amazon link — the exact thing flag F12 exists to
+   record — and it would have widened the disclosed gap without saying so. They are now printed as
+   `<code>` text. `scripts/verify.mjs` gained check 13, which pins the untagged-link count per page to the
+   F12 disclosure (3 guides, 3 shop, 4 review, 6 audit, 1 per category page) and fails on any change.
+2. **A contradiction with F12.** The executive summary said "no page links to an untagged Amazon product
+   page" while the guide reference links — and, after this branch, most product links — are untagged. That
+   sentence is replaced with an accurate one.
+3. **An empty column.** Each category page rendered a "Material" column, or a "Key verified spec" column,
+   that was blank for that category. Columns are now chosen from the facts each category's record actually
+   carries: Kit contents (wallpaper), Material + Dimensions (paper towel holders), Heights + Colours offered
+   (pot racks). Nothing is inferred to fill a cell.
+4. **A duplicated clause** in the shop introduction ("the Associates Program Policies (S02) the Program
+   Policies permit them only…").
+
+Also stated plainly now, on the shop page itself: every Amazon product link on the site is untagged, so
+they are preview links rather than paid Special Links. That is a consequence of not being able to validate
+a Special Link without the enrolled account, and it is published rather than implied.
+
+Gates after the corrections: `python3 scripts/build.py`, `python3 scripts/check.py`,
+`node scripts/verify.mjs` (GATE PASSED, including the new check 13), `node audit/check_audit.mjs`, an
+18-page internal link and fragment crawl, and reproducibility (`git status` clean after a rebuild).
