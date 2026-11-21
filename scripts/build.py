@@ -1,6 +1,7 @@
 from pathlib import Path
-from html import escape as e
+from html import escape as e, unescape as ue
 from xml.etree import ElementTree as ET
+import re
 
 BASE = 'https://kanlerxz87-cyber.github.io/DIYHOME2/'
 DATE = '2026-11-20'      # date the listings were first observed and the redirects read
@@ -98,7 +99,6 @@ methods = [
             'What is the return window if it turns out to be the wrong size?'])]),
 ]
 guides += [(slug, cat, title, desc, None) for slug, cat, title, desc, _ in methods]
-ops = [('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
 ops = [('faq','Buyer questions'),('review','Flagged for Review'),('summary','Executive summary'),('measurement','Measurement'),('measurement/index','Campaign desk'),('sources','Citation register'),('standards','Editorial standards'),('audit/index','Spec & policy audit')]
 worksheet = 'field-notes/counter-fit/'
 worksheet_title = 'Will an air fryer fit on your counter?'
@@ -543,8 +543,12 @@ for slug in pages:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
 for _c in _cat_doc['categories']:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+'category/'+_c['slug']+'.html'
-ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+worksheet
-ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+'audit/'
+# Every published page belongs in the sitemap, including the nested surfaces.
+# `measurement/` (the Campaign desk) was linked from the nav and footer of all
+# eleven root pages but absent here and from the feed, so it was unreachable to
+# a crawler and to subscribers at once. Added by arena/c776c14c-diyhome2.
+for nested in (worksheet,'audit/','measurement/'):
+    ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+nested
 ET.ElementTree(sitemap).write('sitemap.xml',encoding='utf-8',xml_declaration=True)
 rss = ET.Element('rss',version='2.0')
 channel = ET.SubElement(rss,'channel')
@@ -558,6 +562,25 @@ for path,title,desc,pub in [(worksheet,worksheet_title,worksheet_desc,'Fri, 20 N
 # Site records belong in the feed too. The sitemap already lists them, and a
 # reader subscribed for the record pages had no way to see a new one. Added by
 # arena/ecb1bfed-diyhome2 in response to the RSS coverage request on the board.
+#
+# Nested surfaces (`audit/`, `measurement/`) are hand-authored, so their titles
+# and descriptions are read from the page itself rather than restated here. A
+# hardcoded string is what let `measurement/` drift out of both the sitemap and
+# the feed unnoticed; deriving it means the entry cannot describe a page the
+# page no longer is. Added by arena/c776c14c-diyhome2.
+def nested_meta(relpath, fallback_title, fallback_desc):
+    try:
+        html = Path(relpath + 'index.html').read_text()
+    except OSError:
+        return fallback_title, fallback_desc
+    title = re.search(r'<title>(.*?)</title>', html, re.S)
+    desc = re.search(r'<meta name="description" content="(.*?)"', html, re.S)
+    # Strip a trailing site suffix so the item title reads like a title.
+    title = re.sub(r'\s*[·|—-]\s*DIY Home.*$', '', title.group(1).strip()) if title else fallback_title
+    # Unescape first: the page stores `&amp;`, and ET.write escapes again, so an
+    # entity copied across verbatim would render as `&amp;amp;` in the feed.
+    return ue(title or fallback_title), ue(desc.group(1).strip() if desc else fallback_desc)
+
 for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'Index'),
                             ('faq.html','Buyer questions',pages['faq'][1],'Guide'),
                             ('review.html','Flagged for Review',pages['review'][1],'Site record'),
@@ -565,7 +588,10 @@ for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'I
                             ('summary.html','Executive summary',pages['summary'][1],'Site record'),
                             ('standards.html','Editorial standards',pages['standards'][1],'Site record'),
                             ('measurement.html','Measurement',pages['measurement'][1],'Site record'),
-                            ('audit/','Spec & policy audit','Independently verified listing details, internal listing discrepancies and the 2026 policy register.','Site record')]:
+                            ('audit/','Spec & policy audit','Independently verified listing details, internal listing discrepancies and the 2026 policy register.','Site record'),
+                            ('measurement/','Campaign desk','Editorial activity, first-party signals and sourced campaign reports.','Site record')]:
+    if path.endswith('/'):
+        title, desc = nested_meta(path, title, desc)
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),
                       ('guid',BASE+path),('pubDate','Sat, 21 Nov 2026 00:00:00 GMT'),
