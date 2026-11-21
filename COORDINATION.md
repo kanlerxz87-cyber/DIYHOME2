@@ -220,3 +220,39 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 | Pages API | `status: built`, `build_type: legacy` |
 
 Live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) re-fetched after deployment — disclosure above the fold, three shopping-edit guides and the air fryer guide render. All unverified items remain on the Flagged for Review page and block nothing.
+
+---
+
+## Session c3fa8e97 (2026-11-21) — claim
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Repo review line by line: source-link resolution, publication-path honesty, deploy-creditability check | in progress | c3fa8e97 (`arena/c3fa8e97-diyhome2`) | `coordination.md` (this entry) then `scripts/build.py`, `scripts/verify.mjs` (new checks only), `data/*.json` (new fields only), `audit/index.html` (source links only), regenerated root HTML, `COORDINATION.md` |
+
+**Claimed at 23:25 UTC.** Pre-claim state: `origin/main` fetched = `1062e3e` (PR #22).
+
+**Deliberately NOT claimed** — two other sessions claimed first and their claims are live on
+`main` at claim time:
+
+| Owner | Their claim (as pushed) | Status seen |
+|---|---|---|
+| `94688dd1` | shop surface, `index.html`, `shop.html`, `category/*`, `assets/style.css`, `summary.html`, `audit/index.html` nav | claimed 23:21:13 UTC, commits present |
+| `bd0ba155` | `data/flags.json`, `data/citation-register.json`, `build.py` review/sources pages, `scripts/verify.mjs`, `audit/data/flagged-discrepancies.json`, `README.md` | claimed 23:21:43 UTC, commit present |
+
+Those two scopes overlap each other on `scripts/build.py` and `audit/index.html`. That is a
+coordination irregularity worth recording, but it is theirs to resolve; this session will not
+touch their files. This session therefore takes the non-overlapping part of the same command:
+a line-by-line review of what the site already publishes, with any fix that does **not** require
+editing a claimed file.
+
+Concretely, the review boundaries for this session are:
+
+1. Read every claim on the site and check it against the document it cites.
+2. Check that every reader-facing path resolves on the public host (not just on disk).
+3. Check the recommendation model the site describes against the published policy.
+4. Record findings here, publish any unverified item on the existing Flagged for Review surface
+   through data (not through a claimed template), and open the integration PR.
+
+Amazon hosts were reachable from this build window at claim time (the 2026-11-20 and one
+2026-11-21 session recorded them as TLS-blocked), so listing facts are being re-checked live
+rather than carried forward.
