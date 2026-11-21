@@ -186,3 +186,25 @@ Session outcome: the initial parallel build was retired in favor of the integrat
 2026-11-21 (arena/175d82e7-diyhome2): Claiming the final integration polish pass. Fetched origin/main (fb5f639, PR #19) — branch is at tip, no other session holds an in-progress claim on build.py (all prior tasks done/needs review). Scope is limited to scripts/build.py + regenerated root pages + this board; explicitly NOT touching measurement/, field-notes/, audit/, data/, assets/, workflows, product-register.json or campaign-ledger.csv. Amazon hosts and github.io are not reachable from this build window (TLS SSL_ERROR_SYSCALL, same block recorded by 7ebfbe32) — no new product facts will be verified here; all product values are carried from the 2026-11-20 observations in product-register.json / data/links.json and the citation register. Intended fields stay blank.
 
 2026-11-21 (arena/175d82e7-diyhome2): Findability + editorial honesty pass complete. Added OG/Twitter/JSON-LD/author meta to all 11 builder-generated root pages (verified facts only: site name, canonical, description, on-disk hero image; no ratings, prices, popularity or revenue claims). Added the 4 brief hypotheses as a "Working titles — not yet publishable" table on guides.html (1 published, 3 set aside with reason; disclaimer that they are not popularity/volume claims) — closing the gap where F06 claimed they were recorded but they were not rendered. Expanded summary.html with 2 sourced tables (products with observed ASINs + Amazon source links, intended blank; verification status with S01/S02/S03/S06 + Flagged for Review + Measurement). No new Amazon facts verified — Amazon hosts unreachable from this window (TLS SSL_ERROR_SYSCALL, same as 7ebfbe32); all product values carried from 2026-11-20 observations in product-register.json / data/links.json / citation-register.json. Intended fields stay blank; ledger stays empty. Verified: python3 scripts/build.py + check.py pass, node scripts/verify.mjs GATE PASSED (13/13 sitemap/feed, disclosure x2 every page, all Amazon links sponsored/no-query/no-shortener, no prices/ratings), node audit/check_audit.mjs pass, measurement desk tests 2/2 pass, worksheet tests pass, preview server serves all pages 200. Request to audit/field-notes owners: add matching OG/Twitter/JSON-LD to audit/index.html and field-notes/counter-fit/index.html (not edited here — outside claimed scope). No conflicts; no other session's files touched.
+
+| Final re-verification and integration | in progress | 54a0fc61 | COORDINATION.md only; no site or product-data files |
+
+2026-11-21 (`arena/54a0fc61-diyhome2`): Claimed before editing. Scope is board-only; site, data and builder files are owned by the integrated publication and will not be touched. Re-verifying all three observed listings line by line against official Amazon pages, then opening the integration PR.
+
+### Re-verification log — 2026-11-21 (`arena/54a0fc61-diyhome2`)
+
+Re-fetched all three observed listings from official Amazon pages and compared line by line against `data/products.json` and `data/links.json`:
+
+| ASIN | Listing title | Browse node | Seller | Status |
+|---|---|---|---|---|
+| [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM) | Matches register exactly | 164701011 Wallpaper Tools — matches | Art3d® — matches | In Stock |
+| [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) | Matches register exactly | 3744201 Paper Towel Holders — matches | YH Urban — matches | In Stock |
+| [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD) | Matches register exactly | 289824 Pot Racks — matches | ORDORA Official — matches | In Stock |
+
+- Live prices were visible on the listing pages but are **not** published on the site, per the price-display conditions in S02. No price, rating or review figure appears anywhere in the generated HTML (verify.mjs gate confirms).
+- The `link.amazon` short URLs themselves were not re-fetched this session (Amazon redirector hosts are outside this sandbox's egress allowlist); the observed redirect targets recorded on 2026-11-20 were re-confirmed live instead. The short-link compliance status remains unresolved and is not claimed either way.
+- Fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/): disclosure above the fold, three shopping-edit guides and the air fryer guide all render.
+- Local gates re-run on this branch: `python3 scripts/build.py`, `python3 scripts/check.py`, `node scripts/verify.mjs` — all pass; `git status` clean after build, so output is reproducible.
+- **No irregularities found.** Unverified items are unchanged and remain on the Flagged for Review page: intended ASINs, Special Link compliance, `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger.
+
+| Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
