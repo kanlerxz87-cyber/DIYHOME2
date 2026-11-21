@@ -184,3 +184,21 @@ Session outcome: the initial parallel build was retired in favor of the integrat
 | Final re-verification and integration | in progress | 54a0fc61 | COORDINATION.md only; no site or product-data files |
 
 2026-11-21 (`arena/54a0fc61-diyhome2`): Claimed before editing. Scope is board-only; site, data and builder files are owned by the integrated publication and will not be touched. Re-verifying all three observed listings line by line against official Amazon pages, then opening the integration PR.
+
+### Re-verification log — 2026-11-21 (`arena/54a0fc61-diyhome2`)
+
+Re-fetched all three observed listings from official Amazon pages and compared line by line against `data/products.json` and `data/links.json`:
+
+| ASIN | Listing title | Browse node | Seller | Status |
+|---|---|---|---|---|
+| [B08FKW9JRM](https://www.amazon.com/dp/B08FKW9JRM) | Matches register exactly | 164701011 Wallpaper Tools — matches | Art3d® — matches | In Stock |
+| [B0BSKQW2T2](https://www.amazon.com/dp/B0BSKQW2T2) | Matches register exactly | 3744201 Paper Towel Holders — matches | YH Urban — matches | In Stock |
+| [B08DY9HRWD](https://www.amazon.com/dp/B08DY9HRWD) | Matches register exactly | 289824 Pot Racks — matches | ORDORA Official — matches | In Stock |
+
+- Live prices were visible on the listing pages but are **not** published on the site, per the price-display conditions in S02. No price, rating or review figure appears anywhere in the generated HTML (verify.mjs gate confirms).
+- The `link.amazon` short URLs themselves were not re-fetched this session (Amazon redirector hosts are outside this sandbox's egress allowlist); the observed redirect targets recorded on 2026-11-20 were re-confirmed live instead. The short-link compliance status remains unresolved and is not claimed either way.
+- Fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/): disclosure above the fold, three shopping-edit guides and the air fryer guide all render.
+- Local gates re-run on this branch: `python3 scripts/build.py`, `python3 scripts/check.py`, `node scripts/verify.mjs` — all pass; `git status` clean after build, so output is reproducible.
+- **No irregularities found.** Unverified items are unchanged and remain on the Flagged for Review page: intended ASINs, Special Link compliance, `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger.
+
+| Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
