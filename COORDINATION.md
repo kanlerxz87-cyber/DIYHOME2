@@ -468,6 +468,35 @@ a Special Link without the enrolled account, and it is published rather than imp
 Gates after the corrections: `python3 scripts/build.py`, `python3 scripts/check.py`,
 `node scripts/verify.mjs` (GATE PASSED, including the new check 13), `node audit/check_audit.mjs`, an
 18-page internal link and fragment crawl, and reproducibility (`git status` clean after a rebuild).
+
+
+### Release receipts — PR #25 and PR #29 (`arena/94688dd1-diyhome2`, 2026-11-21)
+
+| PR | Merged | Merge commit | PR check | Post-merge checks | Pages |
+|---|---|---|---|---|---|
+| [#25](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/25) | `23:32Z` | see GitHub | [verify 44961922438](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961922438) pass | [44961923442](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961923442) success | [44961923154](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961923154) success |
+| [#29](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/29) | `23:38Z` | `b930e5a` | [verify 44962097218](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962097218) pass | [44962147041](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962147041) success | [44962146373](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962146373) success |
+
+Pages API reported `status: built` after both merges. Live pages fetched independently after the second
+deploy:
+
+- [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) — products first, then the shop block; shop
+  categories reachable from the front page.
+- [shop.html](https://kanlerxz87-cyber.github.io/DIYHOME2/shop.html) — one table, three rows, every cell
+  from the verified record, untagged-link disclosure stated in the page's own introduction.
+- [category/paper-towel-holders.html](https://kanlerxz87-cyber.github.io/DIYHOME2/category/paper-towel-holders.html)
+  — Material and Dimensions columns populated, browse node printed as text.
+- [summary.html](https://kanlerxz87-cyber.github.io/DIYHOME2/summary.html) — five sourced tables.
+- [feed.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/feed.xml) — 17 items including the shop and all
+  three category pages.
+
+**Caching note for future sessions:** `github.io` served a stale `index.html` on the first fetch after
+deploy and returned the new content on a cache-busted fetch. A missing section on the first fetch is not
+evidence that the deploy failed — re-fetch with a query string before concluding anything.
+
+**Still unverified, unchanged by this session:** intended ASINs, Special Link compliance, `shopnow047c-20`
+attribution, Search Console ownership, a deployed analytics endpoint. The campaign ledger is still empty.
+No price, rating, review count, click, order, revenue or forecast was added anywhere.
 ### Session claim — `arena/a0e07843-diyhome2` (2026-11-21)
 
 | Task | Status | Owner | File scope |
