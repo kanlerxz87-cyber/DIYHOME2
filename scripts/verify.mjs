@@ -40,6 +40,8 @@ const links = readJson("data/links.json");
 const products = readJson("data/products.json");
 const ledger = readJson("data/campaign-ledger.json");
 const flags = readJson("data/flags.json");
+const _cats = readJson("data/products.json").categories.map((c) => c.slug);
+const _catSlugs = _cats.map((sl) => `category/${sl}.html`);
 
 const CITE = Object.fromEntries(register.sources.map((s) => [s.id, s]));
 const ALLOWED_HOSTS = [
@@ -223,6 +225,59 @@ for (const l of links.links) {
     fail("links:observation-changed", `${l.id} recorded ${l.observed_asin}, expected ${expected}`);
 }
 say(`${products.products.length} product records and ${links.links.length} observations cross-checked`);
+
+/* 13 — untagged Amazon links cannot appear without F12 disclosure, site-wide ---- */
+// Added by arena/94688dd1-diyhome2. F12 discloses that no tag can be honestly added
+// until a Special Link is validated in the enrolled account. That means every Amazon
+// product link on this site is untagged, so the count is pinned here: a new page that
+// adds one silently would widen the compliance gap the site has published without
+// saying so. This caught a real slip - the first shop build linked each category's
+// browse node, adding untagged links F12 did not describe.
+const BROWSER_PAGES = [...pages, ...NESTED.filter((n) => fs.existsSync(path.join(ROOT, n)))];
+const AMAZON_TAG = /<a\b[^>]*href="(https?:\/\/(?:www\.)?amazon\.[^"]*)"[^>]*>/gi;
+function untaggedCount(file) {
+  const html = fs.readFileSync(path.join(ROOT, file), "utf8");
+  let n = 0;
+  for (const m of html.matchAll(AMAZON_TAG)) {
+    if (!/\/dp\//.test(m[1])) continue;
+    const rel = (m[0].match(/rel="([^"]*)"/) || [])[1] || "";
+    if (rel.split(/\s+/).includes("sponsored") && !/[?&]tag=/.test(m[1])) n++;
+  }
+  return n;
+}
+const EXPECTED_UNTAGGED = {
+  "wallpaper.html": 1, "paper-towels.html": 1, "cookware.html": 1,
+  "review.html": 4, "shop.html": 3, "audit/index.html": 6,
+  ...Object.fromEntries(_catSlugs.map((f) => [f, 1])),
+};
+for (const p of BROWSER_PAGES) {
+  const n = untaggedCount(p);
+  const want = EXPECTED_UNTAGGED[p] ?? 0;
+  if (n !== want) fail("links:untagged-count", `${p} has ${n} untagged Amazon product link(s), expected ${want}. Update F12 before changing this.`);
+}
+say(`untagged Amazon product links pinned to the F12 disclosure across ${BROWSER_PAGES.length} pages`);
+
+/* 11 — every open flag and re-check is actually published on review.html ---- */
+// Added by arena/bd0ba155-diyhome2. data/flags.json used to be validated but never
+// rendered, so "Flagged for Review" silently omitted ten flags. Never again.
+const reviewHtml = fs.readFileSync(path.join(ROOT, "review.html"), "utf8");
+for (const f of flags.flags) {
+  if (!reviewHtml.includes(`id="flag-${f.id}"`)) fail("flags:unpublished", `${f.id} is in data/flags.json but not on review.html`);
+  if (!f.sources?.length) fail("flags:no-source", `${f.id} has no source`);
+}
+for (const r of flags.rechecks ?? []) {
+  if (!r.sources?.length) fail("rechecks:no-source", `${r.item} has no source`);
+  if (!reviewHtml.includes(r.item.replace(/&/g, "&amp;"))) fail("rechecks:unpublished", `${r.item} is not on review.html`);
+}
+say(`${flags.flags.length} flags and ${(flags.rechecks ?? []).length} re-checks are published on review.html with sources`);
+
+/* 12 — no page may claim no commission rate is readable anywhere ------------- */
+// S13 is a public category table; "no rate published" is true of per-product rates
+// only. Keep that distinction from regressing.
+for (const p of pages) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
+  if (/rate card behind sign-in; no rate published/i.test(h)) fail("claims:rate-unreadable", `${p} says no rate can be read; Table 1 (S13) is public`);
+}
 
 /* report ------------------------------------------------------------------ */
 const bar = "─".repeat(70);

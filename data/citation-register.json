@@ -23,7 +23,7 @@
       "title": "Associates Program Policies",
       "publisher": "Amazon.com, Inc.",
       "url": "https://affiliate-program.amazon.com/help/operating/policies",
-      "section": "Participation Requirements §2(b), §2(t), §2(w), §2(y); Commission Income Statement §2(e)",
+      "section": "Participation Requirements §2(b), §2(t), §2(w), §2(y); Commission Income Statement §2(e); IP License §4 Agent Terms",
       "dated_on_page": "Updated April 14, 2026",
       "access": "public",
       "claim": "Four rules that constrain this site: prices may only be shown when Amazon serves the link or the data comes via the Product Advertising API; star ratings may not be shown without API access; link shorteners must not obscure that a link goes to Amazon; price tracking and alerting are prohibited; and a purchase made through an intermediate site without an affirmative action there is disqualified.",
@@ -37,7 +37,7 @@
       "section": "Appendix — Standard Commission Income",
       "dated_on_page": "not visible (sign-in wall)",
       "access": "restricted",
-      "claim": "Nothing. This URL redirects to an Associates sign-in page, so no commission rate, earnings estimate or revenue forecast is published anywhere on this site.",
+      "claim": "Nothing. This URL redirects to an Associates sign-in whose return address is the account's own custom rate card, so the account-specific rate card is unread. Public category rates are recorded separately in S13. No earnings estimate or revenue forecast is published anywhere on this site.",
       "quote": ""
     },
     {
@@ -138,6 +138,17 @@
       "access": "public",
       "claim": "Resolves to https://www.amazon.com/dp/B08DY9HRWD. The code is 9 characters and shares its B0 prefix with the ASIN it resolves to, which is a coincidence that makes copying the code into an ASIN field especially likely.",
       "quote": ""
+    },
+    {
+      "id": "S13",
+      "title": "Associates Program Standard Commission Income Statement (Table 1)",
+      "publisher": "Amazon.com, Inc.",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "section": "Table 1 – Fixed Standard Commission Income Rates for Specific Product Categories",
+      "dated_on_page": "not displayed on page (read 2026-11-21)",
+      "access": "public",
+      "claim": "Public category-level fixed rates. Kitchen is listed at 4.50%; Home, Home Improvement and Tools at 3.00%; All Other Categories at 4.00%. This is a category table, not an account rate card, and it does not say which category any of the three observed listings is paid under.",
+      "quote": "Physical Books, Kitchen, Automotive | 4.50% … Toys, Furniture, Home, Home Improvement, Lawn & Garden … Tools … | 3.00% … All Other Categories | 4.00%"
     }
   ],
   "constraints": [
@@ -181,6 +192,20 @@
       "constraint": "A short code is not an ASIN and must not be recorded as one.",
       "basis": "S06, S10, S11, S12",
       "effect_on_site": "Intended and observed fields stay separate; the intended fields remain blank.",
+      "new_this_session": true
+    },
+    {
+      "id": "C7",
+      "constraint": "Each link placed on the site to an Amazon Site must carry the Associates ID (tag, format XXXXX-##) as a URL parameter.",
+      "basis": "S02",
+      "effect_on_site": "The untagged Amazon reference links on three guide pages are in tension with this rule. They are published as reference-only, marked sponsored, and flagged as F12 for a decision.",
+      "new_this_session": true
+    },
+    {
+      "id": "C8",
+      "constraint": "An autonomous or semi-autonomous Agent that accesses Program Content must identify itself in its user agent as Agent/[name], must not conceal that it is an Agent, and must stop if Amazon asks it to.",
+      "basis": "S02",
+      "effect_on_site": "No Program Content (API data, link formats, widgets) is used, so the Agent Terms are not engaged today. Flagged as F11 because the project brief describes an automated agent.",
       "new_this_session": true
     }
   ]
