@@ -1,5 +1,5 @@
 {
-  "recorded": "2026-11-20",
+  "recorded": "2026-11-20 (updated 2026-11-21)",
   "note": "Each flag is an open irregularity. None blocked publication. Each names what was observed, what is missing and what would close it.",
   "flags": [
     {
@@ -9,7 +9,12 @@
       "severity": "high",
       "detail": "Three unique short links were supplied. Each resolves to a real Amazon listing, but no short code equals the ASIN it lands on, and all three codes are 9 characters where Amazon defines an ASIN as 10. Example: link.amazon/B0hmGG4m2 resolves to /dp/B08FKW9JRM. The code is therefore a redirector identifier, not a product identifier, and copying it into an ASIN field would corrupt the record.",
       "action": "Close by confirming the intended ASIN inside the enrolled Associates workflow for each link, then recording it in the intended_asin field. Until then the intended fields stay empty and the observed values stand alone.",
-      "sources": ["S06", "S10", "S11", "S12"]
+      "sources": [
+        "S06",
+        "S10",
+        "S11",
+        "S12"
+      ]
     },
     {
       "id": "F02",
@@ -18,16 +23,26 @@
       "severity": "blocking",
       "detail": "The destinations were reached with Amazon session and referrer parameters present, but no tag parameter carrying the selected tracking ID shopnow047c-20 was observed. Tracking is the mechanism that creates a commission at all: the Associates Agreement defines Special Links as links that properly use the tagged link formats, and the Participation Requirements require the Associates ID to appear in the URL of each link placed on a site.",
       "action": "Close by generating each link inside Associates Central with the enrolled tag, confirming the tag appears in the destination URL, then confirming the click appears in the tracking report before scaling. Do not assume the supplied links are non-compliant — the point is that compliance was not observable from outside the account.",
-      "sources": ["S01", "S02", "S10", "S11", "S12"]
+      "sources": [
+        "S01",
+        "S02",
+        "S10",
+        "S11",
+        "S12"
+      ]
     },
     {
       "id": "F03",
-      "title": "Commission rate card is behind a sign-in",
-      "area": "Revenue · unreadable source",
-      "severity": "blocking",
-      "detail": "The Standard Commission Income rate card at /help/operating/schedule redirects to an Associates sign-in page. The publicly readable policies page only links to it. Standard commission rates are therefore unverified, so no rate, earnings estimate, revenue forecast or conversion score is published anywhere on this site.",
-      "action": "Close by reading the rate card from inside an enrolled account and recording the effective date alongside it. Any published figure would also need to state that Amazon may change rates at any time.",
-      "sources": ["S03", "S02"]
+      "title": "Account rate card is behind a sign-in; public category rates do not say what these three items pay",
+      "area": "Revenue · account-dependent source",
+      "severity": "high",
+      "detail": "The rate-card address in the Program Policies Appendix redirects to an Associates sign-in whose return address is the account's own custom rate card (re-read 2026-11-21). A separate public page does publish category-level fixed rates (Table 1): Kitchen 4.50%, Home / Home Improvement / Tools 3.00%, All Other Categories 4.00%. That table does not say which category each of the three observed listings is paid under (the paper towel holder and the pot rack both sit under Home & Kitchen › Kitchen & Dining), and the Policies say the effective rate can differ slightly from the rate described in an account's rate card. No per-product rate, earnings estimate, revenue forecast or conversion score is therefore published; the Spec & policy audit shows the public category rates as a reference only. Correction: earlier records on this site said no rate could be read anywhere; that was wrong for the public category table and is corrected here and in S03/S13.",
+      "action": "Close by reading the custom rate card inside the enrolled account, then confirming category attribution for each ASIN from a first-party earnings report after real orders. Any published figure must also state that Amazon may change rates at any time.",
+      "sources": [
+        "S02",
+        "S03",
+        "S13"
+      ]
     },
     {
       "id": "F04",
@@ -36,7 +51,10 @@
       "severity": "high",
       "detail": "Price verification, rating verification and Special Link validation all require either API enrolment or an Associates account. Two of them are additionally constrained by policy: price may only be displayed when Amazon serves the link or the data comes through the Product Advertising API, and star ratings may not be displayed at all unless obtained through that API. Price tracking and alerting are prohibited outright. The register shows these columns as unverified rather than filling them.",
       "action": "Price and rating columns close only with API enrolment. Link validation closes with account access per F02. None of the three may be filled by inference in the meantime.",
-      "sources": ["S02", "S03"]
+      "sources": [
+        "S02",
+        "S03"
+      ]
     },
     {
       "id": "F05",
@@ -45,17 +63,22 @@
       "severity": "low",
       "detail": "Four link lines were supplied but only three unique URLs. link.amazon/B03QDuGdo appeared twice. It is recorded once and flagged, so that the catalogue does not show a phantom fourth product.",
       "action": "Closed as an intake observation. No further action unless a fourth distinct product was intended, in which case that link has not yet been supplied.",
-      "sources": ["S11"]
+      "sources": [
+        "S11"
+      ]
     },
     {
       "id": "F06",
-      "title": "Suggested air fryer titles are published as method checklists, but no verified appliance listing exists to attach",
+      "title": "All four suggested titles are published as method checklists, but no verified appliance listing exists to attach",
       "area": "Editorial · topic selection",
       "severity": "low",
-      "detail": "The suggested hypotheses concerned basket and oven-style air fryers, air fryer capacity, clean-up and counter-space trade-offs, and multi-function kitchen appliances. No such product is in the supplied catalogue, so writing those guides with specifications behind them would have meant inventing them. Updated 2026-11-21: the format-comparison guide was already live, and the remaining three titles are now published as specification-free method checklists (air-fryer-capacity.html, air-fryer-cleanup.html and multi-function-appliances.html). Each states on the page that it is a method and not a test, quotes no specification, price or star rating, and recommends no model.",
-      "action": "Still open in one respect: with no verified air fryer or multi-function appliance listing, none of these guides can carry a researched product card or a sponsored link. Close by supplying verified listings, at which point the checklists can be paired with real specifications.",
-      "updated": "2026-11-21",
-      "sources": ["S06", "S02"]
+      "detail": "The suggested hypotheses concern basket and oven-style air fryers, air fryer capacity, cleanup trade-offs and multi-function kitchen appliances. No air fryer or appliance listing is in the supplied catalogue, so writing product-specific guides would require inventing specifications. The first title is published as the air fryer guide. Updated 2026-11-21: the remaining three are now published as well, as specification-free method checklists (air-fryer-capacity.html, air-fryer-cleanup.html and multi-function-appliances.html). Each states on the page that it is a method and not a test, quotes no specification, price or star rating, recommends no model and carries no buying link. The guides index keeps the four working titles in a table so the record of what was supplied stays visible. None is a claim about popularity, search volume or product superiority.",
+      "action": "Still open in one respect: with no verified air fryer or multi-function appliance listing, none of these pages can carry researched specifications or a sponsored link. Close by supplying verified listings, at which point the checklists become the place those specifications go.",
+      "sources": [
+        "S06",
+        "S02"
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F07",
@@ -64,7 +87,9 @@
       "severity": "high",
       "detail": "Amazon's Commission Income Statement disqualifies purchases where a customer reaches Amazon through a link that passes through an intermediate site without a click or affirmative action there — a Redirecting Link. That is the standard server-side click-tracker pattern. This site therefore sends the outbound click as a beacon and lets the browser go directly to Amazon, so no session is ever routed through this domain and no intermediate-site hop exists.",
       "action": "Closed by design, but flagged because the alternative — the common redirect-through-your-own-domain pattern — would have created the risk. Worth re-reading if the analytics implementation ever changes.",
-      "sources": ["S02"]
+      "sources": [
+        "S02"
+      ]
     },
     {
       "id": "F08",
@@ -73,7 +98,10 @@
       "severity": "medium",
       "detail": "Participation requires an accepted Operating Agreement and a site that was identified in the application. This build can neither see nor verify the account's enrolment state, the site list on the application, or whether the tracking ID shopnow047c-20 is active and attached to this domain. All three are asserted by the account holder, not verified here.",
       "action": "Close by confirming in Associates Central that the account is active, that this site URL is listed on the application, and that the tracking ID matches. Also confirm the six-month sales requirement and the disclosure obligation are being met from the account side.",
-      "sources": ["S01", "S02"]
+      "sources": [
+        "S01",
+        "S02"
+      ]
     },
     {
       "id": "F09",
@@ -82,8 +110,10 @@
       "severity": "low",
       "detail": "This build establishes a cadence and ships a feed, a sitemap and a publishing checklist. The second issue did not exist when this flag was written. Nothing on the site claims a publishing frequency that has been sustained. Updated 2026-11-21: issue 02 has now shipped with three method checklists, and standards.html carries a publication log of what shipped and when. Two consecutive issues on schedule still have not been demonstrated, so the flag stays open.",
       "action": "Close after two consecutive issues ship on schedule. Topic selection should be driven by measured queries once an analytics endpoint is configured, which it currently is not.",
-      "updated": "2026-11-21",
-      "sources": ["S02"]
+      "sources": [
+        "S02"
+      ],
+      "updated": "2026-11-21"
     },
     {
       "id": "F10",
@@ -92,7 +122,175 @@
       "severity": "medium",
       "detail": "The five defined events are implemented and the outbound counter is a non-blocking beacon, but the script ships with an empty endpoint. Until a collector is hosted and configured, events are logged to the browser console and discarded. The site therefore reports no measurement today and claims none.",
       "action": "Close by hosting a collector, setting data-endpoint, and verifying each of the five events arrives. Do not enable a third-party analytics vendor without revisiting the privacy page first.",
-      "sources": ["S02"]
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "id": "F11",
+      "title": "The brief describes an automated agent; the Program Policies now regulate agents that use Program Content",
+      "area": "Compliance · automation",
+      "severity": "medium",
+      "detail": "The Program Policies, last updated April 14, 2026, add Agent Terms to the IP License (section 4). An Agent is any software or service that takes autonomous or semi-autonomous action on behalf of a person. If an Agent accesses Program Content it must identify itself in the user-agent string as Agent/[name], must not conceal that it is an Agent, and must stop if Amazon asks it to refrain. Program Content is the data, images, text, link formats and tools Amazon makes available through the program. This site uses none of it today: there is no API enrolment, no Amazon-served link and no Amazon data feed, and the research recorded here was a human-readable read of public pages. The terms are therefore not engaged, but they will be the moment any automated product research, pricing or link-building is switched on.",
+      "action": "Before enabling any automated research or publishing against Amazon data, read the Agent Terms in full, register the agent name, and set the Agent/[name] user agent. Confirm with Amazon whether public listing pages count as Program Content. Do not assume either way.",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "id": "F12",
+      "title": "Untagged Amazon links on three guide pages conflict with the tag-in-every-link rule",
+      "area": "Compliance · outbound links",
+      "severity": "high",
+      "detail": "Participation Requirements §2(b) says that, for example, the Associates ID or tag (format XXXXX-##) must appear as a parameter in the URL of each link placed on the site to an Amazon Site. The wallpaper, paper-towel and cookware guide pages each carry one reference link to an Amazon listing. Those links have no tag and no query string, are marked rel=\"sponsored\", and are labelled reference only. They cannot earn commission and are not Special Links. Two constraints pull against each other: the tag cannot be added honestly until the Special Link is validated in the enrolled account (F02, F08), and an untagged link is in tension with the rule as written. Amazon's exact treatment of an untagged reference link is not stated in the text read and is not assumed. The citation register previously described such links as not allowed while the guides carried them; that wording is corrected.",
+      "action": "Close by one of: (a) generating each link in Associates Central with the enrolled tag, confirming the tag in the destination URL and the click in the tracking report, then replacing the reference link; or (b) printing the ASIN as plain text instead of a link until (a) is possible. Do not add a tag by hand and call it validated.",
+      "sources": [
+        "S02",
+        "S07",
+        "S08",
+        "S09"
+      ]
+    }
+  ],
+  "rechecks": [
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "All three short links resolve",
+      "result": "Confirmed. link.amazon/B0hmGG4m2, /B03QDuGdo and /B0hpD2JGQ resolved to /dp/B08FKW9JRM, /dp/B0BSKQW2T2 and /dp/B08DY9HRWD with the listing titles recorded on this site. Every resolved URL carried Amazon session parameters and none carried tag=shopnow047c-20, so F02 stands. Earlier sessions reported the redirector hosts unreachable; they were reachable from this session's page-fetch tool.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "ASIN is a 10-character code",
+      "result": "Confirmed on both Amazon pages that define it. The 9-character short codes cannot be ASINs (F01).",
+      "sources": [
+        "S06"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "Operating Agreement and Program Policies dates",
+      "result": "Agreement shows 'Updated: October 15, 2025'. Policies show 'Updated: April 14, 2026'. Both match the citation register.",
+      "sources": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "Public category commission table",
+      "result": "Found and read. Kitchen 4.50%, Home / Home Improvement / Tools 3.00%, All Other 4.00% match the audit page. Added as S13; F03 corrected.",
+      "sources": [
+        "S13"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "Rate card address is sign-in only",
+      "result": "Confirmed. The Policies Appendix links only to the rate-card address, which redirects to sign-in with the account's custom rate card as its return page.",
+      "sources": [
+        "S02",
+        "S03"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "Tag-in-URL rule and Agent Terms in the Program Policies",
+      "result": "Read the quoted sections (not the whole document). Participation Requirements §2(b) and IP License §4 quoted in F11 and F12; neither was recorded before.",
+      "sources": [
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "bd0ba155",
+      "item": "Spec-level rows on the audit page (dimensions, weight, package quantity, material, UPC)",
+      "result": "Not re-verified. The three listing pages are very long and volatile; the details tables were not located in the chunks read. Bullet 1 of B08FKW9JRM was re-read and enumerates five items (smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape), consistent with FLG-05. Treat all other audit spec rows as a 2026-11-20 snapshot.",
+      "sources": [
+        "S07"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Spec & policy audit page reachable from the navigation",
+      "result": "Corrected. The audit page's Site records dropdown was the only one missing the Citation register entry; it now lists the same seven links as every other page. Content unchanged.",
+      "sources": [
+        "S01",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Art3d listing (B08FKW9JRM) re-read against the published record",
+      "result": "Confirmed. Title, brand Art3d, sold by Art3d®, ships from Amazon, browse node 164701011 Wallpaper Tools, and the five kit contents (large smoothing tool, blue squeegee, utility knife, replacement blades, measuring tape) match the published bullets. Price, star rating, review count and bought-in-past-month figures were visible and are deliberately not published (S02).",
+      "sources": [
+        "S07",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Paper towel holder listing (B0BSKQW2T2) re-read against the published record",
+      "result": "Confirmed. Brand niffgaff, sold by YH Urban, Material Aluminum, Color Black, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56\"L x 12.2\"W, Size 12.2 inches, browse node 3744201. No price or rating published (S02).",
+      "sources": [
+        "S08",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "ORDORA organizer listing (B08DY9HRWD) re-read against the published record",
+      "result": "Confirmed. Title records 16.6\", 8 tiers and lightweight cookware up to 11\"; brand ORDORA, sold by ORDORA Official, eight size options from 13.78\"H to 23.62\"H, four colours, browse node 289824 Pot Racks. No price or rating published (S02).",
+      "sources": [
+        "S09",
+        "S02"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "94688dd1",
+      "item": "Product rows render only verified record values",
+      "result": "Confirmed. The shop index and three category pages are generated from data/products.json; a field the record does not carry renders as an explicit unverified marker rather than a guess. No price, rating, review count, availability or forecast appears in any generated page (verify.mjs gate).",
+      "sources": [
+        "S02",
+        "S07",
+        "S08",
+        "S09"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "All four submitted links, re-fetched independently",
+      "result": "Confirmed. link.amazon/B0hmGG4m2, /B03QDuGdo and /B0hpD2JGQ resolved to /dp/B08FKW9JRM, /dp/B0BSKQW2T2 and /dp/B08DY9HRWD, with the listing titles recorded on this site; the second address was supplied twice. Each resolved URL carried Amazon referral parameters (lv, crid, sprefix, sr, btn_ref, channelId, plpRedirect) and no tag= parameter, so F02 stands. Intent, enrollment and attribution remain unverified and are not asserted.",
+      "sources": [
+        "S10",
+        "S11",
+        "S12"
+      ]
+    },
+    {
+      "date": "2026-11-21",
+      "session": "a0e07843",
+      "item": "FTC endorsement guidance, read for the three new checklists",
+      "result": "Read in full. It states that endorsements must be honest and not misleading, that a connection between endorser and marketer should be disclosed clearly and conspicuously, and that an ad using exceptional results must make the generally expected results clear. Only that is paraphrased in the multi-function appliance checklist; no other claim on this page comes from it.",
+      "sources": [
+        "S04"
+      ]
     }
   ]
 }
