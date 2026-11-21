@@ -60,7 +60,15 @@ def cards(items, shopping=False):
     return '<div class="grid">'+''.join(result)+'</div>'
 
 add('index','DIY Home Upgrades','Practical shopping guides for kitchens, walls, and the spaces in between.', '''<section class="hero"><div class="hero-copy"><div class="eyebrow">The practical home edit</div><h1>Small upgrades.<br>Better everyday.</h1><p>Find the right tools for a smoother wall, a clearer counter, and a cabinet that finally works for you.</p><a class="button" href="#edits">Explore the upgrades →</a></div><img src="assets/hero.jpg" alt="Sunlit kitchen with oak cabinets and a warm cream wall"></section><section id="edits"><div class="sectionhead"><div><div class="eyebrow">The shopping edit</div><h2>Three upgrades to start with</h2></div><a href="guides.html">All buying guides →</a></div>'''+cards(guides[:3], shopping=True)+'''</section><section class="card"><div class="eyebrow">In the kitchen</div><h2>Shopping for an air fryer?</h2><p>Compare usable capacity, cleanup and the space you’ll need before choosing a format.</p><a href="air-fryers.html">Read the air fryer guide →</a></section><section class="sectionhead"><div><div class="eyebrow">The shop floor</div><h2>Every product, by room</h2></div><a href="shop.html">Open the shop →</a></section><div class="grid"><article class="card"><div class="eyebrow">Room refresh</div><h3><a href="category/wallpaper-tools.html">Wallpaper &amp; peel-and-stick tools</a></h3><p>What decides whether a peel-and-stick job looks flat.</p></article><article class="card"><div class="eyebrow">Kitchen counters</div><h3><a href="category/paper-towel-holders.html">Paper towel holders</a></h3><p>Get the roll off the counter without drilling.</p></article><article class="card"><div class="eyebrow">Cabinet interiors</div><h3><a href="category/pot-racks.html">Pot racks &amp; cookware organizers</a></h3><p>Turn a leaning stack of pans into a drawer you can read.</p></article></div>''')
-add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides)+worksheet_card)
+_working_titles = [
+    ('Basket or oven-style air fryer: what should you compare?', 'Published as the air fryer guide.', link('air-fryers','Read the guide')),
+    ('A no-hype checklist for comparing air fryer capacity', 'Not yet publishable — no verified air fryer listing in the catalogue.', '—'),
+    ('How to assess cleanup and counter-space trade-offs', 'Not yet publishable — no verified air fryer listing in the catalogue; the method is reused in the published air fryer guide.', '—'),
+    ('Questions to ask before buying a multi-function kitchen appliance.', 'Not yet publishable — no verified appliance listing in the catalogue.', '—'),
+]
+_working_rows = ''.join(f'<tr><td>{e(t)}</td><td>{e(s)}</td><td>{l}</td></tr>' for t,s,l in _working_titles)
+_working_html = '<div class="prose"><h2>Working titles — not yet publishable</h2><p>These are working titles — not claims about popularity, search volume or product superiority. They were set aside because writing them honestly would require specifications from a verified listing, and no air fryer or multi-function appliance listing is in the supplied catalogue. The underlying method was reused for the three product categories the site can support.</p></div><div class="scroll"><table><thead><tr><th scope="col">Working title</th><th scope="col">Status</th><th scope="col">Link</th></tr></thead><tbody>'+_working_rows+'</tbody></table></div>'
+add('guides','Buying guides','Buyer checklists for kitchen storage, walls and countertop appliances.',intro('The buying desk','Buying guides','Start with a question, then check the details that matter in your home.')+cards(guides)+worksheet_card+_working_html)
 for i,(slug,cat,title,desc,sections) in enumerate(guides):
     body = ''.join(f'<h2>{e(h)}</h2><p>{e(p)}</p>' for h,p in sections)
     if slug == 'air-fryers':
@@ -79,7 +87,7 @@ for n,(short,asin,name,note) in enumerate(rows,1):
     register.append((f'{n:02}',f'<code>https://link.amazon/{short}</code>', e(name),source('https://www.amazon.com/dp/'+asin,asin,True),DATE,'','','','',note+'Unverified intent and tracking.'))
 _recheck = table(['ASIN','Listing re-checked','What matched the published record','Source'], [
     ('B08FKW9JRM', RECHECK,
-     'Title, brand Art3d, sold by Art3d®, ships from Amazon, browse node 164701011 Wallpaper Tools, five kit contents exactly as listed.',
+     'Title, brand Art3d, sold by Art3d\u00ae, ships from Amazon, browse node 164701011 Wallpaper Tools, five kit contents exactly as listed.',
      source('https://www.amazon.com/dp/B08FKW9JRM','Amazon listing',True)),
     ('B0BSKQW2T2', RECHECK,
      'Title, brand niffgaff, sold by YH Urban, Material Aluminum, Color Black, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56&quot;L x 12.2&quot;W, Size 12.2 inches, browse node 3744201.',
@@ -102,11 +110,24 @@ _review_body = (
       'short links themselves were not re-fetched. The listing pages they were recorded as resolving to are '
       're-confirmed above. That redirect observation is dated 2026-11-20 and is not reasserted for today. '
       'An unobserved redirect is not evidence that a link is invalid.</small></p>'
-    + f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). See '
+    + f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links\u2019 '
+      'compliance is unresolved; they are not declared invalid. See '
     + source(AMAZON, 'Amazon\u2019s Special Link requirements')
     + f' and the {_cite_link} for the ASIN definition these codes were measured against.</p>'
 )
 add('review','Flagged for Review','Product intent and observed redirect evidence.', _review_body)
+_summary_products = []
+for _n,(_short,_asin,_name,_note) in enumerate(rows,1):
+    _summary_products.append((f'{_n:02}', e(_name), source('https://www.amazon.com/dp/'+_asin,_asin,True), DATE, '', _note+'Unverified intent and tracking.'))
+_summary_verify = [
+    ('Affiliate disclosure wording', 'Verified — required statement, clearly and prominently placed', link('sources','S01 · Operating Agreement §5')),
+    ('ASIN definition (10 characters)', 'Verified — short codes are 9 characters and cannot be ASINs', link('sources','S06 · ASIN guide')),
+    ('Price display', 'Prohibited without API access — no price published', link('sources','S02 · Program Policies')),
+    ('Star ratings / review counts', 'Prohibited without API access — none published', link('sources','S02 · Program Policies')),
+    ('Commission rates', 'Unverified — rate card behind sign-in; no rate published', link('sources','S03 · Rate card (restricted)')),
+    ('Tracking ID shopnow047c-20', 'Unverified — no tag observed; Special Link test pending', link('review','Flagged for Review')),
+    ('Campaign ledger', 'Empty by design — no authorized first-party report supplied', link('measurement','Measurement')),
+]
 from summary import register_summary
 register_summary(add, table, link, source, intro, RECHECK, DATE)
 add('standards','Editorial standards','How guides are written, checked and published.',intro('Site records','Editorial standards','By the DIY Home Upgrades editorial desk. Buying checklists, not hands-on reviews.')+f'''<div class="prose"><h2>Publication gate</h2><p>Confirm product intent against an official listing and save the date and source separately from the redirect. Generate a Special Link through enrolled Associates tools, then verify the destination and authorized tracking report before publishing it. Keep a paid-link notice next to each approved link and the Associates notice on every page.</p><p>Review {source(AMAZON,'the Operating Agreement')}, {source('https://affiliate-program.amazon.com/help/operating/policies','Amazon’s Program Policies')} and {source(FTC,'FTC endorsement guidance')} before publishing. Every document behind every claim, with the date it states and the constraint it imposes, is kept in the {link('sources','citation register')}. Do not scrape Amazon or use product images, ratings, prices or API content without confirming rights, sourcing and freshness requirements. The masthead photograph is AI-generated editorial imagery, not a product depiction.</p><h2>Publishing rhythm</h2><p>Proposed: one question-led guide every two weeks, with a monthly evidence and link review. Start with walls and kitchen storage; revisit seasonal topics only when they fit reader needs. Every new entry in the guide register updates the sitemap and RSS feed on build.</p></div>''')
@@ -137,14 +158,21 @@ for _c in _cite_doc['constraints']:
 add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer; linking an untagged Amazon product page would put a non-Special link on the site, which the Participation Requirements do not allow. Product pages the reader is invited to visit appear on the buying guides, and every one carries a sponsored marker.</small></p></div>')
 
 def page_shell(title, desc, body, canonical, page_id, prefix=''):
-    """One HTML shell for every page, so navigation, disclosure and footer cannot drift.
+    """One HTML shell for every page, so navigation, disclosure, footer and the
+    findability meta cannot drift between pages.
 
-    `prefix` is '' for root pages and '../' for pages one directory deep. Nothing
-    else differs between them, which is what keeps the shared nav group identical.
+    `prefix` is '' for root pages and '../' for pages one directory deep. The open
+    graph and JSON-LD tags come from the findability pass (arena/175d82e7); they
+    use only verified facts - site name, canonical URL, page description and the
+    on-disk hero image. No rating, price, popularity or revenue claim is emitted.
     """
     dashboard = ' '.join(f'<a href="{prefix}{s}.html">{e(t)}</a>' for s,t in ops)
     head_title = f'{e(title)}{" | DIY Home Upgrades" if page_id != "index" else ""}'
-    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{head_title}</title><meta name="description" content="{e(desc,quote=True)}"><link rel="canonical" href="{canonical}"><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="{prefix}feed.xml"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/metrics.js" defer></script></head><body><header><div class="wrap mast"><a class="brand" href="{prefix}./">DIY Home<span> Upgrades</span></a><nav aria-label="Main navigation"><a href="{prefix}shop.html">Shop</a><a href="{prefix}guides.html">Buying guides</a><a href="{prefix}feed.xml">RSS</a><details><summary>Site records</summary><div class="dropdown">{dashboard}</div></details></nav></div></header><div class="disclosure">{NOTICE}</div><main class="wrap" data-page="{page_id}">{body}</main><footer><div class="wrap"><strong>DIY Home Upgrades</strong><p>{NOTICE}</p><nav aria-label="Site records and feed" style="display:block">{dashboard} <a href="{prefix}feed.xml">RSS feed</a></nav></div></footer></body></html>'''
+    og_title = title if page_id == 'index' else f'{title} | DIY Home Upgrades'
+    og_type = 'article' if page_id in ('wallpaper','paper-towels','cookware','air-fryers','guides') else 'website'
+    og_image = BASE + 'assets/hero.jpg'
+    jsonld = __import__('json').dumps({'@context':'https://schema.org','@type':'WebSite','name':'DIY Home Upgrades','url':BASE,'description':pages['index'][1],'inLanguage':'en','publisher':{'@type':'Organization','name':'DIY Home Upgrades','url':BASE}}, separators=(',',':'))
+    return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{head_title}</title><meta name="description" content="{e(desc,quote=True)}"><meta name="author" content="DIY Home Upgrades editorial desk"><link rel="canonical" href="{canonical}"><meta property="og:site_name" content="DIY Home Upgrades"><meta property="og:title" content="{e(og_title,quote=True)}"><meta property="og:description" content="{e(desc,quote=True)}"><meta property="og:url" content="{canonical}"><meta property="og:type" content="{og_type}"><meta property="og:image" content="{og_image}"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{e(og_title,quote=True)}"><meta name="twitter:description" content="{e(desc,quote=True)}"><meta name="twitter:image" content="{og_image}"><script type="application/ld+json">{jsonld}</script><link rel="alternate" type="application/rss+xml" title="DIY Home Upgrades" href="{prefix}feed.xml"><link rel="stylesheet" href="{prefix}assets/style.css"><script src="{prefix}assets/metrics.js" defer></script></head><body><header><div class="wrap mast"><a class="brand" href="{prefix}./">DIY Home<span> Upgrades</span></a><nav aria-label="Main navigation"><a href="{prefix}shop.html">Shop</a><a href="{prefix}guides.html">Buying guides</a><a href="{prefix}feed.xml">RSS</a><details><summary>Site records</summary><div class="dropdown">{dashboard}</div></details></nav></div></header><div class="disclosure">{NOTICE}</div><main class="wrap" data-page="{page_id}">{body}</main><footer><div class="wrap"><strong>DIY Home Upgrades</strong><p>{NOTICE}</p><nav aria-label="Site records and feed" style="display:block">{dashboard} <a href="{prefix}feed.xml">RSS feed</a></nav></div></footer></body></html>'''
 
 # --- Shop surface (added by arena/94688dd1-diyhome2; renders data/products.json) ---
 # The reviewer asked for a shop, not an audit: a category index, a front-of-shop
@@ -290,6 +318,13 @@ for slug,(title,desc,body) in pages.items():
     canonical = BASE + ('' if slug=='index' else slug+'.html')
     Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
 
+# All pages are registered by this point (including the shop surface), so the
+# shell is written last. Writing earlier left the nav pointing at a shop.html
+# that did not exist yet - scripts/check.py caught it.
+for slug,(title,desc,body) in pages.items():
+    canonical = BASE + ('' if slug=='index' else slug+'.html')
+    Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
+
 sitemap = ET.Element('urlset',xmlns='http://www.sitemaps.org/schemas/sitemap/0.9')
 for slug in pages:
     ET.SubElement(ET.SubElement(sitemap,'url'),'loc').text = BASE+('' if slug=='index' else slug+'.html')
@@ -322,9 +357,9 @@ for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'I
                       ('category',cat)]:
         ET.SubElement(item,tag).text=value
 # The shop surface is part of the reading experience, so subscribers see new
-# categories and rows without having to reload the site. arena/94688dd1-diyhome2.
+# categories and rows without reloading the site. arena/94688dd1-diyhome2.
 for path,title,desc,cat in [('shop.html','Shop the edit',pages['shop'][1],'Shop')] + [
-        (f'category/{c["slug"]}.html', c['name']+' — shop', c['blurb'], 'Shop') for c in _cat_doc['categories']]:
+        (f'category/{c["slug"]}.html', c['name']+' \u2014 shop', c['blurb'], 'Shop') for c in _cat_doc['categories']]:
     item=ET.SubElement(channel,'item')
     for tag,value in [('title',title),('description',desc),('link',BASE+path),
                       ('guid',BASE+path),('pubDate','Sat, 21 Nov 2026 00:00:00 GMT'),
