@@ -46,6 +46,7 @@ Verification commands, all of which must pass before a merge:
 
 ```
 python3 scripts/build.py && python3 scripts/check.py
-node scripts/verify.mjs          # includes the review-record and purchase-volume checks
+node scripts/verify.mjs          # review record, drift, and purchase-volume checks
 node audit/check_audit.mjs
+python3 scripts/render_review.py --check   # audit review table vs data/discrepancies.json
 ```
