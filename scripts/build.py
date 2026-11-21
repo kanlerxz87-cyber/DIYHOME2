@@ -85,37 +85,7 @@ _cite_link = link('sources','citation register')
 register = []
 for n,(short,asin,name,note) in enumerate(rows,1):
     register.append((f'{n:02}',f'<code>https://link.amazon/{short}</code>', e(name),source('https://www.amazon.com/dp/'+asin,asin,True),DATE,'','','','',note+'Unverified intent and tracking.'))
-_recheck = table(['ASIN','Listing re-checked','What matched the published record','Source'], [
-    ('B08FKW9JRM', RECHECK,
-     'Title, brand Art3d, sold by Art3d\u00ae, ships from Amazon, browse node 164701011 Wallpaper Tools, five kit contents exactly as listed.',
-     source('https://www.amazon.com/dp/B08FKW9JRM','Amazon listing',True)),
-    ('B0BSKQW2T2', RECHECK,
-     'Title, brand niffgaff, sold by YH Urban, Material Aluminum, Color Black, Mounting Type Under Cabinet Mount, Item Weight 5 ounces, Product Dimensions 2.56&quot;L x 12.2&quot;W, Size 12.2 inches, browse node 3744201.',
-     source('https://www.amazon.com/dp/B0BSKQW2T2','Amazon listing',True)),
-    ('B08DY9HRWD', RECHECK,
-     'Title (16.6&quot;, 8-tier, lightweight cookware up to 11&quot;), brand ORDORA, sold by ORDORA Official, eight size options, four colours, browse node 289824 Pot Racks.',
-     source('https://www.amazon.com/dp/B08DY9HRWD','Amazon listing',True)),
-])
-_review_body = (
-    intro('Site records', 'Flagged for Review',
-          'Blank fields have not been verified. A redirect observation is not product intent or a tracking test.')
-    + table(['Entry','Submitted URL','Observed listing title (shortened)','Observed target \u00b7 Amazon source',
-             'Observed date','Intended ASIN','Intended official listing','Confirmation date','Confirmation source','Status'], register)
-    + f'<h2>Re-verification pass \u00b7 {RECHECK}</h2>'
-      '<p>Each listing was fetched again from amazon.com and compared field by field with the records that '
-      'render the shop tables. Prices, star ratings, review counts and bought-in-past-month figures were '
-      'visible on those pages and are deliberately not published, per S02.</p>'
-    + _recheck
-    + '<p><small>The <code>link.amazon</code> redirector hosts were outside this build\u2019s network range, so the '
-      'short links themselves were not re-fetched. The listing pages they were recorded as resolving to are '
-      're-confirmed above. That redirect observation is dated 2026-11-20 and is not reasserted for today. '
-      'An unobserved redirect is not evidence that a link is invalid.</small></p>'
-    + f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links\u2019 '
-      'compliance is unresolved; they are not declared invalid. See '
-    + source(AMAZON, 'Amazon\u2019s Special Link requirements')
-    + f' and the {_cite_link} for the ASIN definition these codes were measured against.</p>'
-)
-add('review','Flagged for Review','Product intent and observed redirect evidence.', _review_body)
+add('review','Flagged for Review','Product intent and observed redirect evidence.',intro('Site records','Flagged for Review','Blank fields have not been verified. A redirect observation is not product intent or a tracking test.')+table(['Entry','Submitted URL','Observed listing title (shortened)','Observed target · Amazon source','Observed date','Intended ASIN','Intended official listing','Confirmation date','Confirmation source','Status'],register)+f'<p>Selected tracking ID: <code>shopnow047c-20</code> (submitted, not validated). The short links’ compliance is unresolved; they are not declared invalid. See {source(AMAZON,"Amazon’s Special Link requirements")} and the {_cite_link} for the ASIN definition these codes were measured against.</p>')
 _summary_products = []
 for _n,(_short,_asin,_name,_note) in enumerate(rows,1):
     _summary_products.append((f'{_n:02}', e(_name), source('https://www.amazon.com/dp/'+_asin,_asin,True), DATE, '', _note+'Unverified intent and tracking.'))
@@ -124,7 +94,7 @@ _summary_verify = [
     ('ASIN definition (10 characters)', 'Verified — short codes are 9 characters and cannot be ASINs', link('sources','S06 · ASIN guide')),
     ('Price display', 'Prohibited without API access — no price published', link('sources','S02 · Program Policies')),
     ('Star ratings / review counts', 'Prohibited without API access — none published', link('sources','S02 · Program Policies')),
-    ('Commission rates', 'Unverified — rate card behind sign-in; no rate published', link('sources','S03 · Rate card (restricted)')),
+    ('Commission rates', 'Category rates are public (Table 1); this account’s rate card and each item’s category are unverified — no per-product rate or earnings published', link('sources','S13 · Table 1 · S03 · rate card (restricted)')),
     ('Tracking ID shopnow047c-20', 'Unverified — no tag observed; Special Link test pending', link('review','Flagged for Review')),
     ('Campaign ledger', 'Empty by design — no authorized first-party report supplied', link('measurement','Measurement')),
 ]
@@ -155,7 +125,39 @@ for _c in _cite_doc['constraints']:
     # reads better: the reader lands on the evidence, not on a bare redirect.
     _basis = ', '.join(f'<a href="#src-{e(i)}">{e(i)}</a>' for i in _c['basis'].split(', ') if i in _cite_by_id)
     _cite_cons.append((f'<strong>{e(_c["id"])}</strong>', e(_c['constraint']), _basis, e(_c['effect_on_site'])))
-add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer; linking an untagged Amazon product page would put a non-Special link on the site, which the Participation Requirements do not allow. Product pages the reader is invited to visit appear on the buying guides, and every one carries a sponsored marker.</small></p></div>')
+add('sources','Citation register','Official documents behind every claim, and the constraints they impose.',intro('Site records','Citation register',f'{len(_cite_doc["sources"])} documents behind every claim on this site, plus the rules they impose on it.')+table(['ID','Document','Publisher','Dated on page','Access','What it establishes'],_cite_rows)+'<div class="prose"><h2>What these documents constrain</h2><p>Six rules follow directly from the sources above. They are the reason this site shows no prices, no star ratings and no price alerts, and the reason links are plain rather than shortened.</p></div>'+table(['ID','Constraint','Basis','Effect on this site'],_cite_cons)+'<div class="prose"><p><small>Amazon listing and redirector URLs are printed as plain text so they can be copied and checked by hand. A citation is evidence, not a product offer, so citations are never made into Amazon links. The three buying guides do carry one untagged, reference-only Amazon link each, marked sponsored; that sits in tension with the tag-in-every-link rule (C7) and is published as flag F12 rather than hidden.</small></p></div>')
+
+# --- Flagged for Review: every open flag and the re-check log (added by arena/bd0ba155-diyhome2) ---
+# data/flags.json was previously validated but never rendered, so the page named
+# "Flagged for Review" listed only the four-row intent table. Every flag is now
+# published with its official source links; product and short-link sources are
+# shown as text pointing at the citation register, never as untagged Amazon links.
+_flag_doc = __import__('json').loads(Path('data/flags.json').read_text())
+def _src_links(ids):
+    out = []
+    for i in ids:
+        s = _cite_by_id.get(i)
+        if not s:
+            continue
+        if s['url'].startswith('https://www.amazon.com/dp/') or 'link.amazon' in s['url']:
+            out.append(f'<a href="sources.html#src-{e(i)}">{e(i)}</a> <small>(listing, see register)</small>')
+        else:
+            out.append(source(s['url'], i) + f' <small><a href="sources.html#src-{e(i)}">register</a></small>')
+    return '<br>'.join(out)
+_sev = {'blocking':'gap','high':'gap','medium':'warn','low':'ok'}
+_flag_rows = []
+for _f in _flag_doc['flags']:
+    _flag_rows.append((f'<strong id="flag-{e(_f["id"])}">{e(_f["id"])}</strong>',
+        f'<span class="pill {_sev.get(_f["severity"],"warn")}">{e(_f["severity"])}</span>',
+        f'<strong>{e(_f["title"])}</strong><br><small>{e(_f["area"])}</small>',
+        e(_f['detail']), e(_f['action']), _src_links(_f['sources'])))
+_recheck_rows = [(e(_r['date']), e(_r['session']), e(_r['item']), e(_r['result']), _src_links(_r['sources'])) for _r in _flag_doc.get('rechecks', [])]
+_rt, _rd, _rb = pages['review']
+_rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))+' irregularities, each with what was observed, what would close it and the official source. None blocks publication. A value that could not be confirmed is left blank and is not inferred. Spec-level listing findings (FLG-04 to FLG-08) are on the '+link('audit/index','Spec & policy audit')+'.</p></div>'
+    + table(['ID','Severity','Irregularity','What was observed','What would close it','Official sources'], _flag_rows)
+    + '<div class="prose"><h2>Re-verification log</h2><p>Independent re-reads, with the result of each. “Not re-verified” means exactly that.</p></div>'
+    + table(['Date','Session','Item','Result','Official sources'], _recheck_rows))
+pages['review'] = (_rt, _rd, _rb)
 
 def page_shell(title, desc, body, canonical, page_id, prefix=''):
     """One HTML shell for every page, so navigation, disclosure, footer and the
@@ -319,8 +321,8 @@ for slug,(title,desc,body) in pages.items():
     Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
 
 # All pages are registered by this point (including the shop surface), so the
-# shell is written last. Writing earlier left the nav pointing at a shop.html
-# that did not exist yet - scripts/check.py caught it.
+# shell is written last, breadth-first. Writing it earlier left the nav pointing
+# at a shop.html that did not exist yet - scripts/check.py caught it.
 for slug,(title,desc,body) in pages.items():
     canonical = BASE + ('' if slug=='index' else slug+'.html')
     Path(slug+'.html').write_text(page_shell(title,desc,body,canonical,slug)+'\n')
@@ -356,7 +358,7 @@ for path,title,desc,cat in [('guides.html','Buying guides',pages['guides'][1],'I
                       ('guid',BASE+path),('pubDate','Sat, 21 Nov 2026 00:00:00 GMT'),
                       ('category',cat)]:
         ET.SubElement(item,tag).text=value
-# The shop surface is part of the reading experience, so subscribers see new
+# The shop surface is part of the reading experience, so a subscriber sees new
 # categories and rows without reloading the site. arena/94688dd1-diyhome2.
 for path,title,desc,cat in [('shop.html','Shop the edit',pages['shop'][1],'Shop')] + [
         (f'category/{c["slug"]}.html', c['name']+' \u2014 shop', c['blurb'], 'Shop') for c in _cat_doc['categories']]:
