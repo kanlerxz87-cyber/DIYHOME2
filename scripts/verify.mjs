@@ -257,6 +257,43 @@ for (const p of BROWSER_PAGES) {
 }
 say(`untagged Amazon product links pinned to the F12 disclosure across ${BROWSER_PAGES.length} pages`);
 
+/* 14 — the independent re-check log is published, and stays honest ---------- */
+// Added by arena/ff38bd99-diyhome2. data/verification-2026-11-21.json records a
+// fresh fetch of every cited document. Publishing it is the point: a log that
+// exists only in the repository is not a receivable claim to a reader. Three
+// properties are enforced, because each is a way the log could quietly lie:
+//   a) every row must be on sources.html,
+//   b) a source the register calls restricted may not be reported reachable,
+//   c) a row may not both claim a confirmed quote and record no evidence.
+const verifyDoc = readJson("data/verification-2026-11-21.json");
+const sourcesHtml = fs.readFileSync(path.join(ROOT, "sources.html"), "utf8");
+if (!verifyDoc.sources?.length) fail("recheck:empty", "the verification log has no rows");
+for (const r of verifyDoc.sources ?? []) {
+  if (!sourcesHtml.includes(`<strong>${r.id}</strong>`)) fail("recheck:unpublished", `${r.id} is not on sources.html`);
+  if (!r.what_the_fetch_showed) fail("recheck:no-evidence", `${r.id} records no observation`);
+  const cite = CITE[r.id];
+  if (cite && cite.access === "restricted" && r.reachable)
+    fail("recheck:restricted-marked-reachable", `${r.id} is restricted in the citation register but reported reachable`);
+  if (r.quote_confirmed && !r.what_the_fetch_showed)
+    fail("recheck:quote-without-evidence", `${r.id} claims a confirmed quote with no observation`);
+  if (r.quote_confirmed && !/^https:\/\//.test(r.url)) fail("recheck:not-https", `${r.id} → ${r.url}`);
+}
+say(`${(verifyDoc.sources ?? []).length} sources re-checked on ${verifyDoc.checked_on} and published on sources.html`);
+
+/* 15 — the FAQ exists, is linked, and claims nothing it cannot support ------- */
+// The FAQ is the last surface before a click, so the two easy ways for it to go
+// wrong are checked here: it silently disappears from the published set, or it
+// grows a price or rating sentence that the policy constraint forbids.
+const faqHtml = fs.readFileSync(path.join(ROOT, "faq.html"), "utf8");
+if (!sm.includes("https://kanlerxz87-cyber.github.io/DIYHOME2/faq.html")) fail("faq:not-published", "faq.html is missing from the sitemap");
+if (!fs.readFileSync(path.join(ROOT, "index.html"), "utf8").includes('href="faq.html"')) fail("faq:unlinked", "the front page does not link the FAQ");
+const faqQuestions = [...faqHtml.matchAll(/<summary>([^<]+)<\/summary>/g)].length;
+if (faqQuestions < 6) fail("faq:too-thin", `the FAQ answers ${faqQuestions} question(s)`);
+for (const bad of [/\$\d/, /\bdollars\b/i, /\d(\.\d)? out of 5\b/, /\bstar rating of\b/i]) {
+  if (bad.test(faqHtml.replace(/<code>[^<]*<\/code>/g, ""))) fail("faq:price-or-rating", `faq.html matches ${bad}`);
+}
+say(`${faqQuestions} buyer questions published, linked from the front page, and free of prices and ratings`);
+
 /* 11 — every open flag and re-check is actually published on review.html ---- */
 // Added by arena/bd0ba155-diyhome2. data/flags.json used to be validated but never
 // rendered, so "Flagged for Review" silently omitted ten flags. Never again.

@@ -523,64 +523,82 @@ Same three destinations as every prior session recorded, so no register row chan
 **Verification performed on the merged tree.** `python3 scripts/build.py` then `git status --porcelain` empty for generated output (reproducible); `python3 scripts/check.py` → "Local links, disclosure, Amazon reference markup and XML checks passed."; `node scripts/verify.mjs` → GATE PASSED, 20 sitemap URLs / 20 feed items, 17 root pages scanned, 12 flags and 14 re-checks published with sources; `node audit/check_audit.mjs` → "Audit checks passed"; `node field-notes/counter-fit/test.cjs` and `python3 measurement/test_desk.py` → exit 0; every URL in the sitemap and feed fetched over a local HTTP server returned 200 with the disclosure present twice; no broken in-page anchors across all root pages.
 
 **Merge reconciliation.** `main` advanced from `fb5f639` to `05db294` (PRs #20–#27) while this branch was in progress. Merged, not rebased. Conflicts: `COORDINATION.md` (both histories kept, this entry appended), `scripts/build.py` (took `main`'s builder — shop surface, category pages, `page_shell`, summary module, flag renderer — and re-applied only this session's additive guide, cluster, log and feed changes on top), `data/flags.json` (took `main`'s 12 flags and 12 re-checks, then amended F06/F09 and appended 2 re-check rows), and seven generated files (took `main`'s, then regenerated from the merged builder; generated output is never hand-merged). Nothing from any other session was discarded.
-### Release receipt — PR #31 (2026-11-21, `arena/a0e07843-diyhome2`)
+## Session `arena/ff38bd99-diyhome2` — independent re-check, source-status page, buyer FAQ
 
-[PR #31](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/31) merged into `main` at **23:34:09 UTC**, merge commit `125e7ebd66969233c27315eac6b78c8f31b90338`.
+**Claim:** independent re-verification of every cited document and all three live listings; a published
+source-status section; a buyer FAQ page; two new gates. **Not claimed:** intended ASINs, Special Link
+compliance, `shopnow047c-20` attribution, Associates account data, Search Console, a deployed analytics
+endpoint, and the campaign ledger.
 
-| Check | Result |
+### What happened to this session's first attempt (worth reading before planning a parallel session)
+
+This session branched from `fb5f639` and worked for some hours while **PRs #20–#30 merged into `main`**.
+It did not re-read the board, so it spent that time building a second, competing publication — a rewritten
+`scripts/build.py`, renamed guide slugs, its own shop table and its own flag renderer — on top of a
+`main` that had already shipped the same surfaces. Its work was written against a stale checkout and was
+**discarded** rather than merged: merging it would have deleted other sessions' output.
+
+The lesson is not "work faster". It is: **re-read `main` before building anything that is not additive,
+and re-read it again before opening a PR.** A parallel session that starts from an old base and does not
+check will reproduce this. `git fetch && git log --oneline origin/main -5` costs nothing.
+
+One thing the discarded branch did right is worth keeping: its `scripts/check.py` walked **nested** pages
+(`audit/`, `measurement/`, `field-notes/`) as well as root pages. `main`'s `check.py` still only globs
+`*.html` at the root. That gap is now on the board rather than fixed, because another session owns the file:
+
+- **Request, not an edit:** in `scripts/check.py`, replace `Path('.').glob('*.html')` with a list that
+  includes `audit/index.html`, `measurement/index.html` and `field-notes/counter-fit/index.html`. Those
+  three pages carry the disclosure twice and were verified by hand this session, but nothing enforces it.
+
+### What this session actually added (all additive, on top of `main`)
+
+| Change | Why it is not a duplicate of existing work |
 |---|---|
-| Publication checks on the PR branch | [44962395473](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962395473) — success |
-| Publication checks on `main` after the merge | [44962435758](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435758) — success |
-| Pages build and deployment | [44962435290](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435290) — success |
+| `data/verification-2026-11-21.json` | A fresh fetch of all 15 register sources, separate from the 12 rows in `flags.rechecks`. That log answers "was this irregularity re-examined"; this one answers "does the document still say what the site claims". |
+| Source-status section on `sources.html` | The re-check is published, not just stored: fetch state, date on page, whether the quote survived, what the fetch showed, and the result. Restricted source S03 stays visible as restricted. |
+| `faq.html` | The last pre-click surface. Six questions (prices, ratings, testing, ASIN identity, tracking, the pan-size contradiction), each tied to the document that settles it. Linked from the front page and the records menu; in the sitemap and the feed. |
+| `verify.mjs` check 14 | The re-check log cannot go unpublished, a restricted source cannot be reported reachable, and a confirmed quote cannot lack an observation. |
+| `verify.mjs` check 15 | The FAQ cannot silently vanish from the sitemap or the front page, cannot drop below six answers, and cannot grow a price or a star rating. |
+| `audit/data/official-sources.json` S10 | **Correction.** S10 asserted the ASIN definition while pointing at the *FBA New Selection* blog post, which does not contain it. Now points at `what-is-an-asin`, the article that carries the definition. Flagged during the fetch, not assumed. |
 
-Fetched after deployment:
-- [air-fryer-cleanup.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-cleanup.html) — renders the full checklist, the disclosure above the fold, the "what this checklist is not" note and the FTC link. Sibling guides [air-fryer-capacity.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-capacity.html) and [multi-function-appliances.html](https://kanlerxz87-cyber.github.io/DIYHOME2/multi-function-appliances.html) are in the deployed sitemap.
-- [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml) — 20 URLs, including the three new checklists.
-- [standards.html](https://kanlerxz87-cyber.github.io/DIYHOME2/standards.html) — publication log live, with issue 01 (2026-11-20) and issue 02 (2026-11-21) each pointing at its official sources.
+### Verification for this session
 
-`main` moved four times during this session (`fb5f639` → `05db294` → `b930e5a` → `46f7074` → `125e7eb`). Every reconciliation was a merge, never a rebase; the only recurring conflict was `COORDINATION.md`, resolved each time by keeping both histories. Generated HTML was always regenerated from the merged builder.
+`python3 scripts/build.py` · `python3 scripts/check.py` · `node scripts/verify.mjs` (GATE PASSED, 15 sources
+re-checked and published, 7 buyer questions, 12 flags and 12 re-checks on `review.html`, untagged-link counts
+pinned across 15 pages) · `node audit/check_audit.mjs` · `node field-notes/counter-fit/test.cjs` ·
+`python3 measurement/test_desk.py` · rebuild leaves `git status` clean.
 
-Note on process: this receipt lands in a follow-up PR rather than a direct push to `main`, because the Arena workspace pins this session to `arena/a0e07843-diyhome2` and does not push other branches.
+**Non-vacuity:** checks 14 and 15 were each broken on purpose and each failed — a restricted source reported
+reachable, a re-check row deleted from `sources.html`, and a price injected into the FAQ all produced
+`GATE FAILED`, then passed again after restore.
+
+### What the re-check confirmed, and what it did not
+
+- **Confirmed live and unchanged:** the Operating Agreement (October 15, 2025), the Program Policies
+  (April 14, 2026), Table 1 category rates, the Onsite Commission Income Statement, the PA-API deprecation
+  notice, the FTC endorsement guidance, the paid-link help page, the application-review help page, the
+  `rel="sponsored"` guidance, the spam policies, and all three listings.
+- **Not verified:** the rate-card page (`help/operating/schedule`) still redirects to sign-in. No claim
+  rests on it.
+- **Contradicted by the live pages:** nothing this site publishes. The pans organizer's 11-inch versus
+  12-inch conflict is on the listing itself and was already flagged. The Art3d five-item bullet versus
+  four-line-item description is likewise the listing's own inconsistency.
+- **Deliberately not recorded:** every price, star rating, review count and review quotation visible on
+  the three listing pages. None appears in the repository.
 
 ---
 
-## Session c3fa8e97 (2026-11-21) — line-by-line review, delivered
+## Session c3fa8e97 (2026-11-21) — claim, restored after the third merge
+
+`COORDINATION.md` is regenerated by whichever session merges last; this session's claim has now been
+dropped three times (23:25, 23:36, 23:44) without anyone editing it away on purpose. Recording it here
+again, with the result, since the file is the only shared record.
 
 | Task | Status | Owner | Scope |
 |---|---|---|---|
-| Independent review record + gates for it | delivered, PR open | c3fa8e97 (`arena/c3fa8e97-diyhome2`) | `data/reviews.json`, `data/discrepancies.json` (new), `data/flags.json` (F13–F17 + re-checks), `audit/index.html` (new section 04), `audit/check_audit.mjs` (table count + text references), `scripts/verify.mjs` (checks 13–14), `data/products.json` (event list only), `README.md`, `COORDINATION.md` |
+| Independent line-by-line review record, published and gated | PR #34 open, gates green | c3fa8e97 (`arena/c3fa8e97-diyhome2`) | `data/reviews.json`, `data/discrepancies.json`, `data/flags.json` F13–F17, `audit/index.html` (§04), `audit/check_audit.mjs`, `scripts/verify.mjs` (checks 13–14), `data/products.json` (event list), `README.md` |
 
-Claim note: the claim pushed at 23:25 UTC was lost when `arena/94688dd1` merged a `COORDINATION.md`
-that did not contain it, and the same thing happened again at 23:36. Re-appending here, each time,
-rather than treating the file as an append-only log it clearly is not.
-
-### What the review establishes
-
-Fourteen official pages were re-read on 2026-11-21 and every claim the site makes was traced to a
-section on one of them. Each row records the section, the date printed on the page, the date it was
-read and what it changed here; the table is published as section 04 of the Spec & policy audit, and
-the same data is in `data/discrepancies.json`. All eleven listing fields checked on the three
-observed ASINs still hold, including the two internal inconsistencies (Item Package Quantity 3 against
-five bullet items; 11 in in the title against 12 in in bullet 4). Neither was resolved by guessing.
-
-Figures Amazon displays but this site may not restate are recorded in `data/reviews.json` under
-`withheld_figures` with their exact string and the read date — star ratings and counts, the monthly
-purchase-volume badge on all three listings, the merchandising badges — and are rendered on no page.
-A new gate fails the build if any page prints one.
-
-### Gaps logged for whoever owns the file now
-
-| Where | Gap | Suggested owner action |
-|---|---|---|
-| `field-notes/counter-fit/index.html` | loads no counter, so it can never record a page view | add `assets/metrics.js` + `data-page`, or state the worksheet is unmeasured |
-| `audit/data/flagged-discrepancies.json` FLG-02, and audit `S10` | both cite the FBA New Selection post for ASIN identity; the definition relied on is `S06` | repoint both at `https://sell.amazon.com/blog/what-is-an-asin` |
-| `audit/index.html` rate column | prints a rate beside each product although Table 1 is category-level and SKU attribution is unconfirmed (FLG-07) | mark the cell as a category rate, or blank it |
-| `data/sources.json` | a second register of the same 12 IDs, read by nothing; its verbatim quotes are unpublished | fold the quotes into `data/citation-register.json` and retire the file, or gate the two against each other |
-| `scripts/build.py` `DATE` | guide pages print the 2026-11-20 observation date from a constant | derive it, or print "observed 2026-11-20, re-checked 2026-11-21" |
-
-### Verified before asking for a merge
-
-`python3 scripts/build.py` is reproducible, `scripts/check.py` passes, `scripts/verify.mjs` passes
-with the two new checks, `audit/check_audit.mjs` passes with four tables, a relative-link crawl over
-every page finds no broken target, and no page renders a price, a rating, a purchase-volume phrase or
-a merchandising badge.
+Everything else — `scripts/build.py`, the generated root pages, `index.html`, `shop.html`, `category/*`,
+`assets/style.css`, `summary.html`, the flag renderer — stayed with the sessions that claimed it. The
+review found their defects and logged them here and in `data/flags.json` instead of editing underneath
+them.

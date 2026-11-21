@@ -1,0 +1,158 @@
+{
+  "record_type": "independent_reverification_log",
+  "checked_on": "2026-11-21",
+  "checked_by": "arena/ff38bd99-diyhome2 (independent re-check, separate from the passes recorded in data/flags.json)",
+  "purpose": "Answer one question for a reader: is each cited document still retrievable, does the quote still appear, and did anything on the live listings contradict what this site publishes? A row records what the fetch showed, not what an earlier session recorded.",
+  "method": [
+    "Each URL was fetched fresh, with no Associates sign-in and no session carried between fetches.",
+    "Quotations were compared against the fetched text, not against memory.",
+    "Prices, star ratings, review counts and customer review text were visible on the listing pages and were deliberately not recorded: citation-register constraints C1 and C2 allow them only through Amazon-served data or an API."
+  ],
+  "sources": [
+    {
+      "id": "S01",
+      "url": "https://affiliate-program.amazon.com/help/operating/agreement",
+      "reachable": true,
+      "dated_on_page": "October 15, 2025",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Section 1 requires links to use the special tagged link formats Amazon provides. Section 5 requires the Associates disclosure statement on the site.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S02",
+      "url": "https://affiliate-program.amazon.com/help/operating/policies",
+      "reachable": true,
+      "dated_on_page": "April 14, 2026",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Participation Requirements 2(b): the Associates ID or tag must appear as a URL parameter on each link placed on the site to an Amazon site. 2(b), 2(t) and 2(y) restrict prices, reviews and ratings, and price alerting. 2(w) prohibits shortening that obscures an Amazon destination.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S03",
+      "url": "https://affiliate-program.amazon.com/help/operating/schedule",
+      "reachable": false,
+      "dated_on_page": "",
+      "quote_confirmed": false,
+      "what_the_fetch_showed": "Redirects to an Amazon sign-in page. No rate-card content is readable without an Associates account.",
+      "result": "sign-in required, not verified"
+    },
+    {
+      "id": "S04",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GRXPHT8U84RAYDXZ",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Table 1 publishes fixed category rates (for example Kitchen 4.50%, Home and Home Improvement and Tools 3.00%, All Other 4.00%). It assigns categories, not individual ASINs.",
+      "result": "live, readable without sign-in"
+    },
+    {
+      "id": "S05",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G4ARBJC7Z2NK48CA",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "The Onsite Commission Income Statement sets separate Table A and Table B rates (for example Tools 1.75%, Kitchen 1.25% onsite) and limits onsite commission to Direct Qualifying Purchases.",
+      "result": "live, distinct from the off-site Table 1 rates"
+    },
+    {
+      "id": "S06",
+      "url": "https://affiliate-program.amazon.com/creatorsapi/docs/en-us/paapiv5-deprecation",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "PA-API 5 requests return a 403 AccessDeniedException and the Creators API is named as the successor.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S07",
+      "url": "https://www.ftc.gov/business-guidance/resources/ftcs-endorsement-guides-what-people-are-asking",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "The disclosure must be close to the recommendation and be clear and conspicuous. The words paid link next to an affiliate link are described as adequate; the words affiliate link or buy now alone are not.",
+      "result": "live, guidance read"
+    },
+    {
+      "id": "S08",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/GHQNZAU6669EZS98",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Describes the (paid link) wording next to a link plus the site-wide Associates statement.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S09",
+      "url": "https://affiliate-program.amazon.com/help/node/topic/G8TW5AE9XL2VX9VM",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "The application review expects at least three qualified sales in the first 180 days, original content, a public and owned site, and activity within the last 60 days.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S10",
+      "url": "https://sell.amazon.com/blog/what-is-an-asin",
+      "reachable": true,
+      "dated_on_page": "June 4, 2025",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "An ASIN is a 10-character alphanumeric code assigned to every product, and it appears after /dp/ in a product URL.",
+      "result": "live. The audit register previously cited an FBA blog post for this definition; corrected to this article."
+    },
+    {
+      "id": "S11",
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "reachable": true,
+      "dated_on_page": "2025-12-10",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "rel=\"sponsored\" is the attribute for advertisements and paid placements.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "S12",
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Thin affiliation is defined as publishing affiliate content with descriptions copied from the merchant without added value. Original reviews, comparisons and navigation are named as ways to add value.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "P01",
+      "url": "https://www.amazon.com/dp/B08FKW9JRM",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Title, brand Art3d, sold by Art3d\u00ae and shipped by Amazon, and the five-item bullet. A five-piece description section lists four line items, which is the discrepancy the audit already records.",
+      "result": "live. Model, part number, dimensions and weight are shown in the product details section."
+    },
+    {
+      "id": "P02",
+      "url": "https://www.amazon.com/dp/B0BSKQW2T2",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Attribute table shows aluminium, black, 2.56\u2033L \u00d7 12.2\u2033W, 5 ounces, one count, under-cabinet mount, sold by YH Urban. Bullet says self-adhesive or drilled.",
+      "result": "live, unchanged"
+    },
+    {
+      "id": "P03",
+      "url": "https://www.amazon.com/dp/B08DY9HRWD",
+      "reachable": true,
+      "dated_on_page": "",
+      "quote_confirmed": true,
+      "what_the_fetch_showed": "Iron, black, 9.17\u2033D \u00d7 21.31\u2033W \u00d7 16.61\u2033H, eight tiers, three tool-free layouts. Title says lightweight cookware up to 11 inches; bullet 4 says up to 12 inches. A newer-model banner names B0BYYTQMTR.",
+      "result": "live. The 11 versus 12 inch contradiction is on the page itself and is already flagged."
+    }
+  ],
+  "listing_checks": [
+    "Rounded totals were read on the pages and were not recorded anywhere in this repository.",
+    "No Amazon-hosted image was copied or hotlinked. The photography on this site is generated editorial imagery.",
+    "No claim in this file rests on a page that could not be fetched. S03 is the single exception and is marked unreachable rather than summarised."
+  ],
+  "questions_for_the_owner": [
+    "Is the tracking ID shopnow047c-20 active for this site in the Associates account? Nothing outside the account can answer that, which is why no page claims a commission.",
+    "Which product did each submitted short link intend to point at? The observed destinations are recorded; the intention is not, and the intended fields stay blank until it is.",
+    "Should the three reference links keep an untagged listing URL, or be printed as plain ASINs until a validated Special Link exists? Both are published positions; F12 records the tension rather than hiding it."
+  ]
+}
