@@ -292,12 +292,11 @@ _vb += ('<div class="prose"><h2>Independent re-check, ' + e(_verify_doc['checked
         'document still says what the site claims it says. The three listing pages were also re-read to see whether '
         'anything we publish had been contradicted. Restricted sources are shown as restricted; they are not summarised.</p></div>'
         + table(['ID', 'Fetch', 'Dated on page', 'Quote still present', 'What the fetch showed', 'Result'], _verify_rows)
-        + '<div class="prose"><h2>What this pass did not record, on purpose</h2><p>'
-        + ''.join(f'<br>{e(x)}' for x in _verify_doc['listing_checks'])
-        + '</p><p>Prices, star ratings, review counts and customer review text were visible on all three listing pages. '
-          'None of them appears anywhere in the repository. The register constrains them (C1, C2), and the constraint '
-          'is not a stylistic preference: Amazon permits them on an affiliate page only when Amazon serves the data '
-          'or it arrives through Creators API or PA API.</p>'
+        + '<div class="prose"><h2>What this pass did not record, on purpose</h2><ul class="checklist warn">'
+        + ''.join(f'<li>{e(x)}</li>' for x in _verify_doc['listing_checks'])
+        + '</ul><p>The register constrains prices and ratings (C1, C2). That is not a stylistic preference: '
+          'Amazon permits them on an affiliate page only when Amazon serves the data or it arrives through '
+          'Creators API or PA API.</p>'
           '<h2>Three questions only the account holder can answer</h2><ol>'
         + ''.join(f'<li>{e(q)}</li>' for q in _verify_doc['questions_for_the_owner'])
         + '</ol></div>')
