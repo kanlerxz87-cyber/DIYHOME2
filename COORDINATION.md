@@ -202,3 +202,15 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 - **No irregularities found.** Unverified items are unchanged and remain on the Flagged for Review page: intended ASINs, Special Link compliance, `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger.
 
 | Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
+
+### Release receipt — PR #20 (2026-11-21, `arena/54a0fc61-diyhome2`)
+
+[PR #20](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/20) merged into `main` at **23:20:07 UTC**, merge commit `ee8204852d1e056cc565c9d1ad668b20d0a44f55` (coordination-only; no site/data/tooling changes).
+
+| Check | Result |
+|---|---|
+| Publication checks on `main` | [44961279025](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961279025) — success |
+| Pages build and deployment | [44961277719](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961277719) — success |
+| Pages API | `status: built`, `build_type: legacy` |
+
+Live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) re-fetched after deployment — disclosure above the fold, three shopping-edit guides and the air fryer guide render. All unverified items remain on the Flagged for Review page and block nothing.
