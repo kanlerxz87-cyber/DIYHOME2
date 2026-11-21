@@ -180,3 +180,22 @@ Verification performed on the reconciled tree: `python3 scripts/check.py` → pa
 Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) after deployment — renders the integrated publication with the disclosure above the fold ("As an Amazon Associate I earn from qualifying purchases."), the three shopping-edit guides, and the air fryer guide link.
 
 Session outcome: the initial parallel build was retired in favor of the integrated live site; the board, the conflict resolution and this receipt are the only contributions. Unresolved project-level items (intended ASIN identity, Special Link compliance, tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger) remain exactly as recorded in the live site's Flagged for Review page — this session did not and cannot close them.
+
+### Session claim — `arena/a0e07843-diyhome2` (2026-11-21)
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Question-shaped guide pass 2: publish the three remaining working titles from the brief, spec-free, through the builder | in progress | `arena/a0e07843-diyhome2` | `scripts/build.py`, `data/flags.json` (F06/F09 detail only), regenerated root HTML, `sitemap.xml`, `feed.xml`, `COORDINATION.md` |
+
+2026-11-21: Read the board on `origin/main` (`fb5f639`, PR #19) before claiming. Every prior claim is `done` or `needs review`; no live claim overlaps this scope. Claiming the open editorial gap the site itself records as **F06** in `data/flags.json`: three of the four working titles supplied in the brief were never published ("A no-hype checklist for comparing air fryer capacity", "How to assess cleanup and counter-space trade-offs", "Questions to ask before buying a multi-function kitchen appliance"). They will be published as **specification-free method checklists** — no model, price, star rating or specification is asserted, because no air fryer or appliance listing has been verified for this site — and wired through `scripts/build.py` so the sitemap, feed, guide index and navigation pick them up on build.
+
+Out of scope, untouched: `measurement/`, `field-notes/`, `audit/`, `assets/`, `scripts/check.py`, `scripts/verify.mjs`, `data/links.json`, `data/products.json`, `data/citation-register.json`, `product-register.json`. No Pages settings changes.
+
+Baseline captured before any edit on this branch: `python3 scripts/build.py` (no output), `python3 scripts/check.py` → "Local links, disclosure, Amazon reference markup and XML checks passed.", `node scripts/verify.mjs` → GATE PASSED (13 sitemap URLs / 13 feed items, 12 citations, 0 ledger rows, 10 flags), `node audit/check_audit.mjs` → "Audit checks passed", and `git status --porcelain` empty after the build, so the committed site is reproducible.
+
+Independent re-verification of all four submissions performed in this session on 2026-11-21 (fetched each short URL and read the resolved page title and final URL):
+- `https://link.amazon/B0hmGG4m2` → `B08FKW9JRM`, "Art3d Smoothing Tool Kit for Peel and Stick Wallpaper | Vinyl Backsplash Tile, Complete Basic Tool Set, Bubble & Crease Removal, Ergonomic Grip, Safe for DIY and New Home Buyer" — [listing](https://www.amazon.com/dp/B08FKW9JRM)
+- `https://link.amazon/B03QDuGdo` → `B0BSKQW2T2`, "Paper Towel Holder Under Cabinet, Self-Adhesive or Drilling, Matte Black | Kitchen Roll Dispenser | Under-Cabinet or Wall-Mounted| Upgraded Aluminum | Lighter Yet Stronger Than Stainless Steel" — [listing](https://www.amazon.com/dp/B0BSKQW2T2)
+- `https://link.amazon/B0hpD2JGQ` → `B08DY9HRWD`, "ORDORA Pots and Pans Organizer Under Cabinet 16.6\", 8-Tier Adjustable Rack | 3 DIY Modes, Tool-Free Assembly, Non-Slip, Fits Lightweight Cookware Up to 11\", For Kitchen Cabinets, Shelves & Countertops" — [listing](https://www.amazon.com/dp/B08DY9HRWD)
+
+Same three destinations as recorded on 2026-11-20, so no register row changes. One detail worth recording: each resolved URL arrives with Amazon's own referral query string (`lv`, `crid`, `sprefix`, `sr`, `btn_ref=srctok-…`, `channelId=500`, `plpRedirect=mhFallback`) and **no `tag=` parameter**, which is consistent with the existing F02 flag ("No tracking tag observed on any resolved destination"). Intent, enrollment and attribution remain unverified and are not asserted here.
