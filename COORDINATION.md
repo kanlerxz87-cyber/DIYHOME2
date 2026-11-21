@@ -202,3 +202,23 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 - **No irregularities found.** Unverified items are unchanged and remain on the Flagged for Review page: intended ASINs, Special Link compliance, `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger.
 
 | Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Shop surface: consolidated category index + shop-style landing page + catalogue tables | in progress | arena/94688dd1-diyhome2 | `scripts/build.py`, regenerated root HTML (`index.html`, `shop.html`, `category/*`), `assets/style.css`, `sitemap.xml`, `feed.xml` |
+| Executive summary refresh (2026-11-21 verification state) | in progress | arena/94688dd1-diyhome2 | `summary.html` content in `scripts/build.py`, `EXECUTIVE_SUMMARY.md` |
+| Navigation parity fix on the audit page | in progress | arena/94688dd1-diyhome2 | `audit/index.html` (nav dropdown only; no content change) |
+
+2026-11-21 (`arena/94688dd1-diyhome2`): Claimed before editing, pushed immediately. Base was
+`fb5f639`; `origin/main` had advanced to `ee82048` (PRs #14–#20), so main was fast-forwarded
+into this branch first and the board on `main` was read before claiming. Scope is limited to
+the files named above. This session does **not** edit `data/*.json`, `product-register.json`,
+`campaign-ledger.csv`, `measurement/`, `field-notes/`, `review.html` content, or the workflow.
+All shop content is rendered from the already-verified `data/products.json` records; no new
+product claim, price, rating, review count or tracking assertion is introduced. No competing
+claim is active: the three earlier claims touching `build.py`/root HTML are marked `done`.
+
+Request logged for the record: `audit/index.html` is the only page whose nav dropdown omits
+`Citation register` (7 items on every generated page, 6 there). The fix below is one nav line
+and leaves the audit owner's content untouched; the owner's task is `done`, so no live claim is
+being edited.
