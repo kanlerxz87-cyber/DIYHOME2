@@ -258,19 +258,32 @@ _rb += ('<div class="prose"><h2>Open flags</h2><p>'+str(len(_flag_doc['flags']))
 # contradict what we publish". Restricted sources stay visible as restricted
 # rather than being quietly dropped.
 _verify_doc = __import__('json').loads(Path('data/verification-2026-11-21.json').read_text())
-_verify_by_id = {_r['id']: _r for _r in _verify_doc['sources']}
+# Join on URL. The two registers use different numbering, so an ID join would put
+# one document's evidence next to another document's row - which it did.
+_verify_by_url = {_r['url']: _r for _r in _verify_doc['sources']}
 _verify_rows = []
-for _r in _verify_doc['sources']:
+# Render in the citation register's own order and with its own IDs, so a reader
+# scanning the register and the re-check sees the same document at the same row.
+_missing = []
+for _s in _cite_doc['sources']:
+    _r = _verify_by_url.get(_s['url'])
+    if _r is None:
+        _missing.append(_s['id'])
+        continue
     _state = ('<span class="pill gap">sign-in required</span>' if not _r['reachable']
               else '<span class="pill ok">live</span>')
     _verify_rows.append((
-        f'<strong>{e(_r["id"])}</strong>',
+        f'<strong>{e(_s["id"])}</strong>',
         _state,
         e(_r['dated_on_page']) if _r['dated_on_page'] else '<span class="pill">no date shown</span>',
         'yes' if _r['quote_confirmed'] else 'no',
         e(_r['what_the_fetch_showed']),
         e(_r['result']),
     ))
+# A register document with no re-check row is a coverage gap, not a blank cell.
+assert not _missing, f'sources with no re-check row: {_missing}'
+_extra = set(_verify_by_url) - {_s['url'] for _s in _cite_doc['sources']}
+assert not _extra, f're-check rows that match no register document: {sorted(_extra)}'
 _vt, _vd, _vb = pages['sources']
 _vb += ('<div class="prose"><h2>Independent re-check, ' + e(_verify_doc['checked_on']) + '</h2>'
         '<p>Every document above was fetched again on that date in a clean session, and each quote was compared '

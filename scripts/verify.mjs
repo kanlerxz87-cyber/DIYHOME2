@@ -268,7 +268,14 @@ say(`untagged Amazon product links pinned to the F12 disclosure across ${BROWSER
 const verifyDoc = readJson("data/verification-2026-11-21.json");
 const sourcesHtml = fs.readFileSync(path.join(ROOT, "sources.html"), "utf8");
 if (!verifyDoc.sources?.length) fail("recheck:empty", "the verification log has no rows");
+if (verifyDoc.join_key !== "url") fail("recheck:join", "the re-check log must join on URL, not on ID");
+// The two registers number their documents differently. Joining on ID once put the
+// FTC row's evidence under Table 1, so the join key and the coverage are enforced.
+const REG_BY_URL = Object.fromEntries(register.sources.map((s) => [s.url, s.id]));
 for (const r of verifyDoc.sources ?? []) {
+  if (!REG_BY_URL[r.url]) fail("recheck:unknown-url", `${r.id} → ${r.url} is not in the citation register`);
+  else if (REG_BY_URL[r.url] !== r.id)
+    fail("recheck:id-url-mismatch", `${r.id} carries ${r.url}, which the register numbers ${REG_BY_URL[r.url]}`);
   if (!sourcesHtml.includes(`<strong>${r.id}</strong>`)) fail("recheck:unpublished", `${r.id} is not on sources.html`);
   if (!r.what_the_fetch_showed) fail("recheck:no-evidence", `${r.id} records no observation`);
   const cite = CITE[r.id];
@@ -278,7 +285,12 @@ for (const r of verifyDoc.sources ?? []) {
     fail("recheck:quote-without-evidence", `${r.id} claims a confirmed quote with no observation`);
   if (r.quote_confirmed && !/^https:\/\//.test(r.url)) fail("recheck:not-https", `${r.id} → ${r.url}`);
 }
-say(`${(verifyDoc.sources ?? []).length} sources re-checked on ${verifyDoc.checked_on} and published on sources.html`);
+// Every register document needs a row: a register entry with no re-check is a gap.
+const recheckedUrls = new Set((verifyDoc.sources ?? []).map((r) => r.url));
+for (const s of register.sources) {
+  if (!recheckedUrls.has(s.url)) fail("recheck:coverage-gap", `${s.id} is in the register but has no re-check row`);
+}
+say(`${(verifyDoc.sources ?? []).length} of ${register.sources.length} sources re-checked on ${verifyDoc.checked_on}, IDs matched to URLs, published on sources.html`);
 
 /* 15 — the FAQ exists, is linked, and claims nothing it cannot support ------- */
 // The FAQ is the last surface before a click, so the two easy ways for it to go
