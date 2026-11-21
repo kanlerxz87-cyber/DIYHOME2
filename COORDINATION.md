@@ -523,3 +523,21 @@ Same three destinations as every prior session recorded, so no register row chan
 **Verification performed on the merged tree.** `python3 scripts/build.py` then `git status --porcelain` empty for generated output (reproducible); `python3 scripts/check.py` → "Local links, disclosure, Amazon reference markup and XML checks passed."; `node scripts/verify.mjs` → GATE PASSED, 20 sitemap URLs / 20 feed items, 17 root pages scanned, 12 flags and 14 re-checks published with sources; `node audit/check_audit.mjs` → "Audit checks passed"; `node field-notes/counter-fit/test.cjs` and `python3 measurement/test_desk.py` → exit 0; every URL in the sitemap and feed fetched over a local HTTP server returned 200 with the disclosure present twice; no broken in-page anchors across all root pages.
 
 **Merge reconciliation.** `main` advanced from `fb5f639` to `05db294` (PRs #20–#27) while this branch was in progress. Merged, not rebased. Conflicts: `COORDINATION.md` (both histories kept, this entry appended), `scripts/build.py` (took `main`'s builder — shop surface, category pages, `page_shell`, summary module, flag renderer — and re-applied only this session's additive guide, cluster, log and feed changes on top), `data/flags.json` (took `main`'s 12 flags and 12 re-checks, then amended F06/F09 and appended 2 re-check rows), and seven generated files (took `main`'s, then regenerated from the merged builder; generated output is never hand-merged). Nothing from any other session was discarded.
+### Release receipt — PR #31 (2026-11-21, `arena/a0e07843-diyhome2`)
+
+[PR #31](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/31) merged into `main` at **23:34:09 UTC**, merge commit `125e7ebd66969233c27315eac6b78c8f31b90338`.
+
+| Check | Result |
+|---|---|
+| Publication checks on the PR branch | [44962395473](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962395473) — success |
+| Publication checks on `main` after the merge | [44962435758](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435758) — success |
+| Pages build and deployment | [44962435290](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44962435290) — success |
+
+Fetched after deployment:
+- [air-fryer-cleanup.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-cleanup.html) — renders the full checklist, the disclosure above the fold, the "what this checklist is not" note and the FTC link. Sibling guides [air-fryer-capacity.html](https://kanlerxz87-cyber.github.io/DIYHOME2/air-fryer-capacity.html) and [multi-function-appliances.html](https://kanlerxz87-cyber.github.io/DIYHOME2/multi-function-appliances.html) are in the deployed sitemap.
+- [sitemap.xml](https://kanlerxz87-cyber.github.io/DIYHOME2/sitemap.xml) — 20 URLs, including the three new checklists.
+- [standards.html](https://kanlerxz87-cyber.github.io/DIYHOME2/standards.html) — publication log live, with issue 01 (2026-11-20) and issue 02 (2026-11-21) each pointing at its official sources.
+
+`main` moved four times during this session (`fb5f639` → `05db294` → `b930e5a` → `46f7074` → `125e7eb`). Every reconciliation was a merge, never a rebase; the only recurring conflict was `COORDINATION.md`, resolved each time by keeping both histories. Generated HTML was always regenerated from the merged builder.
+
+Note on process: this receipt lands in a follow-up PR rather than a direct push to `main`, because the Arena workspace pins this session to `arena/a0e07843-diyhome2` and does not push other branches.
