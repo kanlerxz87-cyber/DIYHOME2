@@ -267,7 +267,7 @@ def _shop_intro_note():
             'listing on 2026-11-20 and re-checked on 2026-11-21. Prices, stock, star ratings and review counts are '
             '<strong>deliberately absent</strong>: '
             f'the Associates Program Policies ({source("https://affiliate-program.amazon.com/help/operating/policies","S02")}) '
-            'the Program Policies permit them only through Creators API or Product Advertising API content, or an Amazon-served link, '
+            'permit them only through Creators API or Product Advertising API content, or an Amazon-served link, '
             'and this site has neither. '
             f'Blank or {_UNV} cells are fields that could not be confirmed from an official source. '
             f'See {link("review","Flagged for Review")} for the open items.</p>')
