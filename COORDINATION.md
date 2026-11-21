@@ -180,3 +180,29 @@ Verification performed on the reconciled tree: `python3 scripts/check.py` → pa
 Independently fetched the live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) after deployment — renders the integrated publication with the disclosure above the fold ("As an Amazon Associate I earn from qualifying purchases."), the three shopping-edit guides, and the air fryer guide link.
 
 Session outcome: the initial parallel build was retired in favor of the integrated live site; the board, the conflict resolution and this receipt are the only contributions. Unresolved project-level items (intended ASIN identity, Special Link compliance, tracking attribution, Search Console ownership, deployed analytics endpoint, empty campaign ledger) remain exactly as recorded in the live site's Flagged for Review page — this session did not and cannot close them.
+
+### Final integration and verification session — `arena/ff38bd99-diyhome2` (2026-11-21)
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Final integration: re-verify every published claim against official sources, close navigation/table gaps, publish the executive summary, build, merge and deploy | in progress | arena/ff38bd99-diyhome2 | `COORDINATION.md`, `scripts/build.py`, `scripts/check.py`, `scripts/verify.mjs`, `data/*.json`, `audit/data/*.json`, `audit/index.html` (nav + citation fixes only), root generated pages, `sitemap.xml`, `feed.xml` |
+
+Claim written before any edit and pushed immediately, per the board rules. No other branch carries
+an unexpired claim as of this checkout: `main` is at `fb5f639` (PR #19) and every other branch
+listed on the board is `done` or `needs review`.
+
+Scope of this session, in order:
+
+1. Re-fetch all 12 citation-register documents and all three Amazon listings on 2026-11-21 and
+   record the outcome. Anything that cannot be re-confirmed is blanked and flagged, not inferred.
+2. Fix the irregularities this pass finds, and publish each one on the Flagged for Review page
+   with its official source link.
+3. Add the missing product-first surfaces: a category shop page and a real executive summary,
+   each table row carrying an official source link.
+4. Make the checks cover nested pages (`audit/`, `measurement/`, `field-notes/`) and require every
+   populated table row to carry an official link, so the gap cannot silently reopen.
+5. Build, check, PR, merge, confirm the Pages deployment and record the receipt here.
+
+**Not claimed, deliberately:** intended ASINs, the compliance status of the submitted `link.amazon`
+short links, `shopnow047c-20` attribution, Associates report data, Search Console ownership and a
+deployed analytics endpoint. These stay unverified on the site; this session does not close them.
