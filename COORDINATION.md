@@ -220,3 +220,18 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 | Pages API | `status: built`, `build_type: legacy` |
 
 Live [homepage](https://kanlerxz87-cyber.github.io/DIYHOME2/) re-fetched after deployment — disclosure above the fold, three shopping-edit guides and the air fryer guide render. All unverified items remain on the Flagged for Review page and block nothing.
+
+### Release receipt — PR #22 (2026-11-21, `arena/175d82e7-diyhome2`)
+
+[PR #22](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/22) merged into `main` at **23:21:27 UTC**, merge commit `1062e3ebcbde5188652b815fdc42cafeb3a01560`.
+
+| Check | Result |
+|---|---|
+| PR checks (Publication checks) | [44961352407](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961352407) — success |
+| Publication checks on `main` | [44961397512](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961397512) — success |
+| Pages build and deployment | [44961396928](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44961396928) — success |
+| Pages API | `status: built`, `build_type: legacy`, `html_url: https://kanlerxz87-cyber.github.io/DIYHOME2/` |
+
+Live site not re-fetched from this build window (github.io unreachable here, TLS SSL_ERROR_SYSCALL); deployment confirmed via Actions + Pages API. PR #20 session fetched the live homepage earlier the same day (disclosure above fold, three shopping-edit guides, air fryer guide). This PR added OG/Twitter/JSON-LD/author meta to root pages, the working-titles table on guides.html, and 2 sourced tables on summary.html. No product data changed; intended fields blank; ledger empty.
+
+**Still unverified, unchanged by this PR:** intended product identity, Special Link compliance for submitted `link.amazon` URLs (not claimed invalid), `shopnow047c-20` tracking attribution, Search Console ownership, deployed analytics endpoint. No clicks, orders, revenue, conversion rate or forecast asserted.
