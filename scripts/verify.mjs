@@ -388,9 +388,21 @@ say(`${reviews.sources.length} re-read documents, ${reviews.products.length} lis
 /* 14 — nothing may publish a purchase-volume or badge figure ----------------- */
 // F13: Amazon displays "20K+ bought in past month" and an Amazon's Choice badge.
 // Neither is ours to restate, and the price/rating gate never looked for them.
+// A purchase-volume figure is banned on every page: a number is a number.
 for (const p of pages) {
   const h = fs.readFileSync(path.join(ROOT, p), "utf8");
   if (/\b\d+(\.\d+)?K?\+?\s*bought in past month/i.test(h)) fail("claims:bought-in-past-month", `${p} publishes a purchase-volume figure`);
+}
+// A merchandising badge is banned only where a shopper reads it as a
+// recommendation: the shop, the category pages and the guides. The record pages
+// (review, sources, summary, standards, audit, measurement) have to be able to
+// say truthfully what a listing showed, including a badge they are not adopting.
+const SHOPPER_PAGES = pages.filter((p) =>
+  /^(index|shop|guides|faq|wallpaper|paper-towels|cookware|air-fryers|multi-function-appliances|air-fryer-capacity|air-fryer-cleanup)\.html$/.test(p) ||
+  p.startsWith("category/")
+);
+for (const p of SHOPPER_PAGES) {
+  const h = fs.readFileSync(path.join(ROOT, p), "utf8");
   if (/Amazon(?:'|&#x27;|&#39;|\u2019|&#8217;)s Choice/i.test(h)) fail("claims:amazon-badge", `${p} publishes an Amazon badge`);
 }
 
