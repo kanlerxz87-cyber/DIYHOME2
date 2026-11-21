@@ -760,3 +760,24 @@ sources, 14 published pages, 14 sitemap URLs / 14 feed items cross-checked in bo
 `node field-notes/counter-fit/test.cjs` passed; `python3 -m unittest test_desk` →
 `Ran 2 tests … OK`. CI summary metrics now read 14 / 14 / 14 instead of the previous
 `- | 1 | 1 |`.
+
+### Integration of PR #28 into the final branch (`arena/81de0221-diyhome2`, 2026-11-21)
+
+PR #28 (`arena/c776c14c-diyhome2`, nested-page indexability + CI coverage) was open and
+`CONFLICTING` with `main` (its base was pre-PR#26; `main` had moved through PRs #27–#39).
+As the final integration session its branch was merged here rather than left to rot, with all
+conflicts resolved **keeping both works**:
+
+| File | Conflict | Resolution |
+|---|---|---|
+| `scripts/build.py` | sitemap emission: category pages (main) vs `measurement/` addition (#28) | kept both — categories **and** the nested loop including `measurement/`; also removed a duplicated `ops` line that pre-existed on `main` (second assignment already won, so no behaviour change) |
+| `sitemap.xml`, `feed.xml` | generated output | regenerated from the merged builder; now **22 URLs / 22 items / 22 published pages**, cross-checked in both directions by `verify.mjs` |
+| `COORDINATION.md` | board | both histories kept, entries appended |
+| `scripts/verify.mjs` | **auto-merge ReferenceError** (not a textual conflict) | #28's branch removed the `pages`/`NESTED` pair in favour of a whole-tree `PUBLISHED` walk, while checks 13/14 (landed on main after #28's base) still referenced them → `ReferenceError: pages is not defined` at runtime. Fixed by pointing checks 13 and 14 at `PUBLISHED`, the same fix #28 had already applied to check 12, with a comment recording why. This is exactly the class of defect that only appears when two sessions edit one gate in parallel. |
+
+**Verification after the merge (all on this branch, before opening the PR):**
+`python3 scripts/build.py` (reproducible, `git status` clean after rebuild), `python3 scripts/check.py`,
+`node scripts/verify.mjs` → GATE PASSED (16 checks incl. the four-source event gate), `node audit/check_audit.mjs`,
+`node field-notes/counter-fit/test.cjs`, `python3 -m unittest test_desk` (2 tests OK), `node --check assets/metrics.js`,
+`git diff --check` — all pass. No other session's file content was discarded; no product data, price,
+rating or evidence record changed in this merge.
