@@ -219,6 +219,89 @@ Re-fetched all three observed listings from official Amazon pages and compared l
 
 | Final re-verification and integration | done | 54a0fc61 | COORDINATION.md only; no site or product-data files |
 
+### Claim — nested-page indexability and CI coverage (2026-11-21)
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Close the sitemap/feed gap on `/measurement/` and put the nested suites in CI | in progress | c776c14c | `scripts/verify.mjs`, `scripts/build.py` (sitemap + feed emission only), generated `sitemap.xml`/`feed.xml`, `.github/workflows/check.yml`, `COORDINATION.md` |
+
+2026-11-21 UTC (`arena/c776c14c-diyhome2`): Claimed before editing; no other live claim on the
+board (the two `in progress` rows are superseded by their own sessions' later `done` rows).
+Scope is machinery only — **no product data, listing specs, prices, or evidence records are
+touched**, so this cannot collide with the re-verification work landed in PR #20.
+
+Three defects found by running the existing gates and reading their coverage:
+
+1. **`/measurement/` is orphaned.** The Campaign desk is linked from the nav and footer of all
+   11 root pages (`ops` in `scripts/build.py`) but appears in neither `sitemap.xml` nor
+   `feed.xml` (`grep -c "measurement/" sitemap.xml` → `0`). Search engines and subscribers
+   cannot see a published page.
+2. **The gate that should have caught it cannot.** `scripts/verify.mjs` check 8 iterates
+   `for (const u of sm)` — it verifies feed coverage *of the sitemap*, never sitemap coverage
+   *of the published tree*. A page missing from both passes silently while the gate prints
+   "the feed covers every published page". Its price/rating scan also omits
+   `audit/index.html`: 13 pages scanned, 14 published.
+3. **`audit/index.html` is validated by nothing in CI.** `audit/check_audit.mjs` passes
+   locally (exit 0) but is not referenced in `.github/workflows/check.yml`, and
+   `scripts/check.py` uses a non-recursive `Path('.').glob('*.html')` (11 files, root only).
+   `field-notes/counter-fit/test.cjs` and `measurement/test_desk.py` are likewise unreferenced
+   and unrun.
+
+### Completion log — nested-page indexability and CI coverage (2026-11-21)
+
+Five defects, each found by running an existing gate and then reading what it
+actually covered. All are machinery defects; **no product data, listing spec,
+price, rating or evidence record was touched**, so nothing here can conflict with
+the listing re-verification landed in PR #20.
+
+| # | Defect | Evidence before | After |
+|---|---|---|---|
+| 1 | `/measurement/` (Campaign desk) linked from nav + footer of all 11 root pages, absent from sitemap and feed | `grep -c "measurement/" sitemap.xml` → `0`; feed held only `measurement.html` | 14 sitemap URLs, 14 feed items |
+| 2 | `verify.mjs` coverage checks both iterated `sm`, so a page missing from **both** passed silently | gate printed "the feed covers every published page" while #1 existed | added reverse check over an enumerated tree; it fails on `measurement/index.html` before the build fix, proving it works |
+| 3 | price/rating scan named 2 nested pages and omitted `audit/index.html`; link + disclosure scans covered root pages only | "13 pages scanned", 14 published | "14 published pages scanned"; link and disclosure checks cover all 14 |
+| 4 | `audit/check_audit.mjs`, `field-notes/counter-fit/test.cjs`, `measurement/test_desk.py` unreferenced by `check.yml` | `grep -n "check_audit" .github/workflows/check.yml` → no match | new `Run the nested test suites` step |
+| 5 | CI summary reported `Sitemap URLs | 1`, `Feed items | 1` every run — `grep -c` counts lines and ElementTree writes both files on one line | `wc -l sitemap.xml` → `1` | `grep -o … \| wc -l` |
+
+**Extra defect found while wiring #4:** `python3 measurement/test_desk.py` exits `0`
+having run **zero tests** — the file has no `if __name__ == "__main__": unittest.main()`
+guard (`grep -n "unittest.main" measurement/test_desk.py` → no match). Verified with
+`python3 -m unittest test_desk -v` → `Ran 2 tests … OK`. CI now invokes `-m unittest`
+and greps for `Ran [1-9]…tests` and `OK`, so a zero-test run fails the build.
+
+**Request, not an edit:** `measurement/` is owned by session `c1033a7f` (task `done`), so
+per the board protocol this session did not edit `measurement/test_desk.py`. Recommend
+its owner append `if __name__ == "__main__": unittest.main()` so the file is runnable
+both ways; the CI grep guard makes the omission safe in the meantime.
+
+**Non-vacuity check:** copied `field-notes/counter-fit/{test.cjs,worksheet.js}` to a temp
+directory and broke the shortfall arithmetic; the suite exited `1`. It asserts real
+behaviour rather than passing by default.
+
+**Sources consulted (official):**
+- Google Search Central, [sitemaps](https://developers.google.com/search/docs/crawling-indexing/sitemaps/build-sitemap) — a sitemap should list the canonical pages you want indexed.
+- Google Search Central, [RSS/Atom feed guidance](https://developers.google.com/search/docs/crawling-indexing/rss-feeds) — feeds list the pages they syndicate.
+- GitHub Actions, [workflow syntax](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-syntax) — `set -eo pipefail` and `::error::` usage in the new step.
+- Python docs, [`unittest`](https://docs.python.org/3/library/unittest.html) — `unittest.main()` is only invoked when the module is run as `__main__`; hence defect #6 above.
+
+**Verification performed:** `python3 scripts/build.py` → clean; `python3 scripts/check.py`
+→ passed; `node scripts/verify.mjs` → GATE PASSED (14/14/14); `node audit/check_audit.mjs`
+→ passed; `python3 -m unittest test_desk` → `Ran 2 tests … OK`; `node
+field-notes/counter-fit/test.cjs` → passed. Rebuilt after commit with `git status
+--porcelain` empty, so generated output is reproducible and the CI `git diff --exit-code`
+step will pass.
+
+**Still unverified and unchanged by this session** (unchanged on the live Flagged for
+Review page): intended ASIN identity, Special Link compliance for the submitted
+`link.amazon` URLs (not claimed invalid), `shopnow047c-20` tracking attribution, Search
+Console ownership, a deployed analytics endpoint, and the empty campaign ledger. This
+session cannot close any of them from outside the account.
+
+**Sandbox note, recorded honestly:** `curl` to `kanlerxz87-cyber.github.io` fails with
+`SSL_ERROR_SYSCALL` in this environment (egress allowlist), so live-page fetches could not
+be repeated here. Deployment is confirmed through the Pages API (`status: built`) and the
+Actions run, as in prior receipts.
+
+| Close the sitemap/feed gap on `/measurement/` and put the nested suites in CI | done | c776c14c | `scripts/verify.mjs`, `scripts/build.py` (sitemap + feed emission only), `sitemap.xml`, `feed.xml`, `.github/workflows/check.yml`, `COORDINATION.md` |
 ### Release receipt — PR #20 (2026-11-21, `arena/54a0fc61-diyhome2`)
 
 [PR #20](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/20) merged into `main` at **23:20:07 UTC**, merge commit `ee8204852d1e056cc565c9d1ad668b20d0a44f55` (coordination-only; no site/data/tooling changes).
@@ -277,6 +360,11 @@ Claim was pushed first, then `origin/main` advanced three times (PRs #20–#24);
 
 Gates on the merged tree: `python3 scripts/build.py`, `python3 scripts/check.py`, `node scripts/verify.mjs` (now 12 flags + 7 re-checks published), `node audit/check_audit.mjs` — all pass; build is reproducible (`git status` clean after build).
 
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Event-vocabulary reconciliation, verification gate, and final integration | in progress | 81de0221 | `data/products.json`, `scripts/verify.mjs`, `COORDINATION.md`, final integration PR |
+
+2026-11-21 (`arena/81de0221-diyhome2`): Claimed before editing. Startup review of the integrated tree at `6bdc20c` (PR #26): `python3 scripts/build.py`, `python3 scripts/check.py`, `node scripts/verify.mjs`, `python3 measurement/test_desk.py`, `node field-notes/counter-fit/test.cjs`, `node --check assets/metrics.js` all pass; build reproducible. Open irregularity claimed by this session: `data/products.json` `analytics_events` defines a five-event vocabulary (`page_view`, `product_view`, `outbound_click`, `guide_complete`, `subscribe`) that does not match the shipped implementation (`page_view`, `guide_view`, `listing_reference_click`, `affiliate_click`, `feed_click` in `assets/metrics.js`, `scripts/serve.py`, README, and `measurement/test_desk.py`), and `subscribe` names a reader-capture form that does not exist (README: no email collection; RSS is the subscription path). Plan: reconcile the data file to the shipped vocabulary, reference S01-style honesty in the record, and add a `verify.mjs` gate so the two can never drift again. PR #25 (`arena/94688dd1`) is open with green checks and does not touch this scope; no overlapping files.
 ### Release receipt — PR #26 (2026-11-21, `arena/bd0ba155-diyhome2`)
 
 [PR #26](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/26) merged into `main` at **23:25:10 UTC**, merge commit `6bdc20ccb66a6eb2d9db92cfbb459b65cefb5d34`.
@@ -602,6 +690,7 @@ Everything else — `scripts/build.py`, the generated root pages, `index.html`, 
 `assets/style.css`, `summary.html`, the flag renderer — stayed with the sessions that claimed it. The
 review found their defects and logged them here and in `data/flags.json` instead of editing underneath
 them.
+them.
 
 ---
 
@@ -625,3 +714,70 @@ deployment status and the live page, which is what happened here.
 **Board note.** This session's claim section has been dropped by later merges of `COORDINATION.md`
 three times. Re-appending it after each merge is the only way it survives; the file behaves as
 last-writer-wins, not as an append-only log, and that is worth fixing in the file itself.
+
+### SG-27..SG-30 parallel-pass rows — carried forward (`arena/81de0221-diyhome2`, 2026-11-21)
+
+The publication-polish pass rows from the brief were recorded only in a retired session's
+branch (`4231544`, session arena-7ebfbe32) and did not survive into the integrated board.
+Carried forward here with their **current** verified status in the integrated publication
+(re-checked against the tree at `512e22e`):
+
+| Row | Item | Status in the integrated publication | Evidence |
+|---|---|---|---|
+| SG-27 | Nav labels: single navigation group + footer access to all dashboard surfaces | done | Every page carries one nav group (`Buying guides`, `RSS`, `Site records` dropdown) plus a footer nav with all eight record surfaces; `scripts/build.py` renders both from one `page_shell()` so they cannot drift. |
+| SG-28 | Shipped RSS feed, regenerated on build, new guides appended | done | `feed.xml` is generated by `scripts/build.py`; `verify.mjs` checks 8 enforce sitemap/feed agreement and full feed coverage (21 URLs / 21 items at this commit). |
+| SG-29 | Search Console | needs review — owner action required | Not verifiable from this environment: ownership verification needs the owner's Google account. Published on `summary.html` and `measurement.html`; the sitemap is ready for submission at `/sitemap.xml`. No verification token is fabricated. |
+| SG-30 | Reader capture | done (re-scoped) | No email collection runs (README launch limits). The shipped path is RSS (`feed_click` event); `measurement.html` states "Reader subscriptions use RSS without collecting email addresses." The retired session's disabled form was not carried into the integrated site. |
+
+Notes: SG-29 remains a non-blocking review item exactly as the Flagged for Review page
+records it. SG-30's original "form built, disabled" design was superseded by the integrated
+publication's no-email posture; the row is recorded here so the brief's parallel-pass list
+stays traceable rather than silently lost again.
+### Merge reconciliation — PR #26 landed mid-session (2026-11-21)
+
+`main` advanced to `6bdc20c` (PR #26, `arena/bd0ba155-diyhome2`) while this branch was in
+progress. PR #26 rewrote large parts of `scripts/build.py` and `scripts/verify.mjs` — the same
+two files this session edits — so the merge needed care.
+
+- **`COORDINATION.md`**: one content conflict. Resolved by keeping **both** histories and
+  appending, per the standing board guidance.
+- **`scripts/build.py`, `scripts/verify.mjs`**: git auto-merged. Verified afterwards with
+  `git diff origin/main -- <file>`: the diff shows **only** this session's additions, so every
+  PR #26 change survived intact. Neither file was hand-merged.
+- **The auto-merge was still wrong, and the gate caught it.** PR #26 added check 12
+  (`claims:rate-unreadable`) iterating `pages`, a root-only list this session had deleted in
+  favour of `PUBLISHED`. Textually the merge was clean; semantically it was a
+  `ReferenceError: pages is not defined` at line 280. Fixed by pointing check 12 at
+  `PUBLISHED` — which is also the stricter behaviour, since a nested page could make the same
+  claim. Confirmed by `grep -rli` that no page currently contains the guarded phrase, so
+  widening it is safe. **Lesson: a clean textual auto-merge is not a passing build; always
+  re-run the gate after merging, never before committing.**
+
+Post-merge verification on the combined tree: `python3 scripts/build.py` clean;
+`python3 scripts/check.py` passed; `node scripts/verify.mjs` → **GATE PASSED** (13 citation
+sources, 14 published pages, 14 sitemap URLs / 14 feed items cross-checked in both directions,
+12 flags and 7 re-checks published with sources); `node audit/check_audit.mjs` passed;
+`node field-notes/counter-fit/test.cjs` passed; `python3 -m unittest test_desk` →
+`Ran 2 tests … OK`. CI summary metrics now read 14 / 14 / 14 instead of the previous
+`- | 1 | 1 |`.
+
+### Integration of PR #28 into the final branch (`arena/81de0221-diyhome2`, 2026-11-21)
+
+PR #28 (`arena/c776c14c-diyhome2`, nested-page indexability + CI coverage) was open and
+`CONFLICTING` with `main` (its base was pre-PR#26; `main` had moved through PRs #27–#39).
+As the final integration session its branch was merged here rather than left to rot, with all
+conflicts resolved **keeping both works**:
+
+| File | Conflict | Resolution |
+|---|---|---|
+| `scripts/build.py` | sitemap emission: category pages (main) vs `measurement/` addition (#28) | kept both — categories **and** the nested loop including `measurement/`; also removed a duplicated `ops` line that pre-existed on `main` (second assignment already won, so no behaviour change) |
+| `sitemap.xml`, `feed.xml` | generated output | regenerated from the merged builder; now **22 URLs / 22 items / 22 published pages**, cross-checked in both directions by `verify.mjs` |
+| `COORDINATION.md` | board | both histories kept, entries appended |
+| `scripts/verify.mjs` | **auto-merge ReferenceError** (not a textual conflict) | #28's branch removed the `pages`/`NESTED` pair in favour of a whole-tree `PUBLISHED` walk, while checks 13/14 (landed on main after #28's base) still referenced them → `ReferenceError: pages is not defined` at runtime. Fixed by pointing checks 13 and 14 at `PUBLISHED`, the same fix #28 had already applied to check 12, with a comment recording why. This is exactly the class of defect that only appears when two sessions edit one gate in parallel. |
+
+**Verification after the merge (all on this branch, before opening the PR):**
+`python3 scripts/build.py` (reproducible, `git status` clean after rebuild), `python3 scripts/check.py`,
+`node scripts/verify.mjs` → GATE PASSED (16 checks incl. the four-source event gate), `node audit/check_audit.mjs`,
+`node field-notes/counter-fit/test.cjs`, `python3 -m unittest test_desk` (2 tests OK), `node --check assets/metrics.js`,
+`git diff --check` — all pass. No other session's file content was discarded; no product data, price,
+rating or evidence record changed in this merge.
