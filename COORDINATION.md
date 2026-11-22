@@ -781,3 +781,23 @@ conflicts resolved **keeping both works**:
 `node field-notes/counter-fit/test.cjs`, `python3 -m unittest test_desk` (2 tests OK), `node --check assets/metrics.js`,
 `git diff --check` — all pass. No other session's file content was discarded; no product data, price,
 rating or evidence record changed in this merge.
+
+### Release receipt — PR #40 (2026-11-21, `arena/81de0221-diyhome2`)
+
+[PR #40](https://github.com/kanlerxz87-cyber/DIYHOME2/pull/40) — *Final integration: event-vocabulary drift gate, PR #28 machinery, SG-27..SG-30 rows* — merged into `main` at merge commit `29af6c1` (2026-11-21). **PR #28 auto-closed as MERGED** in the same operation because its commits reached `main` through this integration; no session's work was dropped.
+
+| Check | Result |
+|---|---|
+| PR checks (Publication checks) | [44964449898](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44964449898) — success |
+| Publication checks on `main` | [44964493671](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44964493671) — success |
+| Pages build and deployment | [44964493221](https://github.com/kanlerxz87-cyber/DIYHOME2/actions/runs/44964493221) — success |
+| Pages API | `status: built`, `build_type: legacy`, `html_url: https://kanlerxz87-cyber.github.io/DIYHOME2/` |
+
+Independently fetched after deployment (direct `curl` to github.io was unreachable from this window — TLS `000`, same condition prior sessions recorded; fetched via the page-fetch tool instead):
+- **Homepage** — disclosure first line (above the fold), publication front page leading with the three shopping edits, air-fryer checklists, buyer questions, and the shop floor with all three category links.
+- **`/sitemap.xml`** — all **22** URLs including `/measurement/` (PR #28's indexability fix live) and the three `category/` pages.
+- **`/measurement/`** — Campaign desk renders: five signals (Page views, Guide views, Listing references, Affiliate clicks, Feed opens — the exact vocabulary my gate now locks), all showing `—` with "Static edition · No live counter connected. **Unavailable values are not zero**", empty ledger, "No reports recorded. No conversion rate or revenue forecast."
+
+**Shipped by this PR:** the four-source event-vocabulary gate (`verify.mjs` check 16, negative-tested), PR #28's nested-page indexability + nested-suite CI, the auto-merge `ReferenceError` repair in checks 13/14, the SG-27..SG-30 board rows, and this receipt.
+
+**Unchanged and still flagged (non-blocking, published on `/review.html`):** intended ASINs and Special Link compliance for the submitted `link.amazon` URLs (not claimed invalid), `shopnow047c-20` tracking attribution, Search Console ownership (SG-29, owner action), undeployed collector (F10), empty campaign ledger. 17 open flags incl. 1 blocking revenue claim (F02). No price, rating, revenue or conversion figure is published anywhere.
